@@ -123,15 +123,15 @@ const HomeScreen = ({ navigation }) => {
 
   const getStatusColor = () => {
     if (!healthScore) return "#2E86AB";
-    if (healthScore.status === "critical") return "#F44336";
-    if (healthScore.status === "attention") return "#FF9800";
+    if (healthScore.status === "Critical") return "#F44336";
+    if (healthScore.status === "Attention") return "#FF9800";
     return "#4CAF50";
   };
 
   const getStatusEmoji = () => {
     if (!healthScore) return "📊";
-    if (healthScore.status === "critical") return "🚨";
-    if (healthScore.status === "attention") return "⚠️";
+    if (healthScore.status === "Critical") return "🚨";
+    if (healthScore.status === "Attention") return "⚠️";
     return "✅";
   };
 
@@ -243,9 +243,9 @@ const HomeScreen = ({ navigation }) => {
             )}
 
             <View style={styles.quickStats}>
-              {userProfile.expiryTimeline && (
+            {userProfile.expiryTimeline && (
                 <View style={styles.statItem}>
-                  <Text style={styles.statLabel}>Expires</Text>
+                  <Text style={styles.statLabel}>Visa Expiration</Text>
                   <Text
                     style={[
                       styles.statValue,

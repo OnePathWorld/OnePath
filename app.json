@@ -19,7 +19,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.trillology.onepath"
+      "bundleIdentifier": "com.trillology.onepath",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.trillology.onepath",

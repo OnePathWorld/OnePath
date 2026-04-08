@@ -326,7 +326,7 @@ class UserProfileManager {
 
     return {
       score: Math.max(0, score),
-      status: score >= 80 ? "healthy" : score >= 60 ? "attention" : "critical",
+      status: score >= 80 ? "Healthy" : score >= 60 ? "attention" : "critical",
       issues,
     };
   }
