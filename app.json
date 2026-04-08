@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "OnePath",
+    "slug": "onepath",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#DBB7FF"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.trillology.onepath"
+    },
+    "android": {
+      "package": "com.trillology.onepath",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "dataVersion": "2026-04-03",
+      "lastDataUpdate": "April 3, 2026",
+      "eas": {
+        "projectId": "437d4c55-509c-4809-b8a1-62250d7a0633"
+      }
+    }
+  }
+}
