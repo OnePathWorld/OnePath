@@ -436,6 +436,218 @@ const VISA_DETAILS = {
       },
     ],
   },
+
+  // =========================================================
+  // NEW: CITIZENSHIP / NATURALIZATION VISA DETAILS
+  // =========================================================
+  N400_5YR: {
+    fullName: "Naturalization — 5-Year Continuous Residence",
+    viabilityKey: "CITIZENSHIP",
+    purpose:
+      "Standard path to U.S. citizenship for green card holders after 5 years of continuous residence",
+    eligibility: [
+      "Held green card for at least 5 years",
+      "Continuous residence in the U.S. for 5 years",
+      "Physical presence for at least 30 of the past 60 months",
+      "No single trip abroad longer than 6 months",
+      "18 years of age or older",
+      "Good moral character for the full 5-year period",
+      "Ability to read, write, and speak basic English",
+      "Pass the 100-question civics test",
+    ],
+    duration: "Permanent — you become a U.S. citizen for life",
+    currentWait: "8–14 months from filing to oath ceremony",
+    pathToGreenCard: "N/A — this is the step after the green card",
+    spouseWork:
+      "As a U.S. citizen, your spouse becomes an Immediate Relative — fastest family sponsorship category",
+    pros: [
+      "Vote in federal elections",
+      "U.S. passport — visa-free travel to 180+ countries",
+      "Sponsor immediate relatives with no quota wait",
+      "Cannot be deported",
+      "Eligible for federal jobs and security clearances",
+      "Children under 18 may automatically acquire citizenship",
+    ],
+    cons: [
+      "Must renounce prior citizenship (some countries allow dual — check yours)",
+      "8–14 month processing time",
+      "Must pass English and civics tests",
+      "Prior violations or criminal history can disqualify",
+    ],
+    note:
+      "You can file Form N-400 up to 90 days before you reach your 5-year eligibility date.",
+    forms: [
+      {
+        name: "Form N-400",
+        purpose: "Application for Naturalization",
+        link: "https://www.uscis.gov/n-400",
+        who: "Applicant files with USCIS",
+      },
+      {
+        name: "Form I-90 (if needed)",
+        purpose: "Renew green card if expired before naturalization",
+        link: "https://www.uscis.gov/i-90",
+        who: "Applicant files if GC is expired or expiring",
+      },
+    ],
+  },
+
+  N400_3YR: {
+    fullName: "Naturalization — 3-Year Rule (Married to U.S. Citizen)",
+    viabilityKey: "CITIZENSHIP",
+    purpose:
+      "Expedited naturalization path for green card holders married to and living with a U.S. citizen",
+    eligibility: [
+      "Held green card for at least 3 years",
+      "Currently married to the same U.S. citizen who petitioned for you",
+      "U.S. citizen spouse has been a citizen for all 3 years",
+      "Living together with citizen spouse at time of filing",
+      "Physical presence for at least 18 of the past 36 months",
+      "No single trip abroad longer than 6 months",
+      "Good moral character",
+      "Pass English and civics requirements",
+    ],
+    duration: "Permanent — U.S. citizenship for life",
+    currentWait: "8–14 months from filing to oath ceremony",
+    pathToGreenCard: "N/A — this is the step after the green card",
+    spouseWork:
+      "Once you naturalize, you can immediately sponsor other family members as a U.S. citizen",
+    pros: [
+      "Eligible 2 years earlier than the standard 5-year route",
+      "All benefits of U.S. citizenship",
+      "U.S. passport and visa-free travel",
+      "Sponsor family members immediately",
+    ],
+    cons: [
+      "Must still be married to and living with same citizen spouse",
+      "If marriage ends before filing, must wait for 5-year route",
+      "Divorce or separation can disqualify you from this route",
+    ],
+    note:
+      "You must still be married to the same U.S. citizen at the time you file AND at the time of your interview.",
+    forms: [
+      {
+        name: "Form N-400",
+        purpose: "Application for Naturalization",
+        link: "https://www.uscis.gov/n-400",
+        who: "Applicant files with USCIS",
+      },
+      {
+        name: "Marriage Certificate",
+        purpose: "Proof of valid marriage to U.S. citizen",
+        link: null,
+        who: "Applicant provides",
+      },
+      {
+        name: "Proof of Spouse's Citizenship",
+        purpose: "U.S. passport or birth certificate of citizen spouse",
+        link: null,
+        who: "Applicant provides",
+      },
+    ],
+  },
+
+  N400_MIL: {
+    fullName: "Naturalization — Military Service",
+    viabilityKey: "CITIZENSHIP",
+    purpose:
+      "Expedited or immediate naturalization for active duty service members and honorably discharged veterans",
+    eligibility: [
+      "Active duty or honorably discharged from U.S. armed forces",
+      "1 year of honorable service during peacetime",
+      "Immediate eligibility during designated periods of hostility",
+      "Good moral character",
+      "Pass English and civics requirements (some exemptions apply)",
+    ],
+    duration: "Permanent — U.S. citizenship for life",
+    currentWait: "Expedited — can be processed faster than civilian route",
+    pathToGreenCard: "N/A — can apply even without a green card in some cases",
+    spouseWork:
+      "As a U.S. citizen, you can sponsor immediate family members with no wait",
+    pros: [
+      "N-400 filing fee is completely waived ($0)",
+      "Can naturalize abroad through U.S. embassy",
+      "Immediate eligibility during hostility periods",
+      "Some English/civics test exemptions for long-serving members",
+      "Posthumous citizenship available for those who die in service",
+    ],
+    cons: [
+      "Must have honorable discharge — dishonorable discharge disqualifies",
+      "Requires military documentation (DD-214)",
+    ],
+    note:
+      "Filing fee is $0 for all active duty and honorably discharged veterans. Use Form N-426 if filing while serving abroad.",
+    forms: [
+      {
+        name: "Form N-400",
+        purpose: "Application for Naturalization ($0 fee for military)",
+        link: "https://www.uscis.gov/n-400",
+        who: "Applicant files with USCIS",
+      },
+      {
+        name: "Form N-426",
+        purpose: "Request for Certification of Military or Naval Service",
+        link: "https://www.uscis.gov/n-426",
+        who: "Required for active duty abroad",
+      },
+      {
+        name: "DD-214",
+        purpose: "Certificate of Release or Discharge from Active Duty",
+        link: null,
+        who: "Issued by branch of service",
+      },
+    ],
+  },
+
+  N600: {
+    fullName: "Certificate of Citizenship for Children",
+    viabilityKey: "CITIZENSHIP",
+    purpose:
+      "Documents U.S. citizenship for children who acquired it automatically when a parent naturalized",
+    eligibility: [
+      "Under 18 years old",
+      "Lawful permanent resident (green card holder)",
+      "At least one parent is a U.S. citizen by birth or naturalization",
+      "Residing in the U.S. in legal and physical custody of citizen parent",
+    ],
+    duration: "Permanent — documents existing citizenship",
+    currentWait: "Varies — this documents citizenship that already occurred",
+    pathToGreenCard: "N/A — child is already a citizen",
+    spouseWork: "N/A — child citizenship document",
+    pros: [
+      "May have already happened automatically — N-600 just proves it",
+      "Child gets U.S. passport and all citizen rights",
+      "Protects against deportation as an adult",
+      "Military fee waiver available",
+    ],
+    cons: [
+      "$1,170 filing fee (highest citizenship form fee)",
+      "Processing can take 12+ months",
+      "Does not apply if child was born after parent already naturalized",
+    ],
+    note:
+      "If your parent naturalized while you were under 18 and you had a green card, you may ALREADY be a U.S. citizen — N-600 just documents it. Check before applying!",
+    forms: [
+      {
+        name: "Form N-600",
+        purpose: "Application for Certificate of Citizenship",
+        link: "https://www.uscis.gov/n-600",
+        who: "Parent files on behalf of child (or adult child files themselves)",
+      },
+      {
+        name: "Parent's Naturalization Certificate",
+        purpose: "Proof parent is a U.S. citizen",
+        link: null,
+        who: "Applicant provides",
+      },
+      {
+        name: "Child's Green Card",
+        purpose: "Proof of LPR status at time of parent's naturalization",
+        link: null,
+        who: "Applicant provides",
+      },
+    ],
+  },
 };
 
 // =========================================================
@@ -460,7 +672,7 @@ const PathwayDetailScreen = ({ route, navigation }) => {
   analytics.screen("PathwayDetail", { pathway: pathway.id });
 
   const openFormLink = (url, formName) => {
-  analytics.track(EVENTS.FORM_LINK_TAPPED, { form: formName, hasUrl: !!url });
+    analytics.track(EVENTS.FORM_LINK_TAPPED, { form: formName, hasUrl: !!url });
     if (url) {
       Linking.openURL(url).catch(() => {
         Alert.alert(
@@ -495,6 +707,22 @@ const PathwayDetailScreen = ({ route, navigation }) => {
     );
   };
 
+  // NEW: citizenship-specific explainer
+  const showCitizenshipInfo = () => {
+    Alert.alert(
+      "Why Naturalize?",
+      `Becoming a U.S. citizen gives you rights and protections beyond a green card:\n\n` +
+        `🗳️ VOTE in federal, state, and local elections\n` +
+        `🛂 U.S. PASSPORT — visa-free travel to 180+ countries\n` +
+        `👨‍👩‍👧 SPONSOR FAMILY immediately as Immediate Relatives\n` +
+        `🛡️ CANNOT BE DEPORTED — permanent security\n` +
+        `💼 FEDERAL JOBS & security clearances\n` +
+        `👶 CHILDREN under 18 may automatically become citizens\n\n` +
+        `Most green card holders are eligible after 5 years. Married to a U.S. citizen? You may qualify after just 3 years.`,
+      [{ text: "Got it!", style: "default" }]
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -514,12 +742,12 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                 pathwayKey={key}
                 showReason
                 onPress={() => {
-                    analytics.track(EVENTS.PATHWAY_VIABILITY_TAPPED, {
-                      pathwayKey: key,
-                      viability: PATHWAY_VIABILITY[key]?.viability,
-                    });
-                    setDetailModal(key);
-                  }}
+                  analytics.track(EVENTS.PATHWAY_VIABILITY_TAPPED, {
+                    pathwayKey: key,
+                    viability: PATHWAY_VIABILITY[key]?.viability,
+                  });
+                  setDetailModal(key);
+                }}
               />
             ))}
             <Text style={styles.viabilityDisclaimer}>
@@ -548,6 +776,25 @@ const PathwayDetailScreen = ({ route, navigation }) => {
           </TouchableOpacity>
         )}
 
+        {/* NEW: CITIZENSHIP EXPLAINER BANNER */}
+        {pathway.id === "citizenship" && (
+          <TouchableOpacity
+            style={styles.citizenshipBanner}
+            onPress={showCitizenshipInfo}
+          >
+            <Text style={styles.citizenshipBannerIcon}>🇺🇸</Text>
+            <View style={styles.immediateRelativeContent}>
+              <Text style={styles.citizenshipBannerTitle}>
+                Why become a U.S. citizen?
+              </Text>
+              <Text style={styles.immediateRelativeText}>
+                Passport, voting rights, family sponsorship & more. Tap to learn.
+              </Text>
+            </View>
+            <Text style={styles.immediateRelativeArrow}>›</Text>
+          </TouchableOpacity>
+        )}
+
         {/* OVERVIEW */}
         <View style={styles.overviewCard}>
           <Text style={styles.sectionTitle}>Overview</Text>
@@ -568,7 +815,11 @@ const PathwayDetailScreen = ({ route, navigation }) => {
 
         {/* VISA OPTIONS — ENHANCED */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Visa Categories Explained</Text>
+          <Text style={styles.sectionTitle}>
+            {pathway.id === "citizenship"
+              ? "Naturalization Routes"
+              : "Visa Categories Explained"}
+          </Text>
 
           {Object.values(pathwayData.categories).map((visa, index) => {
             const details = VISA_DETAILS[visa.key];
@@ -581,10 +832,17 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                   <Text style={styles.visaName}>
                     {details?.fullName || visa.name}
                   </Text>
-                  {details?.pathToGreenCard && (
-                    <View style={styles.greenCardBadge}>
-                      <Text style={styles.greenCardBadgeText}>→ GC</Text>
+                  {/* Show citizenship badge instead of GC badge for citizenship pathway */}
+                  {pathway.id === "citizenship" ? (
+                    <View style={styles.citizenBadge}>
+                      <Text style={styles.citizenBadgeText}>🇺🇸 USC</Text>
                     </View>
+                  ) : (
+                    details?.pathToGreenCard && (
+                      <View style={styles.greenCardBadge}>
+                        <Text style={styles.greenCardBadgeText}>→ GC</Text>
+                      </View>
+                    )
                   )}
                 </View>
 
@@ -630,8 +888,17 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                     </View>
                     {details.currentWait && (
                       <View style={styles.detailRow}>
-                        <Text style={styles.detailLabel}>Current Wait:</Text>
-                        <Text style={[styles.detailValue, styles.waitTime]}>
+                        <Text style={styles.detailLabel}>
+                          {pathway.id === "citizenship"
+                            ? "Processing Time:"
+                            : "Current Wait:"}
+                        </Text>
+                        <Text
+                          style={[
+                            styles.detailValue,
+                            pathway.id !== "citizenship" && styles.waitTime,
+                          ]}
+                        >
                           {details.currentWait}
                         </Text>
                       </View>
@@ -639,7 +906,9 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                     {details.spouseWork && (
                       <View style={styles.detailRow}>
                         <Text style={styles.detailLabel}>
-                          Spouse Can Work:
+                          {pathway.id === "citizenship"
+                            ? "Family Benefit:"
+                            : "Spouse Can Work:"}
                         </Text>
                         <Text style={styles.detailValue}>
                           {details.spouseWork}
@@ -653,7 +922,9 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                 {details?.eligibility && (
                   <View style={styles.requirementsContainer}>
                     <Text style={styles.subLabel}>
-                      Eligibility Requirements:
+                      {pathway.id === "citizenship"
+                        ? "Requirements:"
+                        : "Eligibility Requirements:"}
                     </Text>
                     {details.eligibility.map((req, idx) => (
                       <View key={idx} style={styles.requirementItem}>
@@ -668,7 +939,7 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                 {details?.pros && (
                   <View style={styles.prosConsContainer}>
                     <View style={styles.prosColumn}>
-                      <Text style={styles.prosLabel}>✅ Advantages</Text>
+                      <Text style={styles.prosLabel}>✅ Benefits</Text>
                       {details.pros.map((pro, idx) => (
                         <Text key={idx} style={styles.proItem}>
                           • {pro}
@@ -676,7 +947,7 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                       ))}
                     </View>
                     <View style={styles.consColumn}>
-                      <Text style={styles.consLabel}>⚠️ Limitations</Text>
+                      <Text style={styles.consLabel}>⚠️ Considerations</Text>
                       {details.cons.map((con, idx) => (
                         <Text key={idx} style={styles.conItem}>
                           • {con}
@@ -714,8 +985,8 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                   </View>
                 )}
 
-                {/* PATH TO GREEN CARD */}
-                {details?.pathToGreenCard && (
+                {/* PATH TO GREEN CARD — hide for citizenship pathway */}
+                {details?.pathToGreenCard && pathway.id !== "citizenship" && (
                   <View style={styles.pathContainer}>
                     <Text style={styles.pathLabel}>
                       🟢 Path to Permanent Residence (Green Card)
@@ -732,8 +1003,8 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                   </View>
                 )}
 
-                {/* TIMELINE */}
-                {visa.processingKey && (
+                {/* TIMELINE — skip for citizenship (uses N-400 processing) */}
+                {visa.processingKey && pathway.id !== "citizenship" && (
                   <TimelineCalculator
                     processingKey={visa.processingKey}
                     country={pathway.id === "work" ? "India" : "default"}
@@ -743,7 +1014,7 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                 )}
 
                 {/* FEES */}
-                {Array.isArray(visa.feeForms) && (
+                {Array.isArray(visa.feeForms) && visa.feeForms.length > 0 && (
                   <FeeCalculator
                     formKeys={visa.feeForms}
                     context={{
@@ -752,6 +1023,16 @@ const PathwayDetailScreen = ({ route, navigation }) => {
                     }}
                   />
                 )}
+
+                {/* NEW: CITIZENSHIP FEE NOTE for military (no feeForms) */}
+                {pathway.id === "citizenship" &&
+                  visa.key === "N400_MIL" && (
+                    <View style={styles.militaryFeeNote}>
+                      <Text style={styles.militaryFeeText}>
+                        🎖️ Filing fee: $0 — completely waived for military applicants
+                      </Text>
+                    </View>
+                  )}
               </View>
             );
           })}
@@ -766,7 +1047,9 @@ const PathwayDetailScreen = ({ route, navigation }) => {
             }
           >
             <Text style={styles.primaryButtonText}>
-              📋 View Document Checklist
+              {pathway.id === "citizenship"
+                ? "📋 N-400 Document Checklist"
+                : "📋 View Document Checklist"}
             </Text>
           </TouchableOpacity>
 
@@ -777,16 +1060,26 @@ const PathwayDetailScreen = ({ route, navigation }) => {
             }
           >
             <Text style={styles.secondaryButtonText}>
-              📅 See Processing Timeline
+              {pathway.id === "citizenship"
+                ? "📅 Naturalization Timeline"
+                : "📅 See Processing Timeline"}
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.tertiaryButton}
-            onPress={() => Linking.openURL("https://www.uscis.gov/forms")}
+            onPress={() =>
+              Linking.openURL(
+                pathway.id === "citizenship"
+                  ? "https://www.uscis.gov/citizenship"
+                  : "https://www.uscis.gov/forms"
+              )
+            }
           >
             <Text style={styles.tertiaryButtonText}>
-              🔗 Visit USCIS Forms Center
+              {pathway.id === "citizenship"
+                ? "🔗 USCIS Citizenship Center"
+                : "🔗 Visit USCIS Forms Center"}
             </Text>
           </TouchableOpacity>
         </View>
@@ -932,6 +1225,51 @@ const styles = StyleSheet.create({
   },
   immediateRelativeText: { fontSize: 12, color: "#555", marginTop: 2 },
   immediateRelativeArrow: { fontSize: 20, color: "#999" },
+
+  // NEW: CITIZENSHIP BANNER
+  citizenshipBanner: {
+    backgroundColor: "#E8EAF6",
+    marginHorizontal: 20,
+    marginTop: 10,
+    padding: 15,
+    borderRadius: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#1565C0",
+  },
+  citizenshipBannerIcon: { fontSize: 24, marginRight: 12 },
+  citizenshipBannerTitle: {
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#1565C0",
+  },
+
+  // NEW: CITIZEN BADGE
+  citizenBadge: {
+    backgroundColor: "#1565C0",
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 12,
+    marginLeft: 8,
+  },
+  citizenBadgeText: { color: "#FFF", fontSize: 11, fontWeight: "bold" },
+
+  // NEW: MILITARY FEE NOTE
+  militaryFeeNote: {
+    backgroundColor: "#E8F5E9",
+    padding: 10,
+    borderRadius: 8,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: "#4CAF50",
+  },
+  militaryFeeText: {
+    fontSize: 13,
+    color: "#2E7D32",
+    fontWeight: "600",
+    textAlign: "center",
+  },
 
   overviewCard: {
     backgroundColor: "#FFFFFF",

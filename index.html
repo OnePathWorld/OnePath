@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OnePath — Your Immigration Guide</title>
+<meta name="description" content="OnePath is the independent immigration guide app. Track your USCIS case, understand visa pathways, and get personalized alerts — no law firm, no conflict of interest.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #2E86AB;
+    --blue-dark: #1D6A8A;
+    --blue-light: #E8F4F8;
+    --lavender: #D7A9FF;
+    --lavender-soft: #F3E8FF;
+    --text: #1A1A1A;
+    --text-secondary: #5A6670;
+    --bg: #FAFBFC;
+    --white: #FFFFFF;
+    --green: #3B6D11;
+    --green-bg: #EAF3DE;
+    --red: #D32F2F;
+    --red-bg: #FDECEA;
+    --amber: #854F0B;
+    --amber-bg: #FAEEDA;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============================================
+     NAV
+  ============================================ */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(250, 251, 252, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--text); }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--blue) !important;
+    color: var(--white) !important;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600 !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-1px); }
+
+  /* ============================================
+     HERO
+  ============================================ */
+  .hero {
+    padding: 140px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(215,169,255,0.12) 0%, rgba(46,134,171,0.06) 50%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-bg);
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    animation: fadeInUp 0.6s ease;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    animation: fadeInUp 0.6s ease 0.1s both;
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, var(--blue), var(--lavender));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    animation: fadeInUp 0.6s ease 0.2s both;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease 0.3s both;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--blue);
+    color: var(--white);
+    padding: 16px 32px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,134,171,0.25); }
+  .btn-primary svg { width: 20px; height: 20px; }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    color: var(--text);
+    padding: 16px 32px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1.5px solid rgba(0,0,0,0.1);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+
+  .hero-proof {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease 0.4s both;
+  }
+  .proof-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .proof-icon { font-size: 18px; }
+
+  /* ============================================
+     FEATURES
+  ============================================ */
+  .features {
+    padding: 100px 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.8px;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 17px;
+    color: var(--text-secondary);
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 60px;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .feature-card {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .feature-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--lavender));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .feature-card:hover::after { opacity: 1; }
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--blue-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+  .feature-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+  .feature-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ============================================
+     TRUST / INDEPENDENCE
+  ============================================ */
+  .trust {
+    padding: 100px 24px;
+    background: linear-gradient(180deg, var(--white) 0%, var(--blue-light) 100%);
+  }
+  .trust-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .trust-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--lavender-soft);
+    color: #6B21A8;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .trust h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    margin-bottom: 20px;
+  }
+  .trust > .trust-inner > p {
+    font-size: 17px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+  .trust-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+  }
+  .trust-point {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .trust-point-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .trust-point h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .trust-point p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ============================================
+     WARNINGS PREVIEW
+  ============================================ */
+  .warnings {
+    padding: 100px 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .warning-examples {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .warning-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .warning-card.red { background: var(--red-bg); color: var(--red); }
+  .warning-card.amber { background: var(--amber-bg); color: var(--amber); }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ============================================
+     CTA
+  ============================================ */
+  .cta {
+    padding: 100px 24px;
+    text-align: center;
+  }
+  .cta-card {
+    max-width: 680px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+    border-radius: 24px;
+    padding: 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: rgba(215,169,255,0.15);
+    border-radius: 50%;
+  }
+  .cta-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    width: 140px;
+    height: 140px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .cta-card h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+    position: relative;
+  }
+  .cta-card p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .cta-card .btn-primary {
+    background: var(--white);
+    color: var(--blue);
+    position: relative;
+  }
+  .cta-card .btn-primary:hover { background: #f0f0f0; box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+  /* ============================================
+     FOOTER
+  ============================================ */
+  footer {
+    padding: 40px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--blue); }
+  .footer-copy {
+    font-size: 12px;
+    color: #999;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  /* ============================================
+     ANIMATIONS
+  ============================================ */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============================================
+     MOBILE
+  ============================================ */
+  @media (max-width: 768px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .trust-points { grid-template-columns: 1fr; }
+    .warning-examples { grid-template-columns: 1fr; }
+    .hero-proof { gap: 20px; }
+    .cta-card { padding: 48px 28px; }
+    .footer-inner { justify-content: center; text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 120px 20px 60px; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">One<span>Path</span></a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#trust">Why OnePath</a>
+      <a href="#alerts">Alerts</a>
+      <a href="https://apps.apple.com/us/app/onepath-immigration-guide/id6761849532" class="nav-cta">Download</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span>✦</span> Independent. No law firm. No conflict of interest.
+  </div>
+  <h1>Navigate immigration <span class="highlight">with clarity</span></h1>
+  <p>OnePath gives you personalized visa guidance, real-time policy alerts, and case tracking — built for you, not for a law firm's billing department.</p>
+  <div class="hero-buttons">
+    <a href="https://apps.apple.com/us/app/onepath-immigration-guide/id6761849532" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download for iOS
+    </a>
+    <a href="#features" class="btn-secondary">See what's inside</a>
+  </div>
+  <div class="hero-proof">
+    <div class="proof-item"><span class="proof-icon">📊</span> 150+ verified data points</div>
+    <div class="proof-item"><span class="proof-icon">⚡</span> 13 real-time policy alerts</div>
+    <div class="proof-item"><span class="proof-icon">🏛️</span> All official government sources</div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-label">Features</div>
+  <h2 class="section-title">Everything you need, nothing you don't</h2>
+  <p class="section-sub">Built from official USCIS, State Department, and DOL data — verified and updated regularly.</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🧭</div>
+      <h3>Pathway Viability</h3>
+      <p>See which visa paths are realistic for your specific situation — with honest assessments, not upsells.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⏱️</div>
+      <h3>Timeline Calculator</h3>
+      <p>Estimate processing times for your forms based on current USCIS data, not outdated averages.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <h3>Fee Calculator</h3>
+      <p>Know exactly what you'll pay — every filing fee, biometrics cost, and premium processing option.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <h3>Priority Date Tracker</h3>
+      <p>Track Visa Bulletin movement for your category and country of birth. Know when your date is current.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏛️</div>
+      <h3>Embassy Wait Times</h3>
+      <p>Check interview wait times at embassies in India, Mexico, Philippines, and China across 5 visa types.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <h3>Document Checklists</h3>
+      <p>Know exactly which documents you need for each form — organized by pathway, nothing missed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust" id="trust">
+  <div class="trust-inner">
+    <div class="trust-badge"><span>🛡️</span> Built different</div>
+    <h2>The only immigration app not owned by a law firm</h2>
+    <p>Most immigration apps exist to funnel you into paid legal consultations. OnePath exists to help you understand your options — and honestly tell you when you do or don't need an attorney.</p>
+    <div class="trust-points">
+      <div class="trust-point">
+        <div class="trust-point-icon">🚫</div>
+        <h4>No hidden agenda</h4>
+        <p>We don't make money by sending you to attorneys. Our advice isn't shaped by referral fees.</p>
+      </div>
+      <div class="trust-point">
+        <div class="trust-point-icon">✅</div>
+        <h4>Government sources only</h4>
+        <p>Every data point comes from USCIS, State Department, DOL, or the Federal Register. No guessing.</p>
+      </div>
+      <div class="trust-point">
+        <div class="trust-point-icon">🔔</div>
+        <h4>Alerts that matter to you</h4>
+        <p>Policy changes are matched to your visa type and situation — not generic news blasts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WARNINGS PREVIEW -->
+<section class="warnings" id="alerts">
+  <div class="section-label">Real-Time Alerts</div>
+  <h2 class="section-title">Know before it affects you</h2>
+  <p class="section-sub">OnePath monitors 13 active policy alerts and matches them to your specific immigration pathway.</p>
+  <div class="warning-examples">
+    <div class="warning-card red">
+      <span class="warning-icon">⚠️</span>
+      <span>EAD validity reduced from 5 years to 18 months — plan for renewal gaps</span>
+    </div>
+    <div class="warning-card amber">
+      <span class="warning-icon">⚠️</span>
+      <span>H-1B weighted lottery now favors higher wage levels</span>
+    </div>
+    <div class="warning-card red">
+      <span class="warning-icon">⚠️</span>
+      <span>540-day automatic EAD extensions have been eliminated</span>
+    </div>
+    <div class="warning-card amber">
+      <span class="warning-icon">⚠️</span>
+      <span>India EB-2 backlog: priority dates back to September 2013</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-card">
+    <h2>Your path forward starts here</h2>
+    <p>Free to download. Personalized in 2 minutes. No account required.</p>
+    <a href="https://apps.apple.com/us/app/onepath-immigration-guide/id6761849532" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download for iOS
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand">OnePath</span>
+    <div class="footer-links">
+      <a href="https://onepathworld.github.io/OnePath/privacy.html">Privacy Policy</a>
+      <a href="https://onepathworld.github.io/OnePath/support.html">Support</a>
+      <a href="https://instagram.com/OnePathUnited">Instagram</a>
+      <a href="https://twitter.com/OnePathUnited">Twitter</a>
+    </div>
+    <div class="footer-copy">© 2026 TRILLOLOGY LLC. All rights reserved. OnePath is not a law firm and does not provide legal advice.</div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+</script>
+</body>
+</html>

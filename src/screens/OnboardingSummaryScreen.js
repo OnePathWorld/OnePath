@@ -32,6 +32,7 @@ const getGuidance = (profile) => {
     countryOfCitizenship,
     expiryTimeline,
     complianceRisk,
+    gcYearsHeld, // NEW
   } = profile;
 
   // Critical alerts based on status
@@ -231,6 +232,51 @@ const getGuidance = (profile) => {
       };
     }
 
+    // =========================================================
+    // NEW: CITIZENSHIP / NATURALIZATION CASE
+    // =========================================================
+    case "citizenship": {
+      const eligibilityAlert = buildCitizenshipEligibilityAlert(gcYearsHeld);
+      if (eligibilityAlert) criticalAlerts.unshift(eligibilityAlert);
+
+      return {
+        title: "Your Path to U.S. Citizenship",
+        summary: buildCitizenshipSummary(profile),
+        criticalAlerts,
+        pathwayId: "citizenship",
+
+        statusInfo: {
+          current: `Current Status: ${getVisaLabel(currentVisa || "GC")}`,
+          gcTime: gcYearsHeld
+            ? `Green Card Held: ${getGCYearsLabel(gcYearsHeld)}`
+            : null,
+          country: `Country of Birth: ${getCountryLabel(countryOfCitizenship)}`,
+        },
+
+        primaryAction: {
+          text: getNaturalizationPrimaryAction(gcYearsHeld),
+          navigationType: "pathway",
+          pathway: {
+            id: "citizenship",
+            title: "Path to Citizenship",
+            icon: "🇺🇸",
+            subtitle: "Naturalization & N-400",
+            color: "#1565C0",
+            description: "Become a U.S. citizen",
+          },
+        },
+
+        secondaryAction: {
+          text: "N-400 Document Checklist",
+          navigationType: "checklist",
+          pathwayId: "citizenship",
+        },
+
+        warnings: buildCitizenshipWarnings(profile),
+        recommendations: buildCitizenshipRecommendations(profile),
+      };
+    }
+
     default:
       return {
         title: "Your Immigration Journey",
@@ -247,7 +293,161 @@ const getGuidance = (profile) => {
 };
 
 // =========================================================
-// HELPER FUNCTIONS — personalized messages
+// CITIZENSHIP HELPER FUNCTIONS
+// =========================================================
+
+function buildCitizenshipEligibilityAlert(gcYearsHeld) {
+  if (gcYearsHeld === "under2") {
+    return {
+      type: "warning",
+      message: "⏳ Not yet eligible to file for naturalization",
+      action: "You'll need at least 3 years (married to U.S. citizen) or 5 years (standard) of green card residency",
+    };
+  }
+  if (gcYearsHeld === "2to3") {
+    return {
+      type: "warning",
+      message: "📅 Approaching eligibility — check your specific route",
+      action: "If married to a U.S. citizen, you may be eligible now. Otherwise wait until 5-year mark.",
+    };
+  }
+  if (gcYearsHeld === "over5") {
+    return {
+      type: null,
+      message: "✅ You are eligible to file Form N-400 now",
+      action: "You can apply immediately — start gathering your documents",
+    };
+  }
+  return null;
+}
+
+function buildCitizenshipSummary(profile) {
+  const { gcYearsHeld, complianceRisk } = profile;
+
+  if (gcYearsHeld === "military") {
+    return (
+      "Military service members and veterans may be eligible for expedited naturalization. " +
+      "Active duty during a designated hostility period allows immediate eligibility. " +
+      "The N-400 filing fee is waived for military applicants."
+    );
+  }
+
+  if (gcYearsHeld === "over5") {
+    return (
+      "You meet the 5-year continuous residence requirement and can file Form N-400 now. " +
+      "You'll need to pass an English language test and a civics exam (100 questions). " +
+      "Processing typically takes 8–14 months from filing to oath ceremony."
+    );
+  }
+
+  if (gcYearsHeld === "3to5") {
+    return (
+      "If you are married to and living with a U.S. citizen, you may qualify under the 3-year rule. " +
+      "This requires 18 months of physical presence and continuous residence during those 3 years. " +
+      "Otherwise, you'll need to wait until the 5-year mark."
+    );
+  }
+
+  if (gcYearsHeld === "2to3") {
+    return (
+      "You're getting close to eligibility. The standard route requires 5 years as a green card holder, " +
+      "but if you're married to a U.S. citizen, you may qualify after just 3 years. " +
+      "Use this time to prepare your documents and study for the civics test."
+    );
+  }
+
+  if (gcYearsHeld === "under2") {
+    return (
+      "You're not yet eligible to naturalize, but now is a great time to prepare. " +
+      "Track your travel history, maintain your green card in good standing, " +
+      "and start studying for the 100-question civics exam."
+    );
+  }
+
+  return (
+    "Naturalization is the process of becoming a U.S. citizen. Most green card holders " +
+    "are eligible after 5 years of continuous residence. If you're married to a U.S. citizen, " +
+    "you may qualify after just 3 years."
+  );
+}
+
+function buildCitizenshipWarnings(profile) {
+  const warnings = [];
+  const { gcYearsHeld, complianceRisk, countryOfCitizenship } = profile;
+
+  if (
+    complianceRisk === "gap" ||
+    complianceRisk === "overstay" ||
+    complianceRisk === "unauthorized_work"
+  ) {
+    warnings.push(
+      "⚠️ Prior immigration violations may affect good moral character requirement — consult an attorney"
+    );
+  }
+
+  if (complianceRisk === "denied") {
+    warnings.push(
+      "⚠️ Previous application denial could impact naturalization — review circumstances carefully"
+    );
+  }
+
+  warnings.push(
+    "✈️ Extended trips abroad (6+ months) can break continuous residence — track your travel carefully"
+  );
+
+  warnings.push(
+    "📋 You must maintain good moral character for the full 5-year (or 3-year) period before filing"
+  );
+
+  if (gcYearsHeld === "3to5") {
+    warnings.push(
+      "💍 3-year rule requires you to still be married to and living with the U.S. citizen spouse at time of filing"
+    );
+  }
+
+  return warnings;
+}
+
+function buildCitizenshipRecommendations(profile) {
+  const recs = [];
+  const { gcYearsHeld } = profile;
+
+  if (gcYearsHeld === "over5" || gcYearsHeld === "3to5") {
+    recs.push("📄 File Form N-400 — $760 paper / $710 online (military: free)");
+    recs.push("📚 Study the 100 civics questions at uscis.gov/citizenship/tessprep");
+    recs.push("🗂️ Gather tax returns, travel records, and green card copies");
+  } else {
+    recs.push("📚 Start studying the 100 civics questions now — get a head start");
+    recs.push("✈️ Track all international trips carefully (dates in/out of U.S.)");
+    recs.push("📋 Keep tax filings current — required for naturalization");
+  }
+
+  recs.push("💳 Renew your green card if it expires before you're eligible to naturalize");
+  recs.push("👨‍⚖️ Consult an immigration attorney if you have any criminal history or prior violations");
+
+  return recs;
+}
+
+function getNaturalizationPrimaryAction(gcYearsHeld) {
+  if (gcYearsHeld === "over5") return "Start N-400 Application";
+  if (gcYearsHeld === "3to5") return "Check 3-Year Eligibility";
+  if (gcYearsHeld === "military") return "Military Naturalization Info";
+  return "Naturalization Timeline & Requirements";
+}
+
+function getGCYearsLabel(gcYearsHeld) {
+  const labels = {
+    under2: "Less than 2 years",
+    "2to3": "2–3 years",
+    "3to5": "3–5 years",
+    over5: "5+ years ✅",
+    military: "Military service 🎖️",
+  };
+  return labels[gcYearsHeld] || gcYearsHeld;
+}
+
+// =========================================================
+// EXISTING HELPER FUNCTIONS — unchanged
 // =========================================================
 
 function buildWorkSummary(profile) {
@@ -301,7 +501,6 @@ function buildWorkWarnings(profile) {
     warnings.push("⏰ OPT has 90-day unemployment limit — track carefully");
   }
 
-  // EAD validity warning for anyone with pending I-485
   warnings.push(
     "📋 EAD validity reduced to 18 months (from 5 years) for adjustment-of-status applicants as of Dec 2025"
   );
@@ -447,6 +646,7 @@ function getVisaLabel(visa) {
     OPT: "OPT Work Permit",
     EAD: "EAD Holder",
     GC_pending: "Green Card Pending",
+    GC: "🟢 Green Card Holder (LPR)", // NEW
     none: "Out of Status",
   };
   return labels[visa] || visa;
@@ -471,6 +671,10 @@ function getCountryLabel(country) {
     philippines: "🇵🇭 Philippines",
     canada: "🇨🇦 Canada",
     uk: "🇬🇧 UK",
+    brazil: "🇧🇷 Brazil",
+    nigeria: "🇳🇬 Nigeria",
+    south_korea: "🇰🇷 South Korea",
+    japan: "🇯🇵 Japan",
   };
   return labels[country] || "Other";
 }
@@ -492,6 +696,101 @@ function getWorkPrimaryAction(profile) {
   return "Explore Work Visas";
 }
 
+
+// =========================================================
+// URGENT FORM RECOMMENDATION
+// Returns the most critical form to file based on
+// visa type + expiry timeline combo
+// =========================================================
+function buildUrgentFormRecommendation(profile) {
+    const { currentVisa, expiryTimeline, hasWorkAuth } = profile;
+  
+    // Only show for urgent situations
+    if (!expiryTimeline || expiryTimeline === "safe" || expiryTimeline === "year") {
+      return null;
+    }
+  
+    const isUrgent = expiryTimeline === "expired" || expiryTimeline === "30days";
+    const isSoon = expiryTimeline === "90days" || expiryTimeline === "6months";
+  
+    const formMap = {
+      H1B: {
+        form: "Form I-129 Extension",
+        purpose: "Extend your H-1B status",
+        fee: "$1,015 + $2,965 premium (15 days)",
+        deadline: isUrgent ? "File TODAY — employer must act immediately" : "File at least 6 months before expiry",
+        tip: "Premium processing gets 15-day decision. Your employer files, not you.",
+        color: "#D32F2F",
+      },
+      F1: {
+        form: "Contact Your DSO Immediately",
+        purpose: "Program extension or OPT application",
+        fee: "Free (DSO action) / I-765 OPT: $470 online",
+        deadline: isUrgent ? "Contact DSO today — grace period is only 60 days after program end" : "Plan OPT 90 days before graduation",
+        tip: "Your Designated School Official (DSO) must extend your I-20 before you can file anything.",
+        color: "#9C27B0",
+      },
+      OPT: {
+        form: "Form I-765 STEM Extension",
+        purpose: "Extend OPT by 24 months (STEM graduates)",
+        fee: "$470 online / $520 paper",
+        deadline: isUrgent ? "File immediately — apply up to 90 days before EAD expires" : "Apply now — USCIS processing takes 3-5 months",
+        tip: "Must have STEM degree and E-Verify employer. File before current EAD expires or you lose work auth.",
+        color: "#FF9800",
+      },
+      L1: {
+        form: "Form I-129 Extension",
+        purpose: "Extend your L-1 status",
+        fee: "$1,015 + optional $2,965 premium",
+        deadline: isUrgent ? "File immediately — employer must sponsor" : "File 6 months before expiry",
+        tip: "L-1A max 7 years total, L-1B max 5 years. Premium gets 15-day decision.",
+        color: "#1565C0",
+      },
+      J1: {
+        form: "DS-2019 Program Extension",
+        purpose: "Extend your J-1 exchange visitor program",
+        fee: "Free (sponsor action required)",
+        deadline: isUrgent ? "Contact your program sponsor immediately" : "Contact sponsor 3 months before end date",
+        tip: "Only your program sponsor can extend the DS-2019. You cannot file this yourself.",
+        color: "#388E3C",
+      },
+      B1B2: {
+        form: "Form I-539",
+        purpose: "Extend your B-1/B-2 visitor stay",
+        fee: "$370 online / $420 paper",
+        deadline: isUrgent ? "File immediately — overstay has serious consequences" : "File at least 45 days before I-94 expires",
+        tip: "Must file BEFORE your I-94 expires. Overstaying even one day can affect future visa applications.",
+        color: "#D32F2F",
+      },
+      EAD: {
+        form: "Form I-765 Renewal",
+        purpose: "Renew your Employment Authorization Document",
+        fee: "$470 online / $520 paper",
+        deadline: isUrgent ? "File immediately — EAD validity now 18 months max" : "File 6 months before expiry — processing takes 3-5 months",
+        tip: "Auto-extensions eliminated as of Oct 2025. File early — a gap in EAD means you cannot work legally.",
+        color: "#D32F2F",
+      },
+      GC_pending: {
+        form: "Form I-765 / I-131 Renewal",
+        purpose: "Renew your EAD/Advance Parole combo card",
+        fee: "$260 (with pending I-485 filed after Apr 2024)",
+        deadline: isUrgent ? "File immediately — do not let combo card expire" : "File 6 months before expiry",
+        tip: "Traveling without valid Advance Parole while I-485 is pending can abandon your green card application.",
+        color: "#FF9800",
+      },
+    };
+  
+    const rec = formMap[currentVisa];
+    if (!rec) return null;
+  
+    return {
+      ...rec,
+      isUrgent,
+      isSoon,
+    };
+  }
+
+
 // =========================================================
 // COMPONENT
 // =========================================================
@@ -505,34 +804,55 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
     ? PATHWAY_TO_VIABILITY_MAP[guidance.pathwayId] || []
     : [];
 
-useEffect(() => {
-        AsyncStorage.setItem("@hasLaunched", "true").catch(console.error);
-    
-        if (userProfile) {
-          AsyncStorage.setItem(
-            "@userProfile_v2",
-            JSON.stringify(userProfile)
-          ).catch(console.error);
-    
-          const legacyProfile = {
-            location: userProfile.location,
-            purpose: userProfile.purpose,
-            urgency: userProfile.urgency,
-            language: userProfile.language,
-          };
-          AsyncStorage.setItem(
-            "@userProfile",
-            JSON.stringify(legacyProfile)
-          ).catch(console.error);
-        }
-    
-        if (guidance.primaryAction?.pathway?.id) {
-          initializePathwayProgress(guidance.primaryAction.pathway.id);
-        }
-    
-        // Analytics
+  useEffect(() => {
+    AsyncStorage.setItem("@hasLaunched", "true").catch(console.error);
+
+    if (userProfile) {
+      AsyncStorage.setItem(
+        "@userProfile_v2",
+        JSON.stringify(userProfile)
+      ).catch(console.error);
+
+      const legacyProfile = {
+        location: userProfile.location,
+        purpose: userProfile.purpose,
+        urgency: userProfile.urgency,
+        language: userProfile.language,
+      };
+      AsyncStorage.setItem(
+        "@userProfile",
+        JSON.stringify(legacyProfile)
+      ).catch(console.error);
+    }
+
+    if (guidance.primaryAction?.pathway?.id) {
+      initializePathwayProgress(guidance.primaryAction.pathway.id);
+    }
+
+    // Analytics
+
         analytics.screen("OnboardingSummary", { pathway: guidance.pathwayId });
-      }, []);
+
+        // NEW: fire citizenship eligibility event
+        if (userProfile?.purpose === "citizenship" || userProfile?.currentVisa === "GC") {
+        analytics.track(EVENTS.CITIZENSHIP_ELIGIBILITY_VIEWED, {
+            gc_years_held: userProfile?.gcYearsHeld || "unknown",
+            eligible:
+            userProfile?.gcYearsHeld === "over5" ||
+            userProfile?.gcYearsHeld === "3to5" ||
+            userProfile?.gcYearsHeld === "military",
+            route:
+            userProfile?.gcYearsHeld === "military"
+                ? "military"
+                : userProfile?.gcYearsHeld === "3to5"
+                ? "3yr_marriage"
+                : userProfile?.gcYearsHeld === "over5"
+                ? "5yr_standard"
+                : "not_yet_eligible",
+        });
+        }
+  }, []);
+
   const initializePathwayProgress = async (pathwayId) => {
     try {
       const key = `@checklist_progress_${pathwayId}`;
@@ -682,8 +1002,52 @@ useEffect(() => {
             </View>
           )}
 
+{/* URGENT FORM CARD — shown when expiry is critical */}
+{(() => {
+            const urgentForm = buildUrgentFormRecommendation(userProfile || {});
+            if (!urgentForm) return null;
+            return (
+              <View style={[
+                styles.urgentFormCard,
+                { borderLeftColor: urgentForm.color }
+              ]}>
+                <View style={styles.urgentFormHeader}>
+                  <Text style={styles.urgentFormIcon}>
+                    {urgentForm.isUrgent ? "🚨" : "📋"}
+                  </Text>
+                  <View style={styles.urgentFormTitleBlock}>
+                    <Text style={styles.urgentFormLabel}>
+                      {urgentForm.isUrgent ? "FILE NOW" : "ACTION NEEDED"}
+                    </Text>
+                    <Text style={styles.urgentFormName}>{urgentForm.form}</Text>
+                  </View>
+                </View>
+                <Text style={styles.urgentFormPurpose}>{urgentForm.purpose}</Text>
+                <View style={styles.urgentFormRow}>
+                  <Text style={styles.urgentFormKey}>Fee:</Text>
+                  <Text style={styles.urgentFormValue}>{urgentForm.fee}</Text>
+                </View>
+                <View style={styles.urgentFormRow}>
+                  <Text style={styles.urgentFormKey}>Deadline:</Text>
+                  <Text style={[
+                    styles.urgentFormValue,
+                    urgentForm.isUrgent && styles.urgentFormValueRed
+                  ]}>
+                    {urgentForm.deadline}
+                  </Text>
+                </View>
+                <View style={styles.urgentFormTip}>
+                  <Text style={styles.urgentFormTipText}>
+                    💡 {urgentForm.tip}
+                  </Text>
+                </View>
+              </View>
+            );
+          })()}
+
           {/* WARNINGS */}
           {guidance.warnings?.length > 0 && (
+
             <View style={styles.warningBox}>
               {guidance.warnings.map((warning, idx) => (
                 <Text key={idx} style={styles.warning}>
@@ -708,8 +1072,17 @@ useEffect(() => {
           {/* PRIMARY ACTION */}
           <TouchableOpacity
             style={styles.primaryButton}
-            onPress={() => handleNavigation(guidance.primaryAction)}
-          >
+            onPress={() => {
+                // NEW: track N-400 intent for citizenship pathway
+                if (guidance.pathwayId === "citizenship") {
+                analytics.track(EVENTS.N400_INTENT_SIGNALED, {
+                    cta_text: guidance.primaryAction.text,
+                    gc_years_held: userProfile?.gcYearsHeld || "unknown",
+                });
+                }
+                handleNavigation(guidance.primaryAction);
+            }}
+            >
             <Text style={styles.primaryButtonText}>
               {guidance.primaryAction.text}
             </Text>
@@ -718,8 +1091,16 @@ useEffect(() => {
           {/* SECONDARY ACTION */}
           {guidance.secondaryAction && (
             <TouchableOpacity
-              style={styles.secondaryButton}
-              onPress={() => handleNavigation(guidance.secondaryAction)}
+            style={styles.secondaryButton}
+            onPress={() => {
+                // NEW: track checklist open for citizenship pathway
+                if (guidance.pathwayId === "citizenship") {
+                analytics.track(EVENTS.CITIZENSHIP_CHECKLIST_OPENED, {
+                    source: "onboarding_summary",
+                });
+                }
+                handleNavigation(guidance.secondaryAction);
+            }}
             >
               <Text style={styles.secondaryButtonText}>
                 {guidance.secondaryAction.text}
@@ -897,6 +1278,76 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
   },
-  skipButton: { paddingVertical: 12 },
+skipButton: { paddingVertical: 12 },
   skipText: { color: "#999", fontSize: 14, textAlign: "center" },
+
+  // URGENT FORM CARD
+  urgentFormCard: {
+    backgroundColor: "#FFF",
+    borderRadius: 12,
+    borderLeftWidth: 4,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  urgentFormHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  urgentFormIcon: { fontSize: 24, marginRight: 10 },
+  urgentFormTitleBlock: { flex: 1 },
+  urgentFormLabel: {
+    fontSize: 10,
+    fontWeight: "800",
+    color: "#D32F2F",
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    marginBottom: 2,
+  },
+  urgentFormName: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#1A1A1A",
+  },
+  urgentFormPurpose: {
+    fontSize: 13,
+    color: "#666",
+    marginBottom: 10,
+    lineHeight: 18,
+  },
+  urgentFormRow: {
+    flexDirection: "row",
+    marginBottom: 6,
+  },
+  urgentFormKey: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#333",
+    width: 70,
+  },
+  urgentFormValue: {
+    fontSize: 13,
+    color: "#444",
+    flex: 1,
+    lineHeight: 18,
+  },
+  urgentFormValueRed: {
+    color: "#D32F2F",
+    fontWeight: "600",
+  },
+  urgentFormTip: {
+    backgroundColor: "#F5F5F5",
+    padding: 10,
+    borderRadius: 8,
+    marginTop: 10,
+  },
+  urgentFormTipText: {
+    fontSize: 12,
+    color: "#555",
+    lineHeight: 17,
+  },
 });

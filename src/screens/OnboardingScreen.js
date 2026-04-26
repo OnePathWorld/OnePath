@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    ScrollView,
-    Image,
-    TextInput,
-  } from "react-native";
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  TextInput,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import analytics, { EVENTS } from "../utils/analytics";
@@ -26,6 +26,7 @@ const OnboardingScreen = ({ navigation, onDone }) => {
     countryOfCitizenship: "",
     expiryTimeline: "",
     complianceRisk: "",
+    gcYearsHeld: "",         // NEW: how long they've had their green card
   });
 
   // Track onboarding start + begin timing
@@ -51,27 +52,9 @@ const OnboardingScreen = ({ navigation, onDone }) => {
         { value: "inside_us", label: "🇺🇸 Inside the United States" },
       ],
     },
-    {
-      id: "purpose",
-      title: "What brings you to the U.S.?",
-      subtitle: "Select your primary reason",
-      options: [
-        { value: "work", label: "💼 Work Opportunity" },
-        { value: "family", label: "👨‍👩‍👧‍👦 Family Reunification" },
-        { value: "study", label: "🎓 Education" },
-        { value: "protection", label: "🛡️ Seeking Protection" },
-      ],
-    },
-    {
-      id: "urgency",
-      title: "What's your timeline?",
-      subtitle: "This helps us prioritize information",
-      options: [
-        { value: "immediate", label: "🚨 Immediate (< 1 month)" },
-        { value: "soon", label: "📅 Soon (1–6 months)" },
-        { value: "planning", label: "📊 Planning (6+ months)" },
-      ],
-    },
+
+    // MOVED UP: currentVisa now comes before purpose
+    // so purpose can react to GC holder status
     {
       id: "currentVisa",
       title: "What's your current immigration status?",
@@ -86,15 +69,78 @@ const OnboardingScreen = ({ navigation, onDone }) => {
         { value: "OPT", label: "🎓 OPT/STEM OPT" },
         { value: "EAD", label: "💳 EAD Holder" },
         { value: "GC_pending", label: "⏳ Green Card Pending" },
+        { value: "GC", label: "🟢 Green Card Holder (LPR)" },
         { value: "other", label: "📋 Other Status" },
         { value: "none", label: "❌ Out of Status" },
       ],
     },
+
+    // NEW: gcYearsHeld immediately after GC selection
+    {
+      id: "gcYearsHeld",
+      title: "How long have you held your green card?",
+      subtitle: "This determines which naturalization path you qualify for",
+      showIf: (profile) =>
+        profile.location === "inside_us" && profile.currentVisa === "GC",
+      options: [
+        { value: "under2", label: "⏳ Less than 2 years" },
+        { value: "2to3", label: "📅 2–3 years" },
+        { value: "3to5", label: "🗓️ 3–5 years" },
+        { value: "over5", label: "✅ 5+ years — Eligible to naturalize" },
+        { value: "military", label: "🎖️ Military service" },
+      ],
+    },
+
+    // PURPOSE — now dynamic based on visa status
+    {
+      id: "purpose",
+      // DYNAMIC title: GC holders get different question
+      title: "What's your immigration goal?",
+      // DYNAMIC subtitle based on visa
+      subtitle: "Select your primary focus",
+      // GC holders only see relevant options
+      showIf: (profile) => profile.currentVisa !== "GC",
+      options: [
+        { value: "work", label: "💼 Work Opportunity" },
+        { value: "family", label: "👨‍👩‍👧‍👦 Family Reunification" },
+        { value: "study", label: "🎓 Education" },
+        { value: "protection", label: "🛡️ Seeking Protection" },
+      ],
+    },
+
+    // SEPARATE purpose question for GC holders only
+    {
+        id: "purpose",
+        title: "What would you like to focus on?",
+        subtitle: "You already have your green card — what's next for you?",
+        showIf: (profile) =>
+          profile.location === "inside_us" && profile.currentVisa === "GC",
+        options: [
+          { value: "citizenship", label: "🇺🇸 Naturalization & Citizenship" },
+          { value: "family", label: "👨‍👩‍👧‍👦 Sponsor Family Members" },
+          { value: "work", label: "💼 Work & Career Options" },
+        ],
+      },
+
+    // URGENCY — skipped for GC holders
+    {
+      id: "urgency",
+      title: "What's your timeline?",
+      subtitle: "This helps us prioritize information",
+      showIf: (profile) => profile.currentVisa !== "GC",
+      options: [
+        { value: "immediate", label: "🚨 Immediate (< 1 month)" },
+        { value: "soon", label: "📅 Soon (1–6 months)" },
+        { value: "planning", label: "📊 Planning (6+ months)" },
+      ],
+    },
+
     {
       id: "hasWorkAuth",
       title: "Do you have work authorization?",
       subtitle: "This affects your employment options",
-      showIf: (profile) => profile.location === "inside_us",
+      showIf: (profile) =>
+        profile.location === "inside_us" && profile.currentVisa !== "GC",
       options: [
         { value: "yes_unrestricted", label: "✅ Yes - Any employer" },
         { value: "yes_restricted", label: "⚠️ Yes - Specific employer only" },
@@ -103,46 +149,67 @@ const OnboardingScreen = ({ navigation, onDone }) => {
         { value: "no", label: "❌ No work authorization" },
       ],
     },
+
     {
-        id: "countryOfCitizenship",
-        title: "What's your country of citizenship?",
-        subtitle: "This affects wait times and visa availability",
-        options: [
-          { value: "india", label: "🇮🇳 India" },
-          { value: "china", label: "🇨🇳 China" },
-          { value: "mexico", label: "🇲🇽 Mexico" },
-          { value: "philippines", label: "🇵🇭 Philippines" },
-          { value: "canada", label: "🇨🇦 Canada" },
-          { value: "uk", label: "🇬🇧 United Kingdom" },
-          { value: "brazil", label: "🇧🇷 Brazil" },
-          { value: "nigeria", label: "🇳🇬 Nigeria" },
-          { value: "south_korea", label: "🇰🇷 South Korea" },
-          { value: "japan", label: "🇯🇵 Japan" },
-          { value: "other", label: "🌍 Other" },
-        ],
-        hasTextInput: true,
-        textInputPlaceholder: "Enter your country",
-        textInputShowIf: "other",
-      },
+      id: "countryOfCitizenship",
+      title: "What's your country of citizenship?",
+      subtitle: "This affects wait times and visa availability",
+      options: [
+        { value: "india", label: "🇮🇳 India" },
+        { value: "china", label: "🇨🇳 China" },
+        { value: "mexico", label: "🇲🇽 Mexico" },
+        { value: "philippines", label: "🇵🇭 Philippines" },
+        { value: "canada", label: "🇨🇦 Canada" },
+        { value: "uk", label: "🇬🇧 United Kingdom" },
+        { value: "germany", label: "🇩🇪 Germany" },
+        { value: "brazil", label: "🇧🇷 Brazil" },
+        { value: "nigeria", label: "🇳🇬 Nigeria" },
+        { value: "south_korea", label: "🇰🇷 South Korea" },
+        { value: "japan", label: "🇯🇵 Japan" },
+        { value: "other", label: "🌍 Other" },
+      ],
+      hasTextInput: true,
+      textInputPlaceholder: "Enter your country",
+      textInputShowIf: "other",
+    },
+
     {
         id: "expiryTimeline",
         title: "Any critical dates coming up?",
-        subtitle: "We'll help you track important deadlines",
-        showIf: (profile) => profile.location === "inside_us" && profile.purpose !== "protection",
-      options: [
-        { value: "expired", label: "🔴 Already expired" },
-        { value: "30days", label: "⚠️ Within 30 days" },
-        { value: "90days", label: "📅 Within 90 days" },
-        { value: "6months", label: "📆 Within 6 months" },
-        { value: "year", label: "📍 Within 1 year" },
-        { value: "safe", label: "✅ More than 1 year" },
-      ],
-    },
+        // DYNAMIC subtitle based on visa type
+        subtitle: (profile) => {
+          const subtitles = {
+            H1B: "e.g. H-1B status end date, I-94 expiration",
+            F1: "e.g. OPT EAD expiration, program end date, grace period",
+            OPT: "e.g. OPT EAD card expiration, 90-day unemployment limit",
+            L1: "e.g. L-1 status end date, I-94 expiration",
+            J1: "e.g. DS-2019 program end date, grace period",
+            B1B2: "e.g. I-94 authorized stay expiration",
+            EAD: "e.g. EAD card expiration — now 18 month max validity",
+            GC_pending: "e.g. EAD/AP combo card expiration",
+          };
+          return subtitles[profile.currentVisa] || "e.g. visa expiration, status end date, authorization deadline";
+        },
+        showIf: (profile) =>
+          profile.location === "inside_us" &&
+          profile.purpose !== "protection" &&
+          profile.currentVisa !== "GC",
+        options: [
+          { value: "expired", label: "🔴 Already expired — need help now" },
+          { value: "30days", label: "⚠️ Within 30 days — urgent" },
+          { value: "90days", label: "📅 Within 90 days — filing soon" },
+          { value: "6months", label: "📆 Within 6 months — planning ahead" },
+          { value: "year", label: "📍 Within 1 year — early planning" },
+          { value: "safe", label: "✅ More than 1 year — no urgency" },
+        ],
+      },
+
     {
       id: "complianceRisk",
       title: "Have you experienced any of these?",
       subtitle: "Be honest - we'll help you understand your options",
-      showIf: (profile) => profile.location === "inside_us",
+      showIf: (profile) =>
+        profile.location === "inside_us" && profile.currentVisa !== "GC",
       options: [
         { value: "none", label: "✅ None - Clean record" },
         { value: "gap", label: "📋 Status gap (out of status)" },
@@ -154,9 +221,18 @@ const OnboardingScreen = ({ navigation, onDone }) => {
     },
   ];
 
-  const visibleQuestions = questions.filter(
-    (q) => !q.showIf || q.showIf(userProfile)
-  );
+  const visibleQuestions = questions.reduce((acc, q) => {
+    if (q.showIf && !q.showIf(userProfile)) return acc;
+    // If a question with this id already exists, replace it
+    // (handles dynamic purpose question swap)
+    const existingIndex = acc.findIndex((existing) => existing.id === q.id);
+    if (existingIndex >= 0) {
+      acc[existingIndex] = q;
+      return acc;
+    }
+    return [...acc, q];
+  }, []);
+
   const question = visibleQuestions[currentStep];
   const progress = ((currentStep + 1) / visibleQuestions.length) * 100;
   const canProceed =
@@ -220,6 +296,7 @@ const OnboardingScreen = ({ navigation, onDone }) => {
         countrySpecified: userProfile.countrySpecified || "",
         visa: userProfile.currentVisa,
         location: userProfile.location,
+        gcYearsHeld: userProfile.gcYearsHeld || "",  // NEW
       });
       analytics.identifyUser(userProfile);
 
@@ -270,25 +347,32 @@ const OnboardingScreen = ({ navigation, onDone }) => {
         <ScrollView contentContainerStyle={styles.content}>
           {question.type === "info" ? (
             <View style={styles.infoContainer}>
-
-            <Image
+              <Image
                 source={require("../../assets/icon.png")}
                 style={styles.logoImage}
               />
-              <Text style={styles.title}>{question.title}</Text>
-              <Text style={styles.subtitle}>{question.subtitle}</Text>
+            <Text style={styles.title}>{question.title}</Text>
+            <Text style={styles.subtitle}>
+            {typeof question.subtitle === "function"
+                ? question.subtitle(userProfile)
+                : question.subtitle}
+            </Text>
 
-              <TouchableOpacity
-                style={styles.primaryButton}
-                onPress={handleNext}
-              >
+            <TouchableOpacity
+            style={styles.primaryButton}
+            onPress={handleNext}
+            >
                 <Text style={styles.primaryButtonText}>Get Started</Text>
               </TouchableOpacity>
             </View>
           ) : (
             <View style={styles.questionContainer}>
-              <Text style={styles.title}>{question.title}</Text>
-              <Text style={styles.subtitle}>{question.subtitle}</Text>
+<Text style={styles.title}>{question.title}</Text>
+<Text style={styles.subtitle}>
+  {typeof question.subtitle === "function"
+    ? question.subtitle(userProfile)
+    : question.subtitle}
+</Text>
 
               <ScrollView
                 style={styles.optionsScroll}
@@ -315,21 +399,23 @@ const OnboardingScreen = ({ navigation, onDone }) => {
                     </Text>
                   </TouchableOpacity>
                 ))}
-        
-
               </ScrollView>
 
-              {question.hasTextInput && userProfile[question.id] === question.textInputShowIf && (
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={question.textInputPlaceholder}
-                  value={userProfile.countrySpecified || ""}
-                  onChangeText={(text) =>
-                    setUserProfile((prev) => ({ ...prev, countrySpecified: text }))
-                  }
-                  autoCapitalize="words"
-                />
-              )}
+              {question.hasTextInput &&
+                userProfile[question.id] === question.textInputShowIf && (
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder={question.textInputPlaceholder}
+                    value={userProfile.countrySpecified || ""}
+                    onChangeText={(text) =>
+                      setUserProfile((prev) => ({
+                        ...prev,
+                        countrySpecified: text,
+                      }))
+                    }
+                    autoCapitalize="words"
+                  />
+                )}
 
               <View style={styles.navRow}>
                 {currentStep > 0 && (
@@ -509,7 +595,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#DDD",
   },
-
 });
 
 export default OnboardingScreen;

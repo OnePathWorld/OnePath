@@ -1,0 +1,461 @@
+{
+  "case_status" : {
+    "receiptNumber" : "EAC9999103403",
+    "formType" : "I-130",
+    "submittedDate" : "09-05-2023 14:28:46",
+    "modifiedDate" : "09-05-2023 14:28:46",
+    "current_case_status_text_en" : "Case Was Approved",
+    "current_case_status_desc_en" : "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number EAC9999103403. We sent you an approval notice. Please follow the instructions in the notice.",
+    "current_case_status_text_es" : "Caso Fue Aprobado",
+    "current_case_status_desc_es" : "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00F3n de Familiar Extranjero, N\u00FAmero de Recibo EAC9999103403. Le enviamos un aviso de aprobaci\u00F3n. Por favor, siga las instrucciones en el aviso.",
+    "hist_case_status" : [{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"We mailed your document to a USCIS International Office, U.S. Embassy, or Consulate that has jurisdiction for your case. We also mailed you a separate approval notice.","completed_text_es":"Enviamos su documento por correo a la Oficina Internacional de USCIS, a la Embajada o al Consulado de EE. UU. con jurisdicción en su caso.  También le hemos enviado una notificación de aprobación por separado."}]
+  },
+  "message" : "Query was successful for payload {'receipt_number': 'EAC9999103403'}"
+}
+---
+	{
+  "case_status" : {
+    "receiptNumber" : "EAC9999103404",
+    "formType" : "I-130",
+    "submittedDate" : "09-05-2023 14:28:46",
+    "modifiedDate" : "09-05-2023 14:28:46",
+    "current_case_status_text_en" : "Case Was Approved",
+    "current_case_status_desc_en" : "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number EAC9999103404. We sent you an approval notice. Please follow the instructions in the notice.",
+    "current_case_status_text_es" : "Caso Fue Aprobado",
+    "current_case_status_desc_es" : "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00F3n de Familiar Extranjero, N\u00FAmero de Recibo EAC9999103404. Le enviamos un aviso de aprobaci\u00F3n. Por favor, siga las instrucciones en el aviso.",
+    "hist_case_status" : [{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"We received your Form I-130, Petition for Alien Relative.","completed_text_es":"Recibimos su Formulario I-130, Petición de Familiar Extranjero."}]
+  },
+  "message" : "Query was successful for payload {'receipt_number': 'EAC9999103404'}"
+}
+
+---
+	{
+  "case_status" : {
+    "receiptNumber" : "EAC9999103405",
+    "formType" : "I-130",
+    "submittedDate" : "09-05-2023 14:28:46",
+    "modifiedDate" : "09-05-2023 14:28:46",
+    "current_case_status_text_en" : "Case Was Approved",
+    "current_case_status_desc_en" : "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number EAC9999103405. We sent you an approval notice. Please follow the instructions in the notice.",
+    "current_case_status_text_es" : "Caso Fue Aprobado",
+    "current_case_status_desc_es" : "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00F3n de Familiar Extranjero, N\u00FAmero de Recibo EAC9999103405. Le enviamos un aviso de aprobaci\u00F3n. Por favor, siga las instrucciones en el aviso.",
+    "hist_case_status" : [{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"We received your case and waived the filing fee for your Form I-130, Petition for Alien Relative.","completed_text_es":"Recibimos su caso y eximimos la tarifa de presentación de su Formulario I-130, Petición de Familiar Extranjero."}]
+  },
+  "message" : "Query was successful for payload {'receipt_number': 'EAC9999103405'}"
+}
+
+---
+	{
+  "case_status" : {
+    "receiptNumber" : "SRC9999102777",
+    "formType" : "I-130",
+    "submittedDate" : "09-05-2023 14:28:46",
+    "modifiedDate" : "09-05-2023 14:28:46",
+    "current_case_status_text_en" : "Case Was Approved",
+    "current_case_status_desc_en" : "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number SRC9999102777. We sent you an approval notice. Please follow the instructions in the notice.",
+    "current_case_status_text_es" : "Caso Fue Aprobado",
+    "current_case_status_desc_es" : "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00F3n de Familiar Extranjero, N\u00FAmero de Recibo SRC9999102777. Le enviamos un aviso de aprobaci\u00F3n. Por favor, siga las instrucciones en el aviso.",
+    "hist_case_status" : [{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"We transferred your Form I-130, Petition for Alien Relative, to another office for processing.","completed_text_es":"Transferimos su Formulario I-130, Petición de Familiar Extranjero, a otra oficina para su procesamiento."}]
+  },
+  "message" : "Query was successful for payload {'receipt_number': 'SRC9999102777'}"
+}
+
+---
+	{
+  "case_status" : {
+    "receiptNumber" : "LIN9999106498",
+    "formType" : "I-130",
+    "submittedDate" : "09-05-2023 14:28:47",
+    "modifiedDate" : "09-05-2023 14:28:47",
+    "current_case_status_text_en" : "Case Was Approved",
+    "current_case_status_desc_en" : "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number LIN9999106498. We sent you an approval notice. Please follow the instructions in the notice.",
+    "current_case_status_text_es" : "Caso Fue Aprobado",
+    "current_case_status_desc_es" : "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00F3n de Familiar Extranjero, N\u00FAmero de Recibo LIN9999106498. Le enviamos un aviso de aprobaci\u00F3n. Por favor, siga las instrucciones en el aviso.",
+    "hist_case_status" : [{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"Your case for your Form I-130, Petition for Alien Relative was confirmed.","completed_text_es":"Se confirmó su caso para el formulario I-130, Petición de Familiar Extranjero."}]
+  },
+  "message" : "Query was successful for payload {'receipt_number': 'LIN9999106498'}"
+}
+
+
+#### Day 2 #####
+
+
+
+---
+{
+  "case_status" : {
+    "receiptNumber" : "EAC9999103410",
+    "formType" : "I-130",
+    "submittedDate" : "09-05-2023 14:28:46",
+    "modifiedDate" : "09-05-2023 14:28:46",
+    "current_case_status_text_en" : "Case Was Approved",
+    "current_case_status_desc_en" : "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number EAC9999103410. We sent you an approval notice. Please follow the instructions in the notice.",
+    "current_case_status_text_es" : "Caso Fue Aprobado",
+    "current_case_status_desc_es" : "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00F3n de Familiar Extranjero, N\u00FAmero de Recibo EAC9999103410. Le enviamos un aviso de aprobaci\u00F3n. Por favor, siga las instrucciones en el aviso.",
+    "hist_case_status" : [{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"We rejected your Form I-130, Petition for Alien Relative, because you did not sign your form.","completed_text_es":"Rechazamos su Formulario I-130, Petición de Familiar Extranjero, porque no firmó su formulario."}]
+  },
+  "message" : "Query was successful for payload {'receipt_number': 'EAC9999103410'}"
+}
+
+---
+{
+  "case_status" : {
+    "receiptNumber" : "EAC9999103411",
+    "formType" : "I-130",
+    "submittedDate" : "09-05-2023 14:28:46",
+    "modifiedDate" : "09-05-2023 14:28:46",
+    "current_case_status_text_en" : "Case Was Approved",
+    "current_case_status_desc_en" : "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number EAC9999103411. We sent you an approval notice. Please follow the instructions in the notice.",
+    "current_case_status_text_es" : "Caso Fue Aprobado",
+    "current_case_status_desc_es" : "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00F3n de Familiar Extranjero, N\u00FAmero de Recibo EAC9999103411. Le enviamos un aviso de aprobaci\u00F3n. Por favor, siga las instrucciones en el aviso.",
+    "hist_case_status" : [{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"We rejected your Form I-130, Petition for Alien Relative, because the fee you paid was incorrect and we no longer accept the version of the form you used.","completed_text_es":"Rechazamos su Formulario I-130, Petición de Familiar Extranjero, porque pagó una tarifa de presentación incorrecta y utilizó una versión antigua del formulario que ya no aceptamos."}]
+  },
+  "message" : "Query was successful for payload {'receipt_number': 'EAC9999103411'}"
+}
+
+---
+{
+  "case_status" : {
+    "receiptNumber" : "SRC9999102778",
+    "formType" : "I-130",
+    "submittedDate" : "09-05-2023 14:28:46",
+    "modifiedDate" : "09-05-2023 14:28:46",
+    "current_case_status_text_en" : "Case Was Approved",
+    "current_case_status_desc_en" : "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number SRC9999102778. We sent you an approval notice. Please follow the instructions in the notice.",
+    "current_case_status_text_es" : "Caso Fue Aprobado",
+    "current_case_status_desc_es" : "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00F3n de Familiar Extranjero, N\u00FAmero de Recibo SRC9999102778. Le enviamos un aviso de aprobaci\u00F3n. Por favor, siga las instrucciones en el aviso.",
+    "hist_case_status" : [{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"We transferred your Form I-130, Petition for Alien Relative, to another office that now has jurisdiction over your case for processing.","completed_text_es":"Transferimos su Formulario I-130, Petición de Familiar Extranjero, a otra oficina que ahora tiene jurisdicción sobre su caso para su procesamiento."}]
+  },
+  "message" : "Query was successful for payload {'receipt_number': 'SRC9999102778'}"
+}
+
+---
+{
+  "case_status" : {
+    "receiptNumber" : "SRC9999102779",
+    "formType" : "I-130",
+    "submittedDate" : "09-05-2023 14:28:46",
+    "modifiedDate" : "09-05-2023 14:28:46",
+    "current_case_status_text_en" : "Case Was Approved",
+    "current_case_status_desc_en" : "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number SRC9999102779. We sent you an approval notice. Please follow the instructions in the notice.",
+    "current_case_status_text_es" : "Caso Fue Aprobado",
+    "current_case_status_desc_es" : "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00F3n de Familiar Extranjero, N\u00FAmero de Recibo SRC9999102779. Le enviamos un aviso de aprobaci\u00F3n. Por favor, siga las instrucciones en el aviso.",
+    "hist_case_status" : [{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"We transferred your Form I-130, Petition for Alien Relative, to our local USCIS office to have an interview scheduled.","completed_text_es":"Transferimos su Formulario I-130, Petición de Familiar Extranjero, a su oficina local de USCIS para programar una entrevista."}]
+  },
+  "message" : "Query was successful for payload {'receipt_number': 'SRC9999102779'}"
+}
+
+---
+{
+  "case_status" : {
+    "receiptNumber" : "LIN9999106499",
+    "formType" : "I-130",
+    "submittedDate" : "09-05-2023 14:28:47",
+    "modifiedDate" : "09-05-2023 14:28:47",
+    "current_case_status_text_en" : "Case Was Approved",
+    "current_case_status_desc_en" : "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number LIN9999106499. We sent you an approval notice. Please follow the instructions in the notice.",
+    "current_case_status_text_es" : "Caso Fue Aprobado",
+    "current_case_status_desc_es" : "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00F3n de Familiar Extranjero, N\u00FAmero de Recibo LIN9999106499. Le enviamos un aviso de aprobaci\u00F3n. Por favor, siga las instrucciones en el aviso.",
+    "hist_case_status" : [{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"Your case for your Form I-130, Petition for Alien Relative was not confirmed.","completed_text_es":"No se confirmó su caso para el formulario I-130, Petición de Familiar Extranjero."}]
+  },
+  "message" : "Query was successful for payload {'receipt_number': 'LIN9999106499'}"
+}
+ 
+
+
+
+
+ #### Day 3 ####
+
+
+
+
+---
+{
+    "case_status": {
+        "receiptNumber": "EAC9999103400",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:46",
+        "modifiedDate": "09-05-2023 14:28:46",
+        "current_case_status_text_en": "Document Destroyed",
+        "current_case_status_desc_en": "On September 5, 2023, we destroyed your document for your Form I-130, Petition for Alien Relative, Receipt Number EAC9999103400, because the Post Office returned it and we did not hear from you. You must file a Form I-130, Petition for Alien Relative, with the correct fee to obtain a new document. If you move, go to <a href=\"https://www.uscis.gov/addresschange\" target=\"_blank\">www.uscis.gov/addresschange</a> to give us your new mailing address.",
+        "current_case_status_text_es": "Documento Fue Destruido",
+        "current_case_status_desc_es": "El 05 de Septiembre de 2023, destruimos su documento para su Formulario I-130, Petici\u00f3n de Familiar Extranjero, N\u00famero de Recibo EAC9999103400, porque la oficina de correos lo devolvi\u00f3 y no tuvimos noticias suyas. Debe presentar un I-130, Petici\u00f3n de Familiar Extranjero, con la cuota correcta para obtener un nuevo documento. Si cambia de domicilio, visite <a href=\"https://www.uscis.gov/es/cambiodedireccion\" target=\"_blank\">www.uscis.gov/es/cambiodedireccion</a> para notificarnos su nueva direcci\u00f3n postal.",
+        "hist_case_status": null
+    },
+    "message": "Query was successful for payload {'receipt_number': 'EAC9999103400'}"
+}
+
+---
+{
+    "case_status": {
+        "receiptNumber": "EAC9999103402",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:46",
+        "modifiedDate": "09-05-2023 14:28:46",
+        "current_case_status_text_en": "Case Approval Was Affirmed",
+        "current_case_status_desc_en": "The approval of your case, Receipt Number EAC9999103402, was affirmed and your case is in final review. You will be notified by mail when we have completed working on your case. If you move, go to <a href=\"https://www.uscis.gov/addresschange\" target=\"_blank\">www.uscis.gov/addresschange</a> to give us your new mailing address.",
+        "current_case_status_text_es": "Aprobaci\u00f3n De Caso Reafirmada",
+        "current_case_status_desc_es": "Se ratific\u00f3 la aprobaci\u00f3n del caso para su N\u00famero de Recibo EAC9999103402, y se encuentra en la instancia final de revisi\u00f3n. Se le notificar\u00e1 por correo cuando se hayan tomado todas las medidas en su caso. Si cambia de domicilio, visite <a href=\"https://www.uscis.gov/es/cambiodedireccion\" target=\"_blank\">www.uscis.gov/es/cambiodedireccion</a> para notificarnos su nueva direcci\u00f3n postal.",
+        "hist_case_status": null
+    },
+    "message": "Query was successful for payload {'receipt_number': 'EAC9999103402'}"
+}
+
+---
+{
+    "case_status": {
+        "receiptNumber": "SRC9999132694",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:51",
+        "modifiedDate": "09-05-2023 14:28:51",
+        "current_case_status_text_en": "45-Day Premium Processing Clock Stopped for My Case",
+        "current_case_status_desc_en": "On September 5, 2023, we stopped the processing of your premium-processing case, Receipt Number SRC9999132694, and sent you a notice explaining why we took this action. This notice describes what you need to do to resume processing of your case. Please follow the instructions in the notice. You must respond to the notice within the time it specifies. Your premium-processing receipt notice contains contact information for direct inquiries on your case. If you move, contact the premium-processing unit directly to update your address.",
+        "current_case_status_text_es": "Periodo De Tr\u00e1mite Acelerado De 45 D\u00edas Para Caso Se Detuvo",
+        "current_case_status_desc_es": "El 05 de Septiembre de 2023, detuvimos el tr\u00e1mite acelerado de su caso para su N\u00famero de Recibo SRC9999132694, y le enviamos una notificaci\u00f3n en la que explicamos las razones espec\u00edficas de esta medida. En este aviso se describen las medidas que debe tomar para reanudar la tramitaci\u00f3n de su caso. Por favor, siga las instrucciones que aparecen en este aviso. Deber\u00e1 responder a este aviso dentro del plazo estipulado. Su acuse de recibo de procesamiento premium contiene informaci\u00f3n de contacto para consultas directas sobre su caso. Si cambia de domicilio, comun\u00edquese directamente con la unidad de tr\u00e1mites acelerados para actualizar su direcci\u00f3n.",
+        "hist_case_status": null
+    },
+    "message": "Query was successful for payload {'receipt_number': 'SRC9999132694'}"
+}
+
+---
+{
+    "case_status": {
+        "receiptNumber": "LIN9999106501",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:47",
+        "modifiedDate": "09-05-2023 14:28:47",
+        "current_case_status_text_en": "Case Was Received",
+        "current_case_status_desc_en": "On September 5, 2023, we received your Form I-130, Petition for Alien Relative, Receipt Number LIN9999106501, and sent you the receipt notice that describes how we will process your case. Please follow the instructions in the notice. If you have any questions, visit the USCIS Contact Center webpage at <a href=\"https://www.uscis.gov/contactcenter\" target=\"_blank\">www.uscis.gov/contactcenter</a>. If you move, go to <a href=\"https://www.uscis.gov/addresschange\" target=\"_blank\">www.uscis.gov/addresschange</a> to give us your new mailing address.",
+        "current_case_status_text_es": "Caso Recibido",
+        "current_case_status_desc_es": "El 05 de Septiembre de 2023, recibimos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, n\u00famero de recibo LIN9999106501, y le enviamos la notificaci\u00f3n de recibo que describe c\u00f3mo procesaremos su caso. Siga las instrucciones de la notificaci\u00f3n. Si tiene alguna pregunta, visite la p\u00e1gina web del Centro de Contacto de USCIS en <a href=\"https://www.uscis.gov/es/centrocontacto\" target=\"_blank\">www.uscis.gov/es/centrocontacto</a>. Si cambia de domicilio, visite <a href=\"https://www.uscis.gov/es/cambiodedireccion\" target=\"_blank\">www.uscis.gov/es/cambiodedireccion</a> para notificarnos su nueva direcci\u00f3n postal.",
+        "hist_case_status": null
+    },
+    "message": "Query was successful for payload {'receipt_number': 'LIN9999106501'}"
+}
+
+---
+{
+    "case_status": {
+        "receiptNumber": "EAC9999103406",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:46",
+        "modifiedDate": "09-05-2023 14:28:46",
+        "current_case_status_text_en": "Case Is Ready For Oath Scheduling",
+        "current_case_status_desc_en": "We completed our quality review of your case, Receipt Number EAC9999103406. We will schedule you for your oath ceremony and mail you a notice when your ceremony is scheduled. You should receive your notice within 30 days. Please follow the instructions in the notice. If you move, go to <a href=\"https://www.uscis.gov/addresschange\" target=\"_blank\">www.uscis.gov/addresschange</a> to give us your new mailing address.",
+        "current_case_status_text_es": "Caso Listo Para Programaci\u00f3n De Ceremonia De Juramentaci\u00f3n",
+        "current_case_status_desc_es": "Completamos el control de calidad de su caso para su N\u00famero de Recibo EAC9999103406. Organizaremos la ceremonia de juramento y le enviaremos una notificaci\u00f3n cuando la ceremonia se haya programado. Por favor, siga las instrucciones que aparecen en este aviso. Si cambia de domicilio, visite <a href=\"https://www.uscis.gov/es/cambiodedireccion\" target=\"_blank\">www.uscis.gov/es/cambiodedireccion</a> para notificarnos su nueva direcci\u00f3n postal.",
+        "hist_case_status": null
+    },
+    "message": "Query was successful for payload {'receipt_number': 'EAC9999103406'}"
+
+}
+
+
+#### Day 4 ####
+
+
+
+
+
+
+
+#### Day 5 ####
+---ERROR TEST: Bad receipt number format---
+{
+    "error": "Invalid receipt number format",
+    "expected": "3 letters followed by 10 digits (e.g., EAC9999103403)"
+}
+---ERROR TEST: Too short receipt number---
+{
+    "error": "Invalid receipt number format",
+    "expected": "3 letters followed by 10 digits (e.g., EAC9999103403)"
+}
+---ERROR TEST: Nonexistent valid-format receipt---
+{
+    "error": "USCIS API error",
+    "status": 404,
+    "detail": "{\n  \"message\" : \"Case Status Online does not recognize the receipt number entered. Please check your receipt number and try again. If you need further assistance, please call the USCIS Contact Center at 1-800-375-5283.\"\n}"
+}
+---ERROR TEST: USCIS direct with no auth header---
+{
+    "fault": {
+        "faultstring": "Invalid access token",
+        "detail": {
+            "errorcode": "oauth.v2.InvalidAccessToken"
+        }
+    }
+}
+---VALID: Confirm server still works---
+{
+    "case_status": {
+        "receiptNumber": "SRC9999102780",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:46",
+        "modifiedDate": "09-05-2023 14:28:46",
+        "current_case_status_text_en": "Case Was Approved",
+        "current_case_status_desc_en": "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number SRC9999102780. We sent you an approval notice. Please follow the instructions in the notice.",
+        "current_case_status_text_es": "Caso Fue Aprobado",
+        "current_case_status_desc_es": "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, N\u00famero de Recibo SRC9999102780. Le enviamos un aviso de aprobaci\u00f3n. Por favor, siga las instrucciones en el aviso.",
+        "hist_case_status": [
+            {
+                "date": "2023-09-05",
+                "completed_text_en": "We approved your Form I-130, Petition for Alien Relative.",
+                "completed_text_es": "Aprobamos su Formulario I-130, Petici\u00f3n de Familiar Extranjero."
+            },
+            {
+                "date": "2023-09-05",
+                "completed_text_en": "We transferred your Form I-130, Petition for Alien Relative, to our local USCIS office for processing.",
+                "completed_text_es": "Transferimos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, a su oficina local de USCIS para su procesamiento."
+            }
+        ]
+    },
+    "message": "Query was successful for payload {'receipt_number': 'SRC9999102780'}"
+}
+---VALID: Second valid request---
+{
+    "case_status": {
+        "receiptNumber": "SRC9999102781",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:46",
+        "modifiedDate": "09-05-2023 14:28:46",
+        "current_case_status_text_en": "Case Was Approved",
+        "current_case_status_desc_en": "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number SRC9999102781. We sent you an approval notice. Please follow the instructions in the notice.",
+        "current_case_status_text_es": "Caso Fue Aprobado",
+        "current_case_status_desc_es": "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, N\u00famero de Recibo SRC9999102781. Le enviamos un aviso de aprobaci\u00f3n. Por favor, siga las instrucciones en el aviso.",
+        "hist_case_status": [
+            {
+                "date": "2023-09-05",
+                "completed_text_en": "We approved your Form I-130, Petition for Alien Relative.",
+                "completed_text_es": "Aprobamos su Formulario I-130, Petici\u00f3n de Familiar Extranjero."
+            },
+            {
+                "date": "2023-09-05",
+                "completed_text_en": "The Administrative Appeals Office (AAO) returned your case to a USCIS office for review.",
+                "completed_text_es": "La Oficina Apelaciones de Administrativa (AAO) devolvi\u00f3 su caso a una oficina de USCIS para su revisi\u00f3n."
+            }
+        ]
+    },
+    "message": "Query was successful for payload {'receipt_number': 'SRC9999102781'}"
+}
+---DAY 5: Mixed receipt with history---
+{
+    "case_status": {
+        "receiptNumber": "EAC9999103419",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:46",
+        "modifiedDate": "09-05-2023 14:28:46",
+        "current_case_status_text_en": "Case Was Approved",
+        "current_case_status_desc_en": "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number EAC9999103419. We sent you an approval notice. Please follow the instructions in the notice.",
+        "current_case_status_text_es": "Caso Fue Aprobado",
+        "current_case_status_desc_es": "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, N\u00famero de Recibo EAC9999103419. Le enviamos un aviso de aprobaci\u00f3n. Por favor, siga las instrucciones en el aviso.",
+        "hist_case_status": [
+            {
+                "date": "2023-09-05",
+                "completed_text_en": "We approved your Form I-130, Petition for Alien Relative.",
+                "completed_text_es": "Aprobamos su Formulario I-130, Petici\u00f3n de Familiar Extranjero."
+            },
+            {
+                "date": "2023-09-05",
+                "completed_text_en": "We transferred your Form I-130, Petition for Alien Relative, to another USCIS office that now has jurisdiction over your case.",
+                "completed_text_es": "Transferimos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, a otra oficina de USCIS."
+            }
+        ]
+    },
+    "message": "Query was successful for payload {'receipt_number': 'EAC9999103419'}"
+}
+---DAY 5: Mixed receipt with history---
+{
+    "case_status": {
+        "receiptNumber": "SRC9999132710",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:51",
+        "modifiedDate": "09-05-2023 14:28:51",
+        "current_case_status_text_en": "Case Was Approved",
+        "current_case_status_desc_en": "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number SRC9999132710. We sent you an approval notice. Please follow the instructions in the notice.",
+        "current_case_status_text_es": "Caso Fue Aprobado",
+        "current_case_status_desc_es": "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, N\u00famero de Recibo SRC9999132710. Le enviamos un aviso de aprobaci\u00f3n. Por favor, siga las instrucciones en el aviso.",
+        "hist_case_status": [
+            {
+                "date": "2023-09-05",
+                "completed_text_en": "We approved your Form I-130, Petition for Alien Relative.",
+                "completed_text_es": "Aprobamos su Formulario I-130, Petici\u00f3n de Familiar Extranjero."
+            },
+            {
+                "date": "2023-09-05",
+                "completed_text_en": "We reopened your Form I-130, Petition for Alien Relative, and resumed work on your case.  We will email you a notice when further action is taken.",
+                "completed_text_es": "Reabrimos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, y reanudamos el tr\u00e1mite de su caso.  Le enviaremos por correo electr\u00f3nico una notificaci\u00f3n cuando tomemos acciones adicionales sobre su caso."
+            }
+        ]
+    },
+    "message": "Query was successful for payload {'receipt_number': 'SRC9999132710'}"
+}
+---DAY 5: Mixed receipt with history---
+{
+    "case_status": {
+        "receiptNumber": "SRC9999132719",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:51",
+        "modifiedDate": "09-05-2023 14:28:51",
+        "current_case_status_text_en": "Case Was Approved",
+        "current_case_status_desc_en": "On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number SRC9999132719. We sent you an approval notice. Please follow the instructions in the notice.",
+        "current_case_status_text_es": "Caso Fue Aprobado",
+        "current_case_status_desc_es": "El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, N\u00famero de Recibo SRC9999132719. Le enviamos un aviso de aprobaci\u00f3n. Por favor, siga las instrucciones en el aviso.",
+        "hist_case_status": [
+            {
+                "date": "2023-09-05",
+                "completed_text_en": "We approved your Form I-130, Petition for Alien Relative.",
+                "completed_text_es": "Aprobamos su Formulario I-130, Petici\u00f3n de Familiar Extranjero."
+            },
+            {
+                "date": "2023-09-05",
+                "completed_text_en": "We received your Form I-130, Petition for Alien Relative, Receipt Number SRC9999132719, into our electronic immigration system for processing.",
+                "completed_text_es": "Recibimos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, y le hemos enviado una notificaci\u00f3n de recibo."
+            }
+        ]
+    },
+    "message": "Query was successful for payload {'receipt_number': 'SRC9999132719'}"
+}
+---DAY 5: Mixed receipt without history---
+{
+    "case_status": {
+        "receiptNumber": "EAC9999103420",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:46",
+        "modifiedDate": "09-05-2023 14:28:46",
+        "current_case_status_text_en": "Revocation Notice Was Sent",
+        "current_case_status_desc_en": "On September 5, 2023, we revoked the approval of your case, Receipt Number EAC9999103420, and mailed you a revocation notice. It explains the reasons for our action. Please follow the instructions in the notice and submit any requested materials. If you do not receive your revocation notice by September 19, 2023, please go to <a href=\"https://egov.uscis.gov/e-request/\" target=\"_blank\">www.uscis.gov/e-request</a> to request a copy of the notice. If you move, go to <a href=\"https://www.uscis.gov/addresschange\" target=\"_blank\">www.uscis.gov/addresschange</a> to give us your new mailing address.",
+        "current_case_status_text_es": "Notificaci\u00f3n De Revocaci\u00f3n Enviada",
+        "current_case_status_desc_es": "El 05 de Septiembre de 2023, revocamos la aprobaci\u00f3n de su caso, N\u00famero de Recibo EAC9999103420, y enviamos por correo su notificaci\u00f3n de revocaci\u00f3n. La notificaci\u00f3n explica las razones de nuestra medida. Siga las instrucciones que aparecen en la notificaci\u00f3n y presente cualquier material requerido. Si no recibe su notificaci\u00f3n de revocaci\u00f3n para el 19 de Septiembre de 2023, visite <a href=\"https://egov.uscis.gov/e-request/\" target=\"_blank\">www.uscis.gov/e-request</a>  para solicitar una copia de la notificaci\u00f3n. Si cambia de domicilio, visite <a href=\"https://www.uscis.gov/es/cambiodedireccion\" target=\"_blank\">www.uscis.gov/es/cambiodedireccion</a> para notificarnos su nueva direcci\u00f3n postal.",
+        "hist_case_status": null
+    },
+    "message": "Query was successful for payload {'receipt_number': 'EAC9999103420'}"
+}
+---DAY 5: Mixed receipt without history---
+{
+    "case_status": {
+        "receiptNumber": "LIN9999106507",
+        "formType": "I-130",
+        "submittedDate": "09-05-2023 14:28:47",
+        "modifiedDate": "09-05-2023 14:28:47",
+        "current_case_status_text_en": "Case Was Received",
+        "current_case_status_desc_en": "On September 5, 2023, we received your Form I-130, Petition for Alien Relative, Receipt Number LIN9999106507, and sent you the receipt notice that describes how we will process your case. Please follow the instructions in the notice. If you have any questions, visit the USCIS Contact Center webpage at <a href=\"https://www.uscis.gov/contactcenter\" target=\"_blank\">www.uscis.gov/contactcenter</a>. If you move, go to <a href=\"https://www.uscis.gov/addresschange\" target=\"_blank\">www.uscis.gov/addresschange</a> to give us your new mailing address.",
+        "current_case_status_text_es": "Caso Recibido",
+        "current_case_status_desc_es": "El 05 de Septiembre de 2023, recibimos su Formulario I-130, Petici\u00f3n de Familiar Extranjero, n\u00famero de recibo LIN9999106507, y le enviamos la notificaci\u00f3n de recibo que describe c\u00f3mo procesaremos su caso. Siga las instrucciones de la notificaci\u00f3n. Si tiene alguna pregunta, visite la p\u00e1gina web del Centro de Contacto de USCIS en <a href=\"https://www.uscis.gov/es/centrocontacto\" target=\"_blank\">www.uscis.gov/es/centrocontacto</a>. Si cambia de domicilio, visite <a href=\"https://www.uscis.gov/es/cambiodedireccion\" target=\"_blank\">www.uscis.gov/es/cambiodedireccion</a> para notificarnos su nueva direcci\u00f3n postal.",
+        "hist_case_status": null
+    },
+    "message": "Query was successful for payload {'receipt_number': 'LIN9999106507'}"
+}
+---DAY 5: Error - bad receipt---
+{
+    "error": "Invalid receipt number format",
+    "expected": "3 letters followed by 10 digits (e.g., EAC9999103403)"
+}
+---DAY 5: Error - nonexistent receipt---
+{
+    "error": "USCIS API error",
+    "status": 422,
+    "detail": "{\n  \"message\" : \"The application receipt number entered contains an invalid prefix {'AAA'}. Please check your receipt number and try again.\"\n}"
+}
+---DAY 5: EAC9999103416---
+{"case_status":{"receiptNumber":"EAC9999103416","formType":"I-130","submittedDate":"09-05-2023 14:28:46","modifiedDate":"09-05-2023 14:28:46","current_case_status_text_en":"Case Was Approved","current_case_status_desc_en":"On September 5, 2023, we approved your Form I-130, Petition for Alien Relative, Receipt Number EAC9999103416. We sent you an approval notice. Please follow the instructions in the notice.","current_case_status_text_es":"Caso Fue Aprobado","current_case_status_desc_es":"El 05 de Septiembre de 2023, aprobamos su Formulario I-130, Petición de Familiar Extranjero, Número de Recibo EAC9999103416. Le enviamos un aviso de aprobación. Por favor, siga las instrucciones en el aviso.","hist_case_status":[{"date":"2023-09-05","completed_text_en":"We approved your Form I-130, Petition for Alien Relative.","completed_text_es":"Aprobamos su Formulario I-130, Petición de Familiar Extranjero."},{"date":"2023-09-05","completed_text_en":"Your Form I-130, Petition for Alien Relative, was denied due to abandonment. We mailed you a decision notice.","completed_text_es":"Denegamos su Formulario I-130, Petición de Familiar Extranjero, debido a abandono."}]},"message":"Query was successful for payload {'receipt_number': 'EAC9999103416'}"}

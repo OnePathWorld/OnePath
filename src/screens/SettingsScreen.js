@@ -1,6 +1,6 @@
 // src/screens/SettingsScreen.js
-
-import React, { useState, useEffect, useCallback } from "react";
+import Constants from "expo-constants";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -17,7 +17,7 @@ import { PROCESSING_TIMES_META } from "../data/processingTimes";
 
 const SettingsScreen = ({ navigation }) => {
   const [profile, setProfile] = useState(null);
-  const [editModal, setEditModal] = useState(null); // { field, title, options }
+  const [editModal, setEditModal] = useState(null);
 
   useEffect(() => {
     loadProfile();
@@ -78,13 +78,15 @@ const SettingsScreen = ({ navigation }) => {
   };
 
   const FIELD_OPTIONS = {
+    // UPDATED: title and options now match onboarding + includes citizenship
     purpose: {
-      title: "What brings you to the U.S.?",
+      title: "What's your immigration goal?",
       options: [
         { value: "work", label: "💼 Work Opportunity" },
         { value: "family", label: "👨‍👩‍👧‍👦 Family Reunification" },
         { value: "study", label: "🎓 Education" },
         { value: "protection", label: "🛡️ Seeking Protection" },
+        { value: "citizenship", label: "🇺🇸 Naturalization & Citizenship" },
       ],
     },
     location: {
@@ -94,6 +96,7 @@ const SettingsScreen = ({ navigation }) => {
         { value: "inside_us", label: "🇺🇸 Inside the United States" },
       ],
     },
+    // UPDATED: added GC holder option
     currentVisa: {
       title: "Current immigration status",
       options: [
@@ -105,37 +108,42 @@ const SettingsScreen = ({ navigation }) => {
         { value: "OPT", label: "🎓 OPT/STEM OPT" },
         { value: "EAD", label: "💳 EAD Holder" },
         { value: "GC_pending", label: "⏳ Green Card Pending" },
+        { value: "GC", label: "🟢 Green Card Holder (LPR)" },
         { value: "other", label: "📋 Other Status" },
         { value: "none", label: "❌ Out of Status" },
         { value: "", label: "⬜ Not applicable" },
       ],
     },
+    // UPDATED: added Germany
     countryOfCitizenship: {
-        title: "Country of citizenship",
-        options: [
-          { value: "india", label: "🇮🇳 India" },
-          { value: "china", label: "🇨🇳 China" },
-          { value: "mexico", label: "🇲🇽 Mexico" },
-          { value: "philippines", label: "🇵🇭 Philippines" },
-          { value: "canada", label: "🇨🇦 Canada" },
-          { value: "uk", label: "🇬🇧 United Kingdom" },
-          { value: "brazil", label: "🇧🇷 Brazil" },
-          { value: "nigeria", label: "🇳🇬 Nigeria" },
-          { value: "south_korea", label: "🇰🇷 South Korea" },
-          { value: "japan", label: "🇯🇵 Japan" },
-          { value: "other", label: "🌍 Other" },
-        ],
-      },
+      title: "Country of citizenship",
+      options: [
+        { value: "india", label: "🇮🇳 India" },
+        { value: "china", label: "🇨🇳 China" },
+        { value: "mexico", label: "🇲🇽 Mexico" },
+        { value: "philippines", label: "🇵🇭 Philippines" },
+        { value: "canada", label: "🇨🇦 Canada" },
+        { value: "uk", label: "🇬🇧 United Kingdom" },
+        { value: "germany", label: "🇩🇪 Germany" },
+        { value: "brazil", label: "🇧🇷 Brazil" },
+        { value: "nigeria", label: "🇳🇬 Nigeria" },
+        { value: "south_korea", label: "🇰🇷 South Korea" },
+        { value: "japan", label: "🇯🇵 Japan" },
+        { value: "other", label: "🌍 Other" },
+      ],
+    },
     urgency: {
       title: "What's your timeline?",
       options: [
         { value: "immediate", label: "🚨 Immediate (< 1 month)" },
         { value: "soon", label: "📅 Soon (1–6 months)" },
         { value: "planning", label: "📊 Planning (6+ months)" },
+        { value: "", label: "⬜ Not applicable" },
       ],
     },
+    // UPDATED: title matches getFieldKey mapping
     expiryTimeline: {
-    title: "Visa expiration date",
+      title: "Visa expiration date",
       options: [
         { value: "expired", label: "🔴 Already expired" },
         { value: "30days", label: "⚠️ Within 30 days" },
@@ -143,6 +151,18 @@ const SettingsScreen = ({ navigation }) => {
         { value: "6months", label: "📆 Within 6 months" },
         { value: "year", label: "📍 Within 1 year" },
         { value: "safe", label: "✅ More than 1 year" },
+        { value: "", label: "⬜ Not applicable" },
+      ],
+    },
+    // NEW: green card years held for naturalization eligibility
+    gcYearsHeld: {
+      title: "How long have you held your green card?",
+      options: [
+        { value: "under2", label: "⏳ Less than 2 years" },
+        { value: "2to3", label: "📅 2–3 years" },
+        { value: "3to5", label: "🗓️ 3–5 years" },
+        { value: "over5", label: "✅ 5+ years — Eligible to naturalize" },
+        { value: "military", label: "🎖️ Military service" },
         { value: "", label: "⬜ Not applicable" },
       ],
     },
@@ -185,7 +205,7 @@ const SettingsScreen = ({ navigation }) => {
             style={styles.fieldRow}
             onPress={() => setEditModal(FIELD_OPTIONS.purpose)}
           >
-            <Text style={styles.fieldLabel}>Purpose</Text>
+            <Text style={styles.fieldLabel}>Goal</Text>
             <Text style={styles.fieldValue}>{getDisplayValue("purpose")}</Text>
             <Text style={styles.fieldArrow}>›</Text>
           </TouchableOpacity>
@@ -221,34 +241,55 @@ const SettingsScreen = ({ navigation }) => {
             <Text style={styles.fieldArrow}>›</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.fieldRow}
-            onPress={() => setEditModal(FIELD_OPTIONS.urgency)}
-          >
-            <Text style={styles.fieldLabel}>Timeline</Text>
-            <Text style={styles.fieldValue}>{getDisplayValue("urgency")}</Text>
-            <Text style={styles.fieldArrow}>›</Text>
-          </TouchableOpacity>
+          {/* NEW: GC years held — only shown for GC holders */}
+          {profile?.currentVisa === "GC" && (
+            <TouchableOpacity
+              style={styles.fieldRow}
+              onPress={() => setEditModal(FIELD_OPTIONS.gcYearsHeld)}
+            >
+              <Text style={styles.fieldLabel}>GC Held</Text>
+              <Text style={styles.fieldValue}>
+                {getDisplayValue("gcYearsHeld")}
+              </Text>
+              <Text style={styles.fieldArrow}>›</Text>
+            </TouchableOpacity>
+          )}
 
-          <TouchableOpacity
-            style={styles.fieldRow}
-            onPress={() => setEditModal(FIELD_OPTIONS.expiryTimeline)}
-          >
-            <Text style={styles.fieldLabel}>Visa Expiration</Text>
-            <Text style={styles.fieldValue}>
-              {getDisplayValue("expiryTimeline")}
-            </Text>
-            <Text style={styles.fieldArrow}>›</Text>
-          </TouchableOpacity>
+          {/* Timeline — hidden for GC holders since not relevant */}
+          {profile?.currentVisa !== "GC" && (
+            <TouchableOpacity
+              style={styles.fieldRow}
+              onPress={() => setEditModal(FIELD_OPTIONS.urgency)}
+            >
+              <Text style={styles.fieldLabel}>Timeline</Text>
+              <Text style={styles.fieldValue}>{getDisplayValue("urgency")}</Text>
+              <Text style={styles.fieldArrow}>›</Text>
+            </TouchableOpacity>
+          )}
+
+          {/* Visa expiration — hidden for GC holders */}
+          {profile?.currentVisa !== "GC" && (
+            <TouchableOpacity
+              style={styles.fieldRow}
+              onPress={() => setEditModal(FIELD_OPTIONS.expiryTimeline)}
+            >
+              <Text style={styles.fieldLabel}>Visa Expiry</Text>
+              <Text style={styles.fieldValue}>
+                {getDisplayValue("expiryTimeline")}
+              </Text>
+              <Text style={styles.fieldArrow}>›</Text>
+            </TouchableOpacity>
+          )}
         </View>
-
         {/* ABOUT SECTION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>About OnePath</Text>
 
           <View style={styles.aboutRow}>
             <Text style={styles.aboutLabel}>Version</Text>
-            <Text style={styles.aboutValue}>1.0.0</Text>
+            <Text style={styles.aboutValue}>
+              {Constants.expoConfig?.version || "1.1.0"}
+            </Text>
           </View>
           <View style={styles.aboutRow}>
             <Text style={styles.aboutLabel}>Data Updated</Text>
@@ -341,16 +382,20 @@ const SettingsScreen = ({ navigation }) => {
   );
 };
 
-// Helper to reverse-lookup which profile field a modal is editing
+// =========================================================
+// HELPER — reverse-lookup which profile field a modal edits
+// FIXED: titles now match FIELD_OPTIONS titles exactly
+// =========================================================
 function getFieldKey(modalConfig) {
   if (!modalConfig) return "";
   const fieldMap = {
-    "What brings you to the U.S.?": "purpose",
+    "What's your immigration goal?": "purpose",
     "Where are you currently?": "location",
     "Current immigration status": "currentVisa",
     "Country of citizenship": "countryOfCitizenship",
     "What's your timeline?": "urgency",
-    "Status expiry timeline": "expiryTimeline",
+    "Visa expiration date": "expiryTimeline",
+    "How long have you held your green card?": "gcYearsHeld",
   };
   return fieldMap[modalConfig.title] || "";
 }

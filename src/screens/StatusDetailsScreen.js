@@ -90,7 +90,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
       const remaining = 90 - daysTracking.optUnemployment;
       if (remaining < 30) {
         issues.push({
-          type: "critical",
+          type: "Critical",
           text: `Only ${remaining} unemployment days remaining`,
         });
       }
@@ -98,7 +98,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
 
     if (profile?.complianceRisk && profile.complianceRisk !== "none") {
       issues.push({
-        type: "warning",
+        type: "Warning",
         text: "Previous compliance issues detected",
       });
     }

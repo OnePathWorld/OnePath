@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as Updates from "expo-updates";
 
 // Import data
 import { PROCESSING_TIMES_META } from "../data/processingTimes";
@@ -147,10 +146,31 @@ const HomeScreen = ({ navigation }) => {
 
   const urgentItem = getMostUrgent();
 
+  // =========================================================
+  // PATHWAYS — now includes citizenship for GC holders
+  // Citizenship pathway only shown if user is a GC holder
+  // or selected citizenship as their purpose
+  // =========================================================
+// =========================================================
+  // PATHWAYS — citizenship highlighted only for GC holders,
+  // but visible to all users as a standard pathway row
+  // =========================================================
+  const isGCHolder =
+    userProfile?.currentVisa === "GC" ||
+    userProfile?.purpose === "citizenship";
+
   const pathways = [
     { id: "work", title: "Work-Based", icon: "💼", color: "#4CAF50" },
     { id: "family", title: "Family-Based", icon: "👨‍👩‍👧‍👦", color: "#FF9800" },
     { id: "student", title: "Student", icon: "🎓", color: "#9C27B0" },
+    {
+      id: "citizenship",
+      title: "U.S. Citizenship",
+      icon: "🇺🇸",
+      color: "#1565C0",
+      // Only highlighted when user is a confirmed GC holder
+      isHighlighted: isGCHolder === true && userProfile !== null,
+    },
   ];
 
   return (
@@ -199,13 +219,9 @@ const HomeScreen = ({ navigation }) => {
               <View>
                 <Text style={styles.statusTitle}>Your Status</Text>
                 <Text
-                  style={[
-                    styles.statusScore,
-                    { color: getStatusColor() },
-                  ]}
+                  style={[styles.statusScore, { color: getStatusColor() }]}
                 >
-                  {getStatusEmoji()}{" "}
-                  {healthScore?.status || "Loading..."}
+                  {getStatusEmoji()} {healthScore?.status || "Loading..."}
                 </Text>
               </View>
               <View
@@ -242,8 +258,34 @@ const HomeScreen = ({ navigation }) => {
               </View>
             )}
 
+            {/* NEW: GC holder naturalization nudge */}
+            {isGCHolder && !urgentItem && (
+            <TouchableOpacity
+                style={styles.citizenshipNudge}
+                onPress={() => {
+                analytics.track(EVENTS.CITIZENSHIP_PATHWAY_VIEWED, {
+                    source: "home_nudge",
+                    gc_years_held: userProfile?.gcYearsHeld || "unknown",
+                });
+                navigation.navigate("PathwayDetail", {
+                    pathway: {
+                    id: "citizenship",
+                    title: "U.S. Citizenship",
+                    icon: "🇺🇸",
+                    color: "#1565C0",
+                    },
+                });
+                }}
+            >
+                <Text style={styles.urgentIcon}>🇺🇸</Text>
+                <Text style={styles.urgentText}>
+                Ready to explore citizenship? See your naturalization options.
+                </Text>
+            </TouchableOpacity>
+            )}
+
             <View style={styles.quickStats}>
-            {userProfile.expiryTimeline && (
+              {userProfile.expiryTimeline && (
                 <View style={styles.statItem}>
                   <Text style={styles.statLabel}>Visa Expiration</Text>
                   <Text
@@ -257,6 +299,16 @@ const HomeScreen = ({ navigation }) => {
                   </Text>
                 </View>
               )}
+              {/* NEW: GC years held shown instead of expiry for GC holders */}
+              {userProfile.currentVisa === "GC" &&
+                userProfile.gcYearsHeld && (
+                  <View style={styles.statItem}>
+                    <Text style={styles.statLabel}>GC Held</Text>
+                    <Text style={styles.statValue}>
+                      {getGCYearsLabel(userProfile.gcYearsHeld)}
+                    </Text>
+                  </View>
+                )}
               {criticalWarnings.length > 0 && (
                 <View style={styles.statItem}>
                   <Text style={styles.statLabel}>Alerts</Text>
@@ -304,7 +356,9 @@ const HomeScreen = ({ navigation }) => {
                 analytics.track(EVENTS.CHECKLIST_VIEWED, {
                   source: "home",
                 });
-                navigation.navigate("Checklist");
+                navigation.navigate("Checklist", {
+                    pathway: isGCHolder ? "citizenship" : undefined,
+                  });
               }}
             >
               <Text style={styles.controlIcon}>📋</Text>
@@ -314,9 +368,7 @@ const HomeScreen = ({ navigation }) => {
                   <View
                     style={[
                       styles.progressMiniFill,
-                      {
-                        width: `${(checkedItems / totalItems) * 100}%`,
-                      },
+                      { width: `${(checkedItems / totalItems) * 100}%` },
                     ]}
                   />
                 </View>
@@ -324,14 +376,17 @@ const HomeScreen = ({ navigation }) => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.controlItem}
-              onPress={() => {
-                analytics.track(EVENTS.TIMELINE_VIEWED, {
-                  source: "home",
-                });
-                navigation.navigate("Timeline");
-              }}
-            >
+  style={styles.controlItem}
+  onPress={() => {
+    analytics.track(EVENTS.TIMELINE_VIEWED, {
+      source: "home",
+    });
+    // NEW: pass citizenship pathway for GC holders
+    navigation.navigate("Timeline", {
+      pathway: isGCHolder ? "citizenship" : undefined,
+    });
+  }}
+>
               <Text style={styles.controlIcon}>📅</Text>
               <Text style={styles.controlLabel}>Timeline</Text>
             </TouchableOpacity>
@@ -361,21 +416,37 @@ const HomeScreen = ({ navigation }) => {
             return (
               <TouchableOpacity
                 key={pw.id}
-                style={styles.pathwayRow}
+                style={[
+                  styles.pathwayRow,
+                  // NEW: highlighted border for citizenship when user is GC holder
+                  pw.isHighlighted && styles.pathwayRowHighlighted,
+                ]}
+
                 onPress={() => {
-                  analytics.track(EVENTS.PATHWAY_VIEWED, {
-                    pathway: pw.id,
-                    source: "home",
-                  });
-                  navigation.navigate("PathwayDetail", {
-                    pathway: pw,
-                  });
-                }}
+                    analytics.track(EVENTS.PATHWAY_VIEWED, {
+                      pathway: pw.id,
+                      source: "home",
+                    });
+                    // NEW: additional citizenship-specific event
+                    if (pw.id === "citizenship") {
+                      analytics.track(EVENTS.CITIZENSHIP_PATHWAY_VIEWED, {
+                        source: "home",
+                        gc_years_held: userProfile?.gcYearsHeld || "unknown",
+                      });
+                    }
+                    navigation.navigate("PathwayDetail", { pathway: pw });
+                  }}
               >
                 <Text style={styles.pathwayIcon}>{pw.icon}</Text>
                 <View style={styles.pathwayContent}>
                   <Text style={styles.pathwayName}>{pw.title}</Text>
-                  {viability && (
+                  {/* NEW: "Your next step" label for highlighted citizenship */}
+                  {pw.isHighlighted && (
+                    <Text style={styles.pathwayNextStep}>
+                      Your next step →
+                    </Text>
+                  )}
+                  {viability && !pw.isHighlighted && (
                     <View
                       style={[
                         styles.viabilityPill,
@@ -418,9 +489,7 @@ const HomeScreen = ({ navigation }) => {
         >
           <Text style={styles.lifeSetupIcon}>🏡</Text>
           <View style={styles.lifeSetupContent}>
-            <Text style={styles.lifeSetupTitle}>
-              Life in America Guide
-            </Text>
+            <Text style={styles.lifeSetupTitle}>Life in America Guide</Text>
             <Text style={styles.lifeSetupText}>
               SSN • Banking • Credit • Jobs
             </Text>
@@ -428,10 +497,9 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.arrow}>›</Text>
         </TouchableOpacity>
 
-    
         {/* HELP */}
-         <TouchableOpacity
-            style={styles.helpButton}
+        <TouchableOpacity
+          style={styles.helpButton}
           onPress={() => {
             analytics.track("Emergency Help Tapped");
             Alert.alert(
@@ -448,18 +516,20 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.helpText}>Emergency Help</Text>
         </TouchableOpacity>
 
-    {/* FOOTER */}
-    <View style={styles.footer}>
-            <Text style={styles.footerText}>
-                Data updated: {PROCESSING_TIMES_META.lastUpdated}
-            </Text>
-            </View>
-        </ScrollView>
-        </SafeAreaView>
-    );
-    };
+        {/* FOOTER */}
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            Data updated: {PROCESSING_TIMES_META.lastUpdated}
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
-// Helper functions
+// =========================================================
+// HELPER FUNCTIONS
+// =========================================================
 const getVisaLabel = (visa) => {
   const labels = {
     F1: "F-1",
@@ -470,6 +540,7 @@ const getVisaLabel = (visa) => {
     OPT: "OPT",
     EAD: "EAD",
     GC_pending: "GC Pending",
+    GC: "🟢 Green Card Holder", // NEW
     none: "No Status",
   };
   return labels[visa] || visa;
@@ -485,6 +556,18 @@ const getExpiryLabel = (expiry) => {
     safe: "1+ year",
   };
   return labels[expiry] || "Unknown";
+};
+
+// NEW: green card years held label for status card
+const getGCYearsLabel = (gcYearsHeld) => {
+  const labels = {
+    under2: "< 2 yrs",
+    "2to3": "2–3 yrs",
+    "3to5": "3–5 yrs",
+    over5: "5+ yrs ✅",
+    military: "Military 🎖️",
+  };
+  return labels[gcYearsHeld] || gcYearsHeld;
 };
 
 export default HomeScreen;
@@ -528,6 +611,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#FFF3E0",
+    padding: 12,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+  // NEW: citizenship nudge — same layout as urgentAlert but blue
+  citizenshipNudge: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#E8EAF6",
     padding: 12,
     borderRadius: 10,
     marginBottom: 15,
@@ -595,9 +687,22 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginBottom: 8,
   },
+  // NEW: highlighted border for citizenship pathway when user is GC holder
+  pathwayRowHighlighted: {
+    borderWidth: 2,
+    borderColor: "#1565C0",
+    backgroundColor: "#F0F4FF",
+  },
   pathwayIcon: { fontSize: 24, marginRight: 12 },
   pathwayContent: { flex: 1 },
   pathwayName: { fontSize: 15, fontWeight: "500", color: "#333" },
+  // NEW: "Your next step" label
+  pathwayNextStep: {
+    fontSize: 11,
+    color: "#1565C0",
+    fontWeight: "600",
+    marginTop: 2,
+  },
   viabilityPill: {
     flexDirection: "row",
     alignItems: "center",
@@ -657,12 +762,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  settingsButton: {
-    padding: 8,
-  },
-  settingsIcon: {
-    fontSize: 24,
-  },
+  settingsButton: { padding: 8 },
+  settingsIcon: { fontSize: 24 },
   footer: { alignItems: "center", paddingBottom: 20, paddingTop: 10 },
   footerText: { fontSize: 11, color: "#999" },
 });

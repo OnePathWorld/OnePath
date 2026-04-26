@@ -240,4 +240,139 @@ export const pathwaysData = {
       },
     },
   },
+
+  // =========================================================
+  // NEW: CITIZENSHIP / NATURALIZATION PATHWAY
+  // =========================================================
+  citizenship: {
+    id: "citizenship",
+    title: "Path to Citizenship",
+    icon: "🇺🇸",
+    overview:
+      "U.S. naturalization allows lawful permanent residents (green card holders) to become U.S. citizens. Most applicants are eligible after 5 years of continuous residence. Spouses of U.S. citizens may qualify after 3 years.",
+    categories: {
+
+      standard: {
+        key: "N400_5YR",
+        name: "5-Year Continuous Residence",
+        description:
+          "The standard naturalization path for most green card holders after 5 years of continuous residence.",
+        processingKey: "N400",
+        feeForms: ["N400"],
+        hasPremiumProcessing: false,
+        subjectToVisaBulletin: false,
+        requirements: [
+          "Green card held for at least 5 years",
+          "Continuous residence in the U.S. for 5 years",
+          "Physical presence for at least 30 months of the 5 years",
+          "No single trip abroad longer than 6 months",
+          "18 years of age or older",
+          "Good moral character",
+          "Ability to read, write, and speak English",
+          "Pass the 100-question civics test",
+        ],
+        keyFacts: {
+          waitTime: "8–14 months from filing to oath ceremony",
+          fee: "$760 paper / $710 online",
+          reducedFee: "$380 (income-based reduction available)",
+          physicalPresence: "30 of 60 months required",
+          travelLimit: "No single trip over 6 months",
+        },
+      },
+
+      marriage: {
+        key: "N400_3YR",
+        name: "3-Year Rule (Married to U.S. Citizen)",
+        description:
+          "Expedited path for green card holders married to and living with a U.S. citizen. Eligible after 3 years instead of 5.",
+        processingKey: "N400",
+        feeForms: ["N400"],
+        hasPremiumProcessing: false,
+        subjectToVisaBulletin: false,
+        requirements: [
+          "Green card held for at least 3 years",
+          "Currently married to and living with a U.S. citizen",
+          "Spouse has been a U.S. citizen for all 3 years",
+          "Physical presence for at least 18 months of the 3 years",
+          "No single trip abroad longer than 6 months",
+          "Good moral character",
+          "Pass English and civics requirements",
+        ],
+        keyFacts: {
+          waitTime: "8–14 months from filing to oath ceremony",
+          fee: "$760 paper / $710 online",
+          physicalPresence: "18 of 36 months required",
+          travelLimit: "No single trip over 6 months",
+          note: "Must still be married to same U.S. citizen at time of filing",
+        },
+      },
+
+      military: {
+        key: "N400_MIL",
+        name: "Military Service",
+        description:
+          "Expedited or immediate naturalization for active duty service members and honorably discharged veterans.",
+        processingKey: "N400",
+        feeForms: [], // N-400 filing fee is $0 for military
+        hasPremiumProcessing: false,
+        subjectToVisaBulletin: false,
+        requirements: [
+          "Active duty or honorably discharged from U.S. armed forces",
+          "1 year of honorable service (peacetime)",
+          "Active duty during designated hostility period = immediate eligibility",
+          "Good moral character",
+          "Pass English and civics requirements",
+        ],
+        keyFacts: {
+          waitTime: "Varies — can be expedited during active duty",
+          fee: "$0 — filing fee waived for military applicants",
+          immediateEligibility: "Yes, during designated periods of hostility",
+          form: "N-400 or N-426 (for active duty abroad)",
+        },
+      },
+
+      children: {
+        key: "N600",
+        name: "Citizenship for Children",
+        description:
+          "Children under 18 with a green card may automatically acquire citizenship when a parent naturalizes. N-600 documents this citizenship.",
+        processingKey: "N600",
+        feeForms: ["N600"],
+        hasPremiumProcessing: false,
+        subjectToVisaBulletin: false,
+        requirements: [
+          "Under 18 years old",
+          "Lawful permanent resident",
+          "At least one parent is a U.S. citizen (by birth or naturalization)",
+          "Residing in the U.S. in legal and physical custody of citizen parent",
+        ],
+        keyFacts: {
+          note: "Citizenship may be automatic — N-600 just documents it",
+          fee: "$1,170 (N-600 Certificate of Citizenship)",
+          militaryFee: "$0 for children of military",
+        },
+      },
+
+    },
+  },
+};
+
+// =========================================================
+// COUNTRY BACKLOG MAP
+// Used across app to determine if country has EB/family backlogs
+// Updated to include Germany (no backlog)
+// =========================================================
+export const BACKLOG_COUNTRIES = {
+  india: { hasBacklog: true, ebWait: "12+ years EB-2/EB-3", familyWait: "5-15 years" },
+  china: { hasBacklog: true, ebWait: "4+ years EB-2", familyWait: "5-12 years" },
+  mexico: { hasBacklog: true, ebWait: "Current for most EB", familyWait: "10-20 years" },
+  philippines: { hasBacklog: true, ebWait: "Current for most EB", familyWait: "10-15 years" },
+  canada: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+  uk: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+  brazil: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+  nigeria: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+  south_korea: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+  japan: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+  // NEW
+  germany: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
 };
