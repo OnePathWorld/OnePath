@@ -44,9 +44,7 @@ async function getAccessToken() {
   const expiresIn = data.expires_in || 1800;
   tokenExpiresAt = Date.now() + expiresIn * 1000;
 
-  console.log(
-    `[Token] New token obtained, expires in ${expiresIn}s`
-  );
+  console.log(`[Token] New token obtained, expires in ${expiresIn}s`);
 
   return cachedToken;
 }
@@ -77,6 +75,28 @@ function setCachedStatus(receiptNumber, data) {
 }
 
 // =========================================================
+// Error helpers — RFC-9457 Problem Details shape
+// =========================================================
+// USCIS returns errors as: { errors: [{ code, message, category, reference, status, traceId }] }
+// We mirror that shape for our own validation errors so the React Native
+// client has ONE error renderer for both.
+
+function buildLocalError({ code, message, category, status }) {
+  return {
+    errors: [
+      {
+        code,
+        message,
+        category: category || "VALIDATION",
+        reference: "https://developer.uscis.gov/api/case-status",
+        status: String(status),
+        traceId: `local-${Date.now()}`,
+      },
+    ],
+  };
+}
+
+// =========================================================
 // Routes
 // =========================================================
 
@@ -92,10 +112,15 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
   // Basic validation — USCIS receipt numbers are 3 letters + 10 digits
   const receiptPattern = /^[A-Z]{3}\d{10}$/;
   if (!receiptPattern.test(receiptNumber)) {
-    return res.status(400).json({
-      error: "Invalid receipt number format",
-      expected: "3 letters followed by 10 digits (e.g., EAC9999103403)",
-    });
+    return res.status(400).json(
+      buildLocalError({
+        code: "INVALID_RECEIPT_FORMAT",
+        message:
+          "Receipt number must be 3 letters followed by 10 digits (e.g., EAC9999103403).",
+        category: "VALIDATION",
+        status: 400,
+      })
+    );
   }
 
   // Check cache first
@@ -112,38 +137,56 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
       `${process.env.USCIS_API_BASE_URL}/${receiptNumber}`,
       {
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
 
+    // Pass USCIS responses through as-is — preserves RFC-9457 error shape
+    // for the demo (criterion #6: error.message must be displayable).
+    const contentType = response.headers.get("content-type") || "";
+    const isJson = contentType.includes("application/json");
+
     if (!response.ok) {
-      const errorText = await response.text();
+      let body;
+      if (isJson) {
+        body = await response.json();
+      } else {
+        const text = await response.text();
+        body = buildLocalError({
+          code: "USCIS_NON_JSON_ERROR",
+          message: text || `USCIS returned ${response.status}`,
+          category: "UPSTREAM",
+          status: response.status,
+        });
+      }
       console.error(
         `[USCIS Error] ${receiptNumber}: ${response.status}`,
-        errorText
+        JSON.stringify(body)
       );
-      return res.status(response.status).json({
-        error: "USCIS API error",
-        status: response.status,
-        detail: errorText,
-      });
+      return res.status(response.status).json(body);
     }
 
     const data = await response.json();
 
     // Cache the successful response
     setCachedStatus(receiptNumber, data);
-    console.log(`[USCIS] ${receiptNumber}: ${data.case_status?.current_case_status_text_en || "OK"}`);
+    console.log(
+      `[USCIS] ${receiptNumber}: ${
+        data.case_status?.current_case_status_text_en || "OK"
+      }`
+    );
 
     res.json(data);
   } catch (error) {
     console.error(`[Server Error] ${receiptNumber}:`, error.message);
-    res.status(500).json({
-      error: "Internal server error",
-      message: error.message,
-    });
+    res.status(500).json(
+      buildLocalError({
+        code: "INTERNAL_ERROR",
+        message: error.message || "Internal server error",
+        category: "INTERNAL",
+        status: 500,
+      })
+    );
   }
 });
 
