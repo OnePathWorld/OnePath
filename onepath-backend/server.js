@@ -137,7 +137,7 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
       `${process.env.USCIS_API_BASE_URL}/${receiptNumber}`,
       {
         method: "GET",
-        headers: { Authorization: `Bearer ${token}` 
+        headers: { Authorization: `Bearer ${token}`, 
                  "demo_id": "3811",
                  },
       }
