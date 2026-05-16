@@ -1,3 +1,4 @@
+import "./src/i18n";  
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -21,6 +22,7 @@ import GuideDetailScreen from "./src/screens/GuideDetailScreen";
 import StatusDetailsScreen from "./src/screens/StatusDetailsScreen";
 import PolicyTrackerScreen from "./src/screens/PolicyTrackerScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
+import CaseStatusTrackerScreen from "./src/screens/CaseStatusTrackerScreen";
 
 // Navigation
 import TabNavigator from "./src/navigation/TabNavigator";
@@ -161,6 +163,14 @@ export default function App() {
               headerShown: true,
             }}
           />
+          <Stack.Screen
+            name="CaseStatusTracker"
+            component={CaseStatusTrackerScreen}
+            options={{
+                title: "Case Tracker",
+                headerShown: true,
+            }}
+            />
           <Stack.Screen
             name="Settings"
             component={SettingsScreen}

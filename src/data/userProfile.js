@@ -6,12 +6,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
  * Enhanced User Profile Structure
  */
 export const DEFAULT_USER_PROFILE = {
-  basicInfo: {
-    location: "",
-    purpose: "",
-    urgency: "",
-    language: "en",
-  },
+    basicInfo: {
+        location: "",
+        purpose: "",
+        urgency: "",
+        language: "",
+        outsideUsStage: "",      // ← add
+        hasReceiptNumber: "",    // ← add
+      },
   personalInfo: {
     countryOfCitizenship: "",
     currentState: "",
@@ -99,12 +101,14 @@ function normalizeProfile(raw) {
 
   return {
     ...DEFAULT_USER_PROFILE,
-    basicInfo: {
-      location: raw.location || "",
-      purpose: raw.purpose || "",
-      urgency: raw.urgency || "",
-      language: raw.language || "en",
-    },
+        basicInfo: {
+            location: raw.location || "",
+            purpose: raw.purpose || "",
+            urgency: raw.urgency || "",
+            language: raw.language || "",
+            outsideUsStage: raw.outsideUsStage || "",      // ← add
+            hasReceiptNumber: raw.hasReceiptNumber || "",  // ← add
+        },
     personalInfo: {
       ...DEFAULT_USER_PROFILE.personalInfo,
       countryOfCitizenship: raw.countryOfCitizenship || "",
@@ -326,7 +330,10 @@ class UserProfileManager {
 
     return {
       score: Math.max(0, score),
-      status: score >= 80 ? "Healthy" : score >= 60 ? "attention" : "critical",
+      // Status enum: "Good" | "Attention" | "Critical"
+      // Must match the strings consumed by HomeScreen.js and StatusDetailsScreen.js
+      // (color/emoji conditionals + the home.status.* / statusDetailsScreen.status.* translation keys).
+      status: score >= 80 ? "Good" : score >= 60 ? "Attention" : "Critical",
       issues,
     };
   }

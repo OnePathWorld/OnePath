@@ -2,6 +2,7 @@
 
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 import { VISA_BULLETIN } from "../data/visaBulletin";
 
 /**
@@ -17,11 +18,11 @@ export default function PriorityDateTracker({
   country = "default",
   priorityDate,
 }) {
+  const { t } = useTranslation();
+
   if (!priorityDate || !category) {
     return (
-      <Text style={styles.fallback}>
-        Priority date information not available.
-      </Text>
+      <Text style={styles.fallback}>{t("priorityDateTracker.noData")}</Text>
     );
   }
 
@@ -29,18 +30,17 @@ export default function PriorityDateTracker({
   if (!bulletinCategory) {
     return (
       <Text style={styles.fallback}>
-        Visa bulletin data not available for this category.
+        {t("priorityDateTracker.noBulletin")}
       </Text>
     );
   }
 
-  const cutoff =
-    bulletinCategory[country] || bulletinCategory.default;
+  const cutoff = bulletinCategory[country] || bulletinCategory.default;
 
   if (!cutoff) {
     return (
       <Text style={styles.fallback}>
-        Country-specific cutoff date not available.
+        {t("priorityDateTracker.noCountryCutoff")}
       </Text>
     );
   }
@@ -52,15 +52,19 @@ export default function PriorityDateTracker({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Visa Availability</Text>
+      <Text style={styles.title}>{t("priorityDateTracker.title")}</Text>
 
       <View style={styles.row}>
-        <Text style={styles.label}>Your priority date</Text>
+        <Text style={styles.label}>
+          {t("priorityDateTracker.yourPriorityDate")}
+        </Text>
         <Text style={styles.value}>{priorityDate}</Text>
       </View>
 
       <View style={styles.row}>
-        <Text style={styles.label}>Current cutoff date</Text>
+        <Text style={styles.label}>
+          {t("priorityDateTracker.currentCutoff")}
+        </Text>
         <Text style={styles.value}>{cutoff}</Text>
       </View>
 
@@ -71,24 +75,26 @@ export default function PriorityDateTracker({
             isCurrent ? styles.current : styles.backlogged,
           ]}
         >
-          {isCurrent ? "Current" : "Not current"}
+          {isCurrent
+            ? t("priorityDateTracker.current")
+            : t("priorityDateTracker.notCurrent")}
         </Text>
       </View>
 
       {!isCurrent && (
         <Text style={styles.warning}>
-          Your category is currently backlogged. Movement depends on annual visa
-          limits and demand.
+          {t("priorityDateTracker.backloggedWarning")}
         </Text>
       )}
 
       <Text style={styles.updated}>
-        Visa Bulletin: {VISA_BULLETIN.lastUpdated}
+        {t("priorityDateTracker.bulletinUpdated", {
+          date: VISA_BULLETIN.lastUpdated,
+        })}
       </Text>
 
       <Text style={styles.disclaimer}>
-        This information is based on the U.S. Department of State Visa Bulletin
-        and does not guarantee visa availability.
+        {t("priorityDateTracker.disclaimer")}
       </Text>
     </View>
   );

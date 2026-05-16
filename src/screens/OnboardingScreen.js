@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { getCurrentLanguage } from "../i18n";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -7,27 +8,204 @@ import {
   ScrollView,
   Image,
   TextInput,
+  Animated,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTranslation } from "react-i18next";
 import analytics, { EVENTS } from "../utils/analytics";
 
+// -----------------------------------------------------------------
+// COUNTRY SEARCH LIST
+// ---------------------------------------------------------
+// Used when the user selects "Other" on countryOfCitizenship.
+// Covers ~150 countries not in the top-12 pinned list.
+// Values are stored in AsyncStorage and used by analytics —
+// keep them stable across releases.
+// -----------------------------------------------------------------
+const COUNTRY_SEARCH_LIST = [
+  { value: "afghanistan",        label: "🇦🇫 Afghanistan" },
+  { value: "albania",            label: "🇦🇱 Albania" },
+  { value: "algeria",            label: "🇩🇿 Algeria" },
+  { value: "angola",             label: "🇦🇴 Angola" },
+  { value: "argentina",          label: "🇦🇷 Argentina" },
+  { value: "armenia",            label: "🇦🇲 Armenia" },
+  { value: "australia",          label: "🇦🇺 Australia" },
+  { value: "austria",            label: "🇦🇹 Austria" },
+  { value: "azerbaijan",         label: "🇦🇿 Azerbaijan" },
+  { value: "bahamas",            label: "🇧🇸 Bahamas" },
+  { value: "bahrain",            label: "🇧🇭 Bahrain" },
+  { value: "bangladesh",         label: "🇧🇩 Bangladesh" },
+  { value: "belarus",            label: "🇧🇾 Belarus" },
+  { value: "belgium",            label: "🇧🇪 Belgium" },
+  { value: "belize",             label: "🇧🇿 Belize" },
+  { value: "benin",              label: "🇧🇯 Benin" },
+  { value: "bolivia",            label: "🇧🇴 Bolivia" },
+  { value: "bosnia",             label: "🇧🇦 Bosnia & Herzegovina" },
+  { value: "botswana",           label: "🇧🇼 Botswana" },
+  { value: "bulgaria",           label: "🇧🇬 Bulgaria" },
+  { value: "burkina_faso",       label: "🇧🇫 Burkina Faso" },
+  { value: "burundi",            label: "🇧🇮 Burundi" },
+  { value: "cambodia",           label: "🇰🇭 Cambodia" },
+  { value: "cameroon",           label: "🇨🇲 Cameroon" },
+  { value: "cape_verde",         label: "🇨🇻 Cape Verde" },
+  { value: "chad",               label: "🇹🇩 Chad" },
+  { value: "chile",              label: "🇨🇱 Chile" },
+  { value: "colombia",           label: "🇨🇴 Colombia" },
+  { value: "comoros",            label: "🇰🇲 Comoros" },
+  { value: "congo",              label: "🇨🇬 Congo" },
+  { value: "costa_rica",         label: "🇨🇷 Costa Rica" },
+  { value: "croatia",            label: "🇭🇷 Croatia" },
+  { value: "cuba",               label: "🇨🇺 Cuba" },
+  { value: "cyprus",             label: "🇨🇾 Cyprus" },
+  { value: "czech_republic",     label: "🇨🇿 Czech Republic" },
+  { value: "denmark",            label: "🇩🇰 Denmark" },
+  { value: "djibouti",           label: "🇩🇯 Djibouti" },
+  { value: "dominican_republic", label: "🇩🇴 Dominican Republic" },
+  { value: "dr_congo",           label: "🇨🇩 DR Congo" },
+  { value: "ecuador",            label: "🇪🇨 Ecuador" },
+  { value: "egypt",              label: "🇪🇬 Egypt" },
+  { value: "el_salvador",        label: "🇸🇻 El Salvador" },
+  { value: "eritrea",            label: "🇪🇷 Eritrea" },
+  { value: "estonia",            label: "🇪🇪 Estonia" },
+  { value: "ethiopia",           label: "🇪🇹 Ethiopia" },
+  { value: "fiji",               label: "🇫🇯 Fiji" },
+  { value: "finland",            label: "🇫🇮 Finland" },
+  { value: "france",             label: "🇫🇷 France" },
+  { value: "gabon",              label: "🇬🇦 Gabon" },
+  { value: "gambia",             label: "🇬🇲 Gambia" },
+  { value: "georgia",            label: "🇬🇪 Georgia" },
+  { value: "ghana",              label: "🇬🇭 Ghana" },
+  { value: "greece",             label: "🇬🇷 Greece" },
+  { value: "guatemala",          label: "🇬🇹 Guatemala" },
+  { value: "guinea",             label: "🇬🇳 Guinea" },
+  { value: "guyana",             label: "🇬🇾 Guyana" },
+  { value: "honduras",           label: "🇭🇳 Honduras" },
+  { value: "hungary",            label: "🇭🇺 Hungary" },
+  { value: "iceland",            label: "🇮🇸 Iceland" },
+  { value: "indonesia",          label: "🇮🇩 Indonesia" },
+  { value: "iran",               label: "🇮🇷 Iran" },
+  { value: "iraq",               label: "🇮🇶 Iraq" },
+  { value: "ireland",            label: "🇮🇪 Ireland" },
+  { value: "israel",             label: "🇮🇱 Israel" },
+  { value: "italy",              label: "🇮🇹 Italy" },
+  { value: "ivory_coast",        label: "🇨🇮 Ivory Coast" },
+  { value: "jamaica",            label: "🇯🇲 Jamaica" },
+  { value: "jordan",             label: "🇯🇴 Jordan" },
+  { value: "kazakhstan",         label: "🇰🇿 Kazakhstan" },
+  { value: "kenya",              label: "🇰🇪 Kenya" },
+  { value: "kosovo",             label: "🇽🇰 Kosovo" },
+  { value: "kuwait",             label: "🇰🇼 Kuwait" },
+  { value: "kyrgyzstan",         label: "🇰🇬 Kyrgyzstan" },
+  { value: "laos",               label: "🇱🇦 Laos" },
+  { value: "latvia",             label: "🇱🇻 Latvia" },
+  { value: "lebanon",            label: "🇱🇧 Lebanon" },
+  { value: "liberia",            label: "🇱🇷 Liberia" },
+  { value: "libya",              label: "🇱🇾 Libya" },
+  { value: "lithuania",          label: "🇱🇹 Lithuania" },
+  { value: "luxembourg",         label: "🇱🇺 Luxembourg" },
+  { value: "madagascar",         label: "🇲🇬 Madagascar" },
+  { value: "malawi",             label: "🇲🇼 Malawi" },
+  { value: "malaysia",           label: "🇲🇾 Malaysia" },
+  { value: "mali",               label: "🇲🇱 Mali" },
+  { value: "mauritania",         label: "🇲🇷 Mauritania" },
+  { value: "mauritius",          label: "🇲🇺 Mauritius" },
+  { value: "moldova",            label: "🇲🇩 Moldova" },
+  { value: "mongolia",           label: "🇲🇳 Mongolia" },
+  { value: "montenegro",         label: "🇲🇪 Montenegro" },
+  { value: "morocco",            label: "🇲🇦 Morocco" },
+  { value: "mozambique",         label: "🇲🇿 Mozambique" },
+  { value: "myanmar",            label: "🇲🇲 Myanmar" },
+  { value: "namibia",            label: "🇳🇦 Namibia" },
+  { value: "nepal",              label: "🇳🇵 Nepal" },
+  { value: "netherlands",        label: "🇳🇱 Netherlands" },
+  { value: "new_zealand",        label: "🇳🇿 New Zealand" },
+  { value: "nicaragua",          label: "🇳🇮 Nicaragua" },
+  { value: "niger",              label: "🇳🇪 Niger" },
+  { value: "north_korea",        label: "🇰🇵 North Korea" },
+  { value: "north_macedonia",    label: "🇲🇰 North Macedonia" },
+  { value: "norway",             label: "🇳🇴 Norway" },
+  { value: "oman",               label: "🇴🇲 Oman" },
+  { value: "pakistan",           label: "🇵🇰 Pakistan" },
+  { value: "palestine",          label: "🇵🇸 Palestine" },
+  { value: "panama",             label: "🇵🇦 Panama" },
+  { value: "papua_new_guinea",   label: "🇵🇬 Papua New Guinea" },
+  { value: "paraguay",           label: "🇵🇾 Paraguay" },
+  { value: "peru",               label: "🇵🇪 Peru" },
+  { value: "poland",             label: "🇵🇱 Poland" },
+  { value: "portugal",           label: "🇵🇹 Portugal" },
+  { value: "qatar",              label: "🇶🇦 Qatar" },
+  { value: "romania",            label: "🇷🇴 Romania" },
+  { value: "russia",             label: "🇷🇺 Russia" },
+  { value: "rwanda",             label: "🇷🇼 Rwanda" },
+  { value: "saudi_arabia",       label: "🇸🇦 Saudi Arabia" },
+  { value: "senegal",            label: "🇸🇳 Senegal" },
+  { value: "serbia",             label: "🇷🇸 Serbia" },
+  { value: "sierra_leone",       label: "🇸🇱 Sierra Leone" },
+  { value: "singapore",          label: "🇸🇬 Singapore" },
+  { value: "slovakia",           label: "🇸🇰 Slovakia" },
+  { value: "slovenia",           label: "🇸🇮 Slovenia" },
+  { value: "somalia",            label: "🇸🇴 Somalia" },
+  { value: "south_africa",       label: "🇿🇦 South Africa" },
+  { value: "south_sudan",        label: "🇸🇸 South Sudan" },
+  { value: "spain",              label: "🇪🇸 Spain" },
+  { value: "sri_lanka",          label: "🇱🇰 Sri Lanka" },
+  { value: "sudan",              label: "🇸🇩 Sudan" },
+  { value: "suriname",           label: "🇸🇷 Suriname" },
+  { value: "sweden",             label: "🇸🇪 Sweden" },
+  { value: "switzerland",        label: "🇨🇭 Switzerland" },
+  { value: "syria",              label: "🇸🇾 Syria" },
+  { value: "taiwan",             label: "🇹🇼 Taiwan" },
+  { value: "tajikistan",         label: "🇹🇯 Tajikistan" },
+  { value: "tanzania",           label: "🇹🇿 Tanzania" },
+  { value: "thailand",           label: "🇹🇭 Thailand" },
+  { value: "timor_leste",        label: "🇹🇱 Timor-Leste" },
+  { value: "togo",               label: "🇹🇬 Togo" },
+  { value: "trinidad_tobago",    label: "🇹🇹 Trinidad & Tobago" },
+  { value: "tunisia",            label: "🇹🇳 Tunisia" },
+  { value: "turkey",             label: "🇹🇷 Turkey" },
+  { value: "turkmenistan",       label: "🇹🇲 Turkmenistan" },
+  { value: "uganda",             label: "🇺🇬 Uganda" },
+  { value: "ukraine",            label: "🇺🇦 Ukraine" },
+  { value: "united_arab_emirates", label: "🇦🇪 United Arab Emirates" },
+  { value: "uruguay",            label: "🇺🇾 Uruguay" },
+  { value: "uzbekistan",         label: "🇺🇿 Uzbekistan" },
+  { value: "venezuela",          label: "🇻🇪 Venezuela" },
+  { value: "vietnam",            label: "🇻🇳 Vietnam" },
+  { value: "yemen",              label: "🇾🇪 Yemen" },
+  { value: "zambia",             label: "🇿🇲 Zambia" },
+  { value: "zimbabwe",           label: "🇿🇼 Zimbabwe" },
+];
+
 const OnboardingScreen = ({ navigation, onDone }) => {
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(0);
   const [saving, setSaving] = useState(false);
+  const [isAdvancing, setIsAdvancing] = useState(false); // locked during auto-advance timeout
+
+  // Country search state — only active when user picks "Other" on countryOfCitizenship
+  const [countrySearch, setCountrySearch] = useState("");
+  const [countrySearchResults, setCountrySearchResults] = useState([]);
 
   const [userProfile, setUserProfile] = useState({
     location: "",
     purpose: "",
     urgency: "",
-    language: "en",
+    language: getCurrentLanguage(),
     currentVisa: "",
     hasWorkAuth: "",
     countryOfCitizenship: "",
     expiryTimeline: "",
     complianceRisk: "",
-    gcYearsHeld: "",         // NEW: how long they've had their green card
+    gcYearsHeld: "",
+    // Outside-US branch fields (added v1.3)
+    outsideUsStage: "",     // no_case | petition_filed | petition_approved | interview_scheduled | has_us_visa | former_visa_holder | exploring
+    hasReceiptNumber: "",   // yes | no  (only relevant when outsideUsStage indicates a filed/approved case)
   });
+
+  // Animated scale values keyed by option value — stored in a ref so they
+  // don't trigger re-renders and persist across renders of the same step.
+  const scaleAnims = useRef({}).current;
 
   // Track onboarding start + begin timing
   useEffect(() => {
@@ -35,188 +213,249 @@ const OnboardingScreen = ({ navigation, onDone }) => {
     analytics.timeStart(EVENTS.ONBOARDING_COMPLETED);
   }, []);
 
+  // Reset interaction lock and country search whenever the step changes
+  useEffect(() => {
+    setIsAdvancing(false);
+    setCountrySearch("");
+    setCountrySearchResults([]);
+  }, [currentStep]);
+
+  // -----------------------------------------------------------------
+  // QUESTIONS
+  // ---------------------------------------------------------
+  // Built inside the component so t() picks up the active locale.
+  // All strings live in src/i18n/locales/{en,es,pt,zh}.json under the
+  // `onboarding.*` namespace. The `option.value` strings are kept in
+  // English because they're enum values stored in AsyncStorage and
+  // referenced by the guidance engine — they must NOT be translated.
+  // -----------------------------------------------------------------
   const questions = [
     {
       id: "welcome",
-      title: "Welcome to Your Immigration Journey",
-      subtitle:
-        "We'll help you navigate the U.S. immigration process step by step",
+      title: t("onboarding.welcome.title"),
+      subtitle: t("onboarding.welcome.subtitle"),
       type: "info",
     },
     {
       id: "location",
-      title: "Where are you currently?",
-      subtitle: "This helps us show relevant pathways",
+      title: t("onboarding.location.title"),
+      subtitle: t("onboarding.location.subtitle"),
       options: [
-        { value: "outside_us", label: "🌍 Outside the United States" },
-        { value: "inside_us", label: "🇺🇸 Inside the United States" },
+        { value: "outside_us", label: t("onboarding.location.options.outside_us") },
+        { value: "inside_us",  label: t("onboarding.location.options.inside_us") },
       ],
     },
 
-    // MOVED UP: currentVisa now comes before purpose
-    // so purpose can react to GC holder status
+    // -------------------------------------------------------------
+    // OUTSIDE-US BRANCH (v1.3)
+    // For users outside the US: ask where they are in the immigration
+    // process. This unlocks Case Tracker for users with a USCIS receipt
+    // number (pending I-130, I-140, etc.) and gives OnboardingSummary
+    // enough context to render meaningful guidance instead of a
+    // generic "you're outside the US" page.
+    // -------------------------------------------------------------
+    {
+      id: "outsideUsStage",
+      title: t("onboarding.outsideUsStage.title"),
+      subtitle: t("onboarding.outsideUsStage.subtitle"),
+      showIf: (profile) => profile.location === "outside_us",
+      options: [
+        { value: "no_case",             label: t("onboarding.outsideUsStage.options.no_case") },
+        { value: "petition_filed",      label: t("onboarding.outsideUsStage.options.petition_filed") },
+        { value: "petition_approved",   label: t("onboarding.outsideUsStage.options.petition_approved") },
+        { value: "interview_scheduled", label: t("onboarding.outsideUsStage.options.interview_scheduled") },
+        { value: "has_us_visa",         label: t("onboarding.outsideUsStage.options.has_us_visa") },
+        { value: "former_visa_holder",  label: t("onboarding.outsideUsStage.options.former_visa_holder") },
+        { value: "exploring",           label: t("onboarding.outsideUsStage.options.exploring") },
+      ],
+    },
+
+    // Bridge to Case Tracker — only ask if they have a filed/approved case
+    {
+      id: "hasReceiptNumber",
+      title: t("onboarding.hasReceiptNumber.title"),
+      subtitle: t("onboarding.hasReceiptNumber.subtitle"),
+      showIf: (profile) =>
+        profile.location === "outside_us" &&
+        (profile.outsideUsStage === "petition_filed" ||
+          profile.outsideUsStage === "petition_approved" ||
+          profile.outsideUsStage === "interview_scheduled"),
+      options: [
+        { value: "yes", label: t("onboarding.hasReceiptNumber.options.yes") },
+        { value: "no",  label: t("onboarding.hasReceiptNumber.options.no") },
+      ],
+    },
+
+    // currentVisa comes before purpose so purpose can react to GC holder status
     {
       id: "currentVisa",
-      title: "What's your current immigration status?",
-      subtitle: "This helps us identify risks and opportunities",
+      title: t("onboarding.currentVisa.title"),
+      subtitle: t("onboarding.currentVisa.subtitle"),
       showIf: (profile) => profile.location === "inside_us",
       options: [
-        { value: "F1", label: "📚 F-1 Student" },
-        { value: "H1B", label: "💼 H-1B Work Visa" },
-        { value: "L1", label: "🏢 L-1 Transfer" },
-        { value: "B1B2", label: "✈️ B-1/B-2 Visitor" },
-        { value: "J1", label: "🔄 J-1 Exchange" },
-        { value: "OPT", label: "🎓 OPT/STEM OPT" },
-        { value: "EAD", label: "💳 EAD Holder" },
-        { value: "GC_pending", label: "⏳ Green Card Pending" },
-        { value: "GC", label: "🟢 Green Card Holder (LPR)" },
-        { value: "other", label: "📋 Other Status" },
-        { value: "none", label: "❌ Out of Status" },
+        // Work
+        { value: "H1B",        label: t("onboarding.currentVisa.options.H1B"),        group: t("onboarding.currentVisa.groups.work") },
+        { value: "L1",         label: t("onboarding.currentVisa.options.L1"),         group: t("onboarding.currentVisa.groups.work") },
+        { value: "EAD",        label: t("onboarding.currentVisa.options.EAD"),        group: t("onboarding.currentVisa.groups.work") },
+        // Study
+        { value: "F1",         label: t("onboarding.currentVisa.options.F1"),         group: t("onboarding.currentVisa.groups.study") },
+        { value: "OPT",        label: t("onboarding.currentVisa.options.OPT"),        group: t("onboarding.currentVisa.groups.study") },
+        { value: "J1",         label: t("onboarding.currentVisa.options.J1"),         group: t("onboarding.currentVisa.groups.study") },
+        // Resident / Visitor
+        { value: "GC",         label: t("onboarding.currentVisa.options.GC"),         group: t("onboarding.currentVisa.groups.resident") },
+        { value: "GC_pending", label: t("onboarding.currentVisa.options.GC_pending"), group: t("onboarding.currentVisa.groups.resident") },
+        { value: "B1B2",       label: t("onboarding.currentVisa.options.B1B2"),       group: t("onboarding.currentVisa.groups.resident") },
+        // Other
+        { value: "other",      label: t("onboarding.currentVisa.options.other"),      group: t("onboarding.currentVisa.groups.other") },
+        { value: "none",       label: t("onboarding.currentVisa.options.none"),       group: t("onboarding.currentVisa.groups.other") },
       ],
     },
 
-    // NEW: gcYearsHeld immediately after GC selection
+    // gcYearsHeld immediately after GC selection
     {
       id: "gcYearsHeld",
-      title: "How long have you held your green card?",
-      subtitle: "This determines which naturalization path you qualify for",
+      title: t("onboarding.gcYearsHeld.title"),
+      subtitle: t("onboarding.gcYearsHeld.subtitle"),
       showIf: (profile) =>
         profile.location === "inside_us" && profile.currentVisa === "GC",
       options: [
-        { value: "under2", label: "⏳ Less than 2 years" },
-        { value: "2to3", label: "📅 2–3 years" },
-        { value: "3to5", label: "🗓️ 3–5 years" },
-        { value: "over5", label: "✅ 5+ years — Eligible to naturalize" },
-        { value: "military", label: "🎖️ Military service" },
+        { value: "under2",   label: t("onboarding.gcYearsHeld.options.under2") },
+        { value: "2to3",     label: t("onboarding.gcYearsHeld.options.2to3") },
+        { value: "3to5",     label: t("onboarding.gcYearsHeld.options.3to5") },
+        { value: "over5",    label: t("onboarding.gcYearsHeld.options.over5") },
+        { value: "military", label: t("onboarding.gcYearsHeld.options.military") },
       ],
     },
 
-    // PURPOSE — now dynamic based on visa status
+    // PURPOSE — non-GC version
     {
       id: "purpose",
-      // DYNAMIC title: GC holders get different question
-      title: "What's your immigration goal?",
-      // DYNAMIC subtitle based on visa
-      subtitle: "Select your primary focus",
-      // GC holders only see relevant options
+      title: t("onboarding.purpose.title"),
+      subtitle: t("onboarding.purpose.subtitle"),
       showIf: (profile) => profile.currentVisa !== "GC",
       options: [
-        { value: "work", label: "💼 Work Opportunity" },
-        { value: "family", label: "👨‍👩‍👧‍👦 Family Reunification" },
-        { value: "study", label: "🎓 Education" },
-        { value: "protection", label: "🛡️ Seeking Protection" },
+        { value: "work",       label: t("onboarding.purpose.options.work") },
+        { value: "family",     label: t("onboarding.purpose.options.family") },
+        { value: "study",      label: t("onboarding.purpose.options.study") },
+        { value: "protection", label: t("onboarding.purpose.options.protection") },
       ],
     },
 
-    // SEPARATE purpose question for GC holders only
+    // PURPOSE — GC holder version (overrides above when GC)
     {
-        id: "purpose",
-        title: "What would you like to focus on?",
-        subtitle: "You already have your green card — what's next for you?",
-        showIf: (profile) =>
-          profile.location === "inside_us" && profile.currentVisa === "GC",
-        options: [
-          { value: "citizenship", label: "🇺🇸 Naturalization & Citizenship" },
-          { value: "family", label: "👨‍👩‍👧‍👦 Sponsor Family Members" },
-          { value: "work", label: "💼 Work & Career Options" },
-        ],
-      },
+      id: "purpose",
+      title: t("onboarding.purposeGc.title"),
+      subtitle: t("onboarding.purposeGc.subtitle"),
+      showIf: (profile) =>
+        profile.location === "inside_us" && profile.currentVisa === "GC",
+      options: [
+        { value: "citizenship", label: t("onboarding.purposeGc.options.citizenship") },
+        { value: "family",      label: t("onboarding.purposeGc.options.family") },
+        { value: "work",        label: t("onboarding.purposeGc.options.work") },
+      ],
+    },
 
     // URGENCY — skipped for GC holders
     {
       id: "urgency",
-      title: "What's your timeline?",
-      subtitle: "This helps us prioritize information",
+      title: t("onboarding.urgency.title"),
+      subtitle: t("onboarding.urgency.subtitle"),
       showIf: (profile) => profile.currentVisa !== "GC",
       options: [
-        { value: "immediate", label: "🚨 Immediate (< 1 month)" },
-        { value: "soon", label: "📅 Soon (1–6 months)" },
-        { value: "planning", label: "📊 Planning (6+ months)" },
+        { value: "immediate", label: t("onboarding.urgency.options.immediate") },
+        { value: "soon",      label: t("onboarding.urgency.options.soon") },
+        { value: "planning",  label: t("onboarding.urgency.options.planning") },
       ],
     },
 
     {
       id: "hasWorkAuth",
-      title: "Do you have work authorization?",
-      subtitle: "This affects your employment options",
+      title: t("onboarding.hasWorkAuth.title"),
+      subtitle: t("onboarding.hasWorkAuth.subtitle"),
       showIf: (profile) =>
         profile.location === "inside_us" && profile.currentVisa !== "GC",
       options: [
-        { value: "yes_unrestricted", label: "✅ Yes - Any employer" },
-        { value: "yes_restricted", label: "⚠️ Yes - Specific employer only" },
-        { value: "yes_ead", label: "💳 Yes - EAD card" },
-        { value: "pending", label: "⏳ Application pending" },
-        { value: "no", label: "❌ No work authorization" },
+        { value: "yes_unrestricted", label: t("onboarding.hasWorkAuth.options.yes_unrestricted") },
+        { value: "yes_restricted",   label: t("onboarding.hasWorkAuth.options.yes_restricted") },
+        { value: "yes_ead",          label: t("onboarding.hasWorkAuth.options.yes_ead") },
+        { value: "pending",          label: t("onboarding.hasWorkAuth.options.pending") },
+        { value: "no",               label: t("onboarding.hasWorkAuth.options.no") },
       ],
     },
 
     {
       id: "countryOfCitizenship",
-      title: "What's your country of citizenship?",
-      subtitle: "This affects wait times and visa availability",
+      title: t("onboarding.countryOfCitizenship.title"),
+      subtitle: t("onboarding.countryOfCitizenship.subtitle"),
       options: [
-        { value: "india", label: "🇮🇳 India" },
-        { value: "china", label: "🇨🇳 China" },
-        { value: "mexico", label: "🇲🇽 Mexico" },
-        { value: "philippines", label: "🇵🇭 Philippines" },
-        { value: "canada", label: "🇨🇦 Canada" },
-        { value: "uk", label: "🇬🇧 United Kingdom" },
-        { value: "germany", label: "🇩🇪 Germany" },
-        { value: "brazil", label: "🇧🇷 Brazil" },
-        { value: "nigeria", label: "🇳🇬 Nigeria" },
-        { value: "south_korea", label: "🇰🇷 South Korea" },
-        { value: "japan", label: "🇯🇵 Japan" },
-        { value: "other", label: "🌍 Other" },
+        { value: "mexico",      label: t("onboarding.countryOfCitizenship.options.mexico") },
+        { value: "india",       label: t("onboarding.countryOfCitizenship.options.india") },
+        { value: "china",       label: t("onboarding.countryOfCitizenship.options.china") },
+        { value: "haiti",       label: t("onboarding.countryOfCitizenship.options.haiti") },
+        { value: "philippines", label: t("onboarding.countryOfCitizenship.options.philippines") },
+        { value: "brazil",      label: t("onboarding.countryOfCitizenship.options.brazil") },
+        { value: "nigeria",     label: t("onboarding.countryOfCitizenship.options.nigeria") },
+        { value: "canada",      label: t("onboarding.countryOfCitizenship.options.canada") },
+        { value: "uk",          label: t("onboarding.countryOfCitizenship.options.uk") },
+        { value: "germany",     label: t("onboarding.countryOfCitizenship.options.germany") },
+        { value: "south_korea", label: t("onboarding.countryOfCitizenship.options.south_korea") },
+        { value: "japan",       label: t("onboarding.countryOfCitizenship.options.japan") },
+        { value: "other",       label: t("onboarding.countryOfCitizenship.options.other") },
       ],
       hasTextInput: true,
-      textInputPlaceholder: "Enter your country",
+      textInputPlaceholder: t("onboarding.countryOfCitizenship.searchPlaceholder"),
       textInputShowIf: "other",
     },
 
     {
-        id: "expiryTimeline",
-        title: "Any critical dates coming up?",
-        // DYNAMIC subtitle based on visa type
-        subtitle: (profile) => {
-          const subtitles = {
-            H1B: "e.g. H-1B status end date, I-94 expiration",
-            F1: "e.g. OPT EAD expiration, program end date, grace period",
-            OPT: "e.g. OPT EAD card expiration, 90-day unemployment limit",
-            L1: "e.g. L-1 status end date, I-94 expiration",
-            J1: "e.g. DS-2019 program end date, grace period",
-            B1B2: "e.g. I-94 authorized stay expiration",
-            EAD: "e.g. EAD card expiration — now 18 month max validity",
-            GC_pending: "e.g. EAD/AP combo card expiration",
-          };
-          return subtitles[profile.currentVisa] || "e.g. visa expiration, status end date, authorization deadline";
-        },
-        showIf: (profile) =>
-          profile.location === "inside_us" &&
-          profile.purpose !== "protection" &&
-          profile.currentVisa !== "GC",
-        options: [
-          { value: "expired", label: "🔴 Already expired — need help now" },
-          { value: "30days", label: "⚠️ Within 30 days — urgent" },
-          { value: "90days", label: "📅 Within 90 days — filing soon" },
-          { value: "6months", label: "📆 Within 6 months — planning ahead" },
-          { value: "year", label: "📍 Within 1 year — early planning" },
-          { value: "safe", label: "✅ More than 1 year — no urgency" },
-        ],
+      id: "expiryTimeline",
+      title: t("onboarding.expiryTimeline.title"),
+      // Dynamic subtitle — looks up visa-specific text, falls back to default
+      subtitle: (profile) => {
+        if (!profile.currentVisa) {
+          return t("onboarding.expiryTimeline.subtitleDefault");
+        }
+        const key = `onboarding.expiryTimeline.subtitleByVisa.${profile.currentVisa}`;
+        const translated = t(key);
+        // i18next returns the key itself if not found — fall back to default
+        return translated === key
+          ? t("onboarding.expiryTimeline.subtitleDefault")
+          : translated;
       },
+      showIf: (profile) =>
+        profile.purpose !== "protection" &&
+        profile.currentVisa !== "GC" &&
+        (profile.location === "inside_us" ||
+          (profile.location === "outside_us" &&
+            profile.outsideUsStage === "has_us_visa")),
+      options: [
+        { value: "expired", label: t("onboarding.expiryTimeline.options.expired") },
+        { value: "30days",  label: t("onboarding.expiryTimeline.options.30days") },
+        { value: "90days",  label: t("onboarding.expiryTimeline.options.90days") },
+        { value: "6months", label: t("onboarding.expiryTimeline.options.6months") },
+        { value: "year",    label: t("onboarding.expiryTimeline.options.year") },
+        { value: "safe",    label: t("onboarding.expiryTimeline.options.safe") },
+      ],
+    },
 
     {
       id: "complianceRisk",
-      title: "Have you experienced any of these?",
-      subtitle: "Be honest - we'll help you understand your options",
+      title: t("onboarding.complianceRisk.title"),
+      subtitle: (profile) => {
+        if (profile.currentVisa === "F1" || profile.currentVisa === "OPT") {
+          return t("onboarding.complianceRisk.subtitleStudent");
+        }
+        return t("onboarding.complianceRisk.subtitle");
+      },
       showIf: (profile) =>
         profile.location === "inside_us" && profile.currentVisa !== "GC",
       options: [
-        { value: "none", label: "✅ None - Clean record" },
-        { value: "gap", label: "📋 Status gap (out of status)" },
-        { value: "unauthorized_work", label: "💼 Worked without authorization" },
-        { value: "overstay", label: "⏰ Overstayed visa" },
-        { value: "denied", label: "❌ Previous denial/RFE" },
-        { value: "prefer_not", label: "🔒 Prefer not to say" },
+        { value: "none",              label: t("onboarding.complianceRisk.options.none") },
+        { value: "gap",               label: t("onboarding.complianceRisk.options.gap") },
+        { value: "unauthorized_work", label: t("onboarding.complianceRisk.options.unauthorized_work") },
+        { value: "overstay",          label: t("onboarding.complianceRisk.options.overstay") },
+        { value: "denied",            label: t("onboarding.complianceRisk.options.denied") },
+        { value: "prefer_not",        label: t("onboarding.complianceRisk.options.prefer_not") },
       ],
     },
   ];
@@ -224,7 +463,7 @@ const OnboardingScreen = ({ navigation, onDone }) => {
   const visibleQuestions = questions.reduce((acc, q) => {
     if (q.showIf && !q.showIf(userProfile)) return acc;
     // If a question with this id already exists, replace it
-    // (handles dynamic purpose question swap)
+    // (handles dynamic purpose question swap for GC holders)
     const existingIndex = acc.findIndex((existing) => existing.id === q.id);
     if (existingIndex >= 0) {
       acc[existingIndex] = q;
@@ -235,17 +474,110 @@ const OnboardingScreen = ({ navigation, onDone }) => {
 
   const question = visibleQuestions[currentStep];
   const progress = ((currentStep + 1) / visibleQuestions.length) * 100;
+
+  // canProceed: for countryOfCitizenship, "other" is only valid once the user
+  // has selected a real country from the search results (value will no longer
+  // be "other" at that point). If they're still on "other" without picking a
+  // search result, they need to either search or tap Next to skip.
   const canProceed =
     question.type === "info" || Boolean(userProfile[question.id]);
 
   const handleSelection = (value) => {
+    // Block any tap during the auto-advance window
+    if (isAdvancing) return;
+
+    // Update profile state
+    setUserProfile((prev) => ({ ...prev, [question.id]: value }));
+
+    // Ensure an Animated.Value exists for this option
+    if (!scaleAnims[value]) {
+      scaleAnims[value] = new Animated.Value(1);
+    }
+
+    // Brief pop animation: squish → bounce back
+    Animated.sequence([
+      Animated.timing(scaleAnims[value], {
+        toValue: 0.96,
+        duration: 80,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scaleAnims[value], {
+        toValue: 1,
+        duration: 120,
+        useNativeDriver: true,
+      }),
+    ]).start();
+
+    // Auto-advance unless:
+    // - it's the last step (let the user consciously tap Finish)
+    // - the question has a text input and "other" was picked (user needs to search)
+    const isLastStep = currentStep === visibleQuestions.length - 1;
+    const needsTextInput =
+      question.hasTextInput && value === question.textInputShowIf;
+
+    if (!isLastStep && !needsTextInput) {
+      setIsAdvancing(true); // lock interactions
+
+      setTimeout(() => {
+        analytics.track(EVENTS.ONBOARDING_STEP, {
+          step: currentStep,
+          questionId: question.id,
+          answer: value,
+        });
+        setCurrentStep((s) => s + 1);
+        // isAdvancing resets via the useEffect that watches currentStep
+      }, 400);
+    }
+  };
+
+  // Called when user taps a country from the search results dropdown
+  const handleCountrySearchSelect = (country) => {
+    if (isAdvancing) return;
+
+    // Store the real country code — replaces "other" as the field value
     setUserProfile((prev) => ({
       ...prev,
-      [question.id]: value,
+      countryOfCitizenship: country.value,
+      countrySpecified: country.label,
     }));
+    setCountrySearch("");
+    setCountrySearchResults([]);
+
+    // Animate the "other" button (the one that was selected) as feedback
+    if (!scaleAnims["other"]) {
+      scaleAnims["other"] = new Animated.Value(1);
+    }
+    Animated.sequence([
+      Animated.timing(scaleAnims["other"], {
+        toValue: 0.96,
+        duration: 80,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scaleAnims["other"], {
+        toValue: 1,
+        duration: 120,
+        useNativeDriver: true,
+      }),
+    ]).start();
+
+    // Auto-advance after selection
+    const isLastStep = currentStep === visibleQuestions.length - 1;
+    if (!isLastStep) {
+      setIsAdvancing(true);
+      setTimeout(() => {
+        analytics.track(EVENTS.ONBOARDING_STEP, {
+          step: currentStep,
+          questionId: question.id,
+          answer: country.value,
+        });
+        setCurrentStep((s) => s + 1);
+      }, 400);
+    }
   };
 
   const handleNext = () => {
+    if (isAdvancing) return;
+
     // Track step completion
     analytics.track(EVENTS.ONBOARDING_STEP, {
       step: currentStep,
@@ -261,6 +593,7 @@ const OnboardingScreen = ({ navigation, onDone }) => {
   };
 
   const handleBack = () => {
+    if (isAdvancing) return;
     if (currentStep > 0) {
       setCurrentStep((s) => s - 1);
     }
@@ -296,7 +629,9 @@ const OnboardingScreen = ({ navigation, onDone }) => {
         countrySpecified: userProfile.countrySpecified || "",
         visa: userProfile.currentVisa,
         location: userProfile.location,
-        gcYearsHeld: userProfile.gcYearsHeld || "",  // NEW
+        gcYearsHeld: userProfile.gcYearsHeld || "",
+        outsideUsStage: userProfile.outsideUsStage || "",
+        hasReceiptNumber: userProfile.hasReceiptNumber || "",
       });
       analytics.identifyUser(userProfile);
 
@@ -313,11 +648,99 @@ const OnboardingScreen = ({ navigation, onDone }) => {
   };
 
   const handleSkip = () => {
+    if (isAdvancing) return;
     analytics.track(EVENTS.ONBOARDING_SKIPPED, {
       skippedAtStep: currentStep,
       questionId: question.id,
     });
     completeOnboarding();
+  };
+
+  // -----------------------------------------------------------------
+  // RENDER OPTIONS
+  // ---------------------------------------------------------
+  // Renders option buttons for the current question.
+  // If any option has a `group` property, injects a small uppercase
+  // divider label whenever the group changes — used by currentVisa
+  // to break 11 options into Work / Study / Resident & Visitor / Other.
+  // All other questions fall through to the flat render path so
+  // nothing changes for them.
+  // -----------------------------------------------------------------
+  const renderOptions = (q) => {
+    const hasGroups = q.options.some((o) => o.group);
+
+    if (!hasGroups) {
+      return q.options.map((opt) => {
+        if (!scaleAnims[opt.value]) {
+          scaleAnims[opt.value] = new Animated.Value(1);
+        }
+        const isSelected = userProfile[q.id] === opt.value;
+        return (
+          <Animated.View
+            key={opt.value}
+            style={{ transform: [{ scale: scaleAnims[opt.value] }] }}
+          >
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                isSelected && styles.optionButtonSelected,
+              ]}
+              onPress={() => handleSelection(opt.value)}
+              disabled={isAdvancing}
+            >
+              <Text
+                style={[
+                  styles.optionText,
+                  isSelected && styles.optionTextSelected,
+                ]}
+              >
+                {opt.label}
+              </Text>
+            </TouchableOpacity>
+          </Animated.View>
+        );
+      });
+    }
+
+    // Grouped render — inject a divider label when the group name changes
+    let lastGroup = null;
+    return q.options.map((opt) => {
+      if (!scaleAnims[opt.value]) {
+        scaleAnims[opt.value] = new Animated.Value(1);
+      }
+      const isSelected = userProfile[q.id] === opt.value;
+      const showDivider = opt.group !== lastGroup;
+      lastGroup = opt.group;
+
+      return (
+        <View key={opt.value}>
+          {showDivider && (
+            <Text style={styles.optionGroupLabel}>{opt.group}</Text>
+          )}
+          <Animated.View
+            style={{ transform: [{ scale: scaleAnims[opt.value] }] }}
+          >
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                isSelected && styles.optionButtonSelected,
+              ]}
+              onPress={() => handleSelection(opt.value)}
+              disabled={isAdvancing}
+            >
+              <Text
+                style={[
+                  styles.optionText,
+                  isSelected && styles.optionTextSelected,
+                ]}
+              >
+                {opt.label}
+              </Text>
+            </TouchableOpacity>
+          </Animated.View>
+        </View>
+      );
+    });
   };
 
   return (
@@ -327,9 +750,9 @@ const OnboardingScreen = ({ navigation, onDone }) => {
         <TouchableOpacity
           style={styles.skipButton}
           onPress={handleSkip}
-          disabled={saving}
+          disabled={saving || isAdvancing}
         >
-          <Text style={styles.skipButtonText}>Skip</Text>
+          <Text style={styles.skipButtonText}>{t("onboarding.skip")}</Text>
         </TouchableOpacity>
 
         {/* PROGRESS */}
@@ -340,7 +763,10 @@ const OnboardingScreen = ({ navigation, onDone }) => {
             />
           </View>
           <Text style={styles.progressStep}>
-            Step {currentStep + 1} of {visibleQuestions.length}
+            {t("onboarding.stepIndicator", {
+              current: currentStep + 1,
+              total: visibleQuestions.length,
+            })}
           </Text>
         </View>
 
@@ -351,91 +777,109 @@ const OnboardingScreen = ({ navigation, onDone }) => {
                 source={require("../../assets/icon.png")}
                 style={styles.logoImage}
               />
-            <Text style={styles.title}>{question.title}</Text>
-            <Text style={styles.subtitle}>
-            {typeof question.subtitle === "function"
-                ? question.subtitle(userProfile)
-                : question.subtitle}
-            </Text>
+              <Text style={styles.title}>{question.title}</Text>
+              <Text style={styles.subtitle}>
+                {typeof question.subtitle === "function"
+                  ? question.subtitle(userProfile)
+                  : question.subtitle}
+              </Text>
 
-            <TouchableOpacity
-            style={styles.primaryButton}
-            onPress={handleNext}
-            >
-                <Text style={styles.primaryButtonText}>Get Started</Text>
+              <TouchableOpacity
+                style={styles.primaryButton}
+                onPress={handleNext}
+              >
+                <Text style={styles.primaryButtonText}>
+                  {t("onboarding.getStarted")}
+                </Text>
               </TouchableOpacity>
             </View>
           ) : (
             <View style={styles.questionContainer}>
-<Text style={styles.title}>{question.title}</Text>
-<Text style={styles.subtitle}>
-  {typeof question.subtitle === "function"
-    ? question.subtitle(userProfile)
-    : question.subtitle}
-</Text>
+              <Text style={styles.title}>{question.title}</Text>
+              <Text style={styles.subtitle}>
+                {typeof question.subtitle === "function"
+                  ? question.subtitle(userProfile)
+                  : question.subtitle}
+              </Text>
 
               <ScrollView
                 style={styles.optionsScroll}
                 showsVerticalScrollIndicator={false}
               >
-                {question.options.map((opt) => (
-                  <TouchableOpacity
-                    key={opt.value}
-                    style={[
-                      styles.optionButton,
-                      userProfile[question.id] === opt.value &&
-                        styles.optionButtonSelected,
-                    ]}
-                    onPress={() => handleSelection(opt.value)}
-                  >
-                    <Text
-                      style={[
-                        styles.optionText,
-                        userProfile[question.id] === opt.value &&
-                          styles.optionTextSelected,
-                      ]}
-                    >
-                      {opt.label}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
+                {renderOptions(question)}
               </ScrollView>
 
+              {/* COUNTRY SEARCH — shown when user picks "Other" on countryOfCitizenship */}
               {question.hasTextInput &&
                 userProfile[question.id] === question.textInputShowIf && (
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder={question.textInputPlaceholder}
-                    value={userProfile.countrySpecified || ""}
-                    onChangeText={(text) =>
-                      setUserProfile((prev) => ({
-                        ...prev,
-                        countrySpecified: text,
-                      }))
-                    }
-                    autoCapitalize="words"
-                  />
+                  <View>
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder={question.textInputPlaceholder}
+                      value={countrySearch}
+                      onChangeText={(text) => {
+                        setCountrySearch(text);
+                        const q = text.toLowerCase().trim();
+                        if (q.length === 0) {
+                          setCountrySearchResults([]);
+                          return;
+                        }
+                        setCountrySearchResults(
+                          COUNTRY_SEARCH_LIST.filter((c) =>
+                            c.label.toLowerCase().includes(q)
+                          ).slice(0, 6)
+                        );
+                      }}
+                      autoCapitalize="words"
+                      autoCorrect={false}
+                    />
+
+                    {/* No results message */}
+                    {countrySearch.length > 0 &&
+                      countrySearchResults.length === 0 && (
+                        <Text style={styles.countrySearchEmpty}>
+                          {t("onboarding.countryOfCitizenship.noResults")}
+                        </Text>
+                      )}
+
+                    {/* Search results dropdown */}
+                    {countrySearchResults.map((c) => (
+                      <TouchableOpacity
+                        key={c.value}
+                        style={styles.countrySearchResult}
+                        onPress={() => handleCountrySearchSelect(c)}
+                        disabled={isAdvancing}
+                      >
+                        <Text style={styles.countrySearchResultText}>
+                          {c.label}
+                        </Text>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
                 )}
 
               <View style={styles.navRow}>
                 {currentStep > 0 && (
-                  <TouchableOpacity onPress={handleBack}>
-                    <Text style={styles.backText}>Back</Text>
+                  <TouchableOpacity
+                    onPress={handleBack}
+                    disabled={isAdvancing}
+                  >
+                    <Text style={styles.backText}>{t("onboarding.back")}</Text>
                   </TouchableOpacity>
                 )}
 
                 <TouchableOpacity
                   style={[
                     styles.primaryButton,
-                    !canProceed && styles.disabledButton,
+                    (!canProceed || isAdvancing) && styles.disabledButton,
                   ]}
-                  disabled={!canProceed}
+                  disabled={!canProceed || isAdvancing}
                   onPress={handleNext}
                 >
                   <Text style={styles.primaryButtonText}>
                     {currentStep === visibleQuestions.length - 1
-                      ? "Finish"
-                      : "Next"}
+                      ? t("onboarding.finish")
+                      : t("onboarding.next")}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -446,9 +890,7 @@ const OnboardingScreen = ({ navigation, onDone }) => {
         {/* PRIVACY DISCLAIMER */}
         <View style={styles.disclaimerContainer}>
           <Text style={styles.disclaimerText}>
-            🔒 We don't collect or share personal data. Your answers stay on
-            your device and are used only to personalize your experience and
-            provide safety alerts.
+            {t("onboarding.privacyDisclaimer")}
           </Text>
         </View>
       </View>
@@ -534,6 +976,18 @@ const styles = StyleSheet.create({
     maxHeight: 400,
   },
 
+  // Group divider label — shown above the first option in each group
+  optionGroupLabel: {
+    fontSize: 11,
+    fontWeight: "700",
+    color: "#999",
+    textTransform: "uppercase",
+    letterSpacing: 0.8,
+    marginTop: 16,
+    marginBottom: 6,
+    marginLeft: 4,
+  },
+
   optionButton: {
     backgroundColor: "#F5F5F5",
     padding: 16,
@@ -591,9 +1045,32 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     fontSize: 16,
     marginTop: 8,
-    marginBottom: 12,
+    marginBottom: 8,
     borderWidth: 1,
     borderColor: "#DDD",
+  },
+
+  // Country search result rows
+  countrySearchResult: {
+    backgroundColor: "#F0F8FF",
+    padding: 14,
+    borderRadius: 10,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: "#D0E8F5",
+  },
+  countrySearchResultText: {
+    fontSize: 15,
+    color: "#1A1A1A",
+  },
+
+  // Shown when search text yields no matches
+  countrySearchEmpty: {
+    fontSize: 13,
+    color: "#999",
+    textAlign: "center",
+    marginTop: 4,
+    marginBottom: 8,
   },
 });
 

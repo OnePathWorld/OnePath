@@ -1,11 +1,11 @@
 // src/data/processingTimes.js
 // PURPOSE: Centralized, verified USCIS + DOS + DOL processing times
-// Updated: March 20, 2026
+// Updated: May 8, 2026
 // Used by TimelineScreen, PathwaysScreen, ChecklistScreen, calculators
 
 export const PROCESSING_TIMES_META = {
-    lastUpdated: "April 3, 2026",
-    dataVersion: "2026-04-03",
+    lastUpdated: "May 8, 2026",
+    dataVersion: "2026-05-08",
     disclaimer:
       "Processing times are estimates and may vary by workload, location, and individual case factors. USCIS posted times may differ from actual adjudication times.",
   };
@@ -16,13 +16,14 @@ export const PROCESSING_TIMES_META = {
     // WORK VISAS
     // =========================
     H1B: {
-      regular: { min: 6, max: 8 },
+      regular: { min: 6, max: 10 },
       premium: { days: 15 },
       notes: [
         "Subject to annual cap and wage-weighted lottery (FY2027+)",
         "Premium processing does not bypass lottery",
-        "Actual regular processing now 8+ months for change of status",
+        "Actual regular processing now 8-10+ months for change of status",
         "Premium processing fee: $2,965 (effective March 1, 2026)",
+        "FY2027 filing window open through June 30, 2026",
       ],
       countryAdjustments: {
         default: 0,
@@ -43,12 +44,13 @@ export const PROCESSING_TIMES_META = {
     },
   
     O1: {
-      regular: { min: 4, max: 8 },
+      regular: { min: 4, max: 9 },
       premium: { days: 15 },
       notes: [
         "Not subject to annual cap",
         "Requires advisory opinion from peer group",
         "Extensive documentation typically needed",
+        "Processing times have slowed — plan 9 months for regular",
       ],
       countryAdjustments: { default: 0 },
     },
@@ -63,21 +65,24 @@ export const PROCESSING_TIMES_META = {
         notes: ["45 days for EB-1C and EB-2 NIW premium processing"],
       },
       i485: {
-        regular: { min: 8, max: 14 },
+        regular: { min: 8, max: 22 },
         notes: [
+          "Employment-based I-485: 8-16 months (USCIS waiving interviews for ~72% of EB cases)",
+          "Family-based I-485: 12-22 months",
           "EAD validity now 18 months max (effective Dec 5, 2025)",
           "540-day auto-extensions eliminated (effective Oct 30, 2025)",
+          "USCIS using Final Action Dates chart for EB adjustment of status in May 2026",
         ],
       },
       perm: {
-        pwd: { min: 3, max: 4 },
+        pwd: { min: 3, max: 5 },
         recruitment: { min: 2, max: 3 },
         filing: { min: 16, max: 18 },
         notes: [
-          "DOL processing PERM applications filed Oct 2024 (as of Mar 2026)",
+          "DOL processing PERM applications filed Oct 2024 (as of May 2026)",
           "Average PERM processing: ~503 days (~17 months)",
-          "PWD processing improved to ~3 months (processing Dec 2025 filings)",
-          "Oct 2025 government shutdown added to backlog",
+          "PWD processing: ~3-5 months (processing Dec 2025–Jan 2026 filings)",
+          "Oct 2025 government shutdown added to backlog — still working through",
         ],
       },
       priorityDateRequired: true,
@@ -87,23 +92,25 @@ export const PROCESSING_TIMES_META = {
     // FAMILY
     // =========================
     I130_IR: {
-      regular: { min: 8, max: 14 },
+      regular: { min: 12, max: 18 },
       subjectToVisaBulletin: false,
       notes: [
         "Immediate relatives not subject to annual visa limits",
-        "Processing at National Benefits Center",
+        "Processing at National Benefits Center: 12-18 months typical",
+        "Concurrent I-485 filing: 8-14 months at better-performing field offices",
+        "USCIS using Dates for Filing chart for family AOS in May 2026",
       ],
     },
   
     I130_PREF: {
-      regular: { min: 10, max: 18 },
+      regular: { min: 12, max: 20 },
       subjectToVisaBulletin: true,
       categoryWaits: {
         F1: { minYears: 7, maxYears: 10 },
         F2A: { minYears: 2, maxYears: 3 },
         F2B: { minYears: 6, maxYears: 8 },
-        F3: { minYears: 11, maxYears: 15 },
-        F4: { minYears: 14, maxYears: 20 },
+        F3: { minYears: 12, maxYears: 15 },
+        F4: { minYears: 15, maxYears: 20 },
       },
       countryMultipliers: {
         India: 1.3,
@@ -114,7 +121,9 @@ export const PROCESSING_TIMES_META = {
       },
       notes: [
         "Presidential Proclamations 10949/10998 have reduced issuance rates for certain nationalities",
-        "Retrogression possible later in FY2026",
+        "Family categories showed significant forward movement in May 2026 bulletin",
+        "Retrogression possible later in FY2026 as demand materializes",
+        "F4 siblings: 80% of cases taking 106+ months per USCIS data",
       ],
     },
   
@@ -123,6 +132,48 @@ export const PROCESSING_TIMES_META = {
       subjectToVisaBulletin: false,
     },
   
+    // =========================
+    // ADJUSTMENT OF STATUS
+    // =========================
+    I485: {
+      employmentBased: { min: 8, max: 16 },
+      familyBased: { min: 12, max: 22 },
+      notes: [
+        "Employment-based: USCIS waiving interviews for ~72% of EB cases",
+        "Family-based: varies significantly by field office",
+        "USCIS using Final Action Dates for EB, Dates for Filing for family in May 2026",
+      ],
+    },
+
+    // =========================
+    // EAD / WORK PERMITS
+    // =========================
+    I765: {
+      regular: { min: 4, max: 8 },
+      premium: { days: 30 },
+      notes: [
+        "Standard processing: 4-8 months (slowed from prior year)",
+        "Premium processing: $1,780 for 30-day decision (effective March 1, 2026)",
+        "EAD validity now 18 months max for most categories (Dec 5, 2025)",
+        "Auto-extensions eliminated Oct 30, 2025 — file renewals 6 months early",
+        "TPS/parole EADs: 1 year maximum per H.R. 1",
+        "H-4 EAD premium processing available standalone: $1,780",
+      ],
+    },
+
+    // =========================
+    // NATURALIZATION
+    // =========================
+    N400: {
+      regular: { min: 8, max: 14 },
+      notes: [
+        "Processing has improved — currently 8-14 months at most field offices",
+        "No premium processing available for N-400",
+        "Interview wait varies widely by field office — some cities 12+ months",
+        "File up to 90 days before 5-year eligibility date",
+      ],
+    },
+
     // =========================
     // STUDENTS
     // =========================
@@ -135,12 +186,13 @@ export const PROCESSING_TIMES_META = {
     },
   
     OPT: {
-      regular: { min: 3, max: 5 },
+      regular: { min: 4, max: 6 },
       premium: { days: 30 },
       notes: [
         "Apply up to 90 days before graduation",
         "Premium processing: $1,780 (effective March 1, 2026)",
         "STEM OPT extension: additional 24 months",
+        "Processing has slowed — plan 5-6 months for regular",
       ],
     },
   
@@ -164,6 +216,7 @@ export const PROCESSING_TIMES_META = {
         "EAD validity now 18 months max (effective Dec 5, 2025)",
         "Auto-extensions eliminated — plan renewals 6 months ahead",
         "Policy environment is volatile — enhanced screening rules in effect",
+        "TPS EADs now 1-year maximum per H.R. 1",
       ],
     },
   
@@ -171,6 +224,7 @@ export const PROCESSING_TIMES_META = {
       regular: { minMonths: 18, maxMonths: 24 },
       notes: [
         "EAD validity now 18 months max",
+        "Processing times remain slow due to high demand",
       ],
     },
   
@@ -178,21 +232,22 @@ export const PROCESSING_TIMES_META = {
     // DOL PROCESSING (for green card timeline)
     // =========================
     DOL_PWD: {
-      regular: { min: 3, max: 4 },
+      regular: { min: 3, max: 5 },
       notes: [
-        "As of March 2026: Processing OEWS and non-OEWS requests filed Dec 2025",
-        "Improved from ~6 months — currently ~3 months",
-        "Redeterminations: processing Oct 2025 filings (~5 months)",
+        "As of May 2026: Processing OEWS and non-OEWS requests filed Dec 2025–Jan 2026",
+        "Improved from ~6 months — currently ~3-5 months",
+        "Redeterminations: processing Oct–Nov 2025 filings (~5 months)",
+        "New OEWS wage data expected July 2026 for FY2026-2027",
       ],
     },
   
     DOL_PERM: {
       regular: { min: 16, max: 18 },
       notes: [
-        "As of March 2026: Adjudicating applications filed Oct 2024",
-        "Average processing: 503 days (~17 months)",
-        "Audit review: processing Jun 2025 filings (~9 months)",
-        "Oct 2025 government shutdown added to backlog",
+        "As of May 2026: Adjudicating applications filed Oct 2024",
+        "Average processing: 503 days (~17 months) — unchanged",
+        "Audit review: processing Jun–Jul 2025 filings (~9-10 months)",
+        "Oct 2025 government shutdown backlog still being worked through",
       ],
     },
   };

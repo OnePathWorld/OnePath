@@ -4,10 +4,8 @@
 
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import {
-  VIABILITY_LEVELS,
-  PATHWAY_VIABILITY,
-} from "../data/pathwayViability";
+import { useTranslation } from "react-i18next";
+import { getViability } from "../data/pathwayViability";
 
 /**
  * ViabilityBadge
@@ -24,10 +22,10 @@ export default function ViabilityBadge({
   onPress = null,
   compact = false,
 }) {
-  const assessment = PATHWAY_VIABILITY[pathwayKey];
+  const { t } = useTranslation();
+  const assessment = getViability(pathwayKey);
   if (!assessment) return null;
-
-  const level = VIABILITY_LEVELS[assessment.viability];
+  const level = assessment.level;
   if (!level) return null;
 
   const Wrapper = onPress ? TouchableOpacity : View;
@@ -54,9 +52,7 @@ export default function ViabilityBadge({
       style={[styles.container, { backgroundColor: level.bgColor }]}
     >
       <View style={styles.header}>
-        <View
-          style={[styles.dot, { backgroundColor: level.color }]}
-        />
+        <View style={[styles.dot, { backgroundColor: level.color }]} />
         <Text style={[styles.label, { color: level.color }]}>
           {level.label}
         </Text>
@@ -67,11 +63,11 @@ export default function ViabilityBadge({
       )}
 
       {onPress && (
-        <Text style={styles.tapHint}>Tap for details</Text>
+        <Text style={styles.tapHint}>{t("viabilityBadge.tapHint")}</Text>
       )}
 
       <Text style={styles.updated}>
-        Updated: {assessment.updatedDate}
+        {t("viabilityBadge.updated", { date: assessment.updatedDate })}
       </Text>
     </Wrapper>
   );

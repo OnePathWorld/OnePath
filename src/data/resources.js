@@ -1,140 +1,227 @@
 // src/data/resources.js
 // Centralized immigration resources
+// Updated: April 2026 — converted to translation-key pattern.
+//
+// Pattern: data-only file. All user-facing strings (category names,
+// resource names, descriptions, service tags) are translation keys
+// referenced via i18n.t(). See src/i18n/locales/{en,es,pt,zh}.json
+// under the `resources.*` namespace for the actual text.
+//
+// URLs and phone numbers stay literal — they are not translated.
+//
+// Render sites should call getResources() / getEmergencyResources() /
+// getResourceCategories() to get fully-translated arrays.
 
+import i18n from "../i18n";
 import { PROCESSING_TIMES_META } from "./processingTimes";
 
 export const RESOURCES_META = {
-    get lastUpdated() {
-      return PROCESSING_TIMES_META.lastUpdated;
-    },
-    disclaimer:
-      "Listings are for informational purposes only and do not constitute legal advice.",
+  get lastUpdated() {
+    return PROCESSING_TIMES_META.lastUpdated;
+  },
+  // Disclaimer is now a translation key.
+  disclaimerKey: "resources.disclaimer",
+};
+
+/**
+ * Resource category IDs in display order.
+ * The "id" is the stable filter key — never translate it. The label
+ * comes from translation at render time.
+ */
+const CATEGORY_IDS_IN_ORDER = ["all", "government", "legal", "nonprofit", "education"];
+
+const CATEGORY_ICONS = {
+  all: "📋",
+  government: "🏛️",
+  legal: "⚖️",
+  nonprofit: "🤝",
+  education: "🎓",
+};
+
+/**
+ * Resource entries — order matters and is preserved here.
+ * Each entry has:
+ *   - id: stable identifier (used in filter logic and i18n key paths)
+ *   - category: filter category id
+ *   - official: optional flag
+ *   - phone / website: literal strings, not translated
+ *   - serviceIds: array of stable service identifiers (used to look up
+ *     translated labels under resources.items.{id}.services.*)
+ */
+const RESOURCE_ENTRIES = [
+  {
+    id: "uscis",
+    category: "government",
+    official: true,
+    phone: "1-800-375-5283",
+    website: "https://www.uscis.gov",
+    serviceIds: ["forms", "caseStatus", "appointments"],
+  },
+  {
+    id: "dos_visa",
+    category: "government",
+    official: true,
+    website: "https://travel.state.gov",
+    serviceIds: ["visaBulletin", "embassyInfo", "ds160"],
+  },
+  {
+    id: "doj_eoir",
+    category: "government",
+    official: true,
+    website: "https://www.justice.gov/eoir",
+    serviceIds: ["courtInfo", "hearingNotices"],
+  },
+  {
+    id: "dol_flag",
+    category: "government",
+    official: true,
+    website: "https://flag.dol.gov",
+    serviceIds: ["perm", "lca", "prevailingWages"],
+  },
+  {
+    id: "imm_advocates",
+    category: "legal",
+    website: "https://www.immigrationadvocates.org/legaldirectory/",
+    serviceIds: ["proBono", "knowYourRights"],
+  },
+  {
+    id: "lawhelp",
+    category: "legal",
+    website: "https://www.lawhelp.org",
+    serviceIds: ["legalAidDirectory", "stateResources"],
+  },
+  {
+    id: "aila",
+    category: "legal",
+    website: "https://www.aila.org/find-an-attorney",
+    serviceIds: ["referrals", "lawUpdates"],
+  },
+  {
+    id: "catholic_charities",
+    category: "nonprofit",
+    website: "https://www.catholiccharitiesusa.org",
+    serviceIds: ["legalAid", "refugeeServices"],
+  },
+  {
+    id: "raices",
+    category: "nonprofit",
+    website: "https://www.raicestexas.org",
+    serviceIds: ["legalRep", "bondAssistance"],
+  },
+  {
+    id: "clinic",
+    category: "nonprofit",
+    website: "https://cliniclegal.org",
+    serviceIds: ["network", "training", "advocacy"],
+  },
+  {
+    id: "usa_hello",
+    category: "education",
+    website: "https://usahello.org",
+    serviceIds: ["englishClasses", "citizenshipPrep", "gedPrep"],
+  },
+  {
+    id: "uscis_civics",
+    category: "education",
+    official: true,
+    website:
+      "https://www.uscis.gov/citizenship/find-study-materials-and-resources",
+    serviceIds: ["civicsTestPrep", "studyMaterials", "practiceTests"],
+  },
+];
+
+/**
+ * Emergency resources — phone numbers stay literal,
+ * names come from translations.
+ */
+const EMERGENCY_ENTRIES = [
+  { id: "humanTrafficking", phone: "1-888-373-7888" },
+  { id: "domesticViolence", phone: "1-800-799-7233" },
+  { id: "uscisContactCenter", phone: "1-800-375-5283" },
+];
+
+// ============================================================
+// HELPERS — these translate at call time
+// ============================================================
+
+/**
+ * Returns the resource categories array with translated names.
+ * Shape:
+ *   [{ id, name, icon }, ...]
+ */
+export function getResourceCategories() {
+  return CATEGORY_IDS_IN_ORDER.map((id) => ({
+    id,
+    name: i18n.t(`resources.categories.${id}`),
+    icon: CATEGORY_ICONS[id],
+  }));
+}
+
+/**
+ * Returns the full resources list with translated name, description,
+ * and services. URL/phone/category/official are pass-through.
+ *
+ * Shape:
+ *   [{ id, name, category, official, description, phone, website, services }, ...]
+ */
+export function getResources() {
+  return RESOURCE_ENTRIES.map((entry) => {
+    const baseKey = `resources.items.${entry.id}`;
+    const descriptionKey = `${baseKey}.description`;
+    const description = i18n.t(descriptionKey);
+    return {
+      id: entry.id,
+      category: entry.category,
+      official: entry.official === true,
+      name: i18n.t(`${baseKey}.name`),
+      // i18next is configured with returnEmptyString: false, which means
+      // an intentionally-empty translation comes back as the key string
+      // itself. Detect that case and collapse to "" so we don't render
+      // raw keys like "resources.items.doj_eoir.description" in the UI.
+      description: description === descriptionKey ? "" : description || "",
+      phone: entry.phone || null,
+      website: entry.website || null,
+      services: (entry.serviceIds || []).map((sid) =>
+        i18n.t(`${baseKey}.services.${sid}`)
+      ),
+    };
+  });
+}
+
+/**
+ * Returns emergency resources with translated names.
+ * Shape: [{ name, phone }, ...]
+ */
+export function getEmergencyResources() {
+  return EMERGENCY_ENTRIES.map((entry) => ({
+    name: i18n.t(`resources.emergency.${entry.id}`),
+    phone: entry.phone,
+  }));
+}
+
+/**
+ * Returns translated meta info.
+ */
+export function getResourcesMeta() {
+  return {
+    lastUpdated: RESOURCES_META.lastUpdated,
+    disclaimer: i18n.t(RESOURCES_META.disclaimerKey),
   };
-  
-  export const RESOURCE_CATEGORIES = [
-    { id: "all", name: "All Resources", icon: "📋" },
-    { id: "government", name: "Government", icon: "🏛️" },
-    { id: "legal", name: "Legal Help", icon: "⚖️" },
-    { id: "nonprofit", name: "Nonprofits", icon: "🤝" },
-    { id: "education", name: "Education", icon: "🎓" },
-  ];
-  
-  export const RESOURCES = [
-    {
-      id: "uscis",
-      name: "U.S. Citizenship and Immigration Services (USCIS)",
-      category: "government",
-      official: true,
-      description: "Official U.S. immigration agency",
-      phone: "1-800-375-5283",
-      website: "https://www.uscis.gov",
-      services: ["Forms", "Case status", "Appointments"],
-    },
-    {
-      id: "dos_visa",
-      name: "Department of State — Visa Services",
-      category: "government",
-      official: true,
-      description: "Visa Bulletin, embassy appointments, consular processing",
-      website: "https://travel.state.gov",
-      services: ["Visa Bulletin", "Embassy info", "DS-160"],
-    },
-    {
-      id: "doj_eoir",
-      name: "EOIR Immigration Court",
-      category: "government",
-      official: true,
-      website: "https://www.justice.gov/eoir",
-      services: ["Court information", "Hearing notices"],
-    },
-    {
-      id: "dol_flag",
-      name: "Department of Labor — FLAG System",
-      category: "government",
-      official: true,
-      description: "Labor certification, prevailing wages, LCA filings",
-      website: "https://flag.dol.gov",
-      services: ["PERM", "LCA", "Prevailing wages"],
-    },
-    {
-      id: "imm_advocates",
-      name: "Immigration Advocates Network",
-      category: "legal",
-      description: "Free and low-cost immigration legal help directory",
-      website: "https://www.immigrationadvocates.org/legaldirectory/",
-      services: ["Pro bono legal services", "Know your rights"],
-    },
-    {
-      id: "lawhelp",
-      name: "LawHelp.org",
-      category: "legal",
-      description: "Find free legal aid in your state",
-      website: "https://www.lawhelp.org",
-      services: ["Legal aid directory", "State-by-state resources"],
-    },
-    {
-      id: "aila",
-      name: "AILA Lawyer Referral",
-      category: "legal",
-      description: "American Immigration Lawyers Association — find an attorney",
-      website: "https://www.aila.org/find-an-attorney",
-      services: ["Attorney referrals", "Immigration law updates"],
-    },
-    {
-      id: "catholic_charities",
-      name: "Catholic Charities",
-      category: "nonprofit",
-      description: "Immigration legal services and refugee assistance",
-      website: "https://www.catholiccharitiesusa.org",
-      services: ["Legal aid", "Refugee services"],
-    },
-    {
-      id: "raices",
-      name: "RAICES",
-      category: "nonprofit",
-      description:
-        "Refugee and Immigrant Center for Education and Legal Services",
-      website: "https://www.raicestexas.org",
-      services: ["Legal representation", "Bond assistance"],
-    },
-    {
-      id: "clinic",
-      name: "CLINIC — Catholic Legal Immigration Network",
-      category: "nonprofit",
-      description: "Network of nonprofit immigration legal services programs",
-      website: "https://cliniclegal.org",
-      services: ["Legal services network", "Training", "Advocacy"],
-    },
-    {
-      id: "usa_hello",
-      name: "USAHello",
-      category: "education",
-      description: "Free classes and resources for immigrants",
-      website: "https://usahello.org",
-      services: ["English classes", "Citizenship prep", "GED prep"],
-    },
-    {
-      id: "uscis_civics",
-      name: "USCIS Citizenship Resource Center",
-      category: "education",
-      official: true,
-      description: "Official citizenship test study materials",
-      website: "https://www.uscis.gov/citizenship/find-study-materials-and-resources",
-      services: ["Civics test prep", "Study materials", "Practice tests"],
-    },
-  ];
-  
-  export const EMERGENCY_RESOURCES = [
-    {
-      name: "Human Trafficking Hotline",
-      phone: "1-888-373-7888",
-    },
-    {
-      name: "Domestic Violence Hotline",
-      phone: "1-800-799-7233",
-    },
-    {
-      name: "USCIS Contact Center",
-      phone: "1-800-375-5283",
-    },
-  ];
+}
+
+// ============================================================
+// LEGACY EXPORTS — for backward compatibility
+// ============================================================
+// These are pre-translated at module load time using whatever the
+// active language is at that moment. Most consumers should migrate
+// to the helpers above (getResources, etc.) which translate at
+// call time and respond correctly to language switches.
+//
+// If you see screens that reference RESOURCES or EMERGENCY_RESOURCES
+// directly, update them to call getResources() / getEmergencyResources()
+// inside the render so they re-translate when the user switches
+// languages.
+
+export const RESOURCE_CATEGORIES = getResourceCategories();
+export const RESOURCES = getResources();
+export const EMERGENCY_RESOURCES = getEmergencyResources();

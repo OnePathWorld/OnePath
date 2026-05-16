@@ -1,3 +1,5 @@
+// src/screens/ChecklistScreen.js
+
 import React, { useState, useEffect, useMemo } from "react";
 import {
   View,
@@ -9,13 +11,21 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTranslation } from "react-i18next";
 
 import { pathwaysData } from "../data/immigrationData";
 import { PROCESSING_TIMES_META } from "../data/processingTimes";
+import {
+  getPathwayDocuments,
+  getCommonDocuments,
+  getMedicalDocuments,
+  getInterviewPrepDocuments,
+} from "../data/checklistDocuments";
 import DataUpdateBadge from "../components/DataUpdateBadge";
 import analytics, { EVENTS } from "../utils/analytics";
 
 const ChecklistScreen = ({ route }) => {
+  const { t } = useTranslation();
   const [selectedPathway, setSelectedPathway] = useState(
     route.params?.pathway || "work"
   );
@@ -28,8 +38,10 @@ const ChecklistScreen = ({ route }) => {
 
   useEffect(() => {
     analytics.screen("Checklist", { pathway: selectedPathway });
-    // NEW: fire citizenship checklist opened event
-    if (selectedPathway === "citizenship" || route.params?.pathway === "citizenship") {
+    if (
+      selectedPathway === "citizenship" ||
+      route.params?.pathway === "citizenship"
+    ) {
       analytics.track(EVENTS.CITIZENSHIP_CHECKLIST_OPENED, {
         source: route.params?.pathway ? "navigation" : "auto",
       });
@@ -43,7 +55,6 @@ const ChecklistScreen = ({ route }) => {
 
   const loadUserPathway = async () => {
     try {
-      // If a pathway was passed via navigation params, honor it
       if (route.params?.pathway) {
         setSelectedPathway(route.params.pathway);
         return;
@@ -56,11 +67,12 @@ const ChecklistScreen = ({ route }) => {
           family: "family",
           study: "student",
           protection: "family",
-          // NEW: citizenship maps directly
           citizenship: "citizenship",
         };
-        // Also check currentVisa for GC holders who may not have set purpose
-        if (profile.currentVisa === "GC" || profile.purpose === "citizenship") {
+        if (
+          profile.currentVisa === "GC" ||
+          profile.purpose === "citizenship"
+        ) {
           setSelectedPathway("citizenship");
           return;
         }
@@ -94,7 +106,6 @@ const ChecklistScreen = ({ route }) => {
       checked: !checkedItems[id],
       pathway: selectedPathway,
     });
-    // NEW: fire citizenship-specific event for N-400 items
     if (selectedPathway === "citizenship") {
       analytics.track(EVENTS.CITIZENSHIP_CHECKLIST_ITEM_TOGGLED, {
         item_id: id,
@@ -121,7 +132,6 @@ const ChecklistScreen = ({ route }) => {
       pathway: pathwayId,
       source: "checklist_switch",
     });
-    // NEW: fire citizenship checklist opened when switching to it
     if (pathwayId === "citizenship") {
       analytics.track(EVENTS.CITIZENSHIP_CHECKLIST_OPENED, {
         source: "checklist_switch",
@@ -134,386 +144,20 @@ const ChecklistScreen = ({ route }) => {
   };
 
   // =========================================================
-  // DOCUMENT REQUIREMENTS PER PATHWAY
-  // =========================================================
-  const getPathwayDocuments = (pathwayId) => {
-    switch (pathwayId) {
-      case "work":
-        return {
-          required: [
-            {
-              id: "passport",
-              name: "Valid Passport",
-              description: "Must be valid at least 6 months beyond intended stay",
-              required: true,
-            },
-            {
-              id: "photos",
-              name: "Passport Photos",
-              description: "2x2 inches, white background",
-              required: true,
-              quantity: "2 photos",
-            },
-            {
-              id: "ds160",
-              name: "Form DS-160",
-              description: "Online visa application confirmation",
-              required: true,
-            },
-            {
-              id: "i129",
-              name: "Form I-129 Approval",
-              description: "Employer's petition approval from USCIS",
-              required: true,
-              who: "Employer provides",
-            },
-            {
-              id: "lca",
-              name: "Labor Condition Application",
-              description: "DOL certification for H-1B",
-              required: true,
-              who: "Employer files",
-            },
-            {
-              id: "degree",
-              name: "Bachelor's Degree or Higher",
-              description: "In specialty field with transcripts",
-              required: true,
-            },
-            {
-              id: "resume",
-              name: "Resume/CV",
-              description: "Professional experience",
-              required: true,
-            },
-          ],
-          oneOf: [
-            {
-              id: "employment_letter",
-              name: "Employment Offer Letter",
-              description: "Details position, salary, duties",
-              alternative: true,
-            },
-            {
-              id: "employment_contract",
-              name: "Employment Contract",
-              description: "Signed agreement with employer",
-              alternative: true,
-            },
-          ],
-          recommended: [
-            {
-              id: "experience_letters",
-              name: "Experience Letters",
-              description: "From previous employers",
-            },
-            {
-              id: "awards",
-              name: "Awards/Publications",
-              description: "Professional achievements",
-            },
-          ],
-        };
-
-      case "family":
-        return {
-          required: [
-            {
-              id: "passport",
-              name: "Valid Passport",
-              description: "Must be valid at least 6 months",
-              required: true,
-            },
-            {
-              id: "photos",
-              name: "Passport Photos",
-              description: "2x2 inches, white background",
-              required: true,
-              quantity: "2 photos",
-            },
-            {
-              id: "ds260",
-              name: "Form DS-260",
-              description: "Online immigrant visa application",
-              required: true,
-            },
-            {
-              id: "i130",
-              name: "Form I-130 Approval",
-              description: "Family petition approval from USCIS",
-              required: true,
-              who: "Petitioner files",
-            },
-            {
-              id: "birth_cert",
-              name: "Birth Certificate",
-              description: "Original with translation",
-              required: true,
-            },
-            {
-              id: "marriage_cert",
-              name: "Marriage Certificate",
-              description: "If spouse petition",
-              required: true,
-              whenNeeded: "Spouse petitions",
-            },
-            {
-              id: "i864",
-              name: "Form I-864 Affidavit of Support",
-              description: "Financial sponsorship from petitioner",
-              required: true,
-              who: "Petitioner provides",
-            },
-            {
-              id: "police_cert",
-              name: "Police Certificates",
-              description: "From all countries lived 6+ months",
-              required: true,
-            },
-          ],
-          oneOf: [
-            {
-              id: "petitioner_citizenship",
-              name: "Petitioner's US Passport",
-              description: "Proof of U.S. citizenship",
-              alternative: true,
-            },
-            {
-              id: "petitioner_greencard",
-              name: "Petitioner's Green Card",
-              description: "If petitioner is LPR",
-              alternative: true,
-            },
-          ],
-          recommended: [
-            {
-              id: "photos_together",
-              name: "Photos Together",
-              description: "Evidence of relationship",
-            },
-            {
-              id: "correspondence",
-              name: "Communication Records",
-              description: "Emails, messages, letters",
-            },
-            {
-              id: "joint_accounts",
-              name: "Joint Accounts",
-              description: "Bank, insurance, property",
-            },
-          ],
-        };
-
-      case "student":
-        return {
-          required: [
-            {
-              id: "passport",
-              name: "Valid Passport",
-              description: "Must be valid for entire study period",
-              required: true,
-            },
-            {
-              id: "photos",
-              name: "Passport Photos",
-              description: "2x2 inches, white background",
-              required: true,
-              quantity: "2 photos",
-            },
-            {
-              id: "ds160",
-              name: "Form DS-160",
-              description: "Online visa application confirmation",
-              required: true,
-            },
-            {
-              id: "i20",
-              name: "Form I-20",
-              description: "Certificate of Eligibility from school",
-              required: true,
-              who: "School provides",
-            },
-            {
-              id: "sevis",
-              name: "SEVIS Fee Receipt",
-              description: "I-901 payment confirmation ($350)",
-              required: true,
-            },
-            {
-              id: "acceptance",
-              name: "Admission Letter",
-              description: "Official acceptance from SEVP school",
-              required: true,
-            },
-            {
-              id: "transcripts",
-              name: "Academic Transcripts",
-              description: "Previous education records",
-              required: true,
-            },
-            {
-              id: "financial_proof",
-              name: "Financial Evidence",
-              description: "Bank statements showing ~$40,000/year",
-              required: true,
-            },
-          ],
-          oneOf: [
-            {
-              id: "test_scores",
-              name: "TOEFL/IELTS Scores",
-              description: "English proficiency test",
-              alternative: true,
-            },
-            {
-              id: "english_medium",
-              name: "English Medium Certificate",
-              description: "If previous education was in English",
-              alternative: true,
-            },
-          ],
-          recommended: [
-            {
-              id: "sponsor_letter",
-              name: "Sponsor Letter",
-              description: "If someone else is paying",
-            },
-            {
-              id: "study_plan",
-              name: "Study Plan",
-              description: "Why this program and future goals",
-            },
-            {
-              id: "gre_gmat",
-              name: "GRE/GMAT Scores",
-              description: "If submitted to school",
-            },
-          ],
-        };
-
-      // =========================================================
-      // NEW: CITIZENSHIP / N-400 CHECKLIST
-      // =========================================================
-      case "citizenship":
-        return {
-          required: [
-            {
-              id: "n400",
-              name: "Form N-400",
-              description:
-                "Application for Naturalization — $760 paper / $710 online / $0 military",
-              required: true,
-              who: "Applicant files with USCIS",
-            },
-            {
-              id: "green_card_copy",
-              name: "Permanent Resident Card (Green Card)",
-              description: "Front and back copy of current green card",
-              required: true,
-            },
-            {
-              id: "passport_photos",
-              name: "Passport Photos",
-              description: "2x2 inches, white background",
-              required: true,
-              quantity: "2 photos",
-            },
-            {
-              id: "passport_copy",
-              name: "Valid Passport or Travel Document",
-              description: "Copy of every passport used in last 5 years",
-              required: true,
-            },
-            {
-              id: "tax_returns",
-              name: "Federal Tax Returns",
-              description: "Last 5 years (3 years if married to U.S. citizen)",
-              required: true,
-            },
-            {
-              id: "travel_records",
-              name: "Travel History Record",
-              description:
-                "All trips outside the U.S. in last 5 years — dates, destinations, length",
-              required: true,
-            },
-            {
-              id: "selective_service",
-              name: "Selective Service Registration",
-              description:
-                "If male and lived in U.S. between ages 18–26 after 1980",
-              required: true,
-              whenNeeded: "Males aged 18–26 who lived in U.S.",
-            },
-          ],
-          oneOf: [
-            {
-              id: "marriage_cert_3yr",
-              name: "Marriage Certificate + Spouse's Proof of Citizenship",
-              description:
-                "Required if applying under 3-year rule (married to U.S. citizen)",
-              alternative: true,
-              whenNeeded: "3-year marriage route only",
-            },
-            {
-              id: "dd214",
-              name: "DD-214 / Military Discharge Papers",
-              description:
-                "Certificate of Release or Discharge from Active Duty",
-              alternative: true,
-              whenNeeded: "Military applicants only",
-            },
-          ],
-          recommended: [
-            {
-              id: "birth_cert_citizenship",
-              name: "Birth Certificate",
-              description: "With certified English translation if needed",
-            },
-            {
-              id: "prior_marriage_docs",
-              name: "Divorce Decrees / Prior Marriage Records",
-              description:
-                "For any prior marriages — USCIS may ask for these",
-            },
-            {
-              id: "criminal_records",
-              name: "Court Disposition Records",
-              description:
-                "For any arrests or charges — even dismissed ones",
-              whenNeeded: "If you have any arrests or criminal history",
-            },
-            {
-              id: "name_change",
-              name: "Legal Name Change Documents",
-              description: "Court order if your name differs from green card",
-            },
-            {
-              id: "civics_study",
-              name: "Civics Test Study Materials",
-              description:
-                "100 questions available free at uscis.gov/citizenship/tessprep",
-            },
-          ],
-        };
-
-      default:
-        return { required: [], oneOf: [], recommended: [] };
-    }
-  };
-
-  // =========================================================
-  // BUILD SECTIONS
+  // BUILD SECTIONS — uses getPathwayDocuments helper for hot language switching
   // =========================================================
   const sections = useMemo(() => {
     const docs = getPathwayDocuments(selectedPathway);
     const builtSections = [];
+    const pathwayTitle = pathway?.title || "";
 
     if (docs.required?.length > 0) {
       builtSections.push({
         id: "required",
-        title: `${pathway?.title} - Required Documents`,
-        subtitle: "Must have ALL of these",
+        title: t("checklistScreen.sections.requiredTitle", {
+          pathway: pathwayTitle,
+        }),
+        subtitle: t("checklistScreen.sections.requiredSubtitle"),
         requirementLevel: "required",
         items: docs.required,
       });
@@ -522,8 +166,8 @@ const ChecklistScreen = ({ route }) => {
     if (docs.oneOf?.length > 0) {
       builtSections.push({
         id: "oneof",
-        title: "Choose One Document",
-        subtitle: "Need ONE from this list",
+        title: t("checklistScreen.sections.oneOfTitle"),
+        subtitle: t("checklistScreen.sections.oneOfSubtitle"),
         requirementLevel: "one-of",
         items: docs.oneOf,
       });
@@ -532,104 +176,51 @@ const ChecklistScreen = ({ route }) => {
     if (docs.recommended?.length > 0) {
       builtSections.push({
         id: "recommended",
-        title: "Supporting Documents",
-        subtitle: "Strengthen your application",
+        title: t("checklistScreen.sections.recommendedTitle"),
+        subtitle: t("checklistScreen.sections.recommendedSubtitle"),
         requirementLevel: "recommended",
         items: docs.recommended,
       });
     }
 
-    // Universal + medical only shown for non-citizenship pathways
     if (selectedPathway !== "citizenship") {
       builtSections.push({
         id: "common",
-        title: "Universal Requirements",
-        subtitle: "Required for ALL visa types",
+        title: t("checklistScreen.sections.commonTitle"),
+        subtitle: t("checklistScreen.sections.commonSubtitle"),
         requirementLevel: "required",
-        items: [
-          {
-            id: "interview_appt",
-            name: "Interview Appointment Confirmation",
-            description: "Embassy/consulate appointment",
-            required: true,
-          },
-          {
-            id: "fee_receipt",
-            name: "Visa Fee Payment Receipt",
-            description: "MRV fee payment confirmation",
-            required: true,
-          },
-        ],
+        items: getCommonDocuments(),
       });
 
       builtSections.push({
         id: "medical",
-        title: "Medical Requirements",
-        subtitle: "Only if requested by embassy",
+        title: t("checklistScreen.sections.medicalTitle"),
+        subtitle: t("checklistScreen.sections.medicalSubtitle"),
         requirementLevel: "conditional",
-        items: [
-          {
-            id: "medical_exam",
-            name: "Medical Examination",
-            description: "From panel physician only",
-            whenNeeded: "Green card applicants",
-            cost: "$200-500",
-          },
-          {
-            id: "vaccinations",
-            name: "Vaccination Records",
-            description: "Required vaccines vary by age",
-            whenNeeded: "If requested",
-          },
-        ],
+        items: getMedicalDocuments(),
       });
     } else {
-      // Citizenship-specific interview prep section
       builtSections.push({
         id: "interview_prep",
-        title: "Interview Preparation",
-        subtitle: "Be ready for your naturalization interview",
+        title: t("checklistScreen.sections.interviewPrepTitle"),
+        subtitle: t("checklistScreen.sections.interviewPrepSubtitle"),
         requirementLevel: "conditional",
-        items: [
-          {
-            id: "civics_100",
-            name: "Study 100 Civics Questions",
-            description:
-              "USCIS officer will ask up to 10 — must answer 6 correctly",
-            whenNeeded: "All applicants",
-          },
-          {
-            id: "english_reading",
-            name: "English Reading Practice",
-            description: "Officer will ask you to read 1 of 3 sentences",
-            whenNeeded: "All applicants under 65 without 20-yr exemption",
-          },
-          {
-            id: "english_writing",
-            name: "English Writing Practice",
-            description: "Officer will ask you to write 1 of 3 sentences",
-            whenNeeded: "All applicants under 65 without 20-yr exemption",
-          },
-          {
-            id: "n400_review",
-            name: "Review Your N-400 Answers",
-            description:
-              "Officer will go through your N-400 line by line — know your answers",
-            whenNeeded: "All applicants",
-          },
-        ],
+        items: getInterviewPrepDocuments(),
       });
     }
 
     return builtSections;
-  }, [selectedPathway, pathway]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedPathway, pathway, t]);
 
   // =========================================================
   // PROGRESS CALCULATION
   // =========================================================
   const requiredItems = sections.reduce((sum, section) => {
     if (section.requirementLevel === "required") {
-      return sum + section.items.filter((item) => item.required !== false).length;
+      return (
+        sum + section.items.filter((item) => item.required !== false).length
+      );
     } else if (section.requirementLevel === "one-of") {
       return sum + 1;
     }
@@ -654,26 +245,48 @@ const ChecklistScreen = ({ route }) => {
   const getRequirementBadge = (level) => {
     switch (level) {
       case "required":
-        return { text: "REQUIRED", color: "#D32F2F" };
+        return { text: t("checklistScreen.badges.required"), color: "#D32F2F" };
       case "one-of":
-        return { text: "NEED ONE", color: "#F57C00" };
+        return { text: t("checklistScreen.badges.oneOf"), color: "#F57C00" };
       case "recommended":
-        return { text: "RECOMMENDED", color: "#388E3C" };
+        return {
+          text: t("checklistScreen.badges.recommended"),
+          color: "#388E3C",
+        };
       case "conditional":
-        return { text: "IF REQUESTED", color: "#7B1FA2" };
+        return {
+          text: t("checklistScreen.badges.conditional"),
+          color: "#7B1FA2",
+        };
       default:
         return { text: "", color: "#999" };
     }
   };
 
   // =========================================================
-  // PATHWAY OPTIONS — now includes citizenship
+  // PATHWAY OPTIONS — labels translated
   // =========================================================
   const pathwayOptions = [
-    { id: "work", title: "Work-Based Immigration", icon: "💼" },
-    { id: "family", title: "Family-Based Immigration", icon: "👨‍👩‍👧‍👦" },
-    { id: "student", title: "Student Pathway", icon: "🎓" },
-    { id: "citizenship", title: "Path to Citizenship (N-400)", icon: "🇺🇸" }, // NEW
+    {
+      id: "work",
+      title: t("checklistScreen.pathwayOptions.work"),
+      icon: "💼",
+    },
+    {
+      id: "family",
+      title: t("checklistScreen.pathwayOptions.family"),
+      icon: "👨‍👩‍👧‍👦",
+    },
+    {
+      id: "student",
+      title: t("checklistScreen.pathwayOptions.student"),
+      icon: "🎓",
+    },
+    {
+      id: "citizenship",
+      title: t("checklistScreen.pathwayOptions.citizenship"),
+      icon: "🇺🇸",
+    },
   ];
 
   return (
@@ -681,12 +294,13 @@ const ChecklistScreen = ({ route }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* HEADER */}
         <View style={styles.header}>
-          <Text style={styles.title}>Document Checklist</Text>
+          <Text style={styles.title}>{t("checklistScreen.title")}</Text>
 
           <TouchableOpacity
             style={[
               styles.pathwaySelector,
-              selectedPathway === "citizenship" && styles.pathwaySelectorCitizenship,
+              selectedPathway === "citizenship" &&
+                styles.pathwaySelectorCitizenship,
             ]}
             onPress={() => setShowPathwaySelector(true)}
           >
@@ -694,26 +308,28 @@ const ChecklistScreen = ({ route }) => {
               {pathwayOptions.find((p) => p.id === selectedPathway)?.icon}
             </Text>
             <Text style={styles.pathwayName}>
-              {pathway?.title || "Select Pathway"}
+              {pathway?.title ||
+                t("checklistScreen.selectPathwayPlaceholder")}
             </Text>
-            <Text style={styles.changeText}>Change ›</Text>
+            <Text style={styles.changeText}>
+              {t("checklistScreen.changeButton")}
+            </Text>
           </TouchableOpacity>
 
           <View style={styles.badges}>
             <DataUpdateBadge
-              label="Updated"
+              label={t("checklistScreen.dataUpdateBadgeLabel")}
               lastUpdated={PROCESSING_TIMES_META.lastUpdated}
             />
           </View>
         </View>
 
-        {/* CITIZENSHIP INFO BANNER — shown only for citizenship pathway */}
+        {/* CITIZENSHIP INFO BANNER */}
         {selectedPathway === "citizenship" && (
           <View style={styles.citizenshipInfoBanner}>
             <Text style={styles.citizenshipInfoIcon}>🇺🇸</Text>
             <Text style={styles.citizenshipInfoText}>
-              N-400 checklist. Fee: $710 online / $760 paper. Military: free.
-              You can file up to 90 days before your eligibility date.
+              {t("checklistScreen.citizenshipBanner")}
             </Text>
           </View>
         )}
@@ -728,11 +344,14 @@ const ChecklistScreen = ({ route }) => {
           <View style={styles.progressHeader}>
             <Text style={styles.progressTitle}>
               {selectedPathway === "citizenship"
-                ? "N-400 Documents"
-                : "Required Documents"}
+                ? t("checklistScreen.progressTitle.citizenship")
+                : t("checklistScreen.progressTitle.default")}
             </Text>
             <Text style={styles.progressCount}>
-              {requiredCompleted} of {requiredItems}
+              {t("checklistScreen.progressCount", {
+                completed: requiredCompleted,
+                total: requiredItems,
+              })}
             </Text>
           </View>
           <View style={styles.progressBar}>
@@ -753,23 +372,41 @@ const ChecklistScreen = ({ route }) => {
 
         {/* LEGEND */}
         <View style={styles.legendCard}>
-          <Text style={styles.legendTitle}>Document Requirements</Text>
+          <Text style={styles.legendTitle}>
+            {t("checklistScreen.legendTitle")}
+          </Text>
           <View style={styles.legendItems}>
             <View style={styles.legendItem}>
-              <View style={[styles.legendDot, { backgroundColor: "#D32F2F" }]} />
-              <Text style={styles.legendText}>Required</Text>
+              <View
+                style={[styles.legendDot, { backgroundColor: "#D32F2F" }]}
+              />
+              <Text style={styles.legendText}>
+                {t("checklistScreen.legendRequired")}
+              </Text>
             </View>
             <View style={styles.legendItem}>
-              <View style={[styles.legendDot, { backgroundColor: "#F57C00" }]} />
-              <Text style={styles.legendText}>Need One</Text>
+              <View
+                style={[styles.legendDot, { backgroundColor: "#F57C00" }]}
+              />
+              <Text style={styles.legendText}>
+                {t("checklistScreen.legendNeedOne")}
+              </Text>
             </View>
             <View style={styles.legendItem}>
-              <View style={[styles.legendDot, { backgroundColor: "#388E3C" }]} />
-              <Text style={styles.legendText}>Recommended</Text>
+              <View
+                style={[styles.legendDot, { backgroundColor: "#388E3C" }]}
+              />
+              <Text style={styles.legendText}>
+                {t("checklistScreen.legendRecommended")}
+              </Text>
             </View>
             <View style={styles.legendItem}>
-              <View style={[styles.legendDot, { backgroundColor: "#7B1FA2" }]} />
-              <Text style={styles.legendText}>If Requested</Text>
+              <View
+                style={[styles.legendDot, { backgroundColor: "#7B1FA2" }]}
+              />
+              <Text style={styles.legendText}>
+                {t("checklistScreen.legendIfRequested")}
+              </Text>
             </View>
           </View>
         </View>
@@ -870,8 +507,10 @@ const ChecklistScreen = ({ route }) => {
           </Text>
           <Text style={styles.tipText}>
             {selectedPathway === "citizenship"
-              ? "File N-400 up to 90 days before your eligibility date. Study the 100 civics questions at uscis.gov/citizenship/tessprep — it's free."
-              : `Focus on REQUIRED documents first. Your checklist is customized for ${pathway?.title}.`}
+              ? t("checklistScreen.tip.citizenshipText")
+              : t("checklistScreen.tip.defaultText", {
+                  pathway: pathway?.title || "",
+                })}
           </Text>
         </View>
       </ScrollView>
@@ -888,15 +527,17 @@ const ChecklistScreen = ({ route }) => {
           onPress={() => setShowPathwaySelector(false)}
         >
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Select Pathway</Text>
+            <Text style={styles.modalTitle}>
+              {t("checklistScreen.modal.title")}
+            </Text>
             {pathwayOptions.map((option) => (
               <TouchableOpacity
                 key={option.id}
                 style={[
                   styles.pathwayOption,
                   selectedPathway === option.id && styles.pathwayOptionActive,
-                  // NEW: blue highlight for citizenship option
-                  option.id === "citizenship" && styles.pathwayOptionCitizenship,
+                  option.id === "citizenship" &&
+                    styles.pathwayOptionCitizenship,
                   selectedPathway === option.id &&
                     option.id === "citizenship" &&
                     styles.pathwayOptionCitizenshipActive,
@@ -930,217 +571,156 @@ export default ChecklistScreen;
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F8F9FA" },
   header: { padding: 20, backgroundColor: "#FFF" },
-  title: { fontSize: 26, fontWeight: "bold" },
-
+  title: { fontSize: 26, fontWeight: "bold", marginBottom: 12 },
   pathwaySelector: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#E8F4F8",
-    padding: 12,
-    borderRadius: 10,
-    marginTop: 10,
+    backgroundColor: "#F5F5F5",
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderRadius: 12,
+    marginBottom: 12,
   },
-  // NEW: blue tint when citizenship is selected
-  pathwaySelectorCitizenship: {
-    backgroundColor: "#E8EAF6",
-    borderWidth: 1,
-    borderColor: "#1565C0",
-  },
-  pathwayIcon: { fontSize: 20, marginRight: 10 },
-  pathwayName: { flex: 1, fontSize: 16, fontWeight: "500" },
-  changeText: { color: "#2E86AB", fontWeight: "600" },
+  pathwaySelectorCitizenship: { backgroundColor: "#E3F2FD" },
+  pathwayIcon: { fontSize: 18, marginRight: 8 },
+  pathwayName: { flex: 1, fontSize: 15, fontWeight: "600", color: "#1A1A1A" },
+  changeText: { fontSize: 13, color: "#2E86AB", fontWeight: "600" },
+  badges: { flexDirection: "row" },
 
-  badges: { flexDirection: "row", gap: 8, marginTop: 8 },
-
-  // NEW: citizenship info banner
   citizenshipInfoBanner: {
     flexDirection: "row",
-    alignItems: "flex-start",
-    backgroundColor: "#E8EAF6",
-    marginHorizontal: 20,
-    marginTop: 12,
-    padding: 14,
+    backgroundColor: "#E3F2FD",
+    margin: 16,
+    padding: 12,
     borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#1565C0",
+    alignItems: "flex-start",
   },
-  citizenshipInfoIcon: { fontSize: 20, marginRight: 10, marginTop: 1 },
-  citizenshipInfoText: {
-    flex: 1,
-    fontSize: 13,
-    color: "#1565C0",
-    lineHeight: 19,
-    fontWeight: "500",
-  },
+  citizenshipInfoIcon: { fontSize: 18, marginRight: 10, marginTop: 2 },
+  citizenshipInfoText: { flex: 1, fontSize: 13, color: "#1565C0", lineHeight: 18 },
 
   progressCard: {
-    margin: 20,
+    backgroundColor: "#FFF",
+    margin: 16,
     padding: 16,
-    backgroundColor: "#2E86AB",
     borderRadius: 12,
   },
-  // NEW: citizenship progress card in navy blue
-  progressCardCitizenship: {
-    backgroundColor: "#1565C0",
-  },
+  progressCardCitizenship: { backgroundColor: "#FFF" },
   progressHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 8,
   },
-  progressTitle: { color: "#FFF", fontSize: 16, fontWeight: "600" },
-  progressCount: { color: "#FFF", fontSize: 18, fontWeight: "bold" },
+  progressTitle: { fontSize: 14, fontWeight: "600", color: "#1A1A1A" },
+  progressCount: { fontSize: 14, fontWeight: "600", color: "#2E86AB" },
   progressBar: {
     height: 8,
-    backgroundColor: "rgba(255,255,255,0.3)",
+    backgroundColor: "#E0E0E0",
     borderRadius: 4,
+    overflow: "hidden",
   },
-  progressFill: { height: 8, backgroundColor: "#FFF", borderRadius: 4 },
+  progressFill: { height: "100%", backgroundColor: "#4CAF50" },
 
   legendCard: {
     backgroundColor: "#FFF",
-    marginHorizontal: 20,
-    marginBottom: 15,
-    padding: 15,
+    marginHorizontal: 16,
+    marginBottom: 12,
+    padding: 12,
     borderRadius: 12,
   },
-  legendTitle: { fontSize: 14, fontWeight: "600", marginBottom: 10 },
+  legendTitle: { fontSize: 13, fontWeight: "600", marginBottom: 8 },
   legendItems: { flexDirection: "row", flexWrap: "wrap" },
   legendItem: {
     flexDirection: "row",
     alignItems: "center",
-    width: "50%",
-    marginBottom: 8,
+    marginRight: 16,
+    marginBottom: 4,
   },
-  legendDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    marginRight: 8,
-  },
+  legendDot: { width: 8, height: 8, borderRadius: 4, marginRight: 6 },
   legendText: { fontSize: 12, color: "#666" },
 
   section: {
     backgroundColor: "#FFF",
-    marginHorizontal: 20,
+    marginHorizontal: 16,
     marginBottom: 12,
     borderRadius: 12,
     overflow: "hidden",
   },
-  sectionHeader: { padding: 16 },
-  sectionTitleRow: {
+  sectionHeader: { padding: 14 },
+  sectionTopRow: {
     flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 4,
-    flex: 1,
-    flexShrink: 1,
   },
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: "600",
-    flex: 1,
-    marginRight: 8,
-  },
+  sectionTitleRow: { flexDirection: "row", alignItems: "center", flex: 1 },
+  sectionTitle: { fontSize: 15, fontWeight: "700", color: "#1A1A1A" },
   requirementBadge: {
     paddingHorizontal: 8,
     paddingVertical: 2,
-    borderRadius: 4,
+    borderRadius: 6,
     marginLeft: 10,
   },
   requirementBadgeText: {
     color: "#FFF",
     fontSize: 10,
-    fontWeight: "bold",
+    fontWeight: "700",
+    letterSpacing: 0.5,
   },
-  sectionSubtitle: { fontSize: 12, color: "#666", marginTop: 2 },
-  sectionTopRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  expand: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#FFF",
-    backgroundColor: "#2E86AB",
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    textAlign: "center",
-    lineHeight: 28,
-    overflow: "hidden",
-    marginLeft: 8,
-    flexShrink: 0,
-  },
+  expand: { fontSize: 22, color: "#999", marginLeft: 8 },
+  sectionSubtitle: { fontSize: 12, color: "#666", marginTop: 4 },
 
-  items: { padding: 10 },
+  items: { paddingHorizontal: 14, paddingBottom: 12 },
   item: {
     flexDirection: "row",
-    padding: 12,
-    borderRadius: 8,
-    backgroundColor: "#F8F9FA",
-    marginBottom: 8,
+    paddingVertical: 12,
+    borderTopWidth: 1,
+    borderTopColor: "#F0F0F0",
   },
-  itemRequired: { borderLeftWidth: 3, borderLeftColor: "#D32F2F" },
-  itemAlternative: { borderLeftWidth: 3, borderLeftColor: "#F57C00" },
-  itemChecked: { backgroundColor: "#E8F4F8" },
+  itemChecked: { opacity: 0.55 },
+  itemRequired: {},
+  itemAlternative: {},
   checkbox: {
-    width: 24,
-    height: 24,
+    width: 22,
+    height: 22,
     borderWidth: 2,
-    borderColor: "#DDD",
+    borderColor: "#999",
     borderRadius: 4,
     textAlign: "center",
-    lineHeight: 20,
+    lineHeight: 22,
+    marginRight: 10,
+    color: "#4CAF50",
     fontWeight: "bold",
-    color: "#2E86AB",
-    marginRight: 12,
   },
   checkboxRequired: { borderColor: "#D32F2F" },
   itemText: { flex: 1 },
-  itemHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 4,
-  },
-  itemName: { fontSize: 15, fontWeight: "500", flex: 1 },
+  itemHeader: { flexDirection: "row", alignItems: "center", flexWrap: "wrap" },
+  itemName: { fontSize: 14, fontWeight: "600", color: "#1A1A1A" },
   itemNameChecked: { textDecorationLine: "line-through", color: "#999" },
-  requiredIndicator: {
-    color: "#D32F2F",
-    fontSize: 16,
-    fontWeight: "bold",
-    marginLeft: 4,
-  },
+  requiredIndicator: { color: "#D32F2F", fontWeight: "bold", marginLeft: 4 },
   quantity: {
-    backgroundColor: "#E3F2FD",
-    paddingHorizontal: 8,
+    fontSize: 11,
+    color: "#666",
+    marginLeft: 8,
+    backgroundColor: "#F5F5F5",
+    paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 4,
-    fontSize: 11,
-    color: "#1976D2",
-    marginLeft: 8,
   },
-  itemDesc: { fontSize: 12, color: "#666", marginTop: 2 },
-  whenNeeded: {
-    fontSize: 11,
-    color: "#7B1FA2",
-    marginTop: 4,
-    fontStyle: "italic",
-  },
+  itemDesc: { fontSize: 12, color: "#666", lineHeight: 17, marginTop: 4 },
+  whenNeeded: { fontSize: 11, color: "#7B1FA2", marginTop: 4 },
   who: { fontSize: 11, color: "#1976D2", marginTop: 2 },
 
   tip: {
     flexDirection: "row",
-    margin: 20,
-    padding: 16,
-    backgroundColor: "#E8F4F8",
+    backgroundColor: "#FFF8E1",
+    margin: 16,
+    padding: 14,
     borderRadius: 12,
+    alignItems: "flex-start",
   },
   tipIcon: { fontSize: 20, marginRight: 10 },
-  tipText: { fontSize: 14, color: "#555", flex: 1 },
+  tipText: { flex: 1, fontSize: 13, color: "#5D4037", lineHeight: 18 },
 
-  // MODAL
+  // Modal
   modalOverlay: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.5)",
@@ -1148,43 +728,24 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: "#FFF",
+    padding: 20,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    padding: 20,
-    paddingBottom: 40,
   },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 20,
-    textAlign: "center",
-  },
+  modalTitle: { fontSize: 18, fontWeight: "bold", marginBottom: 14 },
   pathwayOption: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 16,
+    padding: 14,
+    backgroundColor: "#F5F5F5",
     borderRadius: 12,
-    backgroundColor: "#F8F9FA",
-    marginBottom: 10,
+    marginBottom: 8,
   },
-  pathwayOptionActive: {
-    backgroundColor: "#E8F4F8",
-    borderWidth: 2,
-    borderColor: "#2E86AB",
-  },
-  // NEW: citizenship option styling in modal
-  pathwayOptionCitizenship: {
-    backgroundColor: "#F0F4FF",
-    borderWidth: 1,
-    borderColor: "#C5CAE9",
-  },
-  pathwayOptionCitizenshipActive: {
-    backgroundColor: "#E8EAF6",
-    borderWidth: 2,
-    borderColor: "#1565C0",
-  },
-  pathwayOptionIcon: { fontSize: 24, marginRight: 15 },
-  pathwayOptionText: { flex: 1, fontSize: 16 },
-  pathwayOptionTextActive: { fontWeight: "600", color: "#2E86AB" },
-  checkmark: { fontSize: 20, color: "#2E86AB", fontWeight: "bold" },
+  pathwayOptionActive: { backgroundColor: "#E3F2FD" },
+  pathwayOptionCitizenship: {},
+  pathwayOptionCitizenshipActive: { backgroundColor: "#BBDEFB" },
+  pathwayOptionIcon: { fontSize: 22, marginRight: 12 },
+  pathwayOptionText: { flex: 1, fontSize: 15, color: "#1A1A1A" },
+  pathwayOptionTextActive: { fontWeight: "600", color: "#1565C0" },
+  checkmark: { fontSize: 16, color: "#1976D2" },
 });

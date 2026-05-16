@@ -1,11 +1,24 @@
 // src/data/policyTracker.js
+// Updated: April 2026 — converted to translation-key pattern.
+//
+// Pattern: data file with one class. All user-facing strings are translation
+// keys referenced via i18n.t(). See src/i18n/locales/{en,es,pt,zh}.json under
+// the `policyTracker.*` namespace for the actual text.
+//
+// Render sites should call:
+//   - getActivePolicies() → translated policies grouped by severity
+//   - getCourtCases() → translated court cases
+//   - getUpcomingChanges() → translated upcoming changes
+//   - getEmbassyAlerts() → translated embassy alerts
+// or use the analyzer (policyImpactAnalyzer.analyzeUserImpact()) which
+// returns translated objects.
+//
+// Dates, severities, IDs, and impact codes (HIGH/MODERATE/LOW/CRITICAL)
+// are part of the translation strings themselves so they can be localized
+// where appropriate (e.g. ALTO/MODERADO in Spanish).
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-/**
- * Policy Tracker System
- * Monitors immigration policy changes and provides personalized impact analysis
- */
+import i18n from "../i18n";
 
 export const POLICY_TRACKER_META = {
   lastChecked: new Date().toISOString(),
@@ -21,82 +34,57 @@ export const POLICY_TRACKER_META = {
   ],
 };
 
-/**
- * Current Active Policy Changes
- */
-export const ACTIVE_POLICIES = {
+// ============================================================
+// POLICY DEFINITIONS — data shape only
+// ============================================================
+// Each policy entry has:
+//   - id: stable identifier
+//   - i18nBaseKey: base path for translation lookups
+//     (title, summary, details, actions.a1..aN, impactByStatus.{visa})
+//   - actionsCount: number of a1..aN actions to look up
+//   - impactStatuses: which visa codes have status-specific impact text
+//   - everything else (severity, dates, affected lists, source) is data
+
+const POLICY_DEFINITIONS = {
   critical: [
     {
       id: "h1b-100k-fee-consular",
       type: "fee_increase",
       severity: "critical",
-      title: "$100,000 H-1B Fee — Consular Processing",
-      summary:
-        "Additional $100,000 payment required for certain H-1B petitions approved for consular processing.",
+      i18nBaseKey: "policyTracker.policies.h1b100kFee",
+      actionsCount: 3,
+      impactStatuses: ["F1", "OPT", "H1B", "B1B2"],
       effectiveDate: "2025-09-21",
       affectedVisas: ["H1B"],
       affectedCountries: ["all"],
       source: "Presidential Proclamation 10973",
       publishedDate: "2025-09-19",
-      details:
-        "Applies when the beneficiary is outside the U.S. or when the petition is approved for consular processing. Generally does NOT apply to F-1→H-1B change of status within the U.S. Total employer cost can exceed $106,000.",
-      actions: [
-        "Determine if beneficiary qualifies for change of status (avoids fee)",
-        "Consider L-1 or O-1 alternatives if eligible",
-        "Budget accordingly if consular processing is required",
-      ],
-      impactByStatus: {
-        F1: "MODERATE — F-1→H-1B change of status generally avoids this fee",
-        OPT: "MODERATE — Cap-gap eligible OPT holders can file change of status",
-        H1B: "HIGH — Transfers requiring consular processing trigger the fee",
-        B1B2: "HIGH — Must use consular processing, fee applies",
-      },
     },
     {
       id: "ead-validity-18-months",
       type: "policy_change",
       severity: "critical",
-      title: "EAD Validity Reduced to 18 Months",
-      summary:
-        "Maximum EAD validity cut from 5 years to 18 months for adjustment-of-status applicants, refugees, asylees, and related categories.",
+      i18nBaseKey: "policyTracker.policies.eadValidity18Months",
+      actionsCount: 3,
+      impactStatuses: ["GC_pending", "EAD", "H1B", "F1"],
       effectiveDate: "2025-12-05",
       affectedVisas: ["I485", "ASYLUM", "REFUGEE", "EAD"],
       affectedCountries: ["all"],
       source: "USCIS Policy Alert PA-2025-27",
       publishedDate: "2025-12-04",
-      details:
-        "Affects pending and new I-765 applications filed on or after Dec 5, 2025. Does NOT affect OPT, STEM OPT, H-4, J-2, or L-2 EADs. Existing EADs retain their printed expiration date.",
-      actions: [
-        "File EAD renewals at least 6 months before expiration",
-        "No automatic 540-day extensions — plan for potential work gaps",
-        "Track expiration dates carefully",
-      ],
-      impactByStatus: {
-        GC_pending: "CRITICAL — Must renew EAD every 18 months",
-        EAD: "HIGH — Check which category your EAD falls under",
-        H1B: "LOW — H-1B status not affected",
-        F1: "LOW — OPT EADs not affected by this policy",
-      },
     },
     {
       id: "ead-auto-extension-ended",
       type: "policy_change",
       severity: "critical",
-      title: "540-Day EAD Auto-Extensions Eliminated",
-      summary:
-        "Automatic 540-day EAD extensions ended for most categories. EADs now expire on the printed date.",
+      i18nBaseKey: "policyTracker.policies.eadAutoExtensionEnded",
+      actionsCount: 3,
+      impactStatuses: [],
       effectiveDate: "2025-10-30",
       affectedVisas: ["I485", "ASYLUM", "REFUGEE", "EAD"],
       affectedCountries: ["all"],
       source: "DHS Interim Final Rule",
       publishedDate: "2025-10-30",
-      details:
-        "Previously, timely-filed EAD renewals automatically extended the old EAD for 540 days. This is no longer the case. If USCIS hasn't adjudicated your renewal by your EAD's expiration date, you must stop working.",
-      actions: [
-        "File renewals as early as possible (6 months before expiration)",
-        "Consider premium processing for I-765 if available ($1,780)",
-        "Maintain alternative status if possible",
-      ],
     },
   ],
 
@@ -105,107 +93,66 @@ export const ACTIVE_POLICIES = {
       id: "h1b-weighted-lottery-fy2027",
       type: "process_change",
       severity: "warning",
-      title: "H-1B Wage-Weighted Lottery (FY2027+)",
-      summary:
-        "USCIS replaced the random H-1B lottery with a wage-weighted selection system. Higher wages = better odds.",
+      i18nBaseKey: "policyTracker.policies.h1bWeightedLottery",
+      actionsCount: 3,
+      impactStatuses: ["OPT", "F1", "H1B"],
       effectiveDate: "2026-02-27",
       affectedVisas: ["H1B"],
       affectedCountries: ["all"],
       source: "DHS Final Rule (Dec 23, 2025)",
       publishedDate: "2025-12-23",
-      details:
-        "Level I (entry) wages get 1x odds. Level IV (expert) wages get up to 4x odds. Registration must include SOC code and OEWS wage level. First applied to FY2027 registration (March 4-19, 2026).",
-      actions: [
-        "Offer competitive wages to maximize selection odds",
-        "Ensure correct SOC code and wage level on registration",
-        "Consider O-1 or L-1 if H-1B odds are unfavorable at your wage level",
-      ],
-      impactByStatus: {
-        OPT: "HIGH — Entry-level offers face significantly reduced odds",
-        F1: "HIGH — Affects post-graduation H-1B prospects",
-        H1B: "MODERATE — Affects transfers if new registration needed",
-      },
     },
     {
       id: "premium-processing-fee-increase",
       type: "fee_increase",
       severity: "warning",
-      title: "Premium Processing Fees Increased",
-      summary:
-        "All premium processing fees increased ~5.7% effective March 1, 2026.",
+      i18nBaseKey: "policyTracker.policies.premiumProcessingFeeIncrease",
+      actionsCount: 3,
+      impactStatuses: [],
       effectiveDate: "2026-03-01",
       affectedVisas: ["H1B", "L1", "O1", "EB1", "EB2", "EB3", "F1", "OPT"],
       affectedCountries: ["all"],
       source: "DHS Final Rule — Adjustment to Premium Processing Fees",
       publishedDate: "2026-01-12",
-      details:
-        "I-129/I-140: $2,965 (was $2,805). I-539: $2,075 (was $1,965). I-765: $1,780 (was $1,685). Filings postmarked before March 1 could use old fees.",
-      actions: [
-        "Budget for higher premium processing costs",
-        "Filings postmarked on or after March 1 must include new fee",
-        "Incorrect fees will result in rejection",
-      ],
     },
     {
       id: "visa-bulletin-proclamation-impact",
       type: "visa_bulletin",
       severity: "warning",
-      title: "Presidential Proclamations Affecting Visa Issuance",
-      summary:
-        "Proclamations 10949 and 10998 have reduced immigrant visa issuance for certain nationalities. Dates advanced for other countries.",
+      i18nBaseKey: "policyTracker.policies.visaBulletinProclamationImpact",
+      actionsCount: 3,
+      impactStatuses: [],
       effectiveDate: "2025-06-01",
       affectedVisas: ["EB1", "EB2", "EB3", "F1", "F2A", "F2B", "F3", "F4"],
       affectedCountries: ["all"],
       source: "Department of State — Visa Bulletin March 2026",
       publishedDate: "2026-02-04",
-      details:
-        "Some family and employment categories have been advanced for non-affected countries. Retrogression may occur later in FY2026 as demand materializes or proclamations change.",
-      actions: [
-        "Check March 2026 Visa Bulletin for current dates",
-        "File I-485 promptly when dates become current",
-        "Monitor monthly for retrogression risk",
-      ],
     },
     {
       id: "tps-parole-ead-one-year",
       type: "legislation",
       severity: "warning",
-      title: "TPS/Parole EADs — 1-Year Maximum",
-      summary:
-        "H.R. 1 (One Big Beautiful Bill Act) limits TPS and parole EADs to 1 year or end of authorized period.",
+      i18nBaseKey: "policyTracker.policies.tpsParoleEadOneYear",
+      actionsCount: 3,
+      impactStatuses: [],
       effectiveDate: "2025-07-22",
       affectedVisas: ["TPS", "PAROLE"],
       affectedCountries: ["all"],
       source: "H.R. 1, Pub. L. 119-21 (signed July 4, 2025)",
       publishedDate: "2025-07-04",
-      details:
-        "Initial and renewal EADs for TPS beneficiaries and parolees are now valid for the shorter of 1 year or the end date of the authorized period. Implemented via Federal Register notice July 22, 2025.",
-      actions: [
-        "File renewals well before expiration",
-        "Budget for more frequent filing fees",
-        "Track authorization end dates carefully",
-      ],
     },
     {
       id: "india-eb-backlog-update",
       type: "visa_bulletin",
       severity: "warning",
-      title: "India EB-2/EB-3 — 12+ Year Backlog",
-      summary:
-        "India EB-2 final action date: Sep 15, 2013. EB-3: Nov 15, 2013. Some forward movement in early 2026.",
+      i18nBaseKey: "policyTracker.policies.indiaEbBacklogUpdate",
+      actionsCount: 4,
+      impactStatuses: [],
       effectiveDate: "2026-03-01",
       affectedVisas: ["EB2", "EB3"],
       affectedCountries: ["india"],
       source: "Visa Bulletin March 2026",
       publishedDate: "2026-02-04",
-      details:
-        "EB-2 India advanced from May 15, 2013 (Jan 2025) to Sep 15, 2013 (Mar 2026). EB-3 India advanced to Nov 15, 2013. Dates for Filing show further movement. April 2026 bulletin shows additional advances.",
-      actions: [
-        "Maintain H-1B status — do not let it expire",
-        "File H-1B extensions based on approved I-140",
-        "Consider EB-1A/EB-1B if qualified",
-        "Explore EB-5 as alternative if financially feasible",
-      ],
     },
   ],
 
@@ -214,131 +161,242 @@ export const ACTIVE_POLICIES = {
       id: "h4-ead-premium-available",
       type: "process_improvement",
       severity: "info",
-      title: "H-4 EAD Premium Processing Available",
-      summary:
-        "Premium processing available for standalone H-4 EAD applications.",
+      i18nBaseKey: "policyTracker.policies.h4EadPremiumAvailable",
+      actionsCount: 2,
+      impactStatuses: [],
       effectiveDate: "2025-01-27",
       affectedVisas: ["H4"],
       affectedCountries: ["all"],
       source: "USCIS",
       publishedDate: "2025-01-10",
-      details: "30-day processing for $1,780 (updated March 1, 2026).",
-      actions: [
-        "Consider premium processing if work authorization is urgent",
-        "File with H-1B extension to streamline",
-      ],
     },
     {
       id: "sr-category-extended",
       type: "legislation",
       severity: "info",
-      title: "Religious Workers (SR) Category Extended",
-      summary:
-        "EB-4 Religious Workers category extended through September 30, 2026.",
+      i18nBaseKey: "policyTracker.policies.srCategoryExtended",
+      actionsCount: 0,
+      impactStatuses: [],
       effectiveDate: "2026-02-03",
       affectedVisas: ["EB4"],
       affectedCountries: ["all"],
       source: "H.R. 7148 (signed Feb 3, 2026)",
       publishedDate: "2026-02-03",
-      details:
-        "SR category subject to same dates for filing and final action dates as other EB-4 categories.",
     },
   ],
 };
 
-/**
- * Court Cases Being Monitored
- */
-export const COURT_CASES = [
+const COURT_CASE_DEFINITIONS = [
   {
     id: "weighted-lottery-challenge",
-    case: "Multiple challenges to wage-weighted H-1B selection",
+    i18nBaseKey: "policyTracker.courtCases.weightedLotteryChallenge",
+    contingencyActionsCount: 2,
     status: "pending",
     expectedDate: "2026-06-01",
-    impact:
-      "Could delay or modify the wage-weighted lottery system",
     affectedVisas: ["H1B"],
-    probability: "30% chance of injunction",
-    contingencyActions: [
-      "Prepare for both random and weighted lottery outcomes",
-      "File at appropriate wage level regardless",
-    ],
   },
 ];
 
-/**
- * Upcoming Changes Calendar
- */
-export const UPCOMING_CHANGES = [
-    {
-        date: "2026-03-31",
-        title: "FY2027 H-1B Selections Complete",
-        impact: "All initial selection notifications sent. ~34-42% selection rate.",
-        action: "If selected, begin petition preparation immediately. If 'Submitted', second round possible.",
-      },
-      {
-        date: "2026-04-01",
-        title: "H-1B Filing Window NOW OPEN",
-        impact: "Selected registrations can file I-129 petitions through June 30",
-        action: "File petition as early as possible — 90-day window closes June 30, 2026",
-      },
+const UPCOMING_CHANGE_DEFINITIONS = [
   {
+    id: "fy2027SelectionsComplete",
+    i18nBaseKey: "policyTracker.upcomingChanges.fy2027SelectionsComplete",
+    date: "2026-03-31",
+  },
+  {
+    id: "h1bFilingWindowOpen",
+    i18nBaseKey: "policyTracker.upcomingChanges.h1bFilingWindowOpen",
+    date: "2026-04-01",
+  },
+  {
+    id: "h1bFilingWindowCloses",
+    i18nBaseKey: "policyTracker.upcomingChanges.h1bFilingWindowCloses",
     date: "2026-06-30",
-    title: "H-1B Filing Window Closes",
-    impact: "Last day to file FY2027 cap-subject petitions",
-    action: "Ensure petition is filed before deadline",
   },
   {
+    id: "newOewsWageData",
+    i18nBaseKey: "policyTracker.upcomingChanges.newOewsWageData",
     date: "2026-07-01",
-    title: "New OEWS Wage Data Expected",
-    impact: "Updated prevailing wages for July 2026–June 2027",
-    action: "Review new wage levels for pending and future filings",
   },
   {
+    id: "fy2026EndsDvExpires",
+    i18nBaseKey: "policyTracker.upcomingChanges.fy2026EndsDvExpires",
     date: "2026-09-30",
-    title: "FY2026 Ends — DV-2026 Expires",
-    impact: "Diversity visa numbers for DV-2026 expire",
-    action: "DV-2026 selectees must complete processing before this date",
   },
   {
+    id: "fy2027EmploymentStart",
+    i18nBaseKey: "policyTracker.upcomingChanges.fy2027EmploymentStart",
     date: "2026-10-01",
-    title: "FY2027 H-1B Employment Start",
-    impact: "Approved FY2027 H-1B beneficiaries can begin work",
-    action: "Verify I-797 approval and start date",
   },
 ];
 
-/**
- * Embassy/Consulate Alerts
- */
-export const EMBASSY_ALERTS = [
+const EMBASSY_ALERT_DEFINITIONS = [
   {
     id: "canada-toronto-delays-2026",
-    location: "Toronto, Canada",
+    i18nBaseKey: "policyTracker.embassyAlerts.torontoDelays",
+    alternativesCount: 2,
     type: "processing_delay",
     severity: "warning",
-    currentWait: "16 months for B-1/B-2",
-    normalWait: "3 months",
-    reason: "Sustained high demand",
-    alternatives: ["Ottawa (11.5 months)", "Vancouver (8 months)"],
-    action: "Consider applying in home country or alternative embassy",
   },
   {
     id: "mexico-juarez-b1b2-delays",
-    location: "Ciudad Juarez, Mexico",
+    i18nBaseKey: "policyTracker.embassyAlerts.juarezB1B2Delays",
+    alternativesCount: 2,
     type: "processing_delay",
     severity: "warning",
-    currentWait: "15.5 months for B-1/B-2",
-    normalWait: "3 months",
-    reason: "High immigrant and nonimmigrant visa demand",
-    alternatives: ["Mexico City (10 months)", "Monterrey (10 months)"],
-    action: "Book earliest available appointment; consider alternative posts",
   },
 ];
 
+// ============================================================
+// TRANSLATION HELPERS — internal
+// ============================================================
+
+const t = (key, opts) => i18n.t(key, opts);
+
+function buildActionsArray(baseKey, count) {
+  const out = [];
+  for (let i = 1; i <= count; i++) {
+    out.push(t(`${baseKey}.actions.a${i}`));
+  }
+  return out;
+}
+
+function buildImpactByStatus(baseKey, statuses) {
+  const out = {};
+  for (const s of statuses) {
+    out[s] = t(`${baseKey}.impactByStatus.${s}`);
+  }
+  return out;
+}
+
+function inflatePolicy(def) {
+  const base = def.i18nBaseKey;
+  const out = {
+    id: def.id,
+    type: def.type,
+    severity: def.severity,
+    title: t(`${base}.title`),
+    summary: t(`${base}.summary`),
+    effectiveDate: def.effectiveDate,
+    affectedVisas: def.affectedVisas,
+    affectedCountries: def.affectedCountries,
+    source: def.source,
+    publishedDate: def.publishedDate,
+    details: t(`${base}.details`),
+  };
+  if (def.actionsCount > 0) {
+    out.actions = buildActionsArray(base, def.actionsCount);
+  }
+  if (def.impactStatuses.length > 0) {
+    out.impactByStatus = buildImpactByStatus(base, def.impactStatuses);
+  }
+  return out;
+}
+
+function inflateCourtCase(def) {
+  const base = def.i18nBaseKey;
+  const out = {
+    id: def.id,
+    case: t(`${base}.case`),
+    status: def.status,
+    expectedDate: def.expectedDate,
+    impact: t(`${base}.impact`),
+    affectedVisas: def.affectedVisas,
+    probability: t(`${base}.probability`),
+  };
+  // Court cases use `contingencyActions.a1, .a2, ...` keys (different
+  // from policies which use `actions.a1`).
+  if (def.contingencyActionsCount > 0) {
+    const actions = [];
+    for (let i = 1; i <= def.contingencyActionsCount; i++) {
+      actions.push(t(`${base}.contingencyActions.a${i}`));
+    }
+    out.contingencyActions = actions;
+  }
+  return out;
+}
+
+function inflateUpcomingChange(def) {
+  const base = def.i18nBaseKey;
+  return {
+    date: def.date,
+    title: t(`${base}.title`),
+    impact: t(`${base}.impact`),
+    action: t(`${base}.action`),
+  };
+}
+
+function inflateEmbassyAlert(def) {
+  const base = def.i18nBaseKey;
+  const alternatives = [];
+  for (let i = 1; i <= (def.alternativesCount || 0); i++) {
+    alternatives.push(t(`${base}.alternatives.alt${i}`));
+  }
+  return {
+    id: def.id,
+    location: t(`${base}.location`),
+    type: def.type,
+    severity: def.severity,
+    currentWait: t(`${base}.currentWait`),
+    normalWait: t(`${base}.normalWait`),
+    reason: t(`${base}.reason`),
+    alternatives,
+    action: t(`${base}.action`),
+  };
+}
+
+// ============================================================
+// PUBLIC HELPERS — what render sites should use
+// ============================================================
+
 /**
- * Policy Impact Analyzer
+ * Returns ACTIVE_POLICIES with all strings translated. Same shape
+ * as the previous inline-string version: { critical: [...], warning: [...], info: [...] }
  */
+export function getActivePolicies() {
+  return {
+    critical: POLICY_DEFINITIONS.critical.map(inflatePolicy),
+    warning: POLICY_DEFINITIONS.warning.map(inflatePolicy),
+    info: POLICY_DEFINITIONS.info.map(inflatePolicy),
+  };
+}
+
+export function getCourtCases() {
+  return COURT_CASE_DEFINITIONS.map(inflateCourtCase);
+}
+
+export function getUpcomingChanges() {
+  return UPCOMING_CHANGE_DEFINITIONS.map(inflateUpcomingChange);
+}
+
+export function getEmbassyAlerts() {
+  return EMBASSY_ALERT_DEFINITIONS.map(inflateEmbassyAlert);
+}
+
+// ============================================================
+// LEGACY EXPORTS — pre-translated at module load
+// ============================================================
+// Existing screens that reference these directly still work, but
+// strings are frozen at module-load language. New code should call
+// the helpers above (getActivePolicies, etc.) inside render so they
+// react to language switches.
+
+export const ACTIVE_POLICIES = getActivePolicies();
+export const COURT_CASES = getCourtCases();
+export const UPCOMING_CHANGES = getUpcomingChanges();
+export const EMBASSY_ALERTS = getEmbassyAlerts();
+
+// ============================================================
+// POLICY IMPACT ANALYZER
+// ============================================================
+// Behavior is identical to the previous version. The only change is
+// that the inline English strings inside getPersonalImpact() and
+// getCourtCaseImpact() now come from translations.
+//
+// Important: each call to analyzeUserImpact() re-inflates the policy
+// data fresh (via getActivePolicies / getCourtCases), so the output
+// reflects the current language.
+
 export class PolicyImpactAnalyzer {
   constructor() {
     this.userProfileKey = "@userProfile_v2";
@@ -355,10 +413,14 @@ export class PolicyImpactAnalyzer {
       const affectedPolicies = [];
       let highestSeverity = "info";
 
+      // Re-inflate fresh each call so language switches take effect
+      const policies = getActivePolicies();
+      const courtCases = getCourtCases();
+
       [
-        ...ACTIVE_POLICIES.critical,
-        ...ACTIVE_POLICIES.warning,
-        ...ACTIVE_POLICIES.info,
+        ...policies.critical,
+        ...policies.warning,
+        ...policies.info,
       ].forEach((policy) => {
         if (this.isPolicyRelevant(policy, profile)) {
           affectedPolicies.push({
@@ -375,7 +437,7 @@ export class PolicyImpactAnalyzer {
         }
       });
 
-      COURT_CASES.forEach((courtCase) => {
+      courtCases.forEach((courtCase) => {
         if (this.isCourtCaseRelevant(courtCase, profile)) {
           affectedPolicies.push({
             ...courtCase,
@@ -439,7 +501,9 @@ export class PolicyImpactAnalyzer {
     if (profile.urgency === "immediate" && policy.effectiveDate) {
       const daysUntil = this.daysUntilDate(policy.effectiveDate);
       if (daysUntil > 0 && daysUntil < 30) {
-        return `⚠️ Takes effect in ${daysUntil} days — immediate action needed`;
+        return t("policyTracker.analyzer.imminentEffect", {
+          days: daysUntil,
+        });
       }
     }
 
@@ -447,17 +511,17 @@ export class PolicyImpactAnalyzer {
       profile.currentVisa === "OPT" &&
       policy.affectedVisas.includes("H1B")
     ) {
-      return "Directly affects your transition from OPT to H-1B";
+      return t("policyTracker.analyzer.optToH1bImpact");
     }
 
     if (
       profile.countryOfCitizenship === "india" &&
       policy.affectedCountries.includes("india")
     ) {
-      return "Specifically impacts Indian nationals";
+      return t("policyTracker.analyzer.indiaSpecific");
     }
 
-    return "May affect your immigration journey";
+    return t("policyTracker.analyzer.genericImpact");
   }
 
   isCourtCaseRelevant(courtCase, profile) {
@@ -468,7 +532,10 @@ export class PolicyImpactAnalyzer {
   }
 
   getCourtCaseImpact(courtCase, profile) {
-    return `${courtCase.probability} — Decision expected ${courtCase.expectedDate}`;
+    return t("policyTracker.analyzer.courtCaseImpact", {
+      probability: courtCase.probability,
+      date: courtCase.expectedDate,
+    });
   }
 
   isEmbassyAlertRelevant(alert, profile) {
@@ -497,8 +564,9 @@ export class PolicyImpactAnalyzer {
 
   async getNextImportantDate() {
     const relevantDates = [];
+    const upcoming = getUpcomingChanges();
 
-    UPCOMING_CHANGES.forEach((change) => {
+    upcoming.forEach((change) => {
       const daysUntil = this.daysUntilDate(change.date);
       if (daysUntil > 0 && daysUntil < 90) {
         relevantDates.push({ ...change, daysUntil });

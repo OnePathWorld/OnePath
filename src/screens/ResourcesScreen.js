@@ -10,20 +10,28 @@ import {
   Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 import {
-  RESOURCES,
-  RESOURCE_CATEGORIES,
-  RESOURCES_META,
-  EMERGENCY_RESOURCES,
+  getResources,
+  getResourceCategories,
+  getEmergencyResources,
+  getResourcesMeta,
 } from "../data/resources";
 import DataUpdateBadge from "../components/DataUpdateBadge";
 import { calculateH1BCost } from "../data/h1bCapData";
 import { meetsWageRequirement } from "../data/prevailingWages";
 
 const ResourcesScreen = ({ navigation }) => {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+
+  // Computed inside render so language switches re-translate the data
+  const RESOURCES = getResources();
+  const RESOURCE_CATEGORIES = getResourceCategories();
+  const EMERGENCY_RESOURCES = getEmergencyResources();
+  const RESOURCES_META = getResourcesMeta();
 
   const filteredResources = RESOURCES.filter((resource) => {
     const matchesCategory =
@@ -47,7 +55,13 @@ const ResourcesScreen = ({ navigation }) => {
     Linking.openURL(url);
   };
 
-  // Calculator functions
+  // Helper: number formatting respects active locale automatically
+  const fmtMoney = (n) => Number(n).toLocaleString();
+
+  // =========================================================
+  // CALCULATOR DIALOGS
+  // =========================================================
+
   const showH1BCostCalculator = () => {
     const cost = calculateH1BCost({
       companySize: 50,
@@ -57,17 +71,17 @@ const ResourcesScreen = ({ navigation }) => {
     });
 
     Alert.alert(
-      "💰 H-1B Cost Calculator",
-      `Total Estimated Cost: $${cost.total.toLocaleString()}\n\n` +
-      `Breakdown:\n` +
-      `• Registration: $${cost.breakdown.registration}\n` +
-      `• Filing: $${cost.breakdown.filing}\n` +
-      `• Fraud Prevention: $${cost.breakdown.fraudPrevention}\n` +
-      `• Competitiveness: $${cost.breakdown.competitiveness}\n` +
-      `• Presidential Fee: $${cost.breakdown.presidentialFee.toLocaleString()}\n` +
-      `• Premium Processing: $${cost.breakdown.premium}\n\n` +
-      `⚠️ Presidential fee applies after Sept 21, 2025`,
-      [{ text: "OK" }]
+      t("resourcesScreen.h1bCostDialog.title"),
+      t("resourcesScreen.h1bCostDialog.body", {
+        total: fmtMoney(cost.total),
+        registration: cost.breakdown.registration,
+        filing: cost.breakdown.filing,
+        fraudPrevention: cost.breakdown.fraudPrevention,
+        competitiveness: cost.breakdown.competitiveness,
+        presidentialFee: fmtMoney(cost.breakdown.presidentialFee),
+        premium: cost.breakdown.premium,
+      }),
+      [{ text: t("resourcesScreen.ok") }]
     );
   };
 
@@ -81,39 +95,44 @@ const ResourcesScreen = ({ navigation }) => {
 
     if (result) {
       Alert.alert(
-        "💼 Wage Requirement Check",
-        result.meets 
-          ? `✅ Salary MEETS requirement\n\n` +
-            `Offered: $${(85000).toLocaleString()}\n` +
-            `Required: $${result.required.toLocaleString()}\n` +
-            `Difference: +$${result.difference.toLocaleString()}\n` +
-            `Level: ${result.level}`
-          : `❌ Salary BELOW requirement\n\n` +
-            `Offered: $${(85000).toLocaleString()}\n` +
-            `Required: $${result.required.toLocaleString()}\n` +
-            `Shortfall: $${Math.abs(result.difference).toLocaleString()}\n` +
-            `Level: ${result.level}`,
-        [{ text: "OK" }]
+        t("resourcesScreen.wageDialog.title"),
+        result.meets
+          ? t("resourcesScreen.wageDialog.meets", {
+              offered: fmtMoney(85000),
+              required: fmtMoney(result.required),
+              difference: fmtMoney(result.difference),
+              level: result.level,
+            })
+          : t("resourcesScreen.wageDialog.below", {
+              offered: fmtMoney(85000),
+              required: fmtMoney(result.required),
+              shortfall: fmtMoney(Math.abs(result.difference)),
+              level: result.level,
+            }),
+        [{ text: t("resourcesScreen.ok") }]
       );
     }
   };
 
   const showTimelineCalculator = () => {
     Alert.alert(
-      "⏱️ Timeline Calculator",
-      "Example: Family-Based (Immediate Relative)\n\n" +
-      "• I-130 Processing: 50 months\n" +
-      "• NVC Processing: 2-3 months\n" +
-      "• Embassy Interview: 2-12 months\n" +
-      "• Total: ~58 months (5 years)\n\n" +
-      "For personalized timeline, use Timeline Visualizer",
+      t("resourcesScreen.timelineDialog.title"),
+      t("resourcesScreen.timelineDialog.body"),
       [
-        { text: "Cancel", style: "cancel" },
-        { 
-          text: "Open Timeline", 
-          onPress: () => navigation.navigate("Timeline") 
-        }
+        { text: t("common.cancel"), style: "cancel" },
+        {
+          text: t("resourcesScreen.timelineDialog.openTimeline"),
+          onPress: () => navigation.navigate("Timeline"),
+        },
       ]
+    );
+  };
+
+  const showPriorityDateDialog = () => {
+    Alert.alert(
+      t("resourcesScreen.priorityDateDialog.title"),
+      t("resourcesScreen.priorityDateDialog.body"),
+      [{ text: t("resourcesScreen.ok") }]
     );
   };
 
@@ -122,28 +141,32 @@ const ResourcesScreen = ({ navigation }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* HEADER */}
         <View style={styles.header}>
-          <Text style={styles.title}>Resources & Tools</Text>
-          <Text style={styles.subtitle}>
-            Official information and calculators
-          </Text>
+          <Text style={styles.title}>{t("resourcesScreen.title")}</Text>
+          <Text style={styles.subtitle}>{t("resourcesScreen.subtitle")}</Text>
 
           <DataUpdateBadge
-            label="Resources"
+            label={t("resourcesScreen.dataUpdateBadgeLabel")}
             lastUpdated={RESOURCES_META.lastUpdated}
           />
         </View>
 
         {/* CALCULATOR TOOLS */}
         <View style={styles.toolsSection}>
-          <Text style={styles.toolsTitle}>🧮 Quick Calculators</Text>
+          <Text style={styles.toolsTitle}>
+            {t("resourcesScreen.toolsTitle")}
+          </Text>
           <View style={styles.toolsGrid}>
             <TouchableOpacity
               style={styles.toolCard}
               onPress={showH1BCostCalculator}
             >
               <Text style={styles.toolIcon}>💰</Text>
-              <Text style={styles.toolName}>H-1B Cost</Text>
-              <Text style={styles.toolDesc}>With $100k fee</Text>
+              <Text style={styles.toolName}>
+                {t("resourcesScreen.tools.h1bCost.name")}
+              </Text>
+              <Text style={styles.toolDesc}>
+                {t("resourcesScreen.tools.h1bCost.desc")}
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -151,8 +174,12 @@ const ResourcesScreen = ({ navigation }) => {
               onPress={showWageChecker}
             >
               <Text style={styles.toolIcon}>💼</Text>
-              <Text style={styles.toolName}>Wage Check</Text>
-              <Text style={styles.toolDesc}>Prevailing wage</Text>
+              <Text style={styles.toolName}>
+                {t("resourcesScreen.tools.wageCheck.name")}
+              </Text>
+              <Text style={styles.toolDesc}>
+                {t("resourcesScreen.tools.wageCheck.desc")}
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -160,25 +187,25 @@ const ResourcesScreen = ({ navigation }) => {
               onPress={showTimelineCalculator}
             >
               <Text style={styles.toolIcon}>⏱️</Text>
-              <Text style={styles.toolName}>Timeline</Text>
-              <Text style={styles.toolDesc}>Total journey</Text>
+              <Text style={styles.toolName}>
+                {t("resourcesScreen.tools.timeline.name")}
+              </Text>
+              <Text style={styles.toolDesc}>
+                {t("resourcesScreen.tools.timeline.desc")}
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.toolCard}
-              onPress={() => Alert.alert(
-                "📊 Priority Date",
-                "Check Visa Bulletin for current dates:\n\n" +
-                "• Family F4 (siblings): 2001-2008\n" +
-                "• India EB-2: May 2013\n" +
-                "• India EB-3: Sept 2013\n\n" +
-                "Updated monthly on travel.state.gov",
-                [{ text: "OK" }]
-              )}
+              onPress={showPriorityDateDialog}
             >
               <Text style={styles.toolIcon}>📊</Text>
-              <Text style={styles.toolName}>Priority Date</Text>
-              <Text style={styles.toolDesc}>Visa bulletin</Text>
+              <Text style={styles.toolName}>
+                {t("resourcesScreen.tools.priorityDate.name")}
+              </Text>
+              <Text style={styles.toolDesc}>
+                {t("resourcesScreen.tools.priorityDate.desc")}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -188,7 +215,7 @@ const ResourcesScreen = ({ navigation }) => {
           <Text style={styles.searchIcon}>🔍</Text>
           <TextInput
             style={styles.searchInput}
-            placeholder="Search resources..."
+            placeholder={t("resourcesScreen.searchPlaceholder")}
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
@@ -205,8 +232,7 @@ const ResourcesScreen = ({ navigation }) => {
               key={cat.id}
               style={[
                 styles.categoryChip,
-                selectedCategory === cat.id &&
-                  styles.categoryChipActive,
+                selectedCategory === cat.id && styles.categoryChipActive,
               ]}
               onPress={() => setSelectedCategory(cat.id)}
             >
@@ -214,8 +240,7 @@ const ResourcesScreen = ({ navigation }) => {
               <Text
                 style={[
                   styles.categoryText,
-                  selectedCategory === cat.id &&
-                    styles.categoryTextActive,
+                  selectedCategory === cat.id && styles.categoryTextActive,
                 ]}
               >
                 {cat.name}
@@ -226,26 +251,44 @@ const ResourcesScreen = ({ navigation }) => {
 
         {/* OFFICIAL LINKS */}
         <View style={styles.officialCard}>
-          <Text style={styles.officialTitle}>🏛️ Official Processing Times</Text>
+          <Text style={styles.officialTitle}>
+            {t("resourcesScreen.officialProcessing.title")}
+          </Text>
           <TouchableOpacity
             style={styles.officialLink}
-            onPress={() => Linking.openURL("https://egov.uscis.gov/processing-times/")}
+            onPress={() =>
+              Linking.openURL("https://egov.uscis.gov/processing-times/")
+            }
           >
-            <Text style={styles.officialLinkText}>USCIS Processing Times</Text>
+            <Text style={styles.officialLinkText}>
+              {t("resourcesScreen.officialProcessing.uscisProcessingTimes")}
+            </Text>
             <Text style={styles.officialLinkArrow}>→</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.officialLink}
-            onPress={() => Linking.openURL("https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html")}
+            onPress={() =>
+              Linking.openURL(
+                "https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html"
+              )
+            }
           >
-            <Text style={styles.officialLinkText}>Visa Bulletin</Text>
+            <Text style={styles.officialLinkText}>
+              {t("resourcesScreen.officialProcessing.visaBulletin")}
+            </Text>
             <Text style={styles.officialLinkArrow}>→</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.officialLink}
-            onPress={() => Linking.openURL("https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/wait-times.html")}
+            onPress={() =>
+              Linking.openURL(
+                "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/wait-times.html"
+              )
+            }
           >
-            <Text style={styles.officialLinkText}>Embassy Wait Times</Text>
+            <Text style={styles.officialLinkText}>
+              {t("resourcesScreen.officialProcessing.embassyWaitTimes")}
+            </Text>
             <Text style={styles.officialLinkArrow}>→</Text>
           </TouchableOpacity>
         </View>
@@ -253,7 +296,7 @@ const ResourcesScreen = ({ navigation }) => {
         {/* EMERGENCY */}
         <View style={styles.emergencyCard}>
           <Text style={styles.emergencyTitle}>
-            🆘 Emergency Hotlines (24/7)
+            {t("resourcesScreen.emergencyTitle")}
           </Text>
           {EMERGENCY_RESOURCES.map((r, idx) => (
             <TouchableOpacity
@@ -272,12 +315,10 @@ const ResourcesScreen = ({ navigation }) => {
           {filteredResources.map((resource) => (
             <View key={resource.id} style={styles.resourceCard}>
               <View style={styles.resourceHeader}>
-                <Text style={styles.resourceName}>
-                  {resource.name}
-                </Text>
+                <Text style={styles.resourceName}>{resource.name}</Text>
                 {resource.official && (
                   <Text style={styles.officialBadge}>
-                    Official
+                    {t("resourcesScreen.officialBadge")}
                   </Text>
                 )}
               </View>
@@ -300,14 +341,14 @@ const ResourcesScreen = ({ navigation }) => {
                     style={styles.actionButton}
                     onPress={() => handleCall(resource.phone)}
                   >
-                    <Text>📞 Call</Text>
+                    <Text>{t("resourcesScreen.callButton")}</Text>
                   </TouchableOpacity>
                 )}
                 <TouchableOpacity
                   style={styles.actionButton}
                   onPress={() => handleWebsite(resource.website)}
                 >
-                  <Text>🌐 Website</Text>
+                  <Text>{t("resourcesScreen.websiteButton")}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -315,9 +356,7 @@ const ResourcesScreen = ({ navigation }) => {
         </View>
 
         {/* DISCLAIMER */}
-        <Text style={styles.disclaimer}>
-          {RESOURCES_META.disclaimer}
-        </Text>
+        <Text style={styles.disclaimer}>{RESOURCES_META.disclaimer}</Text>
       </ScrollView>
     </SafeAreaView>
   );

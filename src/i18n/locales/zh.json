@@ -1,0 +1,3593 @@
+{
+    "_translation_notes": "Simplified Chinese (zh-Hans). DRAFT — REQUIRES NATIVE SPEAKER REVIEW BEFORE PRODUCTION. Immigration terminology follows common usage among Chinese-language immigration resources in the US. USCIS does not publish official Chinese terminology.",
+    "labels": {
+      "visa": {
+        "F1": "F-1 学生",
+        "H1B": "H-1B 工作",
+        "L1": "L-1 调动",
+        "B1B2": "B-1/B-2 访客",
+        "J1": "J-1 交流",
+        "OPT": "OPT",
+        "EAD": "EAD",
+        "GC_pending": "绿卡审理中",
+        "GC": "🟢 绿卡持有者",
+        "other": "其他身份",
+        "none": "无合法身份",
+        "unknown": "无身份"
+      },
+      "visaShort": {
+        "F1": "F-1",
+        "H1B": "H-1B",
+        "L1": "L-1",
+        "B1B2": "B-1/B-2",
+        "J1": "J-1",
+        "OPT": "OPT",
+        "EAD": "EAD",
+        "GC_pending": "绿卡审理中",
+        "GC": "🟢 绿卡持有者",
+        "other": "其他",
+        "none": "无身份",
+        "unknown": "无身份"
+      },
+      "expiry": {
+        "expired": "已过期",
+        "30days": "< 30 天",
+        "90days": "< 90 天",
+        "6months": "< 6 个月",
+        "year": "< 1 年",
+        "safe": "1 年以上",
+        "unknown": "未知"
+      },
+      "workAuth": {
+        "yes_unrestricted": "✅ 无限制",
+        "yes_restricted": "⚠️ 限定雇主",
+        "yes_ead": "EAD 卡",
+        "pending": "⏳ 审理中",
+        "no": "❌ 无",
+        "unknown": "未知"
+      },
+        "country": {
+        "china": "🇨🇳 中国",
+        "mexico": "🇲🇽 墨西哥",
+        "india": "🇮🇳 印度",
+        "haiti": "🇭🇹 海地",
+        "philippines": "🇵🇭 菲律宾",
+        "brazil": "🇧🇷 巴西",
+        "nigeria": "🇳🇬 尼日利亚",
+        "canada": "🇨🇦 加拿大",
+        "uk": "🇬🇧 英国",
+        "germany": "🇩🇪 德国",
+        "south_korea": "🇰🇷 韩国",
+        "japan": "🇯🇵 日本",
+        "other": "🌍 其他"
+        },
+      "gcYears": {
+        "under2": "< 2 年",
+        "2to3": "2–3 年",
+        "3to5": "3–5 年",
+        "over5": "5 年以上 ✅",
+        "military": "军人 🎖️"
+      },
+      "location": {
+        "inside_us": "在美国",
+        "outside_us": "在美国境外"
+      },
+      "visaDescriptive": {
+        "F1": "F-1 学生",
+        "H1B": "H-1B 工作",
+        "L1": "L-1 调动",
+        "B1B2": "B-1/B-2 访客",
+        "J1": "J-1 交流",
+        "OPT": "OPT 工作许可",
+        "EAD": "EAD 持有者",
+        "GC_pending": "绿卡审理中",
+        "GC": "🟢 合法永久居民",
+        "other": "其他身份",
+        "none": "无合法身份",
+        "unknown": "无身份"
+      },
+      "gcYearsDescriptive": {
+        "under2": "不到 2 年",
+        "2to3": "2–3 年",
+        "3to5": "3–5 年",
+        "over5": "5 年以上 ✅",
+        "military": "军人服役 🎖️"
+      },
+      "expiryWarning": {
+        "expired": "🔴 已过期 — 必须立即采取行动!",
+        "30days": "⚠️ 30 天内到期",
+        "90days": "📅 90 天内到期",
+        "6months": "📆 6 个月内到期"
+      }
+    },
+    "common": {
+      "cancel": "取消",
+      "back": "返回",
+      "next": "下一步",
+      "finish": "完成",
+      "skip": "跳过",
+      "loading": "加载中...",
+      "save": "保存",
+      "reset": "重置",
+      "notSet": "未设置",
+      "notApplicable": "不适用",
+      "unknown": "未知",
+      "dataUpdated": "数据更新于:{{date}}"
+    },
+    "home": {
+      "greeting": {
+        "morning": "早上好",
+        "afternoon": "下午好",
+        "evening": "晚上好"
+      },
+      "status": {
+        "title": "您的身份",
+        "loading": "加载中...",
+        "critical": "紧急",
+        "attention": "注意",
+        "good": "良好"
+      },
+      "alerts": {
+        "policyChanges_one": "{{count}} 项政策变化影响您",
+        "policyChanges_other": "{{count}} 项政策变化影响您",
+        "citizenshipNudge": "准备好申请公民身份了吗?查看您的入籍选项。"
+      },
+      "stats": {
+        "visaExpiration": "签证到期",
+        "gcHeld": "绿卡持有",
+        "alerts": "警报",
+        "policies": "政策"
+      },
+      "controlCenter": {
+        "title": "控制中心",
+        "policyTracker": "政策追踪器",
+        "checklist": "清单",
+        "timeline": "时间线",
+        "resources": "资源",
+        "caseTracker": "案件追踪器"
+      },
+  
+      "pathways": {
+        "title": "移民途径",
+        "work": "工作类",
+        "family": "家庭类",
+        "student": "学生",
+        "citizenship": "美国公民身份",
+        "yourNextStep": "您的下一步 →"
+      },
+      "lifeSetup": {
+        "title": "美国生活指南",
+        "subtitle": "SSN • 银行 • 信用 • 工作"
+      },
+      "help": {
+        "title": "紧急帮助",
+        "dialogTitle": "需要帮助吗?",
+        "dialogBody": "USCIS:1-800-375-5283\n法律援助:immigrationadvocates.org",
+        "callUscis": "致电 USCIS"
+      }
+    },
+    "onboarding": {
+      "stepIndicator": "第 {{current}} 步,共 {{total}} 步",
+      "skip": "跳过",
+      "back": "返回",
+      "next": "下一步",
+      "finish": "完成",
+      "getStarted": "开始",
+      "privacyDisclaimer": "🔒 我们不收集或分享个人数据。您的回答仅保留在您的设备上,仅用于个性化您的体验和提供安全提醒。",
+      "welcome": {
+        "title": "欢迎开始您的移民之旅",
+        "subtitle": "我们将帮助您一步步完成美国移民流程"
+      },
+      "location": {
+        "title": "您目前在哪里?",
+        "subtitle": "这有助于我们为您显示相关途径",
+        "options": {
+          "outside_us": "🌍 美国境外",
+          "inside_us": "🇺🇸 美国境内"
+        }
+      },
+
+      "outsideUsStage": {
+        "title": "您目前处于美国移民流程的哪个阶段？",
+        "subtitle": "这有助于我们为您的情况显示正确的工具和时间表",
+        "options": {
+            "no_case": "🆕 尚无案件",
+            "petition_filed": "📝 已提交申请（等待 USCIS 审批）",
+            "petition_approved": "✅ 申请已批准（等待领事面谈）",
+            "interview_scheduled": "📅 领事面谈已预约",
+            "has_us_visa": "🛂 已持有美国签证（返回美国）",
+            "former_visa_holder": "↩️ 曾持有美国签证",
+            "exploring": "🔍 仅探索选项"
+        }
+        },
+        "hasReceiptNumber": {
+        "title": "您有 USCIS 收据号码吗？",
+        "subtitle": "格式类似 EAC1234567890、LIN1234567890 或 SRC1234567890 — 可在 I-797 收据通知上找到",
+        "options": {
+            "yes": "✅ 有，我有收据号码",
+            "no": "❌ 暂时没有"
+        }
+        },
+      "currentVisa": {
+        "title": "您目前的移民身份是什么?",
+        "subtitle": "这有助于我们识别风险和机会",
+        "options": {
+          "F1": "📚 F-1 学生",
+          "H1B": "💼 H-1B 工作签证",
+          "L1": "🏢 L-1 调动",
+          "B1B2": "✈️ B-1/B-2 访客",
+          "J1": "🔄 J-1 交流",
+          "OPT": "🎓 OPT/STEM OPT",
+          "EAD": "💳 EAD 持有者",
+          "GC_pending": "⏳ 绿卡审理中",
+          "GC": "🟢 合法永久居民",
+          "other": "📋 其他身份",
+          "none": "❌ 无合法身份"
+        },
+        "groups": {
+  "work": "工作",
+  "study": "学习",
+  "resident": "居民与访客",
+  "other": "其他"
+}
+      },
+      "gcYearsHeld": {
+        "title": "您持有绿卡多久了?",
+        "subtitle": "这决定您符合哪种入籍途径",
+        "options": {
+          "under2": "⏳ 不到 2 年",
+          "2to3": "📅 2–3 年",
+          "3to5": "🗓️ 3–5 年",
+          "over5": "✅ 5 年以上 — 有资格申请入籍",
+          "military": "🎖️ 军人服役"
+        }
+      },
+      "purpose": {
+        "title": "您的移民目标是什么?",
+        "subtitle": "选择您的主要重点",
+        "options": {
+          "work": "💼 工作机会",
+          "family": "👨‍👩‍👧‍👦 家庭团聚",
+          "study": "🎓 教育",
+          "protection": "🛡️ 寻求保护"
+        }
+      },
+      "purposeGc": {
+        "title": "您想专注于什么?",
+        "subtitle": "您已经有绿卡了 — 接下来您想做什么?",
+        "options": {
+          "citizenship": "🇺🇸 入籍与公民身份",
+          "family": "👨‍👩‍👧‍👦 担保家庭成员",
+          "work": "💼 工作和职业选择"
+        }
+      },
+      "urgency": {
+        "title": "您的时间安排是什么?",
+        "subtitle": "这有助于我们优先处理信息",
+        "options": {
+          "immediate": "🚨 立即(< 1 个月)",
+          "soon": "📅 即将(1–6 个月)",
+          "planning": "📊 计划中(6 个月以上)"
+        }
+      },
+      "hasWorkAuth": {
+        "title": "您有工作许可吗?",
+        "subtitle": "这会影响您的就业选择",
+        "options": {
+          "yes_unrestricted": "✅ 是 - 任何雇主",
+          "yes_restricted": "⚠️ 是 - 仅限特定雇主",
+          "yes_ead": "💳 是 - EAD 卡",
+          "pending": "⏳ 申请审理中",
+          "no": "❌ 无工作许可"
+        }
+      },
+      "countryOfCitizenship": {
+        "title": "您的国籍是哪里?",
+        "subtitle": "这会影响等待时间和签证可用性",
+        "searchPlaceholder": "搜索国家...",
+        "noResults": "未找到 — 点击下一步，我们仍会为您个性化体验",
+        "options": {
+        "china": "🇨🇳 中国",
+        "mexico": "🇲🇽 墨西哥",
+        "india": "🇮🇳 印度",
+        "haiti": "🇭🇹 海地",
+        "philippines": "🇵🇭 菲律宾",
+        "brazil": "🇧🇷 巴西",
+        "nigeria": "🇳🇬 尼日利亚",
+        "canada": "🇨🇦 加拿大",
+        "uk": "🇬🇧 英国",
+        "germany": "🇩🇪 德国",
+        "south_korea": "🇰🇷 韩国",
+        "japan": "🇯🇵 日本",
+        "other": "🌍 其他"
+        }
+      },
+      "expiryTimeline": {
+        "title": "有什么关键日期即将到来吗?",
+        "subtitleDefault": "例如:签证到期、身份结束日期、授权截止日期",
+        "subtitleByVisa": {
+          "H1B": "例如:H-1B 身份结束日期、I-94 到期",
+          "F1": "例如:OPT EAD 到期、项目结束日期、宽限期",
+          "OPT": "例如:OPT EAD 卡到期、90 天失业限制",
+          "L1": "例如:L-1 身份结束日期、I-94 到期",
+          "J1": "例如:DS-2019 项目结束日期、宽限期",
+          "B1B2": "例如:I-94 授权停留到期",
+          "EAD": "例如:EAD 卡到期 — 现在最长有效期为 18 个月",
+          "GC_pending": "例如:EAD/AP 联合卡到期"
+        },
+        "options": {
+          "expired": "🔴 已过期 — 现在需要帮助",
+          "30days": "⚠️ 30 天内 — 紧急",
+          "90days": "📅 90 天内 — 即将提交申请",
+          "6months": "📆 6 个月内 — 提前规划",
+          "year": "📍 1 年内 — 早期规划",
+          "safe": "✅ 1 年以上 — 不紧急"
+        }
+      },
+        "complianceRisk": {
+        "title": "您是否曾遇到过移民方面的挑战?",
+        "subtitle": "这有助于我们为您提供准确的指导。您的回答仅保存在您的设备上，完全私密。",
+        "subtitleStudent": "学生身份有时会变得复杂——这有助于我们为您指引正确的选项。",
+        "options": {
+            "none": "✅ 没有问题 — 目前一切顺利",
+            "gap": "📋 短暂的身份中断",
+            "unauthorized_work": "💼 曾在签证条款之外工作",
+            "overstay": "⏰ 曾超过授权居留期限",
+            "denied": "📄 曾被拒绝或收到 RFE",
+            "prefer_not": "🔒 跳过此问题"
+        }
+        }
+    },
+    "settings": {
+      "loadingProfile": "正在加载档案...",
+      "profile": {
+        "title": "您的档案",
+        "subtitle": "点击任何字段进行更新",
+        "fields": {
+          "goal": "目标",
+          "location": "位置",
+          "country": "国家",
+          "visaStatus": "签证身份",
+          "gcHeld": "绿卡持有",
+          "timeline": "时间安排",
+          "visaExpiry": "签证到期",
+          "language": "语言"
+        }
+      },
+      "fieldOptions": {
+        "purpose": {
+          "title": "您的移民目标是什么?",
+          "options": {
+            "work": "💼 工作机会",
+            "family": "👨‍👩‍👧‍👦 家庭团聚",
+            "study": "🎓 教育",
+            "protection": "🛡️ 寻求保护",
+            "citizenship": "🇺🇸 入籍与公民身份"
+          }
+        },
+        "location": {
+          "title": "您目前在哪里?",
+          "options": {
+            "outside_us": "🌍 美国境外",
+            "inside_us": "🇺🇸 美国境内"
+          }
+        },
+        "currentVisa": {
+          "title": "当前移民身份",
+          "options": {
+            "F1": "📚 F-1 学生",
+            "H1B": "💼 H-1B 工作签证",
+            "L1": "🏢 L-1 调动",
+            "B1B2": "✈️ B-1/B-2 访客",
+            "J1": "🔄 J-1 交流",
+            "OPT": "🎓 OPT/STEM OPT",
+            "EAD": "💳 EAD 持有者",
+            "GC_pending": "⏳ 绿卡审理中",
+            "GC": "🟢 合法永久居民",
+            "other": "📋 其他身份",
+            "none": "❌ 无合法身份",
+            "empty": "⬜ 不适用"
+          }
+        },
+        "countryOfCitizenship": {
+          "title": "国籍",
+            "options": {
+            "china": "🇨🇳 中国",
+            "mexico": "🇲🇽 墨西哥",
+            "india": "🇮🇳 印度",
+            "haiti": "🇭🇹 海地",
+            "philippines": "🇵🇭 菲律宾",
+            "brazil": "🇧🇷 巴西",
+            "nigeria": "🇳🇬 尼日利亚",
+            "canada": "🇨🇦 加拿大",
+            "uk": "🇬🇧 英国",
+            "germany": "🇩🇪 德国",
+            "south_korea": "🇰🇷 韩国",
+            "japan": "🇯🇵 日本",
+            "other": "🌍 其他"
+            }
+        },
+        "urgency": {
+          "title": "您的时间安排是什么?",
+          "options": {
+            "immediate": "🚨 立即(< 1 个月)",
+            "soon": "📅 即将(1–6 个月)",
+            "planning": "📊 计划中(6 个月以上)",
+            "empty": "⬜ 不适用"
+          }
+        },
+        "expiryTimeline": {
+          "title": "签证到期日",
+          "options": {
+            "expired": "🔴 已过期",
+            "30days": "⚠️ 30 天内",
+            "90days": "📅 90 天内",
+            "6months": "📆 6 个月内",
+            "year": "📍 1 年内",
+            "safe": "✅ 1 年以上",
+            "empty": "⬜ 不适用"
+          }
+        },
+        "gcYearsHeld": {
+          "title": "您持有绿卡多久了?",
+          "options": {
+            "under2": "⏳ 不到 2 年",
+            "2to3": "📅 2–3 年",
+            "3to5": "🗓️ 3–5 年",
+            "over5": "✅ 5 年以上 — 有资格申请入籍",
+            "military": "🎖️ 军人服役",
+            "empty": "⬜ 不适用"
+          }
+        },
+        "language": {
+          "title": "应用语言",
+          "options": {
+            "en": "🇺🇸 English",
+            "es": "🇪🇸 Español",
+            "pt": "🇧🇷 Português",
+            "zh": "🇨🇳 中文",
+            "ht": "🇭🇹 Kreyòl"
+          }
+        }
+      },
+      "about": {
+        "title": "关于 OnePath",
+        "version": "版本",
+        "dataUpdated": "数据更新",
+        "sources": "来源",
+        "sourcesValue": "USCIS、DOS、DOL、联邦公报"
+      },
+      "disclaimer": "OnePath 仅出于教育目的提供移民信息。本应用不是律师事务所,不提供法律建议。请咨询持牌移民律师以获得针对您具体情况的建议。",
+      "privacy": {
+        "label": "🔒 隐私",
+        "value": "所有数据均保留在您的设备上"
+      },
+      "reset": {
+        "button": "重置应用并重新开始",
+        "confirmTitle": "重置应用",
+        "confirmBody": "这将清除所有数据并重启设置流程。此操作无法撤销。",
+        "confirmAction": "重置",
+        "doneTitle": "应用已重置",
+        "doneBody": "请关闭并重新打开应用以重新开始。"
+      },
+      "modal": {
+        "cancel": "取消"
+      },
+      "updateAlert": {
+        "title": "已更新",
+        "body": "您的档案已更新。返回主页查看更改。"
+      },
+      "languagePicker": {
+        "currentLanguage": "语言",
+        "changeLanguage": "更改语言",
+        "autoDetected": "从设备自动检测"
+      }
+    },
+    "onboardingSummary": {
+      "currentViability": "当前可行性",
+      "recommendedActions": "建议操作",
+      "immediateHelp": "🆘 立即帮助",
+      "exploreAllOptions": "探索所有选项",
+      "statusInfo": {
+        "currentStatus": "当前身份:{{visa}}",
+        "workAuthorization": "工作许可:{{auth}}",
+        "country": "国家:{{country}}",
+        "countryOfBirth": "出生国:{{country}}",
+        "greenCardHeld": "绿卡持有:{{years}}",
+        "backlogged": "⚠️ 受国家配额积压影响",
+        "backlogClear": "✅ 优先日期已到",
+        "needsStatusChange": "⚠️ 需要从 B-1/B-2 转换身份"
+      },
+      "alerts": {
+        "expired": {
+          "message": "🔴 您的身份已过期。需要立即采取行动!",
+          "action": "今天就咨询移民律师"
+        },
+        "expiry30days": {
+          "message": "⚠️ 关键截止日期将在 30 天内到来",
+          "action": "立即提交延期/续签申请"
+        },
+        "outOfStatus": {
+          "message": "⚠️ 检测到失去身份情况",
+          "action": "强烈建议进行法律咨询"
+        },
+        "noWorkAuth": {
+          "message": "📋 无工作许可 — 无法开始工作",
+          "action": "必须先获得适当的工作签证"
+        },
+        "asylumDeadline": {
+          "message": "⏰ 庇护必须在抵达后 1 年内提交申请",
+          "action": "立即咨询律师"
+        },
+        "citizenshipUnder2": {
+          "message": "⏳ 尚不符合申请入籍的资格",
+          "action": "您需要至少 3 年(已与美国公民结婚)或 5 年(标准)的绿卡居住时间"
+        },
+        "citizenship2to3": {
+          "message": "📅 接近资格 — 检查您的具体路径",
+          "action": "如果已与美国公民结婚,您可能现在就符合资格。否则请等到 5 年期满。"
+        },
+        "citizenshipOver5": {
+          "message": "✅ 您现在有资格提交 N-400 表格",
+          "action": "您可以立即申请 — 开始收集您的文件"
+        }
+      },
+      "work": {
+        "title": "基于工作的移民策略",
+        "summary": {
+          "opt_india": "您正在 OPT — 是时候找 H-1B 担保人了。FY2027 抽签注册时间为 2026 年 3 月 4 日至 19 日。注意:USCIS 现在使用按薪资加权的选择流程,优先考虑高薪职位。印度有显著的 EB-2/EB-3 积压(超过 12 年)。",
+          "opt_other": "您正在 OPT — 是时候找 H-1B 担保人了。FY2027 抽签注册时间为 2026 年 3 月 4 日至 19 日。注意:USCIS 现在使用按薪资加权的选择流程,优先考虑高薪职位。请尽早开始准备您的申请。",
+          "restricted": "您的工作许可与特定雇主绑定。换工作需要提交新的申请。",
+          "urgentNoAuth": "⚠️ 没有工作许可,您无法开始工作。加急处理(现在 $2,965)可以将某些签证加速到 15 天。",
+          "default": "基于工作的移民需要雇主担保。从找到愿意担保您签证的雇主开始。",
+          "haiti_tps": "如果您的EAD基于TPS，请注意根据H.R. 1，TPS EAD现在最多有效1年。请在到期前提前申请续签。如果您的TPS指定状态不确定，请考虑探索其他途径。"
+        },
+        "primaryAction": {
+          "expiredStatus": "🆘 处理过期身份",
+          "findH1bSponsor": "寻找 H-1B 担保人",
+          "getWorkAuth": "获取工作许可",
+          "exploreWorkVisas": "探索工作签证"
+        },
+        "secondaryAction": {
+          "h1bLotteryInfo": "H-1B 抽签信息",
+          "documentChecklist": "文件清单"
+        },
+        "pathway": {
+          "title": "基于工作的移民",
+          "subtitle": "H-1B、L-1、O-1 签证",
+          "description": "适用于熟练工人和专业人士"
+        },
+        "warnings": {
+          "backlog": "📊 EB-2/EB-3 绿卡对您的国家有 12+ 年的等待期",
+          "cantWorkOnB1B2": "⚠️ 无法在 B-1/B-2 身份下工作 — 需要更换签证",
+          "urgentExpiry": "🔴 紧急:立即处理即将过期或已过期的身份",
+          "optUnemployment": "⏰ OPT 有 90 天失业限制 — 请仔细跟踪",
+          "eadValidity": "📋 EAD 有效期从 5 年缩短至 18 个月,适用于自 2025 年 12 月起的身份调整申请人"
+        },
+        "recommendations": {
+          "h1bLottery": "✅ 申请 H-1B 抽签(每年三月 — 现在按薪资加权)",
+          "dayOneCpt": "✅ 考虑 Day-1 CPT 项目作为备选",
+          "cantWorkApplyFirst": "📋 没有许可不能工作 — 先申请",
+          "tnVisa": "🍁 考虑 TN 签证 — 比 H-1B 对加拿大人更快",
+          "nonCapVisas": "💡 L-1 和 O-1 签证不受配额限制 — 如果符合条件请探索"
+        }
+      },
+      "family": {
+        "title": "基于家庭的移民路径",
+        "summary": {
+          "backloggedCountry": "⚠️ 您的国家在家庭优先类别中有显著积压。直系亲属(美国公民的配偶/父母)没有配额限制,但其他类别可能需要 10-20 年。",
+          "insideUsWithVisa": "如果您保持合法身份并且有签证可用,您可能可以在不离开美国的情况下调整身份。",
+          "default": "家庭担保是一条稳定的路径,但根据您的关系和出生国可能需要数年时间。"
+        },
+        "primaryAction": {
+          "viewFamilyPathways": "查看家庭路径"
+        },
+        "secondaryAction": {
+          "checkVisaBulletin": "查看签证公告",
+          "processingTimes": "处理时间"
+        },
+        "pathway": {
+          "title": "基于家庭的移民",
+          "subtitle": "婚姻、父母、兄弟姐妹",
+          "description": "与家人团聚"
+        },
+        "warnings": {
+          "expectedWait": "⏰ 预计等待:家庭优先类别 {{range}}",
+          "priorIssues": "⚠️ 之前的移民问题可能影响资格",
+          "proclamations": "📋 总统公告影响了某些国家的签证发放率 — FY2026 可能出现回退"
+        },
+        "waitRanges": {
+          "india": "5-15 年",
+          "china": "5-12 年",
+          "mexico": "10-20 年",
+          "haiti": "3-8年",
+          "philippines": "10-15 年"
+        },
+        "recommendations": {
+          "fileI130": "📄 尽快提交 I-130 以确立您的优先日期",
+          "considerEmployment": "💼 同时考虑基于工作的选项",
+          "maintainStatus": "📋 等待期间保持合法身份"
+        }
+      },
+      "study": {
+        "title": "学生路径指南",
+        "summary": {
+          "changeFromB1B2": "您需要将身份从 B-1/B-2 转换为 F-1。先申请到 SEVP 认证的学校,然后提交 I-539 转换身份。",
+          "alreadyOnF1": "您已经持有 F-1。考虑毕业后申请 OPT(提前 90 天申请),并与潜在雇主探索 H-1B 选项。STEM OPT 可增加 24 个月。",
+          "default": "F-1 学生签证允许学习和有限的工作(CPT/OPT)。毕业后,您可以使用 OPT 进行实践培训并过渡到 H-1B。"
+        },
+        "primaryAction": {
+          "studentVisaOptions": "学生签证选项"
+        },
+        "secondaryAction": {
+          "lifeSetupGuide": "美国生活指南"
+        },
+        "pathway": {
+          "title": "学生路径",
+          "subtitle": "F-1、J-1 签证",
+          "description": "在美国学习"
+        },
+        "warnings": {
+          "maintainUntilF1": "📚 必须保持身份直到 F-1 获批",
+          "cantStartUntilApproved": "⏰ 在身份转换获批之前不能开始上学"
+        },
+        "recommendations": {
+          "sevpSchools": "🎓 仅申请 SEVP 认证的学校",
+          "financialProof": "💰 提供财务支持证明",
+          "fullTimeEnrollment": "📋 保持全日制注册",
+          "cptOpt": "💼 使用 CPT/OPT 获取工作经验",
+          "stemMajor": "🔬 选择 STEM 专业可获得共 36 个月的 OPT"
+        }
+      },
+      "protection": {
+        "title": "保护与人道主义救济",
+        "summary": {
+          "insideUs": "庇护必须在抵达后 1 年内提交申请。您可以在提交后 150 天申请工作许可。注意:庇护申请人的 EAD 有效期现在最长为 18 个月,自动延期已被取消。该过程复杂 — 强烈建议请律师代理。",
+          "outsideUs": "存在多种保护项目,包括难民安置和人道主义假释。请联系联合国难民署(UNHCR)或安置机构。"
+        },
+        "primaryAction": {
+          "emergencyResources": "🆘 紧急资源",
+          "protectionOptions": "保护选项"
+        },
+        "secondaryAction": {
+          "legalAidResources": "法律援助资源"
+        },
+        "warnings": {
+          "immediateLegal": "⚠️ 保护案件需要立即的法律协助",
+          "asylumVolatile": "⚠️ 庇护政策环境目前不稳定 — 请寻求最新的法律咨询"
+        },
+        "resources": {
+          "uscis": "USCIS",
+          "uscisPhone": "1-800-375-5283",
+          "legalAid": "法律援助",
+          "legalAidUrl": "immigrationadvocates.org",
+          "unhcr": "联合国难民署",
+          "unhcrUrl": "help.unhcr.org"
+        }
+      },
+      "citizenship": {
+        "title": "您通往美国公民身份的道路",
+        "summary": {
+          "military": "现役军人和退伍军人可能符合加急入籍的条件。在指定敌对时期的现役服务允许立即获得资格。军人申请人的 N-400 申请费免除。",
+          "over5": "您满足 5 年连续居住要求,现在可以提交 N-400 表格。您需要通过英语考试和公民学考试(100 道题)。从提交到宣誓仪式的处理时间通常为 8-14 个月。",
+          "3to5": "如果您与美国公民结婚并共同居住,您可能符合 3 年规则的资格。这要求在这 3 年期间有 18 个月的实际居住和连续居住。否则,您需要等到满 5 年。",
+          "2to3": "您正在接近资格。标准路径要求作为绿卡持有者满 5 年,但如果您与美国公民结婚,您可能在仅 3 年后就符合资格。利用这段时间准备您的文件并学习公民学考试。",
+          "under2": "您尚未符合入籍资格,但现在是开始准备的好时机。跟踪您的旅行历史,保持您的绿卡处于良好状态,并开始学习 100 道公民学考试题。",
+          "default": "归化是成为美国公民的过程。大多数绿卡持有者在 5 年连续居住后符合资格。如果您与美国公民结婚,您可能在仅 3 年后就符合资格。"
+        },
+        "primaryAction": {
+          "startN400": "开始 N-400 申请",
+          "check3Year": "检查 3 年资格",
+          "militaryInfo": "军人入籍信息",
+          "timelineRequirements": "入籍时间表与要求"
+        },
+        "secondaryAction": {
+          "n400Checklist": "N-400 文件清单"
+        },
+        "pathway": {
+          "title": "公民身份之路",
+          "subtitle": "入籍与 N-400",
+          "description": "成为美国公民"
+        },
+        "warnings": {
+          "priorViolations": "⚠️ 之前的移民违规可能影响良好道德品行要求 — 请咨询律师",
+          "priorDenial": "⚠️ 之前申请被拒可能影响入籍 — 仔细审查情况",
+          "extendedTrips": "✈️ 长期出国旅行(6 个月以上)可能中断连续居住 — 仔细跟踪您的旅行",
+          "goodMoralCharacter": "📋 您必须在提交申请前的整个 5 年(或 3 年)期间保持良好的道德品行",
+          "threeYearMarriage": "💍 3 年规则要求您在提交申请时仍与美国公民配偶保持婚姻关系并共同居住"
+        },
+        "recommendations": {
+          "fileN400": "📄 提交 N-400 表格 — $760 纸质 / $710 在线(军人:免费)",
+          "studyCivics": "📚 在 uscis.gov/citizenship/tessprep 学习 100 道公民学题目",
+          "gatherDocs": "🗂️ 收集报税单、旅行记录和绿卡复印件",
+          "startStudying": "📚 现在就开始学习 100 道公民学题目 — 抢先准备",
+          "trackTrips": "✈️ 仔细跟踪所有国际旅行(进出美国的日期)",
+          "keepTaxes": "📋 保持税务申报最新 — 入籍要求",
+          "renewGc": "💳 如果您的绿卡在符合入籍资格之前到期,请续签",
+          "consultAttorney": "👨‍⚖️ 如果您有任何犯罪历史或之前的违规行为,请咨询移民律师"
+        }
+      },
+      "default": {
+        "title": "您的移民之旅",
+        "summary": "让我们根据您当前的情况探索您的选择。",
+        "primaryAction": "探索所有路径"
+      },
+      "urgentForm": {
+        "labelUrgent": "立即提交",
+        "labelAction": "需要采取行动",
+        "feeKey": "费用:",
+        "deadlineKey": "截止日期:",
+        "forms": {
+          "H1B": {
+            "form": "I-129 表格延期",
+            "purpose": "延长您的 H-1B 身份",
+            "fee": "$1,015 + $2,965 加急(15 天)",
+            "deadlineUrgent": "今天就提交 — 雇主必须立即行动",
+            "deadlineSoon": "至少在到期前 6 个月提交",
+            "tip": "加急处理可在 15 天内得到决定。您的雇主提交,不是您。"
+          },
+          "F1": {
+            "form": "立即联系您的 DSO",
+            "purpose": "项目延期或 OPT 申请",
+            "fee": "免费(DSO 操作)/ I-765 OPT:$470 在线",
+            "deadlineUrgent": "今天就联系 DSO — 项目结束后宽限期仅有 60 天",
+            "deadlineSoon": "毕业前 90 天计划 OPT",
+            "tip": "您的指定学校官员(DSO)必须先延长您的 I-20,您才能提交任何申请。"
+          },
+          "OPT": {
+            "form": "I-765 表格 STEM 延期",
+            "purpose": "延长 OPT 24 个月(STEM 毕业生)",
+            "fee": "$470 在线 / $520 纸质",
+            "deadlineUrgent": "立即提交 — 在 EAD 到期前最多 90 天申请",
+            "deadlineSoon": "现在就申请 — USCIS 处理需要 3-5 个月",
+            "tip": "必须有 STEM 学位和 E-Verify 雇主。在当前 EAD 到期前提交,否则将失去工作许可。"
+          },
+          "L1": {
+            "form": "I-129 表格延期",
+            "purpose": "延长您的 L-1 身份",
+            "fee": "$1,015 + 可选 $2,965 加急",
+            "deadlineUrgent": "立即提交 — 雇主必须担保",
+            "deadlineSoon": "在到期前 6 个月提交",
+            "tip": "L-1A 总计最长 7 年,L-1B 最长 5 年。加急可在 15 天内得到决定。"
+          },
+          "J1": {
+            "form": "DS-2019 项目延期",
+            "purpose": "延长您的 J-1 交流访问者项目",
+            "fee": "免费(需要担保人操作)",
+            "deadlineUrgent": "立即联系您的项目担保人",
+            "deadlineSoon": "在结束日期前 3 个月联系担保人",
+            "tip": "只有您的项目担保人可以延长 DS-2019。您不能自己提交。"
+          },
+          "B1B2": {
+            "form": "I-539 表格",
+            "purpose": "延长您的 B-1/B-2 访客停留",
+            "fee": "$370 在线 / $420 纸质",
+            "deadlineUrgent": "立即提交 — 逾期居留有严重后果",
+            "deadlineSoon": "至少在 I-94 到期前 45 天提交",
+            "tip": "必须在 I-94 到期之前提交。即使逾期一天也可能影响未来的签证申请。"
+          },
+          "EAD": {
+            "form": "I-765 表格续期",
+            "purpose": "续签您的工作许可证",
+            "fee": "$470 在线 / $520 纸质",
+            "deadlineUrgent": "立即提交 — EAD 有效期现在最长 18 个月",
+            "deadlineSoon": "在到期前 6 个月提交 — 处理需要 3-5 个月",
+            "tip": "自 2025 年 10 月起取消自动延期。提早提交 — EAD 间隙意味着您不能合法工作。"
+          },
+          "GC_pending": {
+            "form": "I-765 / I-131 表格续期",
+            "purpose": "续签您的 EAD/回美证(Advance Parole)联合卡",
+            "fee": "$260(在 2024 年 4 月之后提交的待批 I-485)",
+            "deadlineUrgent": "立即提交 — 不要让联合卡过期",
+            "deadlineSoon": "在到期前 6 个月提交",
+            "tip": "在 I-485 待批期间,持无效的回美证旅行可能放弃您的绿卡申请。"
+          }
+        }
+      }
+    },
+    "warnings": {
+      "h1bCap": "FY2027 H-1B 注册期于 2026 年 3 月 19 日截止。新的薪资加权抽签优先考虑高薪职位。",
+      "h1bWeightedLottery": "FY2027 新规:USCIS 使用加权选择流程。更高的薪资等级被选中的几率显著更高。入门级职位中签几率降低。",
+      "h1bFeeAlert": "总统公告 10973:对于需要领事处理(受益人在美国境外)的某些 H-1B 申请,适用 $100,000 的额外费用。此费用是在所有常规申请费之外的。",
+      "h1bPremiumIncrease": "加急处理费用自 2026 年 3 月 1 日起上调。I-129/I-140:现为 $2,965。I-765:现为 $1,780。I-539:现为 $2,075。",
+      "familyLongWait": "由于年度签证限额,某些家庭优先类别有多年的等待期。F4 兄弟姐妹类别对某些国家可能等待 15 年以上。",
+      "familyPolicyShifts": "总统公告降低了某些国家的签证发放率。其他国家的日期有所推进,但 FY2026 后期可能出现回退。",
+      "indiaEbBacklog": "印度 EB-2 最终行动日期:2013 年 9 月 15 日。EB-3:2013 年 11 月 15 日。积压仍超过 12 年。2026 年初出现一些前进。",
+      "chinaEbBacklog": "中国 EB-2 最终行动日期:2021 年 9 月 1 日。EB-3:2021 年 5 月 1 日。中国大陆出生的申请人多年积压持续。",
+      "eadValidityReduced": "自 2025 年 12 月 5 日起生效:EAD 最长有效期从 5 年缩短至 18 个月,适用于身份调整申请人、难民、庇护者及相关类别。提早提交续签 — 工作许可的间隙现在更容易出现。",
+      "eadAutoExtensionEnded": "自 2025 年 10 月 30 日起生效:大多数类别的 540 天 EAD 自动延期已被取消。EAD 现在按其打印日期到期。提前至少 6 个月计划续签。",
+      "eadTpsParoleOneYear": "根据 H.R. 1(One Big Beautiful Bill Act):TPS 和假释的 EAD 现在最长有效期为 1 年或授权期结束之日,以较短者为准。",
+      "asylumVolatility": "庇护政策正在经历积极变化,包括加强的审查规则和拟议的法规。将此视为高波动性路径,并咨询律师以获取最新指导。",
+      "studentOptPlanning": "在毕业前最多 90 天申请 OPT。STEM OPT 需要 E-Verify 雇主。处理当前需要约 4.5 个月 — 请相应计划。",
+      "processingTimesDisclaimer": "USCIS 处理时间在最近几个月显著放缓。实际时间可能超过公布的估计。在可用时考虑加急处理。"
+    },
+    "pathwayViability": {
+      "disclaimer": "可行性评估是基于当前政策和处理条件的一般指导。个人情况各异。请咨询移民律师以获取个性化建议。",
+      "levels": {
+        "HIGH": {
+          "label": "高可行性",
+          "description": "结构稳定的路径,流程可预测"
+        },
+        "CONDITIONAL": {
+          "label": "有条件",
+          "description": "对合适的候选人可行,但范围更窄或竞争激烈"
+        },
+        "LOWER": {
+          "label": "较低 / 不稳定",
+          "description": "存在重大障碍、长时间等待或政策不确定性"
+        }
+      },
+      "pathways": {
+        "H1B": {
+          "shortReason": "配额竞争激烈。新的加权抽签优先考虑高薪职位。",
+          "details": {
+            "d1": "FY2027 引入薪资加权选择 — 入门级职位中签几率降低。",
+            "d2": "对于某些领事处理的申请额外收取 $100,000 费用。",
+            "d3": "注册费提高至 $215。加急处理现为 $2,965。",
+            "d4": "需求一直超过 85,000 年度配额的 4–8 倍。"
+          },
+          "recommendation": "最适合薪资在 OEWS 第三或第四级的候选人。如果符合条件,请考虑 O-1 或 L-1 替代方案。"
+        },
+        "L1": {
+          "shortReason": "不受配额限制。适合符合条件的跨国公司员工。",
+          "details": {
+            "d1": "不受 H-1B 年度配额或抽签影响。",
+            "d2": "需要在合格跨国公司任职 1 年。",
+            "d3": "资格更窄,但避免了配额季的瓶颈。",
+            "d4": "全年都可以申请。"
+          },
+          "recommendation": "对合适的候选人具有高可行性。如果你为跨国公司工作 1 年以上,这可能比 H-1B 更强。"
+        },
+        "O1": {
+          "shortReason": "无配额限制,但需要杰出能力证据。",
+          "details": {
+            "d1": "不受年度配额限制 — 可以随时申请。",
+            "d2": "需要文档化的杰出能力或成就。",
+            "d3": "对创始人、研究人员、创意人士、运动员具有战略吸引力。",
+            "d4": "更难符合条件,但如果符合条件,比 H-1B 更可预测。"
+          },
+          "recommendation": "如果你有奖项、出版物、媒体报道或高薪证据,在考虑 H-1B 之前先探索这条路径。"
+        },
+        "IMMEDIATE_RELATIVE": {
+          "shortReason": "最强的家庭路径。不受优先级积压系统限制。",
+          "details": {
+            "d1": "美国公民的直系亲属不受国家限额限制。",
+            "d2": "包括配偶、21 岁以下未婚子女和成年公民的父母。",
+            "d3": "处理时间以月为单位,而不是年(与优先级类别不同)。",
+            "d4": "结构稳定且文档完善的流程。"
+          },
+          "recommendation": "如果你符合直系亲属资格,这是最可靠的路径之一。"
+        },
+        "FAMILY_PREFERENCE": {
+          "shortReason": "根据类别和国家,积压 5–20+ 年。",
+          "details": {
+            "d1": "F1、F2B、F3、F4 类别都面临多年等待。",
+            "d2": "墨西哥和菲律宾面临最长的积压(部分 20+ 年)。",
+            "d3": "总统公告进一步影响了某些国家的发放率。",
+            "d4": "FY2026 后期可能出现回退。"
+          },
+          "recommendation": "尽早申请以建立优先日期,但要为长时间等待做准备。考虑是否有其他路径可以并行进行。"
+        },
+        "F1_STUDENT": {
+          "shortReason": "稳定的入境路径。OPT/STEM OPT 提供工作过渡。",
+          "details": {
+            "d1": "F-1 身份、OPT 和 24 个月的 STEM OPT 延期保持活跃且结构完整。",
+            "d2": "不是直接的移民路径,但是一条现实的'入境、学习、工作、然后过渡'路线。",
+            "d3": "F-1 的领事馆等待时间通常比其他签证类型短。",
+            "d4": "SEVIS 费用:F-1 学生 $350。"
+          },
+          "recommendation": "对年轻申请人来说是最实用的入境路径之一。仔细规划你的 STEM 专业以充分利用 36 个月的 OPT 窗口。"
+        },
+        "EB_GENERAL": {
+          "shortReason": "对大多数国家可行,但印度/中国面临严重积压。",
+          "details": {
+            "d1": "其他国家的 EB-2 和 EB-3 相对接近当前或等待时间较短。",
+            "d2": "印度 EB-2:最终行动日期 2013 年 9 月 15 日(12+ 年积压)。",
+            "d3": "中国 EB-2:最终行动日期 2021 年 9 月 1 日(4+ 年积压)。",
+            "d4": "国家配额限制造成等待时间的巨大差异。"
+          },
+          "recommendation": "对于无积压国家,这是一条强势路径。对于印度/中国,请为非常长的等待做准备,并探索 EB-1 或 NIW 等替代方案。"
+        },
+        "ASYLUM": {
+          "shortReason": "政策环境不稳定。加强审查正在实施。",
+          "details": {
+            "d1": "积极的政策变化,包括拟议的更严格审查规则。",
+            "d2": "庇护申请人的 EAD 有效期缩短至 18 个月。",
+            "d3": "EAD 自动延期被取消(自 2025 年 10 月 30 日起生效)。",
+            "d4": "不应将其视为稳定的'策略' — 这是为有真正需要的人提供的保护路径。"
+          },
+          "recommendation": "如果你有合理的迫害恐惧,请立即寻求法律咨询。不要将庇护作为有计划的移民策略。"
+        },
+        "CONSULAR_PROCESSING": {
+          "shortReason": "通过 NVC 为合格的家庭关系提供可追踪的流程。",
+          "details": {
+            "d1": "国务院的 NVC 和 IV 排程工具使这条路径更可追踪。",
+            "d2": "对直系亲属和合格的家庭/就业案例结构稳定。",
+            "d3": "可能很慢,但流程通过官方工具可见。",
+            "d4": "总统公告影响了某些国家的处理。"
+          },
+          "recommendation": "如果你在国外并已批准合格申请,这是一条文档完善且可追踪的路径。"
+        }
+      },
+      "modal": {
+        "recommendation": "建议",
+        "updated": "更新时间:{{date}}",
+        "close": "关闭"
+      }
+    },
+    "resources": {
+      "disclaimer": "列表仅供参考,不构成法律建议。",
+      "categories": {
+        "all": "所有资源",
+        "government": "政府",
+        "legal": "法律帮助",
+        "nonprofit": "非营利组织",
+        "education": "教育"
+      },
+      "items": {
+        "uscis": {
+          "name": "美国公民及移民服务局 (USCIS)",
+          "description": "美国官方移民机构",
+          "services": {
+            "forms": "表格",
+            "caseStatus": "案件状态",
+            "appointments": "预约"
+          }
+        },
+        "dos_visa": {
+          "name": "国务院 — 签证服务",
+          "description": "签证公告、领事馆预约、领事处理",
+          "services": {
+            "visaBulletin": "签证公告",
+            "embassyInfo": "领事馆信息",
+            "ds160": "DS-160"
+          }
+        },
+        "doj_eoir": {
+          "name": "EOIR 移民法庭",
+          "description": "",
+          "services": {
+            "courtInfo": "法庭信息",
+            "hearingNotices": "听证通知"
+          }
+        },
+        "dol_flag": {
+          "name": "劳工部 — FLAG 系统",
+          "description": "劳工证、现行工资、LCA 申报",
+          "services": {
+            "perm": "PERM",
+            "lca": "LCA",
+            "prevailingWages": "现行工资"
+          }
+        },
+        "imm_advocates": {
+          "name": "Immigration Advocates Network",
+          "description": "免费及低成本移民法律帮助目录",
+          "services": {
+            "proBono": "公益法律服务",
+            "knowYourRights": "了解你的权利"
+          }
+        },
+        "lawhelp": {
+          "name": "LawHelp.org",
+          "description": "在你所在的州寻找免费法律援助",
+          "services": {
+            "legalAidDirectory": "法律援助目录",
+            "stateResources": "各州资源"
+          }
+        },
+        "aila": {
+          "name": "AILA Lawyer Referral",
+          "description": "美国移民律师协会 — 寻找律师",
+          "services": {
+            "referrals": "律师推荐",
+            "lawUpdates": "移民法更新"
+          }
+        },
+        "catholic_charities": {
+          "name": "Catholic Charities",
+          "description": "移民法律服务和难民援助",
+          "services": {
+            "legalAid": "法律援助",
+            "refugeeServices": "难民服务"
+          }
+        },
+        "raices": {
+          "name": "RAICES",
+          "description": "难民和移民教育及法律服务中心",
+          "services": {
+            "legalRep": "法律代理",
+            "bondAssistance": "保释金援助"
+          }
+        },
+        "clinic": {
+          "name": "CLINIC — Catholic Legal Immigration Network",
+          "description": "非营利移民法律服务项目网络",
+          "services": {
+            "network": "法律服务网络",
+            "training": "培训",
+            "advocacy": "倡导"
+          }
+        },
+        "usa_hello": {
+          "name": "USAHello",
+          "description": "为移民提供免费课程和资源",
+          "services": {
+            "englishClasses": "英语课程",
+            "citizenshipPrep": "入籍准备",
+            "gedPrep": "GED 准备"
+          }
+        },
+        "uscis_civics": {
+          "name": "USCIS 公民资源中心",
+          "description": "官方公民考试学习材料",
+          "services": {
+            "civicsTestPrep": "公民考试准备",
+            "studyMaterials": "学习材料",
+            "practiceTests": "练习测试"
+          }
+        }
+      },
+      "emergency": {
+        "humanTrafficking": "人口贩卖热线",
+        "domesticViolence": "家庭暴力热线",
+        "uscisContactCenter": "USCIS 联系中心"
+      }
+    },
+    "policyTracker": {
+      "policies": {
+        "h1b100kFee": {
+          "title": "$100,000 H-1B 费用 — 领事处理",
+          "summary": "对某些批准领事处理的 H-1B 申请需要额外支付 $100,000。",
+          "details": "适用于受益人在美国境外或申请被批准为领事处理的情况。通常不适用于美国境内的 F-1→H-1B 身份转换。雇主总成本可能超过 $106,000。",
+          "actions": {
+            "a1": "确定受益人是否符合身份转换条件(避免该费用)",
+            "a2": "如果符合条件,考虑 L-1 或 O-1 替代方案",
+            "a3": "如果需要领事处理,请相应预算"
+          },
+          "impactByStatus": {
+            "F1": "中等 — F-1→H-1B 身份转换通常避免此费用",
+            "OPT": "中等 — 符合 cap-gap 资格的 OPT 持有者可以申请身份转换",
+            "H1B": "高 — 需要领事处理的转移会触发该费用",
+            "B1B2": "高 — 必须使用领事处理,费用适用"
+          }
+        },
+        "eadValidity18Months": {
+          "title": "EAD 有效期缩短至 18 个月",
+          "summary": "EAD 最长有效期从 5 年缩短至 18 个月,适用于身份调整申请人、难民、庇护者及相关类别。",
+          "details": "影响在 2025 年 12 月 5 日或之后提交的待审及新的 I-765 申请。不影响 OPT、STEM OPT、H-4、J-2 或 L-2 EAD。现有 EAD 保留其打印的到期日期。",
+          "actions": {
+            "a1": "在到期前至少 6 个月提交 EAD 续签",
+            "a2": "无 540 天自动延期 — 计划潜在的工作间隙",
+            "a3": "仔细跟踪到期日期"
+          },
+          "impactByStatus": {
+            "GC_pending": "关键 — 必须每 18 个月续签 EAD",
+            "EAD": "高 — 检查你的 EAD 属于哪个类别",
+            "H1B": "低 — H-1B 身份不受影响",
+            "F1": "低 — OPT EAD 不受此政策影响"
+          }
+        },
+        "eadAutoExtensionEnded": {
+          "title": "540 天 EAD 自动延期被取消",
+          "summary": "大多数类别的 540 天 EAD 自动延期已结束。EAD 现在按打印日期到期。",
+          "details": "以前,及时提交的 EAD 续签会自动将旧 EAD 延长 540 天。现在不再如此。如果 USCIS 在你的 EAD 到期日期之前没有审定你的续签,你必须停止工作。",
+          "actions": {
+            "a1": "尽早提交续签(到期前 6 个月)",
+            "a2": "如果可用,考虑对 I-765 进行加急处理($1,780)",
+            "a3": "如果可能,保持替代身份"
+          }
+        },
+        "h1bWeightedLottery": {
+          "title": "H-1B 薪资加权抽签 (FY2027+)",
+          "summary": "USCIS 用薪资加权选择系统取代了随机 H-1B 抽签。薪资越高 = 几率越好。",
+          "details": "第一级(入门)薪资获得 1 倍几率。第四级(专家)薪资获得最高 4 倍几率。注册必须包括 SOC 代码和 OEWS 薪资水平。首次应用于 FY2027 注册(2026 年 3 月 4-19 日)。",
+          "actions": {
+            "a1": "提供有竞争力的薪资以最大化中签几率",
+            "a2": "确保注册中的 SOC 代码和薪资水平正确",
+            "a3": "如果你的薪资水平 H-1B 几率不利,考虑 O-1 或 L-1"
+          },
+          "impactByStatus": {
+            "OPT": "高 — 入门级职位中签几率显著降低",
+            "F1": "高 — 影响毕业后的 H-1B 前景",
+            "H1B": "中等 — 如果需要新注册则影响转移"
+          }
+        },
+        "premiumProcessingFeeIncrease": {
+          "title": "加急处理费用上调",
+          "summary": "所有加急处理费用自 2026 年 3 月 1 日起上调约 5.7%。",
+          "details": "I-129/I-140:$2,965(原 $2,805)。I-539:$2,075(原 $1,965)。I-765:$1,780(原 $1,685)。3 月 1 日前邮戳的申请可使用旧费用。",
+          "actions": {
+            "a1": "为更高的加急处理成本做预算",
+            "a2": "3 月 1 日或之后邮戳的申请必须包含新费用",
+            "a3": "费用错误将导致拒绝"
+          }
+        },
+        "visaBulletinProclamationImpact": {
+          "title": "总统公告影响签证发放",
+          "summary": "公告 10949 和 10998 减少了某些国籍的移民签证发放。其他国家的日期有所推进。",
+          "details": "某些家庭和就业类别已为非受影响国家推进。随着需求显现或公告变化,FY2026 后期可能出现回退。",
+          "actions": {
+            "a1": "查看 2026 年 3 月签证公告以获取当前日期",
+            "a2": "当日期到期时及时提交 I-485",
+            "a3": "每月监控回退风险"
+          }
+        },
+        "tpsParoleEadOneYear": {
+          "title": "TPS/假释 EAD — 最长 1 年",
+          "summary": "H.R. 1(One Big Beautiful Bill Act)将 TPS 和假释 EAD 限制为 1 年或授权期结束之日。",
+          "details": "TPS 受益人和假释人员的初次和续签 EAD 现在最长有效期为 1 年或授权期结束日期之间的较短者。通过 2025 年 7 月 22 日的联邦公报通知实施。",
+          "actions": {
+            "a1": "在到期前提早提交续签",
+            "a2": "为更频繁的申请费用做预算",
+            "a3": "仔细跟踪授权结束日期"
+          }
+        },
+        "indiaEbBacklogUpdate": {
+          "title": "印度 EB-2/EB-3 — 12+ 年积压",
+          "summary": "印度 EB-2 最终行动日期:2013 年 9 月 15 日。EB-3:2013 年 11 月 15 日。2026 年初出现一些前进。",
+          "details": "EB-2 印度从 2013 年 5 月 15 日(2025 年 1 月)推进到 2013 年 9 月 15 日(2026 年 3 月)。EB-3 印度推进至 2013 年 11 月 15 日。提交日期显示进一步推进。2026 年 4 月公告显示进一步推进。",
+          "actions": {
+            "a1": "保持 H-1B 身份 — 不要让其过期",
+            "a2": "基于已批准的 I-140 提交 H-1B 延期",
+            "a3": "如果符合条件,考虑 EB-1A/EB-1B",
+            "a4": "如果财务可行,探索 EB-5 作为替代方案"
+          }
+        },
+        "h4EadPremiumAvailable": {
+          "title": "H-4 EAD 加急处理可用",
+          "summary": "独立的 H-4 EAD 申请可用加急处理。",
+          "details": "30 天处理,$1,780(2026 年 3 月 1 日更新)。",
+          "actions": {
+            "a1": "如果工作授权紧急,考虑加急处理",
+            "a2": "与 H-1B 延期一起提交以简化流程"
+          }
+        },
+        "srCategoryExtended": {
+          "title": "宗教工作者 (SR) 类别延期",
+          "summary": "EB-4 宗教工作者类别延期至 2026 年 9 月 30 日。",
+          "details": "SR 类别与其他 EB-4 类别适用相同的提交日期和最终行动日期。"
+        }
+      },
+      "courtCases": {
+        "weightedLotteryChallenge": {
+          "case": "对薪资加权 H-1B 选择的多项挑战",
+          "impact": "可能延迟或修改薪资加权抽签系统",
+          "probability": "30% 禁令机会",
+          "contingencyActions": {
+            "a1": "为随机和加权抽签结果做准备",
+            "a2": "无论如何在适当的薪资水平提交"
+          }
+        }
+      },
+      "upcomingChanges": {
+        "fy2027SelectionsComplete": {
+          "title": "FY2027 H-1B 选择完成",
+          "impact": "所有初次选择通知已发出。中签率约 34-42%。",
+          "action": "如果被选中,立即开始申请准备。如果是'已提交',可能有第二轮。"
+        },
+        "h1bFilingWindowOpen": {
+          "title": "H-1B 提交窗口现已开放",
+          "impact": "选中的注册可在 6 月 30 日前提交 I-129 申请",
+          "action": "尽早提交申请 — 90 天窗口于 2026 年 6 月 30 日关闭"
+        },
+        "h1bFilingWindowCloses": {
+          "title": "H-1B 提交窗口关闭",
+          "impact": "提交 FY2027 配额申请的最后一天",
+          "action": "确保在截止日期前提交申请"
+        },
+        "newOewsWageData": {
+          "title": "预计新的 OEWS 薪资数据",
+          "impact": "2026 年 7 月–2027 年 6 月的更新现行工资",
+          "action": "查看待审和未来申请的新薪资水平"
+        },
+        "fy2026EndsDvExpires": {
+          "title": "FY2026 结束 — DV-2026 到期",
+          "impact": "DV-2026 多元化签证号码到期",
+          "action": "DV-2026 中签者必须在此日期前完成处理"
+        },
+        "fy2027EmploymentStart": {
+          "title": "FY2027 H-1B 就业开始",
+          "impact": "已批准的 FY2027 H-1B 受益人可以开始工作",
+          "action": "验证 I-797 批准和开始日期"
+        }
+      },
+      "embassyAlerts": {
+        "torontoDelays": {
+          "location": "加拿大多伦多",
+          "currentWait": "B-1/B-2 等待 16 个月",
+          "normalWait": "3 个月",
+          "reason": "持续的高需求",
+          "alternatives": {
+            "alt1": "渥太华(11.5 个月)",
+            "alt2": "温哥华(8 个月)"
+          },
+          "action": "考虑在原籍国或替代领事馆申请"
+        },
+        "juarezB1B2Delays": {
+          "location": "墨西哥华雷斯城",
+          "currentWait": "B-1/B-2 等待 15.5 个月",
+          "normalWait": "3 个月",
+          "reason": "移民和非移民签证需求高",
+          "alternatives": {
+            "alt1": "墨西哥城(10 个月)",
+            "alt2": "蒙特雷(10 个月)"
+          },
+          "action": "预订最早可用的预约;考虑替代领事馆"
+        }
+      },
+      "analyzer": {
+        "imminentEffect": "⚠️ 在 {{days}} 天内生效 — 需要立即行动",
+        "optToH1bImpact": "直接影响你从 OPT 到 H-1B 的过渡",
+        "indiaSpecific": "专门影响印度国民",
+        "genericImpact": "可能影响你的移民之旅",
+        "courtCaseImpact": "{{probability}} — 预计 {{date}} 决定"
+      }
+    },
+    "resourcesScreen": {
+      "title": "资源与工具",
+      "subtitle": "官方信息和计算器",
+      "dataUpdateBadgeLabel": "资源",
+      "searchPlaceholder": "搜索资源...",
+      "toolsTitle": "🧮 快速计算器",
+      "tools": {
+        "h1bCost": {
+          "name": "H-1B 费用",
+          "desc": "含 $100k 费用"
+        },
+        "wageCheck": {
+          "name": "薪资检查",
+          "desc": "现行工资"
+        },
+        "timeline": {
+          "name": "时间表",
+          "desc": "整体进程"
+        },
+        "priorityDate": {
+          "name": "优先日期",
+          "desc": "签证公告"
+        }
+      },
+      "h1bCostDialog": {
+        "title": "💰 H-1B 费用计算器",
+        "body": "估计总费用:${{total}}\n\n明细:\n• 注册:${{registration}}\n• 申请:${{filing}}\n• 反欺诈:${{fraudPrevention}}\n• 竞争力:${{competitiveness}}\n• 总统费用:${{presidentialFee}}\n• 加急处理:${{premium}}\n\n⚠️ 总统费用适用于 2025 年 9 月 21 日之后"
+      },
+      "wageDialog": {
+        "title": "💼 薪资要求检查",
+        "meets": "✅ 薪资符合要求\n\n提供:${{offered}}\n要求:${{required}}\n差额:+${{difference}}\n级别:{{level}}",
+        "below": "❌ 薪资低于要求\n\n提供:${{offered}}\n要求:${{required}}\n缺口:${{shortfall}}\n级别:{{level}}"
+      },
+      "timelineDialog": {
+        "title": "⏱️ 时间表计算器",
+        "body": "示例:基于家庭(直系亲属)\n\n• I-130 处理:50 个月\n• NVC 处理:2-3 个月\n• 领事馆面试:2-12 个月\n• 总计:~58 个月(5 年)\n\n如需个性化时间表,请使用时间表可视化工具",
+        "openTimeline": "打开时间表"
+      },
+      "priorityDateDialog": {
+        "title": "📊 优先日期",
+        "body": "查看签证公告以获取当前日期:\n\n• 家庭 F4(兄弟姐妹):2001-2008\n• 印度 EB-2:2013 年 5 月\n• 印度 EB-3:2013 年 9 月\n\n每月在 travel.state.gov 更新"
+      },
+      "officialProcessing": {
+        "title": "🏛️ 官方处理时间",
+        "uscisProcessingTimes": "USCIS 处理时间",
+        "visaBulletin": "签证公告",
+        "embassyWaitTimes": "领事馆等待时间"
+      },
+      "emergencyTitle": "🆘 紧急热线(24/7)",
+      "officialBadge": "官方",
+      "callButton": "📞 拨打",
+      "websiteButton": "🌐 网站",
+      "ok": "确定"
+    },
+    "statusDetailsScreen": {
+      "headerTitle": "移民身份仪表板",
+      "statusLabel": "状态:{{status}}",
+      "status": {
+        "Critical": "严重",
+        "Attention": "注意",
+        "Good": "良好",
+        "Unknown": "未知"
+      },
+      "sections": {
+        "criticalAlerts": "🚨 严重警报",
+        "policyAlerts": "📢 影响您的政策警报",
+        "pathwayViability": "📊 您的路径可行性",
+        "currentStatus": "📋 当前身份",
+        "complianceTracking": "⏱️ 合规跟踪",
+        "importantDates": "📅 重要日期",
+        "scoreBreakdown": "📊 评分细分"
+      },
+      "alertDays": "{{count}} 天",
+      "takeAction": "采取行动 ›",
+      "statusGrid": {
+        "visaType": "签证类型",
+        "workAuth": "工作授权",
+        "country": "国家",
+        "location": "位置",
+        "notSpecified": "未指定",
+        "insideUs": "在美国境内",
+        "outsideUs": "在美国境外"
+      },
+      "compliance": {
+        "editButton": "编辑",
+        "doneButton": "完成",
+        "optUnemploymentDays": "OPT 失业天数",
+        "daysOutsideUs": "在美国境外的天数(今年)",
+        "optProgress": "{{used}} / 90",
+        "daysSuffix": "{{count}} 天",
+        "approachingLimit": "⚠️ 即将达到 90 天限制!请尽快找到工作。",
+        "extendedAbsence": "⚠️ 长期缺勤可能影响连续居住"
+      },
+      "statusExpiry": "身份到期",
+      "noIssues": "✅ 未检测到重大问题",
+      "issuePoints": "-10",
+      "actions": {
+        "updateDocuments": "更新文件",
+        "viewTimeline": "查看时间表",
+        "policyTracker": "政策跟踪器",
+        "exportReport": "导出报告 📄"
+      },
+      "exportDialog": {
+        "title": "导出身份报告",
+        "body": "生成您的移民身份的 PDF 摘要?",
+        "export": "导出",
+        "comingSoonTitle": "即将推出",
+        "comingSoonBody": "PDF 导出功能将在下次更新中推出"
+      }
+    },
+    "policyTrackerScreen": {
+      "nextImportantDate": "下一个重要日期",
+      "nextImportantDateText": "{{title}} 还有 {{days}} 天",
+      "tabs": {
+        "affectingYou": "影响您的",
+        "allPolicies": "所有政策",
+        "courtCases": "法庭案件",
+        "calendar": "日历"
+      },
+      "daysSuffix": "{{count}} 天",
+      "policyCard": {
+        "yourImpact": "您的影响:",
+        "recommendedActions": "建议行动:",
+        "source": "来源:{{source}}",
+        "published": "发布日期:{{date}}",
+        "more": "更多",
+        "less": "收起"
+      },
+      "courtCard": {
+        "status": "状态:{{status}}",
+        "expectedDecision": "预计裁决:{{date}}",
+        "contingencyPlans": "应急计划:"
+      },
+      "caseStatuses": {
+        "pending": "待审",
+        "decided": "已裁决",
+        "dismissed": "已驳回"
+      },
+      "embassyCard": {
+        "currentWait": "当前等待:{{wait}}",
+        "alternatives": "备选方案:{{list}}"
+      },
+      "alertTypes": {
+        "processing_delay": "处理延迟",
+        "appointment_unavailable": "预约不可用",
+        "post_closure": "领事馆关闭"
+      },
+      "affectsYour": {
+        "count_one": "{{count}} 项政策影响您的身份",
+        "count_other": "{{count}} 项政策影响您的身份"
+      },
+      "emptyState": {
+        "title": "无重大变化",
+        "body": "目前没有政策直接影响您的移民身份"
+      },
+      "sectionTitles": {
+        "criticalChanges": "严重变化",
+        "warnings": "警告",
+        "information": "信息",
+        "casesMonitored": "正在监控的案件",
+        "embassyAlerts": "领事馆警报",
+        "upcomingChanges": "即将到来的变化"
+      },
+      "lastChecked": "上次检查:{{datetime}}"
+    },
+    "checklistDocuments": {
+      "work": {
+        "required": {
+          "passport": {
+            "name": "有效护照",
+            "description": "必须在预定停留期之外至少有效 6 个月"
+          },
+          "photos": {
+            "name": "护照照片",
+            "description": "2x2 英寸,白色背景",
+            "quantity": "2 张照片"
+          },
+          "ds160": {
+            "name": "表格 DS-160",
+            "description": "在线签证申请确认"
+          },
+          "i129": {
+            "name": "表格 I-129 批准",
+            "description": "USCIS 批准的雇主请愿",
+            "who": "雇主提供"
+          },
+          "lca": {
+            "name": "劳工状况申请",
+            "description": "DOL 对 H-1B 的认证",
+            "who": "雇主提交"
+          },
+          "degree": {
+            "name": "学士学位或更高",
+            "description": "在专业领域并附成绩单"
+          },
+          "resume": {
+            "name": "简历/CV",
+            "description": "专业经验"
+          }
+        },
+        "oneOf": {
+          "employment_letter": {
+            "name": "雇佣录用信",
+            "description": "详细说明职位、薪资、职责"
+          },
+          "employment_contract": {
+            "name": "雇佣合同",
+            "description": "与雇主签署的协议"
+          }
+        },
+        "recommended": {
+          "experience_letters": {
+            "name": "经验证明信",
+            "description": "来自前雇主"
+          },
+          "awards": {
+            "name": "奖项/出版物",
+            "description": "专业成就"
+          }
+        }
+      },
+      "family": {
+        "required": {
+          "passport": {
+            "name": "有效护照",
+            "description": "必须至少有效 6 个月"
+          },
+          "photos": {
+            "name": "护照照片",
+            "description": "2x2 英寸,白色背景",
+            "quantity": "2 张照片"
+          },
+          "ds260": {
+            "name": "表格 DS-260",
+            "description": "在线移民签证申请"
+          },
+          "i130": {
+            "name": "表格 I-130 批准",
+            "description": "USCIS 批准的家庭请愿",
+            "who": "请愿人提交"
+          },
+          "birth_cert": {
+            "name": "出生证明",
+            "description": "原件附翻译"
+          },
+          "marriage_cert": {
+            "name": "结婚证",
+            "description": "如果是配偶请愿",
+            "whenNeeded": "配偶请愿"
+          },
+          "i864": {
+            "name": "表格 I-864 经济担保书",
+            "description": "请愿人的经济担保",
+            "who": "请愿人提供"
+          },
+          "police_cert": {
+            "name": "无犯罪记录证明",
+            "description": "来自所有居住 6+ 个月的国家"
+          }
+        },
+        "oneOf": {
+          "petitioner_citizenship": {
+            "name": "请愿人的美国护照",
+            "description": "美国公民身份证明"
+          },
+          "petitioner_greencard": {
+            "name": "请愿人的绿卡",
+            "description": "如果请愿人是合法永久居民"
+          }
+        },
+        "recommended": {
+          "photos_together": {
+            "name": "合影",
+            "description": "关系证据"
+          },
+          "correspondence": {
+            "name": "通信记录",
+            "description": "电子邮件、消息、信件"
+          },
+          "joint_accounts": {
+            "name": "共同账户",
+            "description": "银行、保险、财产"
+          }
+        }
+      },
+      "student": {
+        "required": {
+          "passport": {
+            "name": "有效护照",
+            "description": "必须在整个学习期间有效"
+          },
+          "photos": {
+            "name": "护照照片",
+            "description": "2x2 英寸,白色背景",
+            "quantity": "2 张照片"
+          },
+          "ds160": {
+            "name": "表格 DS-160",
+            "description": "在线签证申请确认"
+          },
+          "i20": {
+            "name": "表格 I-20",
+            "description": "学校的资格证书",
+            "who": "学校提供"
+          },
+          "sevis": {
+            "name": "SEVIS 费用收据",
+            "description": "I-901 付款确认 ($350)"
+          },
+          "acceptance": {
+            "name": "录取通知书",
+            "description": "SEVP 学校的官方录取"
+          },
+          "transcripts": {
+            "name": "学术成绩单",
+            "description": "之前的教育记录"
+          },
+          "financial_proof": {
+            "name": "财务证明",
+            "description": "显示约 $40,000/年的银行对账单"
+          }
+        },
+        "oneOf": {
+          "test_scores": {
+            "name": "TOEFL/IELTS 分数",
+            "description": "英语水平测试"
+          },
+          "english_medium": {
+            "name": "英语教学证明",
+            "description": "如果之前的教育是英语进行的"
+          }
+        },
+        "recommended": {
+          "sponsor_letter": {
+            "name": "担保人信",
+            "description": "如果有他人付款"
+          },
+          "study_plan": {
+            "name": "学习计划",
+            "description": "为什么选择这个项目和未来目标"
+          },
+          "gre_gmat": {
+            "name": "GRE/GMAT 分数",
+            "description": "如果已提交给学校"
+          }
+        }
+      },
+      "citizenship": {
+        "required": {
+          "n400": {
+            "name": "表格 N-400",
+            "description": "入籍申请 — 纸质 $760 / 在线 $710 / 军人 $0",
+            "who": "申请人向 USCIS 提交"
+          },
+          "green_card_copy": {
+            "name": "永久居民卡(绿卡)",
+            "description": "当前绿卡正反面复印件"
+          },
+          "passport_photos": {
+            "name": "护照照片",
+            "description": "2x2 英寸,白色背景",
+            "quantity": "2 张照片"
+          },
+          "passport_copy": {
+            "name": "有效护照或旅行证件",
+            "description": "过去 5 年使用的每本护照复印件"
+          },
+          "tax_returns": {
+            "name": "联邦税务申报",
+            "description": "过去 5 年(如与美国公民结婚则 3 年)"
+          },
+          "travel_records": {
+            "name": "旅行历史记录",
+            "description": "过去 5 年所有出境美国的行程 — 日期、目的地、时长"
+          },
+          "selective_service": {
+            "name": "兵役登记",
+            "description": "如果是男性且 1980 年后在 18-26 岁期间居住在美国",
+            "whenNeeded": "在美国居住的 18-26 岁男性"
+          }
+        },
+        "oneOf": {
+          "marriage_cert_3yr": {
+            "name": "结婚证 + 配偶公民身份证明",
+            "description": "如果按 3 年规则申请(与美国公民结婚)则需要",
+            "whenNeeded": "仅 3 年婚姻路径"
+          },
+          "dd214": {
+            "name": "DD-214 / 军人退伍文件",
+            "description": "现役解除或退伍证明",
+            "whenNeeded": "仅军人申请人"
+          }
+        },
+        "recommended": {
+          "birth_cert_citizenship": {
+            "name": "出生证明",
+            "description": "如需要附经认证的英文翻译"
+          },
+          "prior_marriage_docs": {
+            "name": "离婚判决书 / 之前的婚姻记录",
+            "description": "对于任何先前的婚姻 — USCIS 可能会要求"
+          },
+          "criminal_records": {
+            "name": "法庭判决记录",
+            "description": "对于任何逮捕或指控 — 即使已被驳回",
+            "whenNeeded": "如果你有任何逮捕或犯罪历史"
+          },
+          "name_change": {
+            "name": "合法姓名变更文件",
+            "description": "如果你的姓名与绿卡不同的法庭命令"
+          },
+          "civics_study": {
+            "name": "公民考试学习材料",
+            "description": "100 道问题在 uscis.gov/citizenship/tessprep 免费提供"
+          }
+        }
+      },
+      "common": {
+        "interview_appt": {
+          "name": "面试预约确认",
+          "description": "大使馆/领事馆预约"
+        },
+        "fee_receipt": {
+          "name": "签证费付款收据",
+          "description": "MRV 费用付款确认"
+        }
+      },
+      "medical": {
+        "medical_exam": {
+          "name": "体检",
+          "description": "仅由指定医生进行",
+          "whenNeeded": "绿卡申请人",
+          "cost": "$200-500"
+        },
+        "vaccinations": {
+          "name": "疫苗接种记录",
+          "description": "所需疫苗因年龄而异",
+          "whenNeeded": "如有要求"
+        }
+      },
+      "interviewPrep": {
+        "civics_100": {
+          "name": "学习 100 道公民问题",
+          "description": "USCIS 官员将提问最多 10 道 — 必须答对 6 道",
+          "whenNeeded": "所有申请人"
+        },
+        "english_reading": {
+          "name": "英语阅读练习",
+          "description": "官员将让你读 3 句中的 1 句",
+          "whenNeeded": "65 岁以下且无 20 年豁免的所有申请人"
+        },
+        "english_writing": {
+          "name": "英语写作练习",
+          "description": "官员将让你写 3 句中的 1 句",
+          "whenNeeded": "65 岁以下且无 20 年豁免的所有申请人"
+        },
+        "n400_review": {
+          "name": "复习你的 N-400 答案",
+          "description": "官员将逐行查看你的 N-400 — 了解你的答案",
+          "whenNeeded": "所有申请人"
+        }
+      }
+    },
+    "timelineData": {
+      "work": {
+        "h1b": {
+          "label": "H-1B",
+          "totalTime": "8-14 个月(加上抽签等待)",
+          "alert": "FY2027 注册于 3 月 19 日关闭。薪资加权抽签 — 薪资越高 = 中签几率越大。",
+          "steps": {
+            "s1": {
+              "title": "工作录用",
+              "duration": "可变",
+              "description": "与赞助雇主签订工作。薪资水平影响抽签几率。"
+            },
+            "s2": {
+              "title": "H-1B 注册",
+              "duration": "3 月 4-19 日",
+              "description": "注册费:$215。雇主通过 MyUSCIS 提交。需要 SOC 代码和薪资水平。"
+            },
+            "s3": {
+              "title": "中签通知",
+              "duration": "3 月 31 日前",
+              "description": "薪资加权选择:第四级中签几率最高为第一级的 4 倍。"
+            },
+            "s4": {
+              "title": "LCA 申请",
+              "duration": "7 天",
+              "description": "向 DOL 提交劳工状况申请"
+            },
+            "s5": {
+              "title": "I-129 请愿",
+              "duration": "6-8 个月",
+              "description": "USCIS 常规处理(实际:8+ 个月)。加急:15 天 $2,965"
+            },
+            "s6": {
+              "title": "$100K 费用(如适用)",
+              "duration": "提交时",
+              "description": "适用于领事处理案件。不适用于大多数 F-1→H-1B 身份变更。"
+            },
+            "s7": {
+              "title": "签证盖章(如在国外)",
+              "duration": "1-3 个月",
+              "description": "DS-160 + 大使馆面谈。印度:~1 个月,墨西哥:~1 个月"
+            },
+            "s8": {
+              "title": "开始工作",
+              "duration": "10 月 1 日或之后",
+              "description": "财政年度开始前不能工作"
+            }
+          }
+        },
+        "l1": {
+          "label": "L-1",
+          "totalTime": "总计 4-8 个月",
+          "steps": {
+            "s1": {
+              "title": "资格检查",
+              "duration": "1 周",
+              "description": "确认在合格公司海外就业 1 年"
+            },
+            "s2": {
+              "title": "I-129 请愿",
+              "duration": "4-6 个月",
+              "description": "USCIS 常规处理。无配额或抽签。"
+            },
+            "s3": {
+              "title": "加急选项",
+              "duration": "15 天",
+              "description": "加急处理 $2,965"
+            },
+            "s4": {
+              "title": "签证盖章",
+              "duration": "1-2 个月",
+              "description": "如在美国境外则进行大使馆面谈"
+            },
+            "s5": {
+              "title": "开始工作",
+              "duration": "立即",
+              "description": "L-1 没有财政年度限制"
+            }
+          }
+        },
+        "o1": {
+          "label": "O-1",
+          "totalTime": "3-6 个月",
+          "steps": {
+            "s1": {
+              "title": "建立证据",
+              "duration": "可变",
+              "description": "收集奖项、出版物、媒体报道、薪资证据"
+            },
+            "s2": {
+              "title": "咨询信",
+              "duration": "2-4 周",
+              "description": "如适用,来自同行团体或工会"
+            },
+            "s3": {
+              "title": "I-129 请愿",
+              "duration": "2-4 个月",
+              "description": "USCIS 常规处理。可加急 $2,965。"
+            },
+            "s4": {
+              "title": "签证盖章",
+              "duration": "1-2 个月",
+              "description": "如在美国境外则进行大使馆面谈"
+            }
+          }
+        },
+        "eb": {
+          "label": "绿卡 (EB)",
+          "totalTime": "1-15 年(取决于国家)",
+          "alert": "印度 EB-2/3 积压:12+ 年。大多数国家:1-3 年。",
+          "steps": {
+            "s1": {
+              "title": "PERM 劳工证",
+              "duration": "~17 个月",
+              "description": "DOL 劳工证(仅 EB-2/EB-3)"
+            },
+            "s2": {
+              "title": "I-140 请愿",
+              "duration": "6-12 个月",
+              "description": "USCIS 批准。加急 15 天 $2,965。"
+            },
+            "s3": {
+              "title": "优先日期等待",
+              "duration": "可变",
+              "description": "等待签证号根据签证公告变为当前"
+            },
+            "s4": {
+              "title": "I-485 / DS-260",
+              "duration": "8-14 个月",
+              "description": "调整身份(在美国境内)或领事处理"
+            },
+            "s5": {
+              "title": "绿卡",
+              "duration": "卡片送达",
+              "description": "实体卡在批准后 2-4 周邮寄"
+            }
+          }
+        }
+      },
+      "family": {
+        "immediateRelative": {
+          "label": "直系亲属",
+          "totalTime": "12-18 个月",
+          "steps": {
+            "s1": {
+              "title": "I-130 请愿",
+              "duration": "12-15 个月",
+              "description": "请愿人为配偶、21 岁以下子女或父母申请"
+            },
+            "s2": {
+              "title": "NVC 处理",
+              "duration": "2-3 个月",
+              "description": "支付费用,提交民事文件,DS-260"
+            },
+            "s3": {
+              "title": "大使馆面谈",
+              "duration": "2-4 个月",
+              "description": "安排面谈、体检、参加面谈"
+            },
+            "s4": {
+              "title": "签证签发",
+              "duration": "1-2 周",
+              "description": "获得签证,进入美国,成为永久居民"
+            }
+          }
+        },
+        "f4": {
+          "label": "F4 兄弟姐妹",
+          "totalTime": "15-20+ 年",
+          "alert": "F4(兄弟姐妹)等待时间最长 — 墨西哥/菲律宾:25+ 年",
+          "steps": {
+            "s1": {
+              "title": "I-130 请愿",
+              "duration": "12-18 个月",
+              "description": "美国公民兄弟姐妹提交请愿"
+            },
+            "s2": {
+              "title": "优先日期等待",
+              "duration": "15-25 年",
+              "description": "根据签证公告 — 因国家而差异巨大"
+            },
+            "s3": {
+              "title": "NVC 处理",
+              "duration": "2-4 个月",
+              "description": "当优先日期变为当前时"
+            },
+            "s4": {
+              "title": "大使馆面谈",
+              "duration": "2-12 个月",
+              "description": "等待时间因领事馆而异"
+            }
+          }
+        }
+      },
+      "student": {
+        "f1": {
+          "label": "F-1 学生",
+          "totalTime": "从录取到入境 2-4 个月",
+          "steps": {
+            "s1": {
+              "title": "学校录取",
+              "duration": "可变",
+              "description": "被 SEVP 认证的机构录取"
+            },
+            "s2": {
+              "title": "表格 I-20",
+              "duration": "1-2 周",
+              "description": "学校签发资格证书"
+            },
+            "s3": {
+              "title": "SEVIS 费用",
+              "duration": "当天",
+              "description": "在 FMJfee.com 支付 $350 I-901 费用"
+            },
+            "s4": {
+              "title": "DS-160 + 面谈",
+              "duration": "1-3 个月",
+              "description": "完成 DS-160,安排大使馆面谈"
+            },
+            "s5": {
+              "title": "签证批准",
+              "duration": "1-2 周",
+              "description": "护照上盖签证章"
+            },
+            "s6": {
+              "title": "入境美国",
+              "duration": "提前 30 天",
+              "description": "可以在项目开始前 30 天入境"
+            }
+          }
+        },
+        "opt": {
+          "label": "F-1 转 OPT",
+          "totalTime": "OPT:12 个月。STEM 延期:+24 个月。",
+          "alert": "EAD 现在某些类别最长 18 个月。提前规划续签。",
+          "steps": {
+            "s1": {
+              "title": "资格检查",
+              "duration": "毕业 90 天内",
+              "description": "在项目结束前 90 天到结束后 60 天内申请"
+            },
+            "s2": {
+              "title": "DSO 推荐",
+              "duration": "1 周",
+              "description": "学校指定官员签发新的 I-20"
+            },
+            "s3": {
+              "title": "I-765 提交",
+              "duration": "当天",
+              "description": "$520 申请费。加急处理 30 天 $1,780。"
+            },
+            "s4": {
+              "title": "EAD 批准",
+              "duration": "3-5 个月",
+              "description": "USCIS 常规。加急:30 天。"
+            },
+            "s5": {
+              "title": "开始工作",
+              "duration": "EAD 起始日期",
+              "description": "EAD 起始日期之前不能工作"
+            },
+            "s6": {
+              "title": "STEM 延期(如符合)",
+              "duration": "OPT 结束前 90 天申请",
+              "description": "为有 E-Verify 雇主的 STEM 学位增加 24 个月"
+            }
+          }
+        }
+      },
+      "citizenship": {
+        "standard5yr": {
+          "label": "标准 5 年",
+          "totalTime": "从提交到宣誓 10-14 个月",
+          "alert": "在你的 5 年绿卡周年日前 90 天内提交 N-400。",
+          "steps": {
+            "s1": {
+              "title": "资格检查",
+              "duration": "提交前",
+              "description": "5+ 年永久居民,在美国 30+ 个月实际居住,在该州 3 个月"
+            },
+            "s2": {
+              "title": "提交表格 N-400",
+              "duration": "在线或纸质",
+              "description": "$710 在线 / $760 纸质。在资格日期前 90 天内提交。"
+            },
+            "s3": {
+              "title": "生物识别预约",
+              "duration": "提交后 5-8 周",
+              "description": "在 ASC 办公室进行指纹、照片、签名"
+            },
+            "s4": {
+              "title": "入籍面谈",
+              "duration": "提交后 6-12 个月",
+              "description": "公民考试(10 道题,需答对 6 道)、英语考试、N-400 复审"
+            },
+            "s5": {
+              "title": "决定",
+              "duration": "当天或邮寄",
+              "description": "批准、拒绝或继续要求更多证据"
+            },
+            "s6": {
+              "title": "宣誓仪式",
+              "duration": "当天或 4-8 周后",
+              "description": "宣读效忠誓言,接收入籍证书"
+            },
+            "s7": {
+              "title": "美国公民!",
+              "duration": "宣誓日期生效",
+              "description": "申请美国护照。注册投票。更新社会保障。"
+            }
+          }
+        },
+        "marriage3yr": {
+          "label": "3 年(婚姻)",
+          "totalTime": "从提交到宣誓 10-14 个月",
+          "alert": "必须与美国公民结婚并共同生活完整的 3 年。",
+          "steps": {
+            "s1": {
+              "title": "资格检查",
+              "duration": "提交前",
+              "description": "3+ 年永久居民,与美国公民结婚并共同生活 3 年,18+ 个月实际居住"
+            },
+            "s2": {
+              "title": "提交表格 N-400",
+              "duration": "在线或纸质",
+              "description": "相同费用。包括结婚证 + 配偶的美国公民身份证明。"
+            },
+            "s3": {
+              "title": "生物识别预约",
+              "duration": "提交后 5-8 周",
+              "description": "与标准路径相同"
+            },
+            "s4": {
+              "title": "入籍面谈",
+              "duration": "提交后 6-12 个月",
+              "description": "相同考试。可能询问婚姻细节。"
+            },
+            "s5": {
+              "title": "决定与宣誓",
+              "duration": "当天或邮寄",
+              "description": "如批准,安排宣誓仪式"
+            },
+            "s6": {
+              "title": "美国公民!",
+              "duration": "宣誓日期生效",
+              "description": "与标准路径相同的福利"
+            }
+          }
+        },
+        "military": {
+          "label": "军人服役",
+          "totalTime": "6-10 个月 — 加急处理",
+          "alert": "现役军人 N-400 费用免除。提交 N-426 进行服役验证。",
+          "steps": {
+            "s1": {
+              "title": "资格检查",
+              "duration": "提交前",
+              "description": "1+ 年荣誉服役(和平时期)或在指定敌对状态期间任何符合条件的服役"
+            },
+            "s2": {
+              "title": "表格 N-426",
+              "duration": "N-400 之前",
+              "description": "军方指挥认证你的服役记录"
+            },
+            "s3": {
+              "title": "提交表格 N-400",
+              "duration": "在线或纸质",
+              "description": "军人 $0 费用。附上 N-426。"
+            },
+            "s4": {
+              "title": "生物识别 + 面谈",
+              "duration": "加急",
+              "description": "军人通常合并为单次预约"
+            },
+            "s5": {
+              "title": "决定与宣誓",
+              "duration": "通常当天",
+              "description": "一些基地现场举行宣誓仪式"
+            },
+            "s6": {
+              "title": "美国公民!",
+              "duration": "宣誓日期生效",
+              "description": "申请美国护照,扩大就业机会包括联邦职位"
+            }
+          }
+        }
+      }
+    },
+    "checklistScreen": {
+      "title": "文件清单",
+      "changeButton": "更改 ›",
+      "dataUpdateBadgeLabel": "已更新",
+      "selectPathwayPlaceholder": "选择路径",
+      "citizenshipBanner": "N-400 清单。费用:在线 $710 / 纸质 $760。军人:免费。你可以在资格日期前 90 天内提交。",
+      "progressTitle": {
+        "default": "必需文件",
+        "citizenship": "N-400 文件"
+      },
+      "progressCount": "{{completed}} / {{total}}",
+      "legendTitle": "文件要求",
+      "legendRequired": "必需",
+      "legendNeedOne": "需要一个",
+      "legendRecommended": "推荐",
+      "legendIfRequested": "如有要求",
+      "sections": {
+        "requiredTitle": "{{pathway}} - 必需文件",
+        "requiredSubtitle": "必须拥有所有这些",
+        "oneOfTitle": "选择一个文件",
+        "oneOfSubtitle": "需要此列表中的一个",
+        "recommendedTitle": "支持文件",
+        "recommendedSubtitle": "加强你的申请",
+        "commonTitle": "通用要求",
+        "commonSubtitle": "所有签证类型都需要",
+        "medicalTitle": "医疗要求",
+        "medicalSubtitle": "仅在大使馆要求时",
+        "interviewPrepTitle": "面谈准备",
+        "interviewPrepSubtitle": "为入籍面谈做好准备"
+      },
+      "badges": {
+        "required": "必需",
+        "oneOf": "需要一个",
+        "recommended": "推荐",
+        "conditional": "如有要求"
+      },
+      "tip": {
+        "citizenshipText": "在资格日期前 90 天内提交 N-400。在 uscis.gov/citizenship/tessprep 学习 100 道公民问题 — 免费。",
+        "defaultText": "首先关注必需文件。你的清单针对 {{pathway}} 定制。"
+      },
+      "modal": {
+        "title": "选择路径"
+      },
+      "pathwayOptions": {
+        "work": "基于工作的移民",
+        "family": "基于家庭的移民",
+        "student": "学生路径",
+        "citizenship": "公民身份之路 (N-400)"
+      }
+    },
+    "timelineScreen": {
+      "title": {
+        "default": "流程时间表",
+        "citizenship": "入籍时间表"
+      },
+      "subtitle": "基于 {{date}} USCIS / DOL 数据",
+      "totalTimeLabel": {
+        "default": "总时间表",
+        "citizenship": "典型时间表"
+      },
+      "disclaimer": "基于 {{date}} 数据",
+      "premiumProcessing": {
+        "title": "⚡ 加急处理(2026 年 3 月)",
+        "i129": "I-129 (H-1B、L-1、O-1):15 天 $2,965",
+        "i140": "I-140 (EB-1、EB-2、EB-3):15-45 天 $2,965",
+        "i765": "I-765 (OPT/STEM OPT):30 天 $1,780",
+        "i539": "I-539(身份变更):30 天 $2,075"
+      },
+      "afterNaturalize": {
+        "title": "🇺🇸 入籍之后",
+        "passport": "立即申请美国护照 — 无等待期",
+        "sponsorFamily": "为直系家庭成员(配偶、子女、父母)担保,无签证配额等待",
+        "childCitizenship": "持有绿卡的 18 岁以下子女可能自动获得公民身份",
+        "vote": "注册投票 — 联邦选举需要美国公民身份",
+        "dualCitizenship": "在放弃前检查你的出生国是否允许双重国籍"
+      },
+      "currentDelays": {
+        "title": "⏱️ 当前延迟",
+        "familyI130": "家庭 I-130:50-95 个月(4-8 年)",
+        "indiaEb": "印度 EB-2/3:优先日期等待 12+ 年",
+        "perm": "PERM 劳工证:~17 个月(503 天)",
+        "canadaB1B2": "加拿大 B-1/B-2 旅游签证:等待 16 个月",
+        "eadValidity": "EAD 有效期现在最长 18 个月 — 提前规划续签"
+      },
+      "n400Notes": {
+        "title": "⏱️ N-400 处理说明",
+        "interviewWait": "面谈等待时间因办公室而差异很大 — 一些城市需要 12+ 个月",
+        "extendedTrips": "长期出国旅行(6+ 个月)可能打破连续居住 — 影响资格",
+        "criminalHistory": "犯罪历史 — 即使是被驳回的指控 — 必须披露,可能延迟或拒绝",
+        "missingTaxes": "缺少税务申报是常见的拒绝原因 — 在申请前提交任何缺失的年份",
+        "noPremium": "N-400 没有加急处理选项 — 仅标准处理"
+      },
+      "dataUpdated": "数据更新:{{date}}"
+    },
+"visaDetails": {
+  "H1B": {
+    "fullName": "H-1B 专业职业签证",
+    "purpose": "面向需要学士学位或更高学位的专业职业人员",
+    "eligibility": {
+      "e1": "专业领域学士学位或同等学历",
+      "e2": "美国雇主提供的工作机会",
+      "e3": "职位需要专业知识",
+      "e4": "雇主必须支付现行工资"
+    },
+    "duration": "最初 3 年,可延长至总共 6 年",
+    "pathToGreenCard": "是 — 雇主可以在 H-1B 期间赞助 EB-2 或 EB-3 绿卡",
+    "spouseWork": "如果主申请人的 I-140 已批准,H-4 配偶可凭 EAD 工作",
+    "pros": {
+      "p1": "允许双重意图(可申请绿卡)",
+      "p2": "配偶和子女可以陪同",
+      "p3": "可以更换雇主(需要新申请)"
+    },
+    "cons": {
+      "c1": "需要参加年度抽签 — 现已按薪资加权",
+      "c2": "受限于赞助雇主",
+      "c3": "领事处理案件需额外支付 $100,000(2025 年 9 月起)",
+      "c4": "若无绿卡进展,最多 6 年"
+    },
+    "forms": {
+      "f1": {
+        "name": "LCA(劳工状况申请)",
+        "purpose": "证明工资和工作条件",
+        "who": "雇主向 DOL 提交"
+      },
+      "f2": {
+        "name": "I-129 表格",
+        "purpose": "非移民工人申请",
+        "who": "雇主向 USCIS 提交"
+      },
+      "f3": {
+        "name": "DS-160 表格",
+        "purpose": "领事处理签证申请",
+        "who": "员工在线填写"
+      }
+    }
+  },
+  "L1": {
+    "fullName": "L-1 跨国公司内部调动签证",
+    "purpose": "面向同公司从外国分支机构调到美国办公室的员工",
+    "eligibility": {
+      "e1": "过去 3 年内为该公司在海外工作 1+ 年",
+      "e2": "经理/高管(L-1A)或专业知识(L-1B)",
+      "e3": "公司必须有合格的关系"
+    },
+    "duration": "L-1A:最初 3 年(总共 7 年),L-1B:3 年(总共 5 年)",
+    "pathToGreenCard": "是 — L-1A 可通向 EB-1C 绿卡(比 H-1B 路线更快)",
+    "spouseWork": "L-2 配偶可立即凭 EAD 工作",
+    "pros": {
+      "p1": "无抽签或配额",
+      "p2": "无现行工资要求",
+      "p3": "配偶可立即工作",
+      "p4": "L-1A 到 EB-1C 是更快的绿卡路线"
+    },
+    "cons": {
+      "c1": "必须为同一雇主工作",
+      "c2": "不能更换公司",
+      "c3": "需要先前的海外就业"
+    },
+    "forms": {
+      "f1": {
+        "name": "I-129S 表格",
+        "purpose": "L 类别补充",
+        "who": "雇主与 I-129 一起提交"
+      },
+      "f2": {
+        "name": "DS-160 表格",
+        "purpose": "签证申请",
+        "who": "员工填写"
+      }
+    }
+  },
+  "O1": {
+    "fullName": "O-1 杰出能力签证",
+    "purpose": "面向在科学、艺术、教育、商业或体育方面具有杰出能力的个人",
+    "eligibility": {
+      "e1": "已证明的杰出能力",
+      "e2": "国家/国际认可",
+      "e3": "实质性的成就证据",
+      "e4": "在专业领域的工作机会"
+    },
+    "duration": "最初最多 3 年,无限 1 年延期",
+    "pathToGreenCard": "是 — 可自行申请 EB-1A 或由雇主赞助",
+    "spouseWork": "O-3 配偶不能工作",
+    "pros": {
+      "p1": "无抽签或配额",
+      "p2": "无学位要求",
+      "p3": "可无限延期",
+      "p4": "可有多个雇主"
+    },
+    "cons": {
+      "c1": "证据门槛高",
+      "c2": "配偶不能工作",
+      "c3": "需要大量文件"
+    },
+    "forms": {
+      "f1": {
+        "name": "I-129 表格",
+        "purpose": "带 O 补充的申请",
+        "who": "雇主或代理人提交"
+      },
+      "f2": {
+        "name": "咨询意见",
+        "purpose": "同行团体咨询信",
+        "who": "来自相关工会/同行团体"
+      }
+    }
+  },
+  "EB": {
+    "fullName": "基于就业的绿卡(EB-1、EB-2、EB-3、EB-4、EB-5)",
+    "purpose": "通过就业获得永久居留权的直接途径,根据技能、教育或投资水平分为五个优先类别",
+    "eligibility": {
+      "e1": "EB-1:杰出能力、优秀教授/研究人员或跨国公司高管(无需 PERM)",
+      "e2": "EB-2:高级学位(硕士及以上)或特殊能力 — 国家利益豁免(NIW)允许自我申请",
+      "e3": "EB-3:技术工人(2年以上经验)、专业人员(学士学位)或其他工人",
+      "e4": "EB-4:特殊移民(宗教工作者、特殊移民青少年、某些政府工作人员)",
+      "e5": "EB-5:投资者 — 在目标就业区最低投资 80 万美元,在其他地区为 105 万美元,必须创造 10 个就业机会",
+      "e6": "大多数类别需要雇主担保和劳工证(PERM)"
+    },
+    "duration": "永久居留(10 年绿卡,可续签)",
+    "currentWait": "EB-1/EB-2/EB-3 ROW:1-3 年;印度/中国 EB-2/EB-3:优先日期需等待 5-15 年以上",
+    "pathToGreenCard": "这就是绿卡 — 直接获得永久居留权的途径",
+    "spouseWork": "配偶和 21 岁以下未婚子女作为附属可获得绿卡",
+    "pros": {
+      "p1": "通往永久居留权的直接途径",
+      "p2": "EB-1 和 EB-2 NIW 允许自我申请(无需雇主)",
+      "p3": "包括配偶和未成年子女",
+      "p4": "I-140 可使用加急处理(2,965 美元)",
+      "p5": "EB-1A 和 NIW 可跳过漫长的 PERM 流程"
+    },
+    "cons": {
+      "c1": "印度和中国在 EB-2/EB-3 面临严重积压(超过 10 年)",
+      "c2": "PERM 劳工证为标准 EB-2/EB-3 增加 12-17 个月",
+      "c3": "总申请费:每位申请人约 3,000-5,000 美元以上",
+      "c4": "大多数类别将您绑定在担保雇主处,直到 I-485 待审 180 天以上",
+      "c5": "签证公告板倒退可能不可预测地延长等待时间"
+    },
+    "note": "EB-1A(杰出能力)和 EB-2 NIW 是自我申请类别 — 如果您符合较高的证据标准,可以无需雇主进行申请。",
+    "forms": {
+      "f1": {
+        "name": "ETA-9089(PERM)",
+        "purpose": "劳工证(标准 EB-2 和 EB-3 必需,NIW 不需要)",
+        "who": "雇主向 DOL 提交"
+      },
+      "f2": {
+        "name": "I-140 表格",
+        "purpose": "外籍工人移民申请 — 确立 EB 类别",
+        "who": "雇主提交(EB-1A/NIW/EB-5 可自我申请)"
+      },
+      "f3": {
+        "name": "I-485 表格",
+        "purpose": "调整身份为永久居民(如在美国境内)",
+        "who": "受益人在优先日期当前时提交"
+      },
+      "f4": {
+        "name": "DS-260 表格",
+        "purpose": "移民签证申请(如在美国境外 — 领事处理)",
+        "who": "受益人在线填写"
+      }
+    }
+  },
+  "IR": {
+    "fullName": "美国公民的直系亲属",
+    "purpose": "面向美国公民的配偶、21 岁以下未婚子女和父母",
+    "eligibility": {
+      "e1": "美国公民的配偶(IR-1/CR-1)",
+      "e2": "美国公民的 21 岁以下未婚子女(IR-2/CR-2)",
+      "e3": "21+ 岁美国公民的父母(IR-5)"
+    },
+    "duration": "永久居留权(绿卡)立即",
+    "pathToGreenCard": "这就是绿卡 — 立即获得永久居留",
+    "spouseWork": "是 — 绿卡允许无限制工作",
+    "pros": {
+      "p1": "无年度限制或优先日期等待",
+      "p2": "最快的家庭移民类别",
+      "p3": "直接获得绿卡",
+      "p4": "抵达后可立即工作"
+    },
+    "cons": {
+      "c1": "仍需 12-24 个月处理",
+      "c2": "必须证明真实关系",
+      "c3": "若结婚 <2 年则 CR-1 有条件"
+    },
+    "note": "直系亲属意味着无需等待签证号 — 你可以跳过排队!其他家庭类别需要等待数年才能获得签证号。",
+    "forms": {
+      "f1": {
+        "name": "I-130 表格",
+        "purpose": "建立合格家庭关系",
+        "who": "美国公民为亲属提交"
+      },
+      "f2": {
+        "name": "I-864 表格",
+        "purpose": "经济担保书 — 财务赞助",
+        "who": "请愿人提供"
+      },
+      "f3": {
+        "name": "DS-260 表格",
+        "purpose": "移民签证申请",
+        "who": "受益人填写"
+      }
+    }
+  },
+  "K1": {
+    "fullName": "K-1 未婚夫(妻)签证",
+    "purpose": "允许美国公民的外籍未婚夫(妻)进入美国,在 90 天内结婚,然后调整为绿卡",
+    "eligibility": {
+      "e1": "申请人必须是美国公民(不是绿卡持有人)",
+      "e2": "双方必须在法律上有结婚自由",
+      "e3": "提交申请前 2 年内必须至少亲自见过一次面(因文化或困难原因可申请豁免)",
+      "e4": "美国公民必须满足收入要求(联邦贫困线的 100%)",
+      "e5": "必须有意在未婚夫(妻)抵达后 90 天内结婚"
+    },
+    "duration": "单次入境,有效期 6 个月 — 必须在抵达后 90 天内结婚",
+    "currentWait": "I-129F 处理 10-12 个月;从申请到绿卡总共 18-26 个月",
+    "pathToGreenCard": "结婚后,提交 I-485 调整身份 — 获得 2 年有条件绿卡",
+    "spouseWork": "抵达后可申请 EAD,提交 I-485 后可再次申请",
+    "pros": {
+      "p1": "允许未婚夫(妻)在结婚前进入美国",
+      "p2": "21 岁以下子女可凭 K-2 附属签证前来",
+      "p3": "在某些情况下比在国外等待 IR-1/CR-1 配偶签证更快"
+    },
+    "cons": {
+      "c1": "必须在 90 天内结婚,否则未婚夫(妻)必须离开",
+      "c2": "I-129F 费用 675 美元(在线 625 美元),加上签证、体检和调整身份的单独费用(总计约 2,400 美元以上)",
+      "c3": "初始绿卡是有条件的 — 必须在 2 周年纪念日前 90 天内联合提交 I-751",
+      "c4": "如果与申请人未结婚,无法通过任何其他方式调整身份",
+      "c5": "如果申请失败或关系结束,未婚夫(妻)通常没有留在美国的途径"
+    },
+    "note": "90 天结婚截止日期非常严格 — 没有延期。在未婚夫(妻)出行前规划好婚礼日期。",
+    "forms": {
+      "f1": {
+        "name": "I-129F 表格",
+        "purpose": "外籍未婚夫(妻)申请 — 确立关系",
+        "who": "美国公民申请人向 USCIS 提交"
+      },
+      "f2": {
+        "name": "DS-160 表格",
+        "purpose": "用于领事面谈的在线非移民签证申请",
+        "who": "未婚夫(妻)在线填写"
+      },
+      "f3": {
+        "name": "I-485 表格",
+        "purpose": "结婚后调整身份以获得绿卡",
+        "who": "配偶在婚后提交"
+      },
+      "f4": {
+        "name": "I-134 表格",
+        "purpose": "经济担保书 — 证明申请人能够提供经济担保",
+        "who": "美国公民申请人提供"
+      }
+    }
+  },
+  "F1": {
+    "fullName": "F-1:美国公民的未婚成年子女",
+    "purpose": "面向美国公民的 21 岁以上未婚子女",
+    "eligibility": {
+      "e1": "必须未婚",
+      "e2": "21 岁或以上",
+      "e3": "美国公民的子女"
+    },
+    "duration": "签证可用后获得永久居留",
+    "currentWait": "从申请到签证可用 7-8 年",
+    "pathToGreenCard": "签证号可用后直接通向绿卡",
+    "spouseWork": "不适用 — 必须未婚",
+    "pros": {
+      "p1": "通向永久居留",
+      "p2": "可包括 21 岁以下未婚子女"
+    },
+    "cons": {
+      "c1": "等待签证号 7-8 年",
+      "c2": "必须保持未婚",
+      "c3": "结婚将终止资格"
+    },
+    "forms": {
+      "f1": {
+        "name": "I-130 表格",
+        "purpose": "建立家庭关系的家庭申请",
+        "who": "美国公民父母提交"
+      }
+    }
+  },
+  "F2A": {
+    "fullName": "F-2A:绿卡持有者的配偶和未成年子女",
+    "purpose": "面向合法永久居民的配偶和 21 岁以下未婚子女",
+    "eligibility": {
+      "e1": "绿卡持有者的配偶",
+      "e2": "LPR 的 21 岁以下未婚子女"
+    },
+    "duration": "签证可用后获得永久居留",
+    "currentWait": "从申请到签证可用 2-3 年",
+    "pathToGreenCard": "直接通向绿卡",
+    "spouseWork": "是 — 收到绿卡后",
+    "pros": {
+      "p1": "等待时间比其他家庭优先类别短",
+      "p2": "包括配偶和未成年子女"
+    },
+    "cons": {
+      "c1": "等待签证号 2-3 年",
+      "c2": "请愿人必须保持 LPR 身份"
+    },
+    "forms": {
+      "f1": {
+        "name": "I-130 表格",
+        "purpose": "家庭申请",
+        "who": "绿卡持有者提交"
+      }
+    }
+  },
+  "F2B": {
+    "fullName": "F-2B:绿卡持有者的成年未婚子女",
+    "purpose": "面向合法永久居民的 21+ 岁未婚子女",
+    "eligibility": {
+      "e1": "未婚",
+      "e2": "21 岁或以上",
+      "e3": "绿卡持有者的子女"
+    },
+    "duration": "签证可用后获得永久居留",
+    "currentWait": "从申请到签证可用 6-7 年",
+    "pathToGreenCard": "直接通向绿卡",
+    "spouseWork": "不适用 — 必须未婚",
+    "pros": {
+      "p1": "通向永久居留"
+    },
+    "cons": {
+      "c1": "等待 6-7 年",
+      "c2": "必须保持未婚",
+      "c3": "若请愿人入籍,将转为 F-1(可能等待更长)"
+    },
+    "forms": {
+      "f1": {
+        "name": "I-130 表格",
+        "purpose": "家庭申请",
+        "who": "绿卡持有者父母提交"
+      }
+    }
+  },
+  "F3": {
+    "fullName": "F-3:美国公民的已婚子女",
+    "purpose": "面向任何年龄已婚的美国公民子女",
+    "eligibility": {
+      "e1": "已婚",
+      "e2": "任何年龄",
+      "e3": "美国公民的子女"
+    },
+    "duration": "签证可用后获得永久居留",
+    "currentWait": "从申请到签证可用 12-13 年",
+    "pathToGreenCard": "为整个家庭直接通向绿卡",
+    "spouseWork": "是 — 配偶和子女包括在内",
+    "pros": {
+      "p1": "包括配偶和子女",
+      "p2": "无年龄限制"
+    },
+    "cons": {
+      "c1": "大多数国家等待 12-13 年",
+      "c2": "菲律宾 23+ 年"
+    },
+    "forms": {
+      "f1": {
+        "name": "I-130 表格",
+        "purpose": "家庭申请",
+        "who": "美国公民父母提交"
+      }
+    }
+  },
+  "F4": {
+    "fullName": "F-4:美国公民的兄弟姐妹",
+    "purpose": "面向美国公民的兄弟姐妹(请愿人必须 21+)",
+    "eligibility": {
+      "e1": "美国公民的兄弟姐妹",
+      "e2": "请愿人必须 21+ 岁",
+      "e3": "包括同父异母/继兄弟姐妹"
+    },
+    "duration": "签证可用后获得永久居留",
+    "currentWait": "根据国家 13-24 年",
+    "pathToGreenCard": "为整个家庭直接通向绿卡",
+    "spouseWork": "是 — 配偶和子女包括在内",
+    "pros": {
+      "p1": "包括配偶和所有 21 岁以下未婚子女",
+      "p2": "通向永久居留"
+    },
+    "cons": {
+      "c1": "所有类别中等待最长(13-24 年)",
+      "c2": "印度:15+ 年,墨西哥:23+ 年,菲律宾:24+ 年",
+      "c3": "许多提案要取消此类别"
+    },
+    "forms": {
+      "f1": {
+        "name": "I-130 表格",
+        "purpose": "证明兄弟姐妹关系的家庭申请",
+        "who": "美国公民兄弟姐妹提交"
+      }
+    }
+  },
+  "STUDENT": {
+    "fullName": "F-1 学生签证",
+    "purpose": "在美国大学、学院、高中或语言项目进行学术学习",
+    "eligibility": {
+      "e1": "被 SEVP 认证的学校录取",
+      "e2": "证明经济支持",
+      "e3": "保持全日制课程",
+      "e4": "证明与原籍国的联系"
+    },
+    "duration": "学习期间(D/S)加 60 天宽限期",
+    "pathToGreenCard": "无直接路径 — 但毕业后可通过雇主转换为 H-1B",
+    "spouseWork": "F-2 配偶不能工作或学习",
+    "pros": {
+      "p1": "可在校园内工作",
+      "p2": "OPT 允许毕业后 1-3 年工作",
+      "p3": "CPT 允许学习期间实习",
+      "p4": "OPT 期间可申请 H-1B"
+    },
+    "cons": {
+      "c1": "必须保持全日制注册",
+      "c2": "工作选项有限",
+      "c3": "配偶不能工作",
+      "c4": "必须显示非移民意图"
+    },
+    "forms": {
+      "f1": {
+        "name": "I-20 表格",
+        "purpose": "学校的资格证书",
+        "who": "学校在录取后签发"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "SEVIS 费用支付($350)",
+        "who": "学生在线支付"
+      },
+      "f3": {
+        "name": "DS-160 表格",
+        "purpose": "签证申请",
+        "who": "学生填写"
+      },
+      "f4": {
+        "name": "I-765 表格(OPT)",
+        "purpose": "可选实践培训工作许可",
+        "who": "学生在毕业前 90 天提交"
+      }
+    }
+  },
+  "J1": {
+    "fullName": "J-1 交流访问者签证",
+    "purpose": "面向教育和文化交流项目",
+    "eligibility": {
+      "e1": "被指定的交流项目录取",
+      "e2": "类别:学生、研究、教师、互惠生等",
+      "e3": "必须有项目赞助商"
+    },
+    "duration": "因项目而异(通常 1-7 年)",
+    "pathToGreenCard": "复杂 — 许多受 2 年原籍国居留要求约束",
+    "spouseWork": "J-2 配偶可申请工作许可",
+    "pros": {
+      "p1": "项目种类繁多",
+      "p2": "配偶可凭 EAD 工作",
+      "p3": "某些项目允许重复参与"
+    },
+    "cons": {
+      "c1": "许多受 2 年原籍国规则约束",
+      "c2": "在 H/L/绿卡前必须回原籍国 2 年",
+      "c3": "豁免程序复杂且不确定"
+    },
+    "forms": {
+      "f1": {
+        "name": "DS-2019 表格",
+        "purpose": "赞助商的资格证书",
+        "who": "项目赞助商提供"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "SEVIS 费用($220)",
+        "who": "参与者支付"
+      }
+    }
+  },
+  "M1": {
+    "fullName": "M-1 职业学生签证",
+    "purpose": "用于全日制职业或技术培训项目(技术学校、飞行学校、烹饪艺术、机械)— 与 F-1 学术学习不同",
+    "eligibility": {
+      "e1": "被 SEVP 认证的职业或非学术机构录取",
+      "e2": "全日制注册(每周至少 18 小时,车间/实验室项目为 22 小时)",
+      "e3": "整个项目期间有足够资金",
+      "e4": "具备项目所需的英语水平",
+      "e5": "项目完成后有离开美国的意图(非移民意图)"
+    },
+    "duration": "最初 1 年,可按 1 年增量延长,最多总共 3 年,加上 30 天宽限期",
+    "currentWait": "在大多数领事馆 2-3 个月可进行签证面谈",
+    "pathToGreenCard": "无直接途径 — 大多数 M-1 学生在培训后回国。转换为其他身份(F-1、H-1B)受到限制。",
+    "spouseWork": "M-2 配偶不能工作或全日制学习",
+    "pros": {
+      "p1": "允许在原籍国无法获得的专业职业培训",
+      "p2": "SEVIS 费用比 F-1 低(220 美元 vs 350 美元)",
+      "p3": "家人可凭 M-2 附属签证陪同"
+    },
+    "cons": {
+      "c1": "学习期间不能在校内或校外工作",
+      "c2": "实践培训仅在项目完成后允许(学习期间不允许)",
+      "c3": "不能轻易转入 F-1 学术项目 — 必须申请身份变更",
+      "c4": "总共最长 3 年 — 不能进行多年项目",
+      "c5": "配偶不能工作,限制了家庭财务灵活性"
+    },
+    "note": "M-1 仅适用于职业培训。如果您想进行学术学习(学位项目、语言学校),F-1 才是正确的签证。",
+    "forms": {
+      "f1": {
+        "name": "I-20 表格",
+        "purpose": "SEVP 认证学校颁发的资格证书",
+        "who": "学校在录取后签发"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "SEVIS 费用支付(M-1 为 220 美元)",
+        "who": "学生在签证面谈前在线支付"
+      },
+      "f3": {
+        "name": "DS-160 表格",
+        "purpose": "在线非移民签证申请(费用 185 美元)",
+        "who": "学生在线填写"
+      }
+    }
+  },
+  "N400_5YR": {
+    "fullName": "入籍 — 5 年连续居留",
+    "purpose": "经过 5 年连续居留的绿卡持有者获得美国公民身份的标准路径",
+    "eligibility": {
+      "e1": "持有绿卡至少 5 年",
+      "e2": "在美国连续居留 5 年",
+      "e3": "过去 60 个月中至少 30 个月有实际居住",
+      "e4": "无单次出境超过 6 个月",
+      "e5": "18 岁或以上",
+      "e6": "整个 5 年期间品行良好",
+      "e7": "能够阅读、书写和说基础英语",
+      "e8": "通过 100 题公民考试"
+    },
+    "duration": "永久 — 你将终身成为美国公民",
+    "currentWait": "从提交到宣誓仪式 8–14 个月",
+    "pathToGreenCard": "不适用 — 这是绿卡之后的步骤",
+    "spouseWork": "作为美国公民,你的配偶将成为直系亲属 — 最快的家庭赞助类别",
+    "pros": {
+      "p1": "在联邦选举中投票",
+      "p2": "美国护照 — 免签证前往 180+ 国家",
+      "p3": "无配额等待赞助直系亲属",
+      "p4": "不能被驱逐出境",
+      "p5": "有资格担任联邦工作和安全许可",
+      "p6": "18 岁以下子女可能自动获得公民身份"
+    },
+    "cons": {
+      "c1": "必须放弃先前公民身份(某些国家允许双重 — 检查你的国家)",
+      "c2": "处理时间 8–14 个月",
+      "c3": "必须通过英语和公民考试",
+      "c4": "先前的违规或犯罪历史可能取消资格"
+    },
+    "note": "你可以在达到 5 年资格日期前 90 天提交 N-400 表格。",
+    "forms": {
+      "f1": {
+        "name": "N-400 表格",
+        "purpose": "入籍申请",
+        "who": "申请人向 USCIS 提交"
+      },
+      "f2": {
+        "name": "I-90 表格(如需要)",
+        "purpose": "如绿卡在入籍前过期则更新",
+        "who": "若 GC 已过期或即将过期,申请人提交"
+      }
+    }
+  },
+  "N400_3YR": {
+    "fullName": "入籍 — 3 年规则(与美国公民结婚)",
+    "purpose": "面向已婚并与美国公民同住的绿卡持有者的加速入籍路径",
+    "eligibility": {
+      "e1": "持有绿卡至少 3 年",
+      "e2": "目前与申请你的同一美国公民结婚",
+      "e3": "美国公民配偶在整个 3 年期间一直是公民",
+      "e4": "提交时与公民配偶同住",
+      "e5": "过去 36 个月中至少 18 个月有实际居住",
+      "e6": "无单次出境超过 6 个月",
+      "e7": "品行良好",
+      "e8": "通过英语和公民要求"
+    },
+    "duration": "永久 — 终身美国公民身份",
+    "currentWait": "从提交到宣誓仪式 8–14 个月",
+    "pathToGreenCard": "不适用 — 这是绿卡之后的步骤",
+    "spouseWork": "入籍后,你可以作为美国公民立即赞助其他家庭成员",
+    "pros": {
+      "p1": "比标准 5 年路线提前 2 年获得资格",
+      "p2": "美国公民身份的所有福利",
+      "p3": "美国护照和免签证旅行",
+      "p4": "立即赞助家庭成员"
+    },
+    "cons": {
+      "c1": "必须仍与同一公民配偶结婚并同住",
+      "c2": "如婚姻在提交前结束,必须等待 5 年路线",
+      "c3": "离婚或分居可能取消你这条路线的资格"
+    },
+    "note": "你必须在提交时和面试时仍与同一美国公民结婚。",
+    "forms": {
+      "f1": {
+        "name": "N-400 表格",
+        "purpose": "入籍申请",
+        "who": "申请人向 USCIS 提交"
+      },
+      "f2": {
+        "name": "结婚证",
+        "purpose": "与美国公民有效婚姻的证明",
+        "who": "申请人提供"
+      },
+      "f3": {
+        "name": "配偶公民身份证明",
+        "purpose": "公民配偶的美国护照或出生证明",
+        "who": "申请人提供"
+      }
+    }
+  },
+  "N400_MIL": {
+    "fullName": "入籍 — 军人服役",
+    "purpose": "面向现役军人和荣誉退伍军人的加速或立即入籍",
+    "eligibility": {
+      "e1": "美国武装部队现役或荣誉退伍",
+      "e2": "和平时期 1 年荣誉服役",
+      "e3": "在指定敌对时期立即获得资格",
+      "e4": "品行良好",
+      "e5": "通过英语和公民要求(部分豁免适用)"
+    },
+    "duration": "永久 — 终身美国公民身份",
+    "currentWait": "加速 — 可比平民路线更快处理",
+    "pathToGreenCard": "不适用 — 在某些情况下即使没有绿卡也可申请",
+    "spouseWork": "作为美国公民,你可以无等待地赞助直系家庭成员",
+    "pros": {
+      "p1": "N-400 申请费完全免除($0)",
+      "p2": "可通过美国大使馆在海外入籍",
+      "p3": "在敌对时期立即获得资格",
+      "p4": "对长期服役成员有英语/公民考试豁免",
+      "p5": "对在服役中牺牲者提供追授公民身份"
+    },
+    "cons": {
+      "c1": "必须荣誉退伍 — 不光彩退伍取消资格",
+      "c2": "需要军事文件(DD-214)"
+    },
+    "note": "对所有现役军人和荣誉退伍军人,申请费为 $0。如果在海外服役期间提交,使用 N-426 表格。",
+    "forms": {
+      "f1": {
+        "name": "N-400 表格",
+        "purpose": "入籍申请(军人 $0 费用)",
+        "who": "申请人向 USCIS 提交"
+      },
+      "f2": {
+        "name": "N-426 表格",
+        "purpose": "军事或海军服务认证申请",
+        "who": "海外现役所必需"
+      },
+      "f3": {
+        "name": "DD-214",
+        "purpose": "现役解除或退伍证书",
+        "who": "服役部门签发"
+      }
+    }
+  },
+  "N600": {
+    "fullName": "儿童公民身份证书",
+    "purpose": "为父母入籍时自动获得美国公民身份的儿童记录公民身份",
+    "eligibility": {
+      "e1": "18 岁以下",
+      "e2": "合法永久居民(绿卡持有者)",
+      "e3": "至少一位父母通过出生或入籍是美国公民",
+      "e4": "在美国居住,处于公民父母的合法和实际监护之下"
+    },
+    "duration": "永久 — 记录现有公民身份",
+    "currentWait": "因情况而异 — 这记录已经发生的公民身份",
+    "pathToGreenCard": "不适用 — 儿童已是公民",
+    "spouseWork": "不适用 — 儿童公民身份文件",
+    "pros": {
+      "p1": "可能已自动发生 — N-600 仅证明它",
+      "p2": "儿童获得美国护照和所有公民权利",
+      "p3": "保护成年后免于驱逐",
+      "p4": "可获得军事费用豁免"
+    },
+    "cons": {
+      "c1": "$1,170 申请费(公民表格中最高)",
+      "c2": "处理可能需要 12+ 个月",
+      "c3": "如果儿童在父母已入籍后出生则不适用"
+    },
+    "note": "如果你父母在你 18 岁前入籍,且你有绿卡,你可能已经是美国公民 — N-600 仅记录此事。申请前请检查!",
+    "forms": {
+      "f1": {
+        "name": "N-600 表格",
+        "purpose": "公民身份证书申请",
+        "who": "父母代表儿童提交(或成年子女自己提交)"
+      },
+      "f2": {
+        "name": "父母的入籍证书",
+        "purpose": "证明父母是美国公民",
+        "who": "申请人提供"
+      },
+      "f3": {
+        "name": "儿童的绿卡",
+        "purpose": "父母入籍时 LPR 身份的证明",
+        "who": "申请人提供"
+      }
+    }
+  },
+  "ASYLUM": {
+    "fullName": "庇护(I-589 表格)",
+    "purpose": "为已经在美国境内、因种族、宗教、国籍、政治观点或特定社会群体身份而担心在祖国遭受迫害的个人提供保护",
+    "eligibility": {
+      "e1": "实际身处美国境内",
+      "e2": "已经遭受或担心因受保护理由遭受未来的迫害",
+      "e3": "在抵达后 1 年内提交 I-589 表格(例外有限)",
+      "e4": "迫害必须来自政府,或政府无法/不愿控制的群体",
+      "e5": "未因犯罪记录、先前迫害他人或在第三国稳定定居而被排除"
+    },
+    "duration": "庇护身份无限期授予 — 1 年后可申请绿卡",
+    "currentWait": "USCIS 主动申请案件:6 个月至 5 年以上;移民法庭(防御性):通常 3-7 年",
+    "pathToGreenCard": "庇护批准 1 年后申请绿卡(I-485 表格)",
+    "spouseWork": "如在申请时身处美国境内,配偶和 21 岁以下子女可作为附属包括在内",
+    "pros": {
+      "p1": "通往永久居留权并最终入籍的途径",
+      "p2": "申请待审 150 天后可申请工作许可(EAD)",
+      "p3": "可包括配偶和 21 岁以下未婚子女",
+      "p4": "案件待审期间不能被驱逐回所担心受迫害的国家"
+    },
+    "cons": {
+      "c1": "I-589 表格申请费 100 美元(2025 年起新增;此前免费)",
+      "c2": "待审申请需缴纳年度庇护费(AAF)— 不缴费将导致申请被拒(2026 年 5 月 29 日生效)",
+      "c3": "从抵达起 1 年的提交期限非常严格 — 例外授予非常有限",
+      "c4": "EAD 有效期现在最长 18 个月;自动延期已于 2025 年 10 月取消",
+      "c5": "政策环境多变 — 加强审查、按国家暂停、增加拘留",
+      "c6": "如主动申请被拒,案件将转交移民法庭进行进一步程序",
+      "c7": "无理申请可能导致永久禁止获得任何美国移民福利"
+    },
+    "note": "⚠️ 2026 年庇护政策变化迅速。强烈建议咨询移民律师或经认证的代表 — 许多法律援助组织提供免费帮助。",
+    "forms": {
+      "f1": {
+        "name": "I-589 表格",
+        "purpose": "庇护和暂缓遣返申请(100 美元费用)",
+        "who": "申请人向 USCIS 或移民法庭提交"
+      },
+      "f2": {
+        "name": "I-765 (c)(8) 表格",
+        "purpose": "基于待审庇护的就业许可(150 天后)",
+        "who": "申请人在等待期后提交"
+      },
+      "f3": {
+        "name": "I-485 表格",
+        "purpose": "调整为永久居民(庇护批准 1 年后)",
+        "who": "庇护者在 1 年后提交"
+      },
+      "f4": {
+        "name": "I-730 表格",
+        "purpose": "难民/庇护者亲属申请 — 将国外配偶/子女带到美国",
+        "who": "庇护者在批准 2 年内提交"
+      }
+    }
+  },
+  "REFUGEE": {
+    "fullName": "难民安置",
+    "purpose": "为身在美国境外、因迫害无法回国的个人提供保护;通过联合国难民署(UNHCR)和 USRAP 处理",
+    "eligibility": {
+      "e1": "身在美国境外",
+      "e2": "对美国具有特殊人道主义关注",
+      "e3": "因种族、宗教、国籍、政治观点或社会群体而担心遭受迫害",
+      "e4": "通常由联合国难民署、美国大使馆或指定 NGO 推荐",
+      "e5": "未在另一国稳定定居",
+      "e6": "通过广泛的安全和医疗审查"
+    },
+    "duration": "难民身份导向永久居留 — 抵达 1 年后必须申请绿卡",
+    "currentWait": "从推荐到抵达美国 18-24 个月;处理仍然缓慢",
+    "pathToGreenCard": "在美国 1 年后必须申请绿卡(I-485 表格)",
+    "spouseWork": "抵达后立即获得工作授权;配偶和子女可作为附属前来",
+    "pros": {
+      "p1": "旅行和安置费用由美国政府和安置机构承担",
+      "p2": "包括住房援助、英语课程、就业支持等初期福利",
+      "p3": "抵达后立即获得工作授权 — 无需单独的 EAD",
+      "p4": "通往永久居留权和入籍的途径",
+      "p5": "家庭成员可通过附属身份加入"
+    },
+    "cons": {
+      "c1": "美国年度难民接收上限历来较低且政治多变",
+      "c2": "处理时间长 — 从推荐起 18-24 个月以上",
+      "c3": "对您将被安置在哪个美国城市的控制有限",
+      "c4": "无法自行申请 — 必须通过联合国难民署或指定机构推荐",
+      "c5": "在当前政策环境下,按国家暂停和项目限制很常见"
+    },
+    "note": "⚠️ 自 2025 年以来,美国难民项目受到严重限制。请联系联合国难民署(help.unhcr.org)了解当前接收状态 — 许多国家的处理目前已暂停或放缓。",
+    "forms": {
+      "f1": {
+        "name": "I-590 表格",
+        "purpose": "登记为难民分类",
+        "who": "由 USCIS 官员在海外处理期间完成"
+      },
+      "f2": {
+        "name": "I-485 表格",
+        "purpose": "调整为永久居民(抵达 1 年后)",
+        "who": "难民在美国 1 年后提交"
+      },
+      "f3": {
+        "name": "I-730 表格",
+        "purpose": "难民/庇护者亲属申请 — 用于国外家庭成员",
+        "who": "难民在抵达 2 年内提交"
+      }
+    }
+  }
+},
+    "lifeSetupGuides": {
+      "ssn": {
+        "title": "社会安全号码",
+        "description": "工作和福利的必要 ID",
+        "sections": {
+          "s1": {
+            "title": "谁可以申请",
+            "content": {
+              "c1": "有就业授权的工作签证持有人",
+              "c2": "绿卡持有者",
+              "c3": "有工作机会的某些学生签证持有人",
+              "c4": "庇护者和难民"
+            }
+          },
+          "s2": {
+            "title": "如何申请",
+            "content": {
+              "c1": "前往当地社会安全办公室",
+              "c2": "携带护照、签证、I-94 和工作授权",
+              "c3": "完成 SS-5 申请表",
+              "c4": "处理需要 2-4 周",
+              "c5": "卡片邮寄到达"
+            }
+          },
+          "s3": {
+            "title": "所需文件",
+            "content": {
+              "c1": "有效护照",
+              "c2": "移民文件(签证、I-94)",
+              "c3": "工作授权(EAD 卡或签证)",
+              "c4": "出生证明(如有)"
+            }
+          }
+        }
+      },
+      "banking": {
+        "title": "无信用历史的银行业务",
+        "description": "无信用历史开户",
+        "sections": {
+          "s1": {
+            "title": "对移民友好的银行",
+            "content": {
+              "c1": "Chase Bank - 提供担保卡",
+              "c2": "Bank of America - SafeBalance 账户",
+              "c3": "Wells Fargo - Opportunity Checking",
+              "c4": "Capital One - 无费用支票",
+              "c5": "本地信用合作社 - 通常更灵活"
+            }
+          },
+          "s2": {
+            "title": "你需要什么",
+            "content": {
+              "c1": "护照和签证",
+              "c2": "地址证明(租约、水电费账单)",
+              "c3": "初始存款($25-100)",
+              "c4": "SSN 或 ITIN(部分银行只接受护照)",
+              "c5": "雇佣信(有用但不总是必需)"
+            }
+          },
+          "s3": {
+            "title": "账户类型",
+            "content": {
+              "c1": "支票账户 - 用于日常交易",
+              "c2": "储蓄账户 - 建立应急基金",
+              "c3": "担保信用卡 - 开始建立信用",
+              "c4": "货币市场 - 更高利息储蓄"
+            }
+          }
+        }
+      },
+      "credit": {
+        "title": "快速建立信用",
+        "description": "从零建立信用评分",
+        "sections": {
+          "s1": {
+            "title": "6 个月信用计划",
+            "content": {
+              "c1": "第 1 个月:获得担保信用卡($200-500 押金)",
+              "c2": "第 2 个月:设置自动小额付款",
+              "c3": "第 3 个月:保持使用率低于 30%",
+              "c4": "第 4 个月:考虑成为授权用户",
+              "c5": "第 5 个月:申请第二张担保卡",
+              "c6": "第 6 个月:检查信用评分 - 应该达到 650+"
+            }
+          },
+          "s2": {
+            "title": "最佳担保卡",
+            "content": {
+              "c1": "Discover it® Secured - 现金返现奖励",
+              "c2": "Capital One Secured - 低押金",
+              "c3": "OpenSky® Secured - 无信用检查",
+              "c4": "Citi® Secured Mastercard® - 通向无担保"
+            }
+          },
+          "s3": {
+            "title": "信用建立技巧",
+            "content": {
+              "c1": "永远不要错过付款(评分的 35%)",
+              "c2": "保持余额低(评分的 30%)",
+              "c3": "不要关闭旧账户",
+              "c4": "随时间混合信用类型",
+              "c5": "每年检查免费信用报告"
+            }
+          }
+        }
+      },
+      "job": {
+        "title": "首次求职",
+        "description": "用外国证书找工作",
+        "sections": {
+          "s1": {
+            "title": "工作授权",
+            "content": {
+              "c1": "H-1B、L-1、O-1 - 与特定雇主绑定",
+              "c2": "EAD 卡 - 开放工作授权",
+              "c3": "F-1 OPT - 适用于应届毕业生",
+              "c4": "绿卡 - 无限制工作",
+              "c5": "仔细检查签证限制"
+            }
+          },
+          "s2": {
+            "title": "求职平台",
+            "content": {
+              "c1": "LinkedIn - 专业网络",
+              "c2": "Indeed - 最大的求职板",
+              "c3": "Glassdoor - 公司评论",
+              "c4": "AngelList - 初创公司工作",
+              "c5": "H1BGrader - H-1B 友好的雇主",
+              "c6": "MyVisaJobs - 移民友好的公司"
+            }
+          },
+          "s3": {
+            "title": "简历提示",
+            "content": {
+              "c1": "使用美国格式(无照片、年龄或个人信息)",
+              "c2": "突出可转移技能",
+              "c3": "如有需要进行证书评估",
+              "c4": "包括签证状态(例如\"已授权工作\")",
+              "c5": "用数字量化成就",
+              "c6": "保持最多 1-2 页"
+            }
+          }
+        }
+      },
+      "itin": {
+        "title": "IRS ITIN 申请",
+        "description": "个人纳税人识别号",
+        "shortDescription": "如果不能获得 SSN",
+        "sections": {
+          "s1": {
+            "title": "什么是 ITIN?",
+            "content": {
+              "c1": "无法获得 SSN 者的税务处理号",
+              "c2": "如果你有收入,需要提交税务",
+              "c3": "不提供工作授权",
+              "c4": "格式:9XX-XX-XXXX"
+            }
+          },
+          "s2": {
+            "title": "如何申请",
+            "content": {
+              "c1": "向 IRS 完成 W-7 表格",
+              "c2": "申请时附上联邦税务申报",
+              "c3": "提供原始护照或认证副本",
+              "c4": "通过邮件、亲自或通过认证接受代理申请",
+              "c5": "处理需要 7-11 周"
+            }
+          }
+        }
+      },
+      "dmv": {
+        "title": "DMV 驾照指南",
+        "description": "作为移民获得驾照",
+        "shortDescription": "州对州的要求",
+        "sections": {
+          "s1": {
+            "title": "一般要求",
+            "content": {
+              "c1": "有效移民身份(要求因州而异)",
+              "c2": "身份证明(护照、签证、I-94)",
+              "c3": "居住证明(租约、水电费账单)",
+              "c4": "SSN 或不合格证明",
+              "c5": "通过笔试、视力测试和路考"
+            }
+          },
+          "s2": {
+            "title": "政策友好的州",
+            "content": {
+              "c1": "19 个州 + DC 允许颁发驾照,无论身份",
+              "c2": "加州、纽约、伊利诺伊州、新泽西州在其中",
+              "c3": "某些州签发\"标准\"vs\"REAL ID\"驾照",
+              "c4": "从 2025 年 5 月起,国内航班需要 REAL ID",
+              "c5": "查看你所在州的 DMV 网站了解具体要求"
+            }
+          }
+        }
+      },
+      "healthcare": {
+        "title": "医疗选项",
+        "description": "为移民提供的健康保险",
+        "shortDescription": "移民保险",
+        "sections": {
+          "s1": {
+            "title": "保险选项",
+            "content": {
+              "c1": "雇主赞助的保险(工作签证持有人最常见)",
+              "c2": "ACA 市场计划(Healthcare.gov)— 对合法居民开放",
+              "c3": "Medicaid — 因州和移民身份而异",
+              "c4": "大学健康计划 — 大多数 F-1 学生需要",
+              "c5": "短期健康保险 — 临时覆盖"
+            }
+          },
+          "s2": {
+            "title": "重要提示",
+            "content": {
+              "c1": "大多数签证持有人最初不符合 Medicaid 资格",
+              "c2": "F-1 学生通常必须注册学校健康计划",
+              "c3": "H-1B 持有人通常获得雇主保险",
+              "c4": "紧急 Medicaid 不论身份均可用",
+              "c5": "社区健康中心提供阶梯式费用",
+              "c6": "Healthcare.gov 开放注册:每年 11 月 1 日 – 1 月 15 日"
+            }
+          }
+        }
+      },
+      "tax": {
+        "title": "移民税务申报",
+        "description": "移民的联邦和州税务义务",
+        "sections": {
+          "s1": {
+            "title": "谁必须申报",
+            "content": {
+              "c1": "所有美国居民(绿卡持有者、实质性居住)",
+              "c2": "H-1B、L-1、O-1 持有人 — 按居民征税",
+              "c3": "F-1 学生 — 通常前 5 年是非居民",
+              "c4": "在美国赚取的收入应纳税,无论身份",
+              "c5": "税务条约可能减少某些国家的义务"
+            }
+          },
+          "s2": {
+            "title": "关键表格",
+            "content": {
+              "c1": "1040 表格 — 居民纳税申报表",
+              "c2": "1040-NR 表格 — 非居民纳税申报表",
+              "c3": "W-2 表格 — 来自雇主的工资收入",
+              "c4": "8843 表格 — F/J 签证免税个人需要",
+              "c5": "ITIN(W-7)— 如果没有 SSN"
+            }
+          },
+          "s3": {
+            "title": "免费申报资源",
+            "content": {
+              "c1": "IRS Free File — irs.gov/freefile(收入低于 $84,000)",
+              "c2": "VITA — 低收入免费税务准备(irs.gov/vita)",
+              "c3": "Sprintax — 专为非居民税务申报设计",
+              "c4": "TurboTax — 适用于居民申报人",
+              "c5": "申报截止日期:每年 4 月 15 日"
+            }
+          }
+        }
+      }
+    },
+    "pathwayDetailScreen": {
+      "errorTitle": "未找到路径",
+      "currentViability": "当前可行性",
+      "immediateRelativeAlert": {
+        "dialogTitle": "什么是直系亲属?",
+        "dialogBody": "直系亲属是最快的家庭类别,因为没有年度限制!\n\n谁符合资格:\n• 美国公民的配偶\n• 美国公民的 21 岁以下未婚子女\n• 美国公民的父母(如果公民 21+ 岁)\n\n为什么特别:\n• 无需等待签证号\n• 无年度配额\n• 12-24 个月处理 vs 5-20 年\n\n所有其他家庭类别必须等待数年才能获得签证号。",
+        "gotIt": "了解了!",
+        "bannerTitle": "直系亲属 = 无需排队!",
+        "bannerText": "美国公民的配偶、未成年子女和父母。点击了解为什么这很重要。"
+      },
+      "citizenshipAlert": {
+        "dialogTitle": "为什么要入籍?",
+        "dialogBody": "成为美国公民赋予你超越绿卡的权利和保护:\n\n🗳️ 在联邦、州和地方选举中投票\n🛂 美国护照 — 免签证前往 180+ 国家\n👨‍👩‍👧 立即作为直系亲属赞助家庭\n🛡️ 不能被驱逐 — 永久安全\n💼 联邦工作和安全许可\n👶 18 岁以下子女可能自动成为公民\n\n大多数绿卡持有者在 5 年后符合资格。与美国公民结婚?你可能在仅 3 年后就符合资格。",
+        "bannerTitle": "为什么成为美国公民?",
+        "bannerText": "护照、投票权、家庭赞助等。点击了解。"
+      },
+      "formLinkErrors": {
+        "cantOpenTitle": "无法打开链接",
+        "cantOpenBody": "无法打开 {{formName}}。请在 USCIS.gov 上搜索",
+        "noLinkBody": "此表格由你的学校/雇主提供或需要特殊访问权限。",
+        "ok": "确定"
+      },
+      "overview": "概述",
+      "processingTimes": "处理时间",
+      "governmentFees": "政府费用",
+      "visaCategoriesTitle": {
+        "default": "签证类别说明",
+        "citizenship": "入籍路线"
+      },
+      "ucBadge": "🇺🇸 USC",
+      "gcBadge": "→ GC",
+      "details": {
+        "durationLabel": "时长:",
+        "currentWaitLabel": {
+          "default": "当前等待:",
+          "citizenship": "处理时间:"
+        },
+        "spouseWorkLabel": {
+          "default": "配偶可工作:",
+          "citizenship": "家庭福利:"
+        }
+      },
+      "eligibilityLabel": {
+        "default": "资格要求:",
+        "citizenship": "要求:"
+      },
+      "benefitsLabel": "✅ 福利",
+      "considerationsLabel": "⚠️ 考虑事项",
+      "formsLabel": "所需表格:",
+      "greenCardPath": {
+        "title": "🟢 通向永久居留(绿卡)的路径",
+        "h1bIndiaWarning": "⚠️ 印度/中国国民:EB-2/EB-3 绿卡等待 12+ 年"
+      },
+      "militaryFeeNote": "🎖️ 申请费:$0 — 军人申请人完全免除",
+      "buttons": {
+        "checklistDefault": "📋 查看文件清单",
+        "checklistCitizenship": "📋 N-400 文件清单",
+        "timelineDefault": "📅 查看处理时间表",
+        "timelineCitizenship": "📅 入籍时间表",
+        "uscisDefault": "🔗 访问 USCIS 表格中心",
+        "uscisCitizenship": "🔗 USCIS 公民身份中心"
+      }
+    },
+    "guideDetailScreen": {
+      "relatedGuidesTitle": "📚 相关指南",
+      "needHelpTitle": "需要更多帮助?",
+      "needHelpText": "考虑咨询移民律师或访问当地 USCIS 办公室获取个性化指导。",
+      "helpfulLinks": {
+        "immigrationAdvocates": "Immigration Advocates",
+        "uscisOfficeLocator": "USCIS 办公室定位器",
+        "legalAidDirectory": "法律援助目录"
+      },
+      "cantOpenLinkTitle": "无法打开链接",
+      "cantOpenLinkBody": "无法打开 {{name}}。请在线搜索。"
+    },
+    "lifeSetupScreen": {
+      "title": "生活设置指南",
+      "subtitle": "在美国新生活的基本步骤",
+      "first30DaysTitle": "📍 你的前 30 天",
+      "first30Days": {
+        "step1": "申请 SSN(如符合条件)",
+        "step2": "开立银行账户",
+        "step3": "获得担保信用卡",
+        "step4": "设置电话和水电",
+        "step5": "开始求职申请"
+      },
+      "additionalResourcesTitle": "📚 其他资源",
+      "avoidScams": {
+        "title": "避免诈骗",
+        "body": "永远不要为工作机会付费,SSN 申请是免费的,只使用官方政府网站。"
+      }
+    },
+    "viabilityBadge": {
+      "tapHint": "点击查看详情",
+      "updated": "更新:{{date}}"
+    },
+    "embassySelector": {
+      "noData": "此签证和国家没有可用的大使馆预约等待时间数据。",
+      "title": "大使馆预约估计",
+      "fastestOption": "最快选项",
+      "fastestValue": "{{city}} — 约 {{days}} 天",
+      "daysApprox": "约 {{days}} 天",
+      "lastUpdated": "最后更新:{{date}}",
+      "disclaimer": "预约可用性可能有所不同,不保证面试安排。"
+    },
+    "feeCalculator": {
+      "title": "估计政府费用",
+      "totalLabel": "估计费用总额",
+      "lastUpdated": "最后更新:{{date}}",
+      "feeUpdatedNote": "于 {{date}} 更新(原为 ${{previous}})",
+      "disclaimer": "仅为估计。不包括法律、医疗或旅行费用。",
+      "disclaimerWithPremium": "仅为估计。不包括法律、医疗或旅行费用。加急处理费用于 2026 年 3 月 1 日起生效。"
+    },
+    "pathwaysData": {
+      "work": {
+        "title": "基于工作的移民",
+        "overview": "基于就业的移民允许外国人在美国工作。大多数类别需要雇主担保。",
+        "categories": {
+          "h1b": {
+            "name": "H-1B 专业职业",
+            "description": "适用于需要专业知识和学士学位或更高学位的职位。",
+            "requirements": {
+              "r1": "学士学位或同等学历",
+              "r2": "美国雇主提供的工作机会",
+              "r3": "专业职业",
+              "r4": "雇主必须支付现行工资"
+            }
+          },
+          "l1": {
+            "name": "L-1 公司内部调动",
+            "description": "适用于跨国公司员工调到美国办公室。",
+            "requirements": {
+              "r1": "过去 3 年内为该公司工作 1 年",
+              "r2": "调到合格的美国实体",
+              "r3": "高管、管理或专业角色"
+            }
+          },
+          "o1": {
+            "name": "O-1 杰出能力",
+            "description": "适用于在科学、艺术、教育、商业或体育方面具有杰出能力的个人。",
+            "requirements": {
+              "r1": "已证明的杰出能力",
+              "r2": "国家或国际认可",
+              "r3": "在专业领域工作"
+            }
+          },
+          "eb": {
+            "name": "基于就业的绿卡",
+            "description": "通过基于就业的类别(EB-1、EB-2、EB-3)获得永久居留权。"
+          }
+        }
+      },
+      "family": {
+        "title": "基于家庭的移民",
+        "overview": "美国公民和永久居民可以为合格的家庭成员提供担保。直系亲属没有年度限制。",
+        "categories": {
+          "immediate": {
+            "name": "直系亲属",
+            "description": "美国公民的配偶、21 岁以下未婚子女和父母。无年度限制。"
+          },
+          "k1": {
+            "name": "K-1 未婚夫(妻)签证",
+            "description": "适用于美国公民的未婚夫(妻)。",
+            "requirements": {
+              "r1": "90 天内结婚的意愿",
+              "r2": "过去 2 年内亲自见过面",
+              "r3": "依法可以结婚"
+            }
+          },
+          "f1": {
+            "name": "F-1:美国公民的未婚成年子女",
+            "description": "适用于美国公民的 21 岁以上未婚子女。当前等待:7-8 年。"
+          },
+          "f2a": {
+            "name": "F-2A:绿卡持有者的配偶/子女",
+            "description": "适用于永久居民的配偶和 21 岁以下未婚子女。当前等待:2-3 年。"
+          },
+          "f2b": {
+            "name": "F-2B:绿卡持有者的成年未婚子女",
+            "description": "适用于永久居民的 21 岁以上未婚子女。当前等待:6-7 年。"
+          },
+          "f3": {
+            "name": "F-3:美国公民的已婚子女",
+            "description": "适用于美国公民的已婚子女。当前等待:12-13 年。"
+          },
+          "f4": {
+            "name": "F-4:美国公民的兄弟姐妹",
+            "description": "适用于美国公民的兄弟姐妹(请愿人必须 21 岁以上)。当前等待:13-24 年。"
+          }
+        }
+      },
+      "student": {
+        "title": "学生路径",
+        "overview": "国际学生可以在 SEVP 认证的美国机构全日制学习。F-1 学生可以通过 OPT(12 个月)和 STEM OPT(额外 24 个月)在毕业后工作。",
+        "categories": {
+          "f1_student": {
+            "name": "F-1 学术学生",
+            "description": "在美国大学或学院全日制学习。OPT 允许毕业后 1-3 年的工作。",
+            "requirements": {
+              "r1": "SEVP 批准的学校录取",
+              "r2": "全日制课程",
+              "r3": "财务证明(约 $40,000/年)",
+              "r4": "学习后离开的意愿"
+            }
+          },
+          "j1": {
+            "name": "J-1 交流访问者",
+            "description": "适用于交流项目(研究、教学、互惠生)。许多受 2 年原籍国居留要求约束。"
+          },
+          "m1": {
+            "name": "M-1 职业学生",
+            "description": "适用于职业或非学术项目。完成后工作选项有限。"
+          }
+        }
+      },
+      "protection": {
+        "title": "人道主义保护",
+        "overview": "为无法安全返回家园的个人提供的保护途径。庇护必须在抵达美国后 1 年内提交。当前政策环境不稳定。",
+        "categories": {
+          "asylum": {
+            "name": "庇护",
+            "description": "适用于有充分根据担心受到迫害的人。必须在抵达后 1 年内提交。"
+          },
+          "refugee": {
+            "name": "难民身份",
+            "description": "适用于在美国境外由联合国难民署或美国大使馆推荐的个人。"
+          }
+        }
+      },
+      "citizenship": {
+        "title": "通往公民身份之路",
+        "overview": "美国入籍允许合法永久居民(绿卡持有者)成为美国公民。大多数申请人在连续居住 5 年后符合资格。美国公民的配偶可能在 3 年后符合资格。",
+        "categories": {
+          "standard": {
+            "name": "5 年连续居住",
+            "description": "大多数绿卡持有者在 5 年连续居住后的标准入籍途径。",
+            "requirements": {
+              "r1": "持有绿卡至少 5 年",
+              "r2": "在美国连续居住 5 年",
+              "r3": "5 年内至少 30 个月的实际居住",
+              "r4": "无单次出境超过 6 个月",
+              "r5": "18 岁或以上",
+              "r6": "良好的道德品质",
+              "r7": "能够阅读、书写和说英语",
+              "r8": "通过 100 题公民考试"
+            }
+          },
+          "marriage": {
+            "name": "3 年规则(与美国公民结婚)",
+            "description": "已婚并与美国公民同住的绿卡持有者的加速途径。3 年后即可申请,而不是 5 年。",
+            "requirements": {
+              "r1": "持有绿卡至少 3 年",
+              "r2": "目前与美国公民结婚并同住",
+              "r3": "配偶在所有 3 年中都是美国公民",
+              "r4": "3 年内至少 18 个月的实际居住",
+              "r5": "无单次出境超过 6 个月",
+              "r6": "良好的道德品质",
+              "r7": "通过英语和公民要求"
+            }
+          },
+          "military": {
+            "name": "军人服役",
+            "description": "现役军人和荣誉退伍军人的加速或立即入籍。",
+            "requirements": {
+              "r1": "现役或荣誉退伍美国武装部队",
+              "r2": "1 年荣誉服役(和平时期)",
+              "r3": "在指定敌对状态期间现役 = 立即获得资格",
+              "r4": "良好的道德品质",
+              "r5": "通过英语和公民要求"
+            }
+          },
+          "children": {
+            "name": "儿童公民身份",
+            "description": "持有绿卡的 18 岁以下儿童在父母入籍时可能自动获得公民身份。N-600 用于记录此公民身份。",
+            "requirements": {
+              "r1": "未满 18 岁",
+              "r2": "合法永久居民",
+              "r3": "至少一位父母是美国公民(出生或入籍)",
+              "r4": "在美国居住,处于美国公民父母的法律和实际监护之下"
+            }
+          }
+        }
+      }
+    },
+    "timelineCalculator": {
+      "fallback": "时间表因个人情况而异。",
+      "title": "估计时间表",
+      "processingTimeLabel": "处理时间",
+      "visaWaitLabel": "签证可用性等待",
+      "priorityYears": "{{min}}–{{max}}+ 年",
+      "lastUpdated": "最后更新:{{date}}",
+      "disclaimer": "时间表为估计值,可能因国家、工作量和案件复杂性而异。"
+    },
+
+    "caseTracker": {
+        "header": {
+          "title": "USCIS 案件追踪器",
+          "subtitle": "实时追踪您的 USCIS 申请的官方状态。"
+        },
+        "input": {
+          "label": "输入您的收据号码",
+          "helper": "13 个字符：3 个字母 + 10 位数字。可在 USCIS 寄送的 I-797 通知上找到。",
+          "submit": "追踪案件",
+          "invalidFormat": "收据号码必须为 3 个字母后跟 10 位数字。"
+        },
+        "empty": {
+          "title": "尚未追踪任何案件",
+          "body": "在上方添加您的第一个收据号码,开始追踪您的 USCIS 申请。"
+        },
+        "cases": {
+          "title": "已追踪案件 ({{count}})"
+        },
+        "card": {
+          "lastUpdated": "更新于 {{date}}",
+          "showDetails": "显示详情",
+          "hideDetails": "隐藏详情",
+          "description": "描述",
+          "submitted": "提交日期",
+          "history": "状态历史",
+          "fetched": "最后查询时间:{{time}}"
+        },
+        "error": {
+          "title": "错误 · {{code}}",
+          "trace": "追踪 ID:{{traceId}}"
+        },
+        "remove": {
+          "title": "移除此案件?",
+          "body": "停止追踪 {{receiptNumber}}?您可以随时重新添加。",
+          "cancel": "取消",
+          "confirm": "移除"
+        },
+        "dataSource": "数据直接来自官方 USCIS 案件状态 API。此信息仅用于追踪目的,不构成法律建议。"
+      },
+
+    "tabNavigator": {
+      "home": "主页",
+      "checklist": "清单",
+      "timeline": "时间表",
+      "lifeSetup": "生活设置",
+      "resources": "资源"
+    },
+    "priorityDateTracker": {
+      "noData": "优先日期信息不可用。",
+      "noBulletin": "此类别的签证公告数据不可用。",
+      "noCountryCutoff": "国家特定的截止日期不可用。",
+      "title": "签证可用性",
+      "yourPriorityDate": "您的优先日期",
+      "currentCutoff": "当前截止日期",
+      "current": "当前",
+      "notCurrent": "非当前",
+      "backloggedWarning": "您的类别目前积压。变动取决于年度签证限制和需求。",
+      "bulletinUpdated": "签证公告:{{date}}",
+      "disclaimer": "此信息基于美国国务院签证公告,不保证签证可用性。"
+    }
+  }

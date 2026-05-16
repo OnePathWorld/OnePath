@@ -1,10 +1,10 @@
 // src/data/embassyWaits.js
-// Updated: March 2026
+// Updated: May 8, 2026
 // Note: Embassy wait times change frequently. These are baseline estimates.
 // Users should check travel.state.gov for the most current appointment availability.
 
 export const EMBASSY_WAITS_META = {
-    lastUpdated: "March 2026",
+    lastUpdated: "May 8, 2026",
     source: "U.S. Department of State — Visa Appointment Wait Times",
     disclaimer:
       "Embassy wait times are estimates and may change frequently. Actual scheduling availability depends on demand, staffing, and policy changes. Always verify at travel.state.gov.",
@@ -17,28 +17,31 @@ export const EMBASSY_WAITS_META = {
     // =========================================================
     F1: {
       India: [
-        { city: "New Delhi", days: 30 },
-        { city: "Mumbai", days: 90 },
-        { city: "Hyderabad", days: 60 },
         { city: "Chennai", days: 21 },
         { city: "Kolkata", days: 14 },
+        { city: "New Delhi", days: 30 },
+        { city: "Hyderabad", days: 60 },
+        { city: "Mumbai", days: 90 },
       ],
       China: [
-        { city: "Beijing", days: 30 },
-        { city: "Shanghai", days: 30 },
         { city: "Guangzhou", days: 14 },
         { city: "Shenyang", days: 21 },
+        { city: "Beijing", days: 30 },
+        { city: "Shanghai", days: 30 },
       ],
       Mexico: [
-        { city: "Mexico City", days: 42 },
         { city: "Ciudad Juarez", days: 14 },
-        { city: "Guadalajara", days: 30 },
         { city: "Monterrey", days: 21 },
+        { city: "Mexico City", days: 42 },
+        { city: "Guadalajara", days: 30 },
       ],
       Canada: [
         { city: "Toronto", days: 30 },
         { city: "Ottawa", days: 60 },
         { city: "Vancouver", days: 75 },
+      ],
+      Haiti: [
+        { city: "Port-au-Prince", days: 60 },
       ],
       default: [
         { city: "Check travel.state.gov", days: null },
@@ -50,10 +53,10 @@ export const EMBASSY_WAITS_META = {
     // =========================================================
     B1B2: {
       India: [
-        { city: "New Delhi", days: 270 },
-        { city: "Mumbai", days: 210 },
-        { city: "Hyderabad", days: 120 },
-        { city: "Chennai", days: 150 },
+        { city: "Hyderabad", days: 180 },
+        { city: "Chennai", days: 210 },
+        { city: "Mumbai", days: 300 },
+        { city: "New Delhi", days: 365 },
       ],
       China: [
         { city: "Beijing", days: 30 },
@@ -61,15 +64,18 @@ export const EMBASSY_WAITS_META = {
         { city: "Guangzhou", days: 30 },
       ],
       Mexico: [
-        { city: "Mexico City", days: 300 },
-        { city: "Ciudad Juarez", days: 465 },
+        { city: "Monterrey", days: 120 },
+        { city: "Mexico City", days: 450 },
         { city: "Guadalajara", days: 345 },
-        { city: "Monterrey", days: 300 },
+        { city: "Ciudad Juarez", days: 465 },
       ],
       Canada: [
-        { city: "Toronto", days: 480 },
-        { city: "Ottawa", days: 345 },
         { city: "Vancouver", days: 240 },
+        { city: "Ottawa", days: 345 },
+        { city: "Toronto", days: 480 },
+      ],
+      Haiti: [
+        { city: "Port-au-Prince", days: 180 },
       ],
       default: [],
     },
@@ -79,37 +85,40 @@ export const EMBASSY_WAITS_META = {
     // =========================================================
     H1B: {
       India: [
-        { city: "Mumbai", days: 30 },
         { city: "New Delhi", days: 30 },
-        { city: "Hyderabad", days: 75 },
         { city: "Chennai", days: 30 },
+        { city: "Mumbai", days: 60 },
+        { city: "Hyderabad", days: 90 },
       ],
       China: [
         { city: "Beijing", days: 30 },
-        { city: "Shanghai", days: 105 },
         { city: "Guangzhou", days: 30 },
+        { city: "Shanghai", days: 105 },
       ],
       Mexico: [
-        { city: "Mexico City", days: 30 },
         { city: "Ciudad Juarez", days: 14 },
+        { city: "Mexico City", days: 30 },
       ],
       Canada: [
         { city: "Toronto", days: 45 },
-        { city: "Ottawa", days: 135 },
         { city: "Vancouver", days: 60 },
+        { city: "Ottawa", days: 135 },
+      ],
+      Haiti: [
+        { city: "Port-au-Prince", days: 90 },
       ],
       default: [],
     },
   
     L1: {
       India: [
-        { city: "Mumbai", days: 30 },
         { city: "New Delhi", days: 30 },
-        { city: "Hyderabad", days: 75 },
+        { city: "Mumbai", days: 30 },
+        { city: "Hyderabad", days: 90 },
       ],
       China: [
-        { city: "Shanghai", days: 105 },
         { city: "Beijing", days: 30 },
+        { city: "Shanghai", days: 105 },
       ],
       Mexico: [
         { city: "Mexico City", days: 30 },
@@ -117,6 +126,9 @@ export const EMBASSY_WAITS_META = {
       Canada: [
         { city: "Toronto", days: 45 },
         { city: "Ottawa", days: 135 },
+      ],
+      Haiti: [
+        { city: "Port-au-Prince", days: 90 },
       ],
       default: [],
     },
@@ -134,6 +146,9 @@ export const EMBASSY_WAITS_META = {
       ],
       Mexico: [
         { city: "Ciudad Juarez", days: "Varies by category" },
+      ],
+      Haiti: [
+        { city: "Port-au-Prince", days: "Varies by category" },
       ],
       default: [],
     },

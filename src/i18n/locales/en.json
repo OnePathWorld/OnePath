@@ -1,0 +1,3638 @@
+{
+    "labels": {
+      "visa": {
+        "F1": "F-1 Student",
+        "H1B": "H-1B Work",
+        "L1": "L-1 Transfer",
+        "B1B2": "B-1/B-2 Visitor",
+        "J1": "J-1 Exchange",
+        "OPT": "OPT",
+        "EAD": "EAD",
+        "GC_pending": "GC Pending",
+        "GC": "🟢 Green Card Holder",
+        "other": "Other Status",
+        "none": "Out of Status",
+        "unknown": "No Status"
+      },
+      "visaShort": {
+        "F1": "F-1",
+        "H1B": "H-1B",
+        "L1": "L-1",
+        "B1B2": "B-1/B-2",
+        "J1": "J-1",
+        "OPT": "OPT",
+        "EAD": "EAD",
+        "GC_pending": "GC Pending",
+        "GC": "🟢 Green Card Holder",
+        "other": "Other",
+        "none": "No Status",
+        "unknown": "No Status"
+      },
+      "visaDescriptive": {
+        "F1": "F-1 Student",
+        "H1B": "H-1B Work",
+        "L1": "L-1 Transfer",
+        "B1B2": "B-1/B-2 Visitor",
+        "J1": "J-1 Exchange",
+        "OPT": "OPT Work Permit",
+        "EAD": "EAD Holder",
+        "GC_pending": "Green Card Pending",
+        "GC": "🟢 Green Card Holder (LPR)",
+        "other": "Other Status",
+        "none": "Out of Status",
+        "unknown": "No Status"
+      },
+      "expiry": {
+        "expired": "EXPIRED",
+        "30days": "< 30 days",
+        "90days": "< 90 days",
+        "6months": "< 6 months",
+        "year": "< 1 year",
+        "safe": "1+ year",
+        "unknown": "Unknown"
+      },
+      "workAuth": {
+        "yes_unrestricted": "✅ Unrestricted",
+        "yes_restricted": "⚠️ Employer-specific",
+        "yes_ead": "EAD Card",
+        "pending": "⏳ Pending",
+        "no": "❌ None",
+        "unknown": "Unknown"
+      },
+        "country": {
+        "mexico": "🇲🇽 Mexico",
+        "india": "🇮🇳 India",
+        "china": "🇨🇳 China",
+        "haiti": "🇭🇹 Haiti",
+        "brazil": "🇧🇷 Brazil",
+        "philippines": "🇵🇭 Philippines",
+        "nigeria": "🇳🇬 Nigeria",
+        "canada": "🇨🇦 Canada",
+        "uk": "🇬🇧 United Kingdom",
+        "germany": "🇩🇪 Germany",
+        "south_korea": "🇰🇷 South Korea",
+        "japan": "🇯🇵 Japan",
+        "other": "🌍 Other"
+        },
+      "gcYears": {
+        "under2": "< 2 yrs",
+        "2to3": "2–3 yrs",
+        "3to5": "3–5 yrs",
+        "over5": "5+ yrs ✅",
+        "military": "Military 🎖️"
+      },
+      "location": {
+        "inside_us": "In USA",
+        "outside_us": "Outside USA"
+      },
+      "gcYearsDescriptive": {
+        "under2": "Less than 2 years",
+        "2to3": "2–3 years",
+        "3to5": "3–5 years",
+        "over5": "5+ years ✅",
+        "military": "Military service 🎖️"
+      },
+      "expiryWarning": {
+        "expired": "🔴 EXPIRED — Immediate action required!",
+        "30days": "⚠️ Expires within 30 days",
+        "90days": "📅 Expires within 90 days",
+        "6months": "📆 Expires within 6 months"
+      }
+    },
+    "common": {
+      "cancel": "Cancel",
+      "back": "Back",
+      "next": "Next",
+      "finish": "Finish",
+      "skip": "Skip",
+      "loading": "Loading...",
+      "save": "Save",
+      "reset": "Reset",
+      "notSet": "Not set",
+      "notApplicable": "Not applicable",
+      "unknown": "Unknown",
+      "dataUpdated": "Data updated: {{date}}"
+    },
+    "home": {
+      "greeting": {
+        "morning": "Good Morning",
+        "afternoon": "Good Afternoon",
+        "evening": "Good Evening"
+      },
+      "status": {
+        "title": "Your Status",
+        "loading": "Loading...",
+        "critical": "Critical",
+        "attention": "Attention",
+        "good": "Good"
+      },
+      "alerts": {
+        "policyChanges_one": "{{count}} policy change affects you",
+        "policyChanges_other": "{{count}} policy changes affect you",
+        "citizenshipNudge": "Ready to explore citizenship? See your naturalization options."
+      },
+      "stats": {
+        "visaExpiration": "Visa Expiration",
+        "gcHeld": "GC Held",
+        "alerts": "Alerts",
+        "policies": "Policies"
+      },
+      "controlCenter": {
+        "title": "Control Center",
+        "policyTracker": "Policy Tracker",
+        "checklist": "Checklist",
+        "timeline": "Timeline",
+        "resources": "Resources",
+        "caseTracker": "Case Tracker"
+      },
+      "pathways": {
+        "title": "Immigration Pathways",
+        "work": "Work-Based",
+        "family": "Family-Based",
+        "student": "Student",
+        "citizenship": "U.S. Citizenship",
+        "yourNextStep": "Your next step →"
+      },
+      "lifeSetup": {
+        "title": "Life in America Guide",
+        "subtitle": "SSN • Banking • Credit • Jobs"
+      },
+      "help": {
+        "title": "Emergency Help",
+        "dialogTitle": "Need Help?",
+        "dialogBody": "USCIS: 1-800-375-5283\nLegal Aid: immigrationadvocates.org",
+        "callUscis": "Call USCIS"
+      }
+    },
+"onboarding": {
+  "stepIndicator": "Step {{current}} of {{total}}",
+  "skip": "Skip",
+  "back": "Back",
+  "next": "Next",
+  "finish": "Finish",
+  "getStarted": "Get Started",
+  "privacyDisclaimer": "🔒 We don't collect or share personal data. Your answers stay on your device and are used only to personalize your experience and provide safety alerts.",
+  "welcome": {
+    "title": "Welcome to Your Immigration Journey",
+    "subtitle": "We'll help you navigate the U.S. immigration process step by step"
+  },
+  "location": {
+    "title": "Where are you currently?",
+    "subtitle": "This helps us show relevant pathways",
+    "options": {
+      "outside_us": "🌍 Outside the United States",
+      "inside_us": "🇺🇸 Inside the United States"
+    }
+  },
+"outsideUsStage": {
+  "title": "Where are you in the US immigration process?",
+  "subtitle": "This helps us show the right tools and timelines for your situation",
+  "options": {
+    "no_case": "🆕 No case yet",
+    "petition_filed": "📝 Petition filed (waiting on USCIS)",
+    "petition_approved": "✅ Petition approved (waiting for consular interview)",
+    "interview_scheduled": "📅 Consular interview scheduled",
+    "has_us_visa": "🛂 I already have a US visa (returning)",
+    "former_visa_holder": "↩️ Former US visa holder",
+    "exploring": "🔍 Just exploring options"
+  }
+},
+"hasReceiptNumber": {
+  "title": "Do you have a USCIS receipt number?",
+  "subtitle": "Looks like EAC1234567890, LIN1234567890, or SRC1234567890 — found on your I-797 receipt notice",
+  "options": {
+    "yes": "✅ Yes, I have a receipt number",
+    "no": "❌ Not yet"
+  }
+},
+"currentVisa": {
+  "title": "What's your current immigration status?",
+  "subtitle": "This helps us identify risks and opportunities",
+  "options": {
+    "F1": "📚 F-1 Student",
+    "H1B": "💼 H-1B Work Visa",
+    "L1": "🏢 L-1 Transfer",
+    "B1B2": "✈️ B-1/B-2 Visitor",
+    "J1": "🔄 J-1 Exchange",
+    "OPT": "🎓 OPT/STEM OPT",
+    "EAD": "💳 EAD Holder",
+    "GC_pending": "⏳ Green Card Pending",
+    "GC": "🟢 Green Card Holder (LPR)",
+    "other": "📋 Other Status",
+    "none": "❌ Out of Status"
+  },
+  "groups": {
+    "work": "Work",
+    "study": "Study",
+    "resident": "Resident & Visitor",
+    "other": "Other"
+  }
+},
+  "gcYearsHeld": {
+    "title": "How long have you held your green card?",
+    "subtitle": "This determines which naturalization path you qualify for",
+    "options": {
+      "under2": "⏳ Less than 2 years",
+      "2to3": "📅 2–3 years",
+      "3to5": "🗓️ 3–5 years",
+      "over5": "✅ 5+ years — Eligible to naturalize",
+      "military": "🎖️ Military service"
+    }
+  },
+  "purpose": {
+    "title": "What's your immigration goal?",
+    "subtitle": "Select your primary focus",
+    "options": {
+      "work": "💼 Work Opportunity",
+      "family": "👨‍👩‍👧‍👦 Family Reunification",
+      "study": "🎓 Education",
+      "protection": "🛡️ Seeking Protection"
+    }
+  },
+  "purposeGc": {
+    "title": "What would you like to focus on?",
+    "subtitle": "You already have your green card — what's next for you?",
+    "options": {
+      "citizenship": "🇺🇸 Naturalization & Citizenship",
+      "family": "👨‍👩‍👧‍👦 Sponsor Family Members",
+      "work": "💼 Work & Career Options"
+    }
+  },
+  "urgency": {
+    "title": "What's your timeline?",
+    "subtitle": "This helps us prioritize information",
+    "options": {
+      "immediate": "🚨 Immediate (< 1 month)",
+      "soon": "📅 Soon (1–6 months)",
+      "planning": "📊 Planning (6+ months)"
+    }
+  },
+  "hasWorkAuth": {
+    "title": "Do you have work authorization?",
+    "subtitle": "This affects your employment options",
+    "options": {
+      "yes_unrestricted": "✅ Yes - Any employer",
+      "yes_restricted": "⚠️ Yes - Specific employer only",
+      "yes_ead": "💳 Yes - EAD card",
+      "pending": "⏳ Application pending",
+      "no": "❌ No work authorization"
+    }
+  },
+  "countryOfCitizenship": {
+    "title": "What's your country of citizenship?",
+    "subtitle": "This affects wait times and visa availability",
+    "searchPlaceholder": "Search countries...",
+    "noResults": "No match — tap Next and we'll still personalize your experience",
+    "options": {
+      "mexico": "🇲🇽 Mexico",
+      "india": "🇮🇳 India",
+      "china": "🇨🇳 China",
+      "haiti": "🇭🇹 Haiti",
+      "brazil": "🇧🇷 Brazil",
+      "philippines": "🇵🇭 Philippines",
+      "nigeria": "🇳🇬 Nigeria",
+      "canada": "🇨🇦 Canada",
+      "uk": "🇬🇧 United Kingdom",
+      "germany": "🇩🇪 Germany",
+      "south_korea": "🇰🇷 South Korea",
+      "japan": "🇯🇵 Japan",
+      "other": "🌍 Other"
+    }
+  },
+  "expiryTimeline": {
+    "title": "Any critical dates coming up?",
+    "subtitleDefault": "e.g. visa expiration, status end date, authorization deadline",
+    "subtitleByVisa": {
+      "H1B": "e.g. H-1B status end date, I-94 expiration",
+      "F1": "e.g. OPT EAD expiration, program end date, grace period",
+      "OPT": "e.g. OPT EAD card expiration, 90-day unemployment limit",
+      "L1": "e.g. L-1 status end date, I-94 expiration",
+      "J1": "e.g. DS-2019 program end date, grace period",
+      "B1B2": "e.g. I-94 authorized stay expiration",
+      "EAD": "e.g. EAD card expiration — now 18 month max validity",
+      "GC_pending": "e.g. EAD/AP combo card expiration"
+    },
+    "options": {
+      "expired": "🔴 Already expired — need help now",
+      "30days": "⚠️ Within 30 days — urgent",
+      "90days": "📅 Within 90 days — filing soon",
+      "6months": "📆 Within 6 months — planning ahead",
+      "year": "📍 Within 1 year — early planning",
+      "safe": "✅ More than 1 year — no urgency"
+    }
+  },
+"complianceRisk": {
+  "title": "Have you faced any immigration challenges?",
+  "subtitle": "This helps us give you accurate guidance. Your answers stay private on your device.",
+  "subtitleStudent": "Student status can get complicated — this helps us point you to the right options.",
+  "options": {
+    "none": "✅ No issues — straightforward so far",
+    "gap": "📋 Brief gap in status",
+    "unauthorized_work": "💼 Worked outside my visa terms",
+    "overstay": "⏰ Stayed beyond my authorized period",
+    "denied": "📄 Had a denial or received an RFE",
+    "prefer_not": "🔒 Prefer to skip this"
+  }
+}
+},
+    "settings": {
+      "loadingProfile": "Loading profile...",
+      "profile": {
+        "title": "Your Profile",
+        "subtitle": "Tap any field to update it",
+        "fields": {
+          "goal": "Goal",
+          "location": "Location",
+          "country": "Country",
+          "visaStatus": "Visa Status",
+          "gcHeld": "GC Held",
+          "timeline": "Timeline",
+          "visaExpiry": "Visa Expiry",
+          "language": "Language"
+        }
+      },
+      "fieldOptions": {
+        "purpose": {
+          "title": "What's your immigration goal?",
+          "options": {
+            "work": "💼 Work Opportunity",
+            "family": "👨‍👩‍👧‍👦 Family Reunification",
+            "study": "🎓 Education",
+            "protection": "🛡️ Seeking Protection",
+            "citizenship": "🇺🇸 Naturalization & Citizenship"
+          }
+        },
+        "location": {
+          "title": "Where are you currently?",
+          "options": {
+            "outside_us": "🌍 Outside the United States",
+            "inside_us": "🇺🇸 Inside the United States"
+          }
+        },
+        "currentVisa": {
+          "title": "Current immigration status",
+          "options": {
+            "F1": "📚 F-1 Student",
+            "H1B": "💼 H-1B Work Visa",
+            "L1": "🏢 L-1 Transfer",
+            "B1B2": "✈️ B-1/B-2 Visitor",
+            "J1": "🔄 J-1 Exchange",
+            "OPT": "🎓 OPT/STEM OPT",
+            "EAD": "💳 EAD Holder",
+            "GC_pending": "⏳ Green Card Pending",
+            "GC": "🟢 Green Card Holder (LPR)",
+            "other": "📋 Other Status",
+            "none": "❌ Out of Status",
+            "empty": "⬜ Not applicable"
+          }
+        },
+        "countryOfCitizenship": {
+          "title": "Country of citizenship",
+            "options": {
+            "mexico": "🇲🇽 Mexico",
+            "india": "🇮🇳 India",
+            "china": "🇨🇳 China",
+            "haiti": "🇭🇹 Haiti",
+            "brazil": "🇧🇷 Brazil",
+            "philippines": "🇵🇭 Philippines",
+            "nigeria": "🇳🇬 Nigeria",
+            "canada": "🇨🇦 Canada",
+            "uk": "🇬🇧 United Kingdom",
+            "germany": "🇩🇪 Germany",
+            "south_korea": "🇰🇷 South Korea",
+            "japan": "🇯🇵 Japan",
+            "other": "🌍 Other"
+            }
+        },
+        "urgency": {
+          "title": "What's your timeline?",
+          "options": {
+            "immediate": "🚨 Immediate (< 1 month)",
+            "soon": "📅 Soon (1–6 months)",
+            "planning": "📊 Planning (6+ months)",
+            "empty": "⬜ Not applicable"
+          }
+        },
+        "expiryTimeline": {
+          "title": "Visa expiration date",
+          "options": {
+            "expired": "🔴 Already expired",
+            "30days": "⚠️ Within 30 days",
+            "90days": "📅 Within 90 days",
+            "6months": "📆 Within 6 months",
+            "year": "📍 Within 1 year",
+            "safe": "✅ More than 1 year",
+            "empty": "⬜ Not applicable"
+          }
+        },
+        "gcYearsHeld": {
+          "title": "How long have you held your green card?",
+          "options": {
+            "under2": "⏳ Less than 2 years",
+            "2to3": "📅 2–3 years",
+            "3to5": "🗓️ 3–5 years",
+            "over5": "✅ 5+ years — Eligible to naturalize",
+            "military": "🎖️ Military service",
+            "empty": "⬜ Not applicable"
+          }
+        },
+        "language": {
+        "title": "App language",
+        "options": {
+            "en": "🇺🇸 English",
+            "es": "🇪🇸 Español",
+            "pt": "🇧🇷 Português",
+            "zh": "🇨🇳 中文",
+            "ht": "🇭🇹 Kreyòl"
+        }
+        }
+      },
+      "about": {
+        "title": "About OnePath",
+        "version": "Version",
+        "dataUpdated": "Data Updated",
+        "sources": "Sources",
+        "sourcesValue": "USCIS, DOS, DOL, Federal Register"
+      },
+      "disclaimer": "OnePath provides immigration information for educational purposes only. This app is not a law firm and does not provide legal advice. Consult a licensed immigration attorney for advice specific to your situation.",
+      "privacy": {
+        "label": "🔒 Privacy",
+        "value": "All data stays on your device"
+      },
+      "reset": {
+        "button": "Reset App & Start Over",
+        "confirmTitle": "Reset App",
+        "confirmBody": "This will clear all your data and restart the onboarding process. This cannot be undone.",
+        "confirmAction": "Reset",
+        "doneTitle": "App Reset",
+        "doneBody": "Please close and reopen the app to start fresh."
+      },
+      "modal": {
+        "cancel": "Cancel"
+      },
+      "updateAlert": {
+        "title": "Updated",
+        "body": "Your profile has been updated. Go back to the home screen to see your changes."
+      },
+      "languagePicker": {
+        "currentLanguage": "Language",
+        "changeLanguage": "Change Language",
+        "autoDetected": "Auto-detected from device"
+      }
+    },
+"onboardingSummary": {
+  "currentViability": "Current Viability",
+  "recommendedActions": "Recommended Actions",
+  "immediateHelp": "🆘 Immediate Help",
+  "exploreAllOptions": "Explore All Options",
+  "statusInfo": {
+    "currentStatus": "Current Status: {{visa}}",
+    "workAuthorization": "Work Authorization: {{auth}}",
+    "country": "Country: {{country}}",
+    "countryOfBirth": "Country of Birth: {{country}}",
+    "greenCardHeld": "Green Card Held: {{years}}",
+    "backlogged": "⚠️ Subject to country quota backlogs",
+    "backlogClear": "✅ Current priority dates",
+    "needsStatusChange": "⚠️ Need change of status from B-1/B-2"
+  },
+  "alerts": {
+    "expired": {
+      "message": "🔴 Your status has expired. Immediate action required!",
+      "action": "Consult an immigration attorney TODAY"
+    },
+    "expiry30days": {
+      "message": "⚠️ Critical deadline approaching within 30 days",
+      "action": "File extensions/renewals immediately"
+    },
+    "outOfStatus": {
+      "message": "⚠️ Out-of-status situation detected",
+      "action": "Legal consultation strongly recommended"
+    },
+    "noWorkAuth": {
+      "message": "📋 No work authorization — Cannot begin employment",
+      "action": "Must obtain proper work visa first"
+    },
+    "asylumDeadline": {
+      "message": "⏰ Asylum must be filed within 1 year of arrival",
+      "action": "Consult attorney immediately"
+    },
+    "citizenshipUnder2": {
+      "message": "⏳ Not yet eligible to file for naturalization",
+      "action": "You'll need at least 3 years (married to U.S. citizen) or 5 years (standard) of green card residency"
+    },
+    "citizenship2to3": {
+      "message": "📅 Approaching eligibility — check your specific route",
+      "action": "If married to a U.S. citizen, you may be eligible now. Otherwise wait until 5-year mark."
+    },
+    "citizenshipOver5": {
+      "message": "✅ You are eligible to file Form N-400 now",
+      "action": "You can apply immediately — start gathering your documents"
+    },
+    "formerVisaHolder": {
+      "message": "⚠️ Returning to the US after a prior visa requires extra preparation",
+      "action": "Review reentry rules and any time bars before booking travel"
+    }
+  },
+  "work": {
+    "title": "Work-Based Immigration Strategy",
+    "summary": {
+      "opt_india": "You're on OPT — time to find an H-1B sponsor. The FY2027 lottery registration ran March 4–19, 2026. Note: USCIS now uses a wage-weighted selection process that favors higher-paid positions. India has significant EB-2/EB-3 backlogs (12+ years).",
+      "opt_other": "You're on OPT — time to find an H-1B sponsor. The FY2027 lottery registration ran March 4–19, 2026. Note: USCIS now uses a wage-weighted selection process that favors higher-paid positions. Start preparing your petition early.",
+      "restricted": "Your work authorization is tied to a specific employer. Changing jobs requires a new petition.",
+      "urgentNoAuth": "⚠️ Without work authorization, you cannot begin employment. Premium processing (now $2,965) can expedite some visas to 15 days.",
+      "default": "Employment-based immigration requires employer sponsorship. Start by finding an employer willing to sponsor your visa.",
+      "haiti_tps": "If your EAD is based on TPS, be aware that TPS EADs are now limited to 1 year maximum per H.R. 1. File renewals well before expiration. Consider exploring other pathways if your TPS designation is uncertain."
+    },
+    "primaryAction": {
+      "expiredStatus": "🆘 Address Expired Status",
+      "findH1bSponsor": "Find H-1B Sponsor",
+      "getWorkAuth": "Get Work Authorization",
+      "exploreWorkVisas": "Explore Work Visas"
+    },
+    "secondaryAction": {
+      "h1bLotteryInfo": "H-1B Lottery Info",
+      "documentChecklist": "Document Checklist"
+    },
+    "pathway": {
+      "title": "Work-Based Immigration",
+      "subtitle": "H-1B, L-1, O-1 Visas",
+      "description": "For skilled workers and professionals"
+    },
+    "warnings": {
+      "backlog": "📊 EB-2/EB-3 green cards have 12+ year waits for your country",
+      "cantWorkOnB1B2": "⚠️ Cannot work on B-1/B-2 status — visa change required",
+      "urgentExpiry": "🔴 Urgent: Address expiring/expired status immediately",
+      "optUnemployment": "⏰ OPT has 90-day unemployment limit — track carefully",
+      "eadValidity": "📋 EAD validity reduced to 18 months (from 5 years) for adjustment-of-status applicants as of Dec 2025"
+    },
+    "recommendations": {
+      "h1bLottery": "✅ Apply for H-1B lottery (March annually — now wage-weighted)",
+      "dayOneCpt": "✅ Consider Day-1 CPT programs as backup",
+      "cantWorkApplyFirst": "📋 Cannot work without authorization — apply first",
+      "tnVisa": "🍁 Consider TN visa — faster than H-1B for Canadians",
+      "nonCapVisas": "💡 L-1 and O-1 visas are not cap-subject — explore if eligible"
+    }
+  },
+  "family": {
+    "title": "Family-Based Immigration Path",
+    "summary": {
+      "backloggedCountry": "⚠️ Your country has significant family preference backlogs. Immediate relatives (spouse/parents of USC) have no quota limits, but other categories can take 10-20 years.",
+      "insideUsWithVisa": "You may be able to adjust status without leaving the U.S. if you maintain legal status and a visa becomes available.",
+      "default": "Family sponsorship is a stable path but can take several years depending on your relationship and country of birth."
+    },
+    "primaryAction": {
+      "viewFamilyPathways": "View Family Pathways"
+    },
+    "secondaryAction": {
+      "checkVisaBulletin": "Check Visa Bulletin",
+      "processingTimes": "Processing Times"
+    },
+    "pathway": {
+      "title": "Family-Based Immigration",
+      "subtitle": "Marriage, Parents, Siblings",
+      "description": "Reunite with family members"
+    },
+    "warnings": {
+      "expectedWait": "⏰ Expected wait: {{range}} for family preferences",
+      "priorIssues": "⚠️ Previous immigration issues may affect eligibility",
+      "proclamations": "📋 Presidential Proclamations have impacted visa issuance rates for certain nationalities — retrogression possible in FY2026"
+    },
+    "waitRanges": {
+      "india": "5-15 years",
+      "china": "5-12 years",
+      "mexico": "10-20 years",
+      "haiti": "3-8 years",
+      "philippines": "10-15 years"
+    },
+    "recommendations": {
+      "fileI130": "📄 File I-130 as soon as possible to establish priority date",
+      "considerEmployment": "💼 Consider employment-based options in parallel",
+      "maintainStatus": "📋 Maintain legal status while waiting"
+    }
+  },
+  "study": {
+    "title": "Student Pathway Guide",
+    "summary": {
+      "changeFromB1B2": "You'll need to change status from B-1/B-2 to F-1. Apply to a SEVP-certified school first, then file I-539 for change of status.",
+      "alreadyOnF1": "You're already on F-1. Consider OPT after graduation (apply 90 days before), and explore H-1B options with potential employers. STEM OPT adds 24 months.",
+      "default": "F-1 student visa allows study and limited work (CPT/OPT). After graduation, you can use OPT for practical training and bridge to H-1B."
+    },
+    "primaryAction": {
+      "studentVisaOptions": "Student Visa Options"
+    },
+    "secondaryAction": {
+      "lifeSetupGuide": "Life Setup Guide"
+    },
+    "pathway": {
+      "title": "Student Pathway",
+      "subtitle": "F-1, J-1 Visas",
+      "description": "Study in the United States"
+    },
+    "warnings": {
+      "maintainUntilF1": "📚 Must maintain status until F-1 approved",
+      "cantStartUntilApproved": "⏰ Cannot start school until status change approved"
+    },
+    "recommendations": {
+      "sevpSchools": "🎓 Apply to SEVP-certified schools only",
+      "financialProof": "💰 Show proof of financial support",
+      "fullTimeEnrollment": "📋 Maintain full-time enrollment",
+      "cptOpt": "💼 Use CPT/OPT for work experience",
+      "stemMajor": "🔬 Choose a STEM major for 36 months total OPT"
+    }
+  },
+  "protection": {
+    "title": "Protection & Humanitarian Relief",
+    "summary": {
+      "insideUs": "Asylum must be filed within 1 year of arrival. You can apply for work authorization 150 days after filing. Note: EAD validity for asylum applicants is now 18 months max, and auto-extensions have been eliminated. The process is complex — legal representation strongly recommended.",
+      "outsideUs": "Various protection programs exist including refugee resettlement and humanitarian parole. Contact UNHCR or a resettlement agency."
+    },
+    "primaryAction": {
+      "emergencyResources": "🆘 Emergency Resources",
+      "protectionOptions": "Protection Options"
+    },
+    "secondaryAction": {
+      "legalAidResources": "Legal Aid Resources"
+    },
+    "warnings": {
+      "immediateLegal": "⚠️ Protection cases require immediate legal assistance",
+      "asylumVolatile": "⚠️ Asylum policy environment is currently volatile — seek up-to-date legal counsel"
+    },
+    "resources": {
+      "uscis": "USCIS",
+      "uscisPhone": "1-800-375-5283",
+      "legalAid": "Legal Aid",
+      "legalAidUrl": "immigrationadvocates.org",
+      "unhcr": "UNHCR",
+      "unhcrUrl": "help.unhcr.org"
+    }
+  },
+  "citizenship": {
+    "title": "Your Path to U.S. Citizenship",
+    "summary": {
+      "military": "Military service members and veterans may be eligible for expedited naturalization. Active duty during a designated hostility period allows immediate eligibility. The N-400 filing fee is waived for military applicants.",
+      "over5": "You meet the 5-year continuous residence requirement and can file Form N-400 now. You'll need to pass an English language test and a civics exam (100 questions). Processing typically takes 8–14 months from filing to oath ceremony.",
+      "3to5": "If you are married to and living with a U.S. citizen, you may qualify under the 3-year rule. This requires 18 months of physical presence and continuous residence during those 3 years. Otherwise, you'll need to wait until the 5-year mark.",
+      "2to3": "You're getting close to eligibility. The standard route requires 5 years as a green card holder, but if you're married to a U.S. citizen, you may qualify after just 3 years. Use this time to prepare your documents and study for the civics test.",
+      "under2": "You're not yet eligible to naturalize, but now is a great time to prepare. Track your travel history, maintain your green card in good standing, and start studying for the 100-question civics exam.",
+      "default": "Naturalization is the process of becoming a U.S. citizen. Most green card holders are eligible after 5 years of continuous residence. If you're married to a U.S. citizen, you may qualify after just 3 years."
+    },
+    "primaryAction": {
+      "startN400": "Start N-400 Application",
+      "check3Year": "Check 3-Year Eligibility",
+      "militaryInfo": "Military Naturalization Info",
+      "timelineRequirements": "Naturalization Timeline & Requirements"
+    },
+    "secondaryAction": {
+      "n400Checklist": "N-400 Document Checklist"
+    },
+    "pathway": {
+      "title": "Path to Citizenship",
+      "subtitle": "Naturalization & N-400",
+      "description": "Become a U.S. citizen"
+    },
+    "warnings": {
+      "priorViolations": "⚠️ Prior immigration violations may affect good moral character requirement — consult an attorney",
+      "priorDenial": "⚠️ Previous application denial could impact naturalization — review circumstances carefully",
+      "extendedTrips": "✈️ Extended trips abroad (6+ months) can break continuous residence — track your travel carefully",
+      "goodMoralCharacter": "📋 You must maintain good moral character for the full 5-year (or 3-year) period before filing",
+      "threeYearMarriage": "💍 3-year rule requires you to still be married to and living with the U.S. citizen spouse at time of filing"
+    },
+    "recommendations": {
+      "fileN400": "📄 File Form N-400 — $760 paper / $710 online (military: free)",
+      "studyCivics": "📚 Study the 100 civics questions at uscis.gov/citizenship/tessprep",
+      "gatherDocs": "🗂️ Gather tax returns, travel records, and green card copies",
+      "startStudying": "📚 Start studying the 100 civics questions now — get a head start",
+      "trackTrips": "✈️ Track all international trips carefully (dates in/out of U.S.)",
+      "keepTaxes": "📋 Keep tax filings current — required for naturalization",
+      "renewGc": "💳 Renew your green card if it expires before you're eligible to naturalize",
+      "consultAttorney": "👨‍⚖️ Consult an immigration attorney if you have any criminal history or prior violations"
+    }
+  },
+  "default": {
+    "title": "Your Immigration Journey",
+    "summary": "Let's explore your options based on your current situation.",
+    "primaryAction": "Explore All Pathways"
+  },
+  "urgentForm": {
+    "labelUrgent": "FILE NOW",
+    "labelAction": "ACTION NEEDED",
+    "feeKey": "Fee:",
+    "deadlineKey": "Deadline:",
+    "forms": {
+      "H1B": {
+        "form": "Form I-129 Extension",
+        "purpose": "Extend your H-1B status",
+        "fee": "$1,015 + $2,965 premium (15 days)",
+        "deadlineUrgent": "File TODAY — employer must act immediately",
+        "deadlineSoon": "File at least 6 months before expiry",
+        "tip": "Premium processing gets 15-day decision. Your employer files, not you."
+      },
+      "F1": {
+        "form": "Contact Your DSO Immediately",
+        "purpose": "Program extension or OPT application",
+        "fee": "Free (DSO action) / I-765 OPT: $470 online",
+        "deadlineUrgent": "Contact DSO today — grace period is only 60 days after program end",
+        "deadlineSoon": "Plan OPT 90 days before graduation",
+        "tip": "Your Designated School Official (DSO) must extend your I-20 before you can file anything."
+      },
+      "OPT": {
+        "form": "Form I-765 STEM Extension",
+        "purpose": "Extend OPT by 24 months (STEM graduates)",
+        "fee": "$470 online / $520 paper",
+        "deadlineUrgent": "File immediately — apply up to 90 days before EAD expires",
+        "deadlineSoon": "Apply now — USCIS processing takes 3-5 months",
+        "tip": "Must have STEM degree and E-Verify employer. File before current EAD expires or you lose work auth."
+      },
+      "L1": {
+        "form": "Form I-129 Extension",
+        "purpose": "Extend your L-1 status",
+        "fee": "$1,015 + optional $2,965 premium",
+        "deadlineUrgent": "File immediately — employer must sponsor",
+        "deadlineSoon": "File 6 months before expiry",
+        "tip": "L-1A max 7 years total, L-1B max 5 years. Premium gets 15-day decision."
+      },
+      "J1": {
+        "form": "DS-2019 Program Extension",
+        "purpose": "Extend your J-1 exchange visitor program",
+        "fee": "Free (sponsor action required)",
+        "deadlineUrgent": "Contact your program sponsor immediately",
+        "deadlineSoon": "Contact sponsor 3 months before end date",
+        "tip": "Only your program sponsor can extend the DS-2019. You cannot file this yourself."
+      },
+      "B1B2": {
+        "form": "Form I-539",
+        "purpose": "Extend your B-1/B-2 visitor stay",
+        "fee": "$370 online / $420 paper",
+        "deadlineUrgent": "File immediately — overstay has serious consequences",
+        "deadlineSoon": "File at least 45 days before I-94 expires",
+        "tip": "Must file BEFORE your I-94 expires. Overstaying even one day can affect future visa applications."
+      },
+      "EAD": {
+        "form": "Form I-765 Renewal",
+        "purpose": "Renew your Employment Authorization Document",
+        "fee": "$470 online / $520 paper",
+        "deadlineUrgent": "File immediately — EAD validity now 18 months max",
+        "deadlineSoon": "File 6 months before expiry — processing takes 3-5 months",
+        "tip": "Auto-extensions eliminated as of Oct 2025. File early — a gap in EAD means you cannot work legally."
+      },
+      "GC_pending": {
+        "form": "Form I-765 / I-131 Renewal",
+        "purpose": "Renew your EAD/Advance Parole combo card",
+        "fee": "$260 (with pending I-485 filed after Apr 2024)",
+        "deadlineUrgent": "File immediately — do not let combo card expire",
+        "deadlineSoon": "File 6 months before expiry",
+        "tip": "Traveling without valid Advance Parole while I-485 is pending can abandon your green card application."
+      }
+    }
+  },
+  "outsideUs": {
+    "caseTracker": {
+      "title": "Track your USCIS case",
+      "summary": {
+        "petition_filed": "Your petition is with USCIS. The fastest way to know when something changes is to track it directly with your receipt number — we'll show you status updates as they post.",
+        "petition_approved": "Your petition is approved and on its way to the National Visa Center for consular processing. Track the case to see when NVC sends your interview notice.",
+        "interview_scheduled": "Your consular interview is scheduled. Track your case to monitor any updates between now and your appointment."
+      },
+      "primaryAction": "Add my receipt number",
+      "secondaryAction": {
+        "work": "Or explore work pathways while you wait",
+        "family": "Or review the family pathway timeline",
+        "study": "Or explore study options",
+        "protection": "Or review protection resources",
+        "citizenship": "Or review citizenship requirements"
+      }
+    },
+    "statusInfo": {
+      "petition_filed": "Stage: Petition filed with USCIS",
+      "petition_approved": "Stage: Petition approved — awaiting consular interview",
+      "interview_scheduled": "Stage: Consular interview scheduled"
+    },
+    "warnings": {
+      "backlog": "⚠️ Your country of chargeability has visa bulletin backlogs. Your priority date may not be current yet — check the latest visa bulletin."
+    },
+    "recommendations": {
+      "checkUscisRegularly": "📬 Check case status weekly — USCIS posts updates without notification",
+      "gatherDocs": "📋 Start gathering civil documents (birth certificate, marriage certificate, police certificates) — you'll need them for the consular interview",
+      "embassyWaits": "🏛️ Check embassy wait times for your interview location — they vary widely by post"
+    },
+    "findReceipt": {
+      "title": "Find your receipt number first",
+      "summary": "USCIS issues a receipt number when they accept your petition. You'll need it to track the case in this app and on the USCIS website. Most people can find it within 30 days of filing.",
+      "primaryAction": "How to find your receipt number",
+      "tipI797": "💡 Your receipt number is on the Form I-797 Notice of Action that USCIS mails after accepting your petition. It looks like 3 letters + 10 digits (example: IOE0123456789).",
+      "recCheckEmail": "📧 If you used USCIS online filing, check your USCIS account or the confirmation email",
+      "recCheckSpouse": "👥 If a relative or attorney filed on your behalf, ask them for the receipt number",
+      "recReturnLater": "⏳ Petitions usually generate a receipt within 2–4 weeks of filing — come back when you have it"
+    }
+  },
+  "caseTrackerSuggestion": {
+    "title": "Track your USCIS case",
+    "body": "Have a pending petition? Add your receipt number to track it directly in the app."
+  }
+},
+    "warnings": {
+      "h1bCap": "The FY2027 H-1B registration period closes March 19, 2026. A new wage-weighted lottery favors higher-paid positions.",
+      "h1bWeightedLottery": "New for FY2027: USCIS uses a weighted selection process. Higher wage levels have significantly better odds of selection. Entry-level positions face reduced chances.",
+      "h1bFeeAlert": "Presidential Proclamation 10973: A $100,000 additional fee applies to certain H-1B petitions requiring consular processing (beneficiary outside the U.S.). This is in addition to all regular filing fees.",
+      "h1bPremiumIncrease": "Premium processing fees increased effective March 1, 2026. I-129/I-140: now $2,965. I-765: now $1,780. I-539: now $2,075.",
+      "familyLongWait": "Some family preference categories have multi-year waiting periods due to annual visa limits. F4 siblings can wait 15+ years for certain countries.",
+      "familyPolicyShifts": "Presidential Proclamations have reduced visa issuance rates for certain nationalities. Dates have been advanced for other countries but retrogression is possible later in FY2026.",
+      "indiaEbBacklog": "India EB-2 final action date: September 15, 2013. EB-3: November 15, 2013. The backlog remains 12+ years. Some forward movement occurred in early 2026.",
+      "chinaEbBacklog": "China EB-2 final action date: September 1, 2021. EB-3: May 1, 2021. Multi-year backlog persists for mainland-born applicants.",
+      "eadValidityReduced": "Effective December 5, 2025: EAD maximum validity reduced from 5 years to 18 months for adjustment of status applicants, refugees, asylees, and related categories. File renewals early — gaps in work authorization are now more likely.",
+      "eadAutoExtensionEnded": "Effective October 30, 2025: Automatic 540-day EAD extensions have been eliminated for most categories. EADs now expire on their printed date. Plan renewals at least 6 months ahead.",
+      "eadTpsParoleOneYear": "Per H.R. 1 (One Big Beautiful Bill Act): TPS and parole EADs are now valid for a maximum of 1 year or the end of the authorized period, whichever is shorter.",
+      "asylumVolatility": "Asylum policy is subject to active changes including enhanced screening rules and proposed regulations. Treat this as a high-volatility pathway and consult an attorney for current guidance.",
+      "studentOptPlanning": "Apply for OPT up to 90 days before graduation. STEM OPT requires E-Verify employer. Processing currently takes ~4.5 months — plan accordingly.",
+      "processingTimesDisclaimer": "USCIS processing times have slowed significantly in recent months. Actual times may exceed posted estimates. Consider premium processing where available."
+    },
+    "pathwayViability": {
+      "disclaimer": "Viability assessments are general guidance based on current policy and processing conditions. Individual circumstances vary. Consult an immigration attorney for personalized advice.",
+      "levels": {
+        "HIGH": {
+          "label": "High Viability",
+          "description": "Structurally stable path with predictable process"
+        },
+        "CONDITIONAL": {
+          "label": "Conditional",
+          "description": "Viable for the right candidate, but narrower or competitive"
+        },
+        "LOWER": {
+          "label": "Lower / Volatile",
+          "description": "Significant barriers, long waits, or policy uncertainty"
+        }
+      },
+      "pathways": {
+        "H1B": {
+          "shortReason": "Cap competition is high. New weighted lottery favors higher wages.",
+          "details": {
+            "d1": "FY2027 introduces wage-weighted selection — entry-level positions face reduced odds.",
+            "d2": "$100,000 additional fee for certain consular-processing petitions.",
+            "d3": "Registration fee increased to $215. Premium processing now $2,965.",
+            "d4": "Demand consistently exceeds the 85,000 annual cap by 4–8x."
+          },
+          "recommendation": "Best for candidates offered wages at OEWS Level III or IV. Consider O-1 or L-1 alternatives if eligible."
+        },
+        "L1": {
+          "shortReason": "Not cap-subject. Good for qualifying multinational employees.",
+          "details": {
+            "d1": "Not subject to the H-1B annual cap or lottery.",
+            "d2": "Requires 1 year of employment with qualifying multinational company.",
+            "d3": "Narrower eligibility, but avoids the cap-season bottleneck.",
+            "d4": "Can file year-round."
+          },
+          "recommendation": "High viability for the right candidate. If you've worked for a multinational for 1+ year, this may be stronger than H-1B."
+        },
+        "O1": {
+          "shortReason": "No cap, but requires extraordinary ability evidence.",
+          "details": {
+            "d1": "Not subject to annual cap — can file any time.",
+            "d2": "Requires documented extraordinary ability or achievement.",
+            "d3": "Strategically attractive for founders, researchers, creatives, athletes.",
+            "d4": "Harder to qualify for, but more predictable than H-1B if eligible."
+          },
+          "recommendation": "If you have awards, publications, media coverage, or high salary evidence, explore this before H-1B."
+        },
+        "IMMEDIATE_RELATIVE": {
+          "shortReason": "Strongest family path. Not subject to preference backlog system.",
+          "details": {
+            "d1": "Immediate relatives of U.S. citizens are not constrained by per-country limits.",
+            "d2": "Includes spouses, unmarried children under 21, and parents of adult citizens.",
+            "d3": "Processing times are measured in months, not years (unlike preference categories).",
+            "d4": "Structurally stable and well-documented process."
+          },
+          "recommendation": "If you qualify as an immediate relative, this is one of the most reliable paths available."
+        },
+        "FAMILY_PREFERENCE": {
+          "shortReason": "Backlogs of 5–20+ years depending on category and country.",
+          "details": {
+            "d1": "F1, F2B, F3, F4 categories all face multi-year waits.",
+            "d2": "Mexico and Philippines face the longest backlogs (some 20+ years).",
+            "d3": "Presidential Proclamations have further impacted issuance rates for certain nationalities.",
+            "d4": "Retrogression is possible later in FY2026."
+          },
+          "recommendation": "File early to establish a priority date, but plan for a long wait. Consider whether other pathways are available in parallel."
+        },
+        "F1_STUDENT": {
+          "shortReason": "Stable entry path. OPT/STEM OPT provide a work bridge.",
+          "details": {
+            "d1": "F-1 status, OPT, and 24-month STEM OPT extension remain active and structurally intact.",
+            "d2": "Not a direct immigrant path, but a realistic 'enter, study, work, then transition' route.",
+            "d3": "Embassy wait times for F-1 are generally shorter than other visa types.",
+            "d4": "SEVIS fee: $350 for F-1 students."
+          },
+          "recommendation": "One of the most practical entry paths for younger applicants. Plan your STEM major carefully for the 36-month OPT window."
+        },
+        "EB_GENERAL": {
+          "shortReason": "Viable for most countries, but India/China face severe backlogs.",
+          "details": {
+            "d1": "Rest-of-world EB-2 and EB-3 are relatively current or have short waits.",
+            "d2": "India EB-2: final action date Sep 15, 2013 (12+ year backlog).",
+            "d3": "China EB-2: final action date Sep 1, 2021 (4+ year backlog).",
+            "d4": "Per-country limits create massive disparities in wait times."
+          },
+          "recommendation": "For non-backlogged countries, this is a strong path. For India/China, plan for a very long wait and explore alternatives like EB-1 or NIW."
+        },
+        "ASYLUM": {
+          "shortReason": "Policy environment is volatile. Enhanced screening in effect.",
+          "details": {
+            "d1": "Active policy changes including proposed rules for stronger screening.",
+            "d2": "EAD validity for asylum applicants reduced to 18 months.",
+            "d3": "Automatic EAD extensions eliminated (effective Oct 30, 2025).",
+            "d4": "Should not be treated as a stable 'strategy' — it's a protection pathway for those in genuine need."
+          },
+          "recommendation": "If you have a legitimate fear of persecution, seek legal counsel immediately. Do not rely on asylum as a planned immigration strategy."
+        },
+        "CONSULAR_PROCESSING": {
+          "shortReason": "Trackable process through NVC for qualifying family relationships.",
+          "details": {
+            "d1": "State Department's NVC and IV scheduling tools make this path more trackable.",
+            "d2": "Structurally stable for immediate relatives and qualifying family/employment cases.",
+            "d3": "Can be slow, but the pipeline is visible through official tools.",
+            "d4": "Presidential Proclamations have impacted processing for certain nationalities."
+          },
+          "recommendation": "If abroad with a qualifying petition approved, this is a well-documented and trackable path."
+        }
+      },
+      "modal": {
+        "recommendation": "Recommendation",
+        "updated": "Updated: {{date}}",
+        "close": "Close"
+      }
+    },
+    "resources": {
+      "disclaimer": "Listings are for informational purposes only and do not constitute legal advice.",
+      "categories": {
+        "all": "All Resources",
+        "government": "Government",
+        "legal": "Legal Help",
+        "nonprofit": "Nonprofits",
+        "education": "Education"
+      },
+      "items": {
+        "uscis": {
+          "name": "U.S. Citizenship and Immigration Services (USCIS)",
+          "description": "Official U.S. immigration agency",
+          "services": {
+            "forms": "Forms",
+            "caseStatus": "Case status",
+            "appointments": "Appointments"
+          }
+        },
+        "dos_visa": {
+          "name": "Department of State — Visa Services",
+          "description": "Visa Bulletin, embassy appointments, consular processing",
+          "services": {
+            "visaBulletin": "Visa Bulletin",
+            "embassyInfo": "Embassy info",
+            "ds160": "DS-160"
+          }
+        },
+        "doj_eoir": {
+          "name": "EOIR Immigration Court",
+          "description": "",
+          "services": {
+            "courtInfo": "Court information",
+            "hearingNotices": "Hearing notices"
+          }
+        },
+        "dol_flag": {
+          "name": "Department of Labor — FLAG System",
+          "description": "Labor certification, prevailing wages, LCA filings",
+          "services": {
+            "perm": "PERM",
+            "lca": "LCA",
+            "prevailingWages": "Prevailing wages"
+          }
+        },
+        "imm_advocates": {
+          "name": "Immigration Advocates Network",
+          "description": "Free and low-cost immigration legal help directory",
+          "services": {
+            "proBono": "Pro bono legal services",
+            "knowYourRights": "Know your rights"
+          }
+        },
+        "lawhelp": {
+          "name": "LawHelp.org",
+          "description": "Find free legal aid in your state",
+          "services": {
+            "legalAidDirectory": "Legal aid directory",
+            "stateResources": "State-by-state resources"
+          }
+        },
+        "aila": {
+          "name": "AILA Lawyer Referral",
+          "description": "American Immigration Lawyers Association — find an attorney",
+          "services": {
+            "referrals": "Attorney referrals",
+            "lawUpdates": "Immigration law updates"
+          }
+        },
+        "catholic_charities": {
+          "name": "Catholic Charities",
+          "description": "Immigration legal services and refugee assistance",
+          "services": {
+            "legalAid": "Legal aid",
+            "refugeeServices": "Refugee services"
+          }
+        },
+        "raices": {
+          "name": "RAICES",
+          "description": "Refugee and Immigrant Center for Education and Legal Services",
+          "services": {
+            "legalRep": "Legal representation",
+            "bondAssistance": "Bond assistance"
+          }
+        },
+        "clinic": {
+          "name": "CLINIC — Catholic Legal Immigration Network",
+          "description": "Network of nonprofit immigration legal services programs",
+          "services": {
+            "network": "Legal services network",
+            "training": "Training",
+            "advocacy": "Advocacy"
+          }
+        },
+        "usa_hello": {
+          "name": "USAHello",
+          "description": "Free classes and resources for immigrants",
+          "services": {
+            "englishClasses": "English classes",
+            "citizenshipPrep": "Citizenship prep",
+            "gedPrep": "GED prep"
+          }
+        },
+        "uscis_civics": {
+          "name": "USCIS Citizenship Resource Center",
+          "description": "Official citizenship test study materials",
+          "services": {
+            "civicsTestPrep": "Civics test prep",
+            "studyMaterials": "Study materials",
+            "practiceTests": "Practice tests"
+          }
+        }
+      },
+      "emergency": {
+        "humanTrafficking": "Human Trafficking Hotline",
+        "domesticViolence": "Domestic Violence Hotline",
+        "uscisContactCenter": "USCIS Contact Center"
+      }
+    },
+    "policyTracker": {
+      "policies": {
+        "h1b100kFee": {
+          "title": "$100,000 H-1B Fee — Consular Processing",
+          "summary": "Additional $100,000 payment required for certain H-1B petitions approved for consular processing.",
+          "details": "Applies when the beneficiary is outside the U.S. or when the petition is approved for consular processing. Generally does NOT apply to F-1→H-1B change of status within the U.S. Total employer cost can exceed $106,000.",
+          "actions": {
+            "a1": "Determine if beneficiary qualifies for change of status (avoids fee)",
+            "a2": "Consider L-1 or O-1 alternatives if eligible",
+            "a3": "Budget accordingly if consular processing is required"
+          },
+          "impactByStatus": {
+            "F1": "MODERATE — F-1→H-1B change of status generally avoids this fee",
+            "OPT": "MODERATE — Cap-gap eligible OPT holders can file change of status",
+            "H1B": "HIGH — Transfers requiring consular processing trigger the fee",
+            "B1B2": "HIGH — Must use consular processing, fee applies"
+          }
+        },
+        "eadValidity18Months": {
+          "title": "EAD Validity Reduced to 18 Months",
+          "summary": "Maximum EAD validity cut from 5 years to 18 months for adjustment-of-status applicants, refugees, asylees, and related categories.",
+          "details": "Affects pending and new I-765 applications filed on or after Dec 5, 2025. Does NOT affect OPT, STEM OPT, H-4, J-2, or L-2 EADs. Existing EADs retain their printed expiration date.",
+          "actions": {
+            "a1": "File EAD renewals at least 6 months before expiration",
+            "a2": "No automatic 540-day extensions — plan for potential work gaps",
+            "a3": "Track expiration dates carefully"
+          },
+          "impactByStatus": {
+            "GC_pending": "CRITICAL — Must renew EAD every 18 months",
+            "EAD": "HIGH — Check which category your EAD falls under",
+            "H1B": "LOW — H-1B status not affected",
+            "F1": "LOW — OPT EADs not affected by this policy"
+          }
+        },
+        "eadAutoExtensionEnded": {
+          "title": "540-Day EAD Auto-Extensions Eliminated",
+          "summary": "Automatic 540-day EAD extensions ended for most categories. EADs now expire on the printed date.",
+          "details": "Previously, timely-filed EAD renewals automatically extended the old EAD for 540 days. This is no longer the case. If USCIS hasn't adjudicated your renewal by your EAD's expiration date, you must stop working.",
+          "actions": {
+            "a1": "File renewals as early as possible (6 months before expiration)",
+            "a2": "Consider premium processing for I-765 if available ($1,780)",
+            "a3": "Maintain alternative status if possible"
+          }
+        },
+        "h1bWeightedLottery": {
+          "title": "H-1B Wage-Weighted Lottery (FY2027+)",
+          "summary": "USCIS replaced the random H-1B lottery with a wage-weighted selection system. Higher wages = better odds.",
+          "details": "Level I (entry) wages get 1x odds. Level IV (expert) wages get up to 4x odds. Registration must include SOC code and OEWS wage level. First applied to FY2027 registration (March 4-19, 2026).",
+          "actions": {
+            "a1": "Offer competitive wages to maximize selection odds",
+            "a2": "Ensure correct SOC code and wage level on registration",
+            "a3": "Consider O-1 or L-1 if H-1B odds are unfavorable at your wage level"
+          },
+          "impactByStatus": {
+            "OPT": "HIGH — Entry-level offers face significantly reduced odds",
+            "F1": "HIGH — Affects post-graduation H-1B prospects",
+            "H1B": "MODERATE — Affects transfers if new registration needed"
+          }
+        },
+        "premiumProcessingFeeIncrease": {
+          "title": "Premium Processing Fees Increased",
+          "summary": "All premium processing fees increased ~5.7% effective March 1, 2026.",
+          "details": "I-129/I-140: $2,965 (was $2,805). I-539: $2,075 (was $1,965). I-765: $1,780 (was $1,685). Filings postmarked before March 1 could use old fees.",
+          "actions": {
+            "a1": "Budget for higher premium processing costs",
+            "a2": "Filings postmarked on or after March 1 must include new fee",
+            "a3": "Incorrect fees will result in rejection"
+          }
+        },
+        "visaBulletinProclamationImpact": {
+          "title": "Presidential Proclamations Affecting Visa Issuance",
+          "summary": "Proclamations 10949 and 10998 have reduced immigrant visa issuance for certain nationalities. Dates advanced for other countries.",
+          "details": "Some family and employment categories have been advanced for non-affected countries. Retrogression may occur later in FY2026 as demand materializes or proclamations change.",
+          "actions": {
+            "a1": "Check March 2026 Visa Bulletin for current dates",
+            "a2": "File I-485 promptly when dates become current",
+            "a3": "Monitor monthly for retrogression risk"
+          }
+        },
+        "tpsParoleEadOneYear": {
+          "title": "TPS/Parole EADs — 1-Year Maximum",
+          "summary": "H.R. 1 (One Big Beautiful Bill Act) limits TPS and parole EADs to 1 year or end of authorized period.",
+          "details": "Initial and renewal EADs for TPS beneficiaries and parolees are now valid for the shorter of 1 year or the end date of the authorized period. Implemented via Federal Register notice July 22, 2025.",
+          "actions": {
+            "a1": "File renewals well before expiration",
+            "a2": "Budget for more frequent filing fees",
+            "a3": "Track authorization end dates carefully"
+          }
+        },
+        "indiaEbBacklogUpdate": {
+          "title": "India EB-2/EB-3 — 12+ Year Backlog",
+          "summary": "India EB-2 final action date: Sep 15, 2013. EB-3: Nov 15, 2013. Some forward movement in early 2026.",
+          "details": "EB-2 India advanced from May 15, 2013 (Jan 2025) to Sep 15, 2013 (Mar 2026). EB-3 India advanced to Nov 15, 2013. Dates for Filing show further movement. April 2026 bulletin shows additional advances.",
+          "actions": {
+            "a1": "Maintain H-1B status — do not let it expire",
+            "a2": "File H-1B extensions based on approved I-140",
+            "a3": "Consider EB-1A/EB-1B if qualified",
+            "a4": "Explore EB-5 as alternative if financially feasible"
+          }
+        },
+        "h4EadPremiumAvailable": {
+          "title": "H-4 EAD Premium Processing Available",
+          "summary": "Premium processing available for standalone H-4 EAD applications.",
+          "details": "30-day processing for $1,780 (updated March 1, 2026).",
+          "actions": {
+            "a1": "Consider premium processing if work authorization is urgent",
+            "a2": "File with H-1B extension to streamline"
+          }
+        },
+        "srCategoryExtended": {
+          "title": "Religious Workers (SR) Category Extended",
+          "summary": "EB-4 Religious Workers category extended through September 30, 2026.",
+          "details": "SR category subject to same dates for filing and final action dates as other EB-4 categories."
+        }
+      },
+      "courtCases": {
+        "weightedLotteryChallenge": {
+          "case": "Multiple challenges to wage-weighted H-1B selection",
+          "impact": "Could delay or modify the wage-weighted lottery system",
+          "probability": "30% chance of injunction",
+          "contingencyActions": {
+            "a1": "Prepare for both random and weighted lottery outcomes",
+            "a2": "File at appropriate wage level regardless"
+          }
+        }
+      },
+      "upcomingChanges": {
+        "fy2027SelectionsComplete": {
+          "title": "FY2027 H-1B Selections Complete",
+          "impact": "All initial selection notifications sent. ~34-42% selection rate.",
+          "action": "If selected, begin petition preparation immediately. If 'Submitted', second round possible."
+        },
+        "h1bFilingWindowOpen": {
+          "title": "H-1B Filing Window NOW OPEN",
+          "impact": "Selected registrations can file I-129 petitions through June 30",
+          "action": "File petition as early as possible — 90-day window closes June 30, 2026"
+        },
+        "h1bFilingWindowCloses": {
+          "title": "H-1B Filing Window Closes",
+          "impact": "Last day to file FY2027 cap-subject petitions",
+          "action": "Ensure petition is filed before deadline"
+        },
+        "newOewsWageData": {
+          "title": "New OEWS Wage Data Expected",
+          "impact": "Updated prevailing wages for July 2026–June 2027",
+          "action": "Review new wage levels for pending and future filings"
+        },
+        "fy2026EndsDvExpires": {
+          "title": "FY2026 Ends — DV-2026 Expires",
+          "impact": "Diversity visa numbers for DV-2026 expire",
+          "action": "DV-2026 selectees must complete processing before this date"
+        },
+        "fy2027EmploymentStart": {
+          "title": "FY2027 H-1B Employment Start",
+          "impact": "Approved FY2027 H-1B beneficiaries can begin work",
+          "action": "Verify I-797 approval and start date"
+        }
+      },
+      "embassyAlerts": {
+        "torontoDelays": {
+          "location": "Toronto, Canada",
+          "currentWait": "16 months for B-1/B-2",
+          "normalWait": "3 months",
+          "reason": "Sustained high demand",
+          "alternatives": {
+            "alt1": "Ottawa (11.5 months)",
+            "alt2": "Vancouver (8 months)"
+          },
+          "action": "Consider applying in home country or alternative embassy"
+        },
+        "juarezB1B2Delays": {
+          "location": "Ciudad Juarez, Mexico",
+          "currentWait": "15.5 months for B-1/B-2",
+          "normalWait": "3 months",
+          "reason": "High immigrant and nonimmigrant visa demand",
+          "alternatives": {
+            "alt1": "Mexico City (10 months)",
+            "alt2": "Monterrey (10 months)"
+          },
+          "action": "Book earliest available appointment; consider alternative posts"
+        }
+      },
+      "analyzer": {
+        "imminentEffect": "⚠️ Takes effect in {{days}} days — immediate action needed",
+        "optToH1bImpact": "Directly affects your transition from OPT to H-1B",
+        "indiaSpecific": "Specifically impacts Indian nationals",
+        "genericImpact": "May affect your immigration journey",
+        "courtCaseImpact": "{{probability}} — Decision expected {{date}}"
+      }
+    },
+    "resourcesScreen": {
+      "title": "Resources & Tools",
+      "subtitle": "Official information and calculators",
+      "dataUpdateBadgeLabel": "Resources",
+      "searchPlaceholder": "Search resources...",
+      "toolsTitle": "🧮 Quick Calculators",
+      "tools": {
+        "h1bCost": {
+          "name": "H-1B Cost",
+          "desc": "With $100k fee"
+        },
+        "wageCheck": {
+          "name": "Wage Check",
+          "desc": "Prevailing wage"
+        },
+        "timeline": {
+          "name": "Timeline",
+          "desc": "Total journey"
+        },
+        "priorityDate": {
+          "name": "Priority Date",
+          "desc": "Visa bulletin"
+        }
+      },
+      "h1bCostDialog": {
+        "title": "💰 H-1B Cost Calculator",
+        "body": "Total Estimated Cost: ${{total}}\n\nBreakdown:\n• Registration: ${{registration}}\n• Filing: ${{filing}}\n• Fraud Prevention: ${{fraudPrevention}}\n• Competitiveness: ${{competitiveness}}\n• Presidential Fee: ${{presidentialFee}}\n• Premium Processing: ${{premium}}\n\n⚠️ Presidential fee applies after Sept 21, 2025"
+      },
+      "wageDialog": {
+        "title": "💼 Wage Requirement Check",
+        "meets": "✅ Salary MEETS requirement\n\nOffered: ${{offered}}\nRequired: ${{required}}\nDifference: +${{difference}}\nLevel: {{level}}",
+        "below": "❌ Salary BELOW requirement\n\nOffered: ${{offered}}\nRequired: ${{required}}\nShortfall: ${{shortfall}}\nLevel: {{level}}"
+      },
+      "timelineDialog": {
+        "title": "⏱️ Timeline Calculator",
+        "body": "Example: Family-Based (Immediate Relative)\n\n• I-130 Processing: 50 months\n• NVC Processing: 2-3 months\n• Embassy Interview: 2-12 months\n• Total: ~58 months (5 years)\n\nFor personalized timeline, use Timeline Visualizer",
+        "openTimeline": "Open Timeline"
+      },
+      "priorityDateDialog": {
+        "title": "📊 Priority Date",
+        "body": "Check Visa Bulletin for current dates:\n\n• Family F4 (siblings): 2001-2008\n• India EB-2: May 2013\n• India EB-3: Sept 2013\n\nUpdated monthly on travel.state.gov"
+      },
+      "officialProcessing": {
+        "title": "🏛️ Official Processing Times",
+        "uscisProcessingTimes": "USCIS Processing Times",
+        "visaBulletin": "Visa Bulletin",
+        "embassyWaitTimes": "Embassy Wait Times"
+      },
+      "emergencyTitle": "🆘 Emergency Hotlines (24/7)",
+      "officialBadge": "Official",
+      "callButton": "📞 Call",
+      "websiteButton": "🌐 Website",
+      "ok": "OK"
+    },
+    "statusDetailsScreen": {
+      "headerTitle": "Immigration Status Dashboard",
+      "statusLabel": "Status: {{status}}",
+      "status": {
+        "Critical": "CRITICAL",
+        "Attention": "ATTENTION",
+        "Good": "GOOD",
+        "Unknown": "UNKNOWN"
+      },
+      "sections": {
+        "criticalAlerts": "🚨 Critical Alerts",
+        "policyAlerts": "📢 Policy Alerts Affecting You",
+        "pathwayViability": "📊 Your Pathway Viability",
+        "currentStatus": "📋 Current Status",
+        "complianceTracking": "⏱️ Compliance Tracking",
+        "importantDates": "📅 Important Dates",
+        "scoreBreakdown": "📊 Score Breakdown"
+      },
+      "alertDays": "{{count}} days",
+      "takeAction": "Take Action ›",
+      "statusGrid": {
+        "visaType": "Visa Type",
+        "workAuth": "Work Auth",
+        "country": "Country",
+        "location": "Location",
+        "notSpecified": "Not specified",
+        "insideUs": "Inside US",
+        "outsideUs": "Outside US"
+      },
+      "compliance": {
+        "editButton": "Edit",
+        "doneButton": "Done",
+        "optUnemploymentDays": "OPT Unemployment Days",
+        "daysOutsideUs": "Days Outside US (This Year)",
+        "optProgress": "{{used}} / 90",
+        "daysSuffix": "{{count}} days",
+        "approachingLimit": "⚠️ Approaching 90-day limit! Find employment soon.",
+        "extendedAbsence": "⚠️ Extended absence may affect continuous residence"
+      },
+      "statusExpiry": "Status Expiry",
+      "noIssues": "✅ No major issues detected",
+      "issuePoints": "-10",
+      "actions": {
+        "updateDocuments": "Update Documents",
+        "viewTimeline": "View Timeline",
+        "policyTracker": "Policy Tracker",
+        "exportReport": "Export Report 📄"
+      },
+      "exportDialog": {
+        "title": "Export Status Report",
+        "body": "Generate a PDF summary of your immigration status?",
+        "export": "Export",
+        "comingSoonTitle": "Coming Soon",
+        "comingSoonBody": "PDF export feature coming in next update"
+      }
+    },
+    "policyTrackerScreen": {
+      "nextImportantDate": "Next Important Date",
+      "nextImportantDateText": "{{title}} in {{days}} days",
+      "tabs": {
+        "affectingYou": "Affecting You",
+        "allPolicies": "All Policies",
+        "courtCases": "Court Cases",
+        "calendar": "Calendar"
+      },
+      "daysSuffix": "{{count}} days",
+      "policyCard": {
+        "yourImpact": "Your Impact:",
+        "recommendedActions": "Recommended Actions:",
+        "source": "Source: {{source}}",
+        "published": "Published: {{date}}",
+        "more": "More",
+        "less": "Less"
+      },
+      "courtCard": {
+        "status": "Status: {{status}}",
+        "expectedDecision": "Expected decision: {{date}}",
+        "contingencyPlans": "Contingency Plans:"
+      },
+      "caseStatuses": {
+        "pending": "Pending",
+        "decided": "Decided",
+        "dismissed": "Dismissed"
+      },
+      "embassyCard": {
+        "currentWait": "Current wait: {{wait}}",
+        "alternatives": "Alternatives: {{list}}"
+      },
+      "alertTypes": {
+        "processing_delay": "PROCESSING DELAY",
+        "appointment_unavailable": "APPOINTMENT UNAVAILABLE",
+        "post_closure": "POST CLOSURE"
+      },
+      "affectsYour": {
+        "count_one": "{{count}} policy affects your status",
+        "count_other": "{{count}} policies affect your status"
+      },
+      "emptyState": {
+        "title": "No Critical Changes",
+        "body": "No current policies directly affect your immigration status"
+      },
+      "sectionTitles": {
+        "criticalChanges": "Critical Changes",
+        "warnings": "Warnings",
+        "information": "Information",
+        "casesMonitored": "Cases Being Monitored",
+        "embassyAlerts": "Embassy Alerts",
+        "upcomingChanges": "Upcoming Changes"
+      },
+      "lastChecked": "Last checked: {{datetime}}"
+    },
+    "checklistDocuments": {
+      "work": {
+        "required": {
+          "passport": {
+            "name": "Valid Passport",
+            "description": "Must be valid at least 6 months beyond intended stay"
+          },
+          "photos": {
+            "name": "Passport Photos",
+            "description": "2x2 inches, white background",
+            "quantity": "2 photos"
+          },
+          "ds160": {
+            "name": "Form DS-160",
+            "description": "Online visa application confirmation"
+          },
+          "i129": {
+            "name": "Form I-129 Approval",
+            "description": "Employer's petition approval from USCIS",
+            "who": "Employer provides"
+          },
+          "lca": {
+            "name": "Labor Condition Application",
+            "description": "DOL certification for H-1B",
+            "who": "Employer files"
+          },
+          "degree": {
+            "name": "Bachelor's Degree or Higher",
+            "description": "In specialty field with transcripts"
+          },
+          "resume": {
+            "name": "Resume/CV",
+            "description": "Professional experience"
+          }
+        },
+        "oneOf": {
+          "employment_letter": {
+            "name": "Employment Offer Letter",
+            "description": "Details position, salary, duties"
+          },
+          "employment_contract": {
+            "name": "Employment Contract",
+            "description": "Signed agreement with employer"
+          }
+        },
+        "recommended": {
+          "experience_letters": {
+            "name": "Experience Letters",
+            "description": "From previous employers"
+          },
+          "awards": {
+            "name": "Awards/Publications",
+            "description": "Professional achievements"
+          }
+        }
+      },
+      "family": {
+        "required": {
+          "passport": {
+            "name": "Valid Passport",
+            "description": "Must be valid at least 6 months"
+          },
+          "photos": {
+            "name": "Passport Photos",
+            "description": "2x2 inches, white background",
+            "quantity": "2 photos"
+          },
+          "ds260": {
+            "name": "Form DS-260",
+            "description": "Online immigrant visa application"
+          },
+          "i130": {
+            "name": "Form I-130 Approval",
+            "description": "Family petition approval from USCIS",
+            "who": "Petitioner files"
+          },
+          "birth_cert": {
+            "name": "Birth Certificate",
+            "description": "Original with translation"
+          },
+          "marriage_cert": {
+            "name": "Marriage Certificate",
+            "description": "If spouse petition",
+            "whenNeeded": "Spouse petitions"
+          },
+          "i864": {
+            "name": "Form I-864 Affidavit of Support",
+            "description": "Financial sponsorship from petitioner",
+            "who": "Petitioner provides"
+          },
+          "police_cert": {
+            "name": "Police Certificates",
+            "description": "From all countries lived 6+ months"
+          }
+        },
+        "oneOf": {
+          "petitioner_citizenship": {
+            "name": "Petitioner's US Passport",
+            "description": "Proof of U.S. citizenship"
+          },
+          "petitioner_greencard": {
+            "name": "Petitioner's Green Card",
+            "description": "If petitioner is LPR"
+          }
+        },
+        "recommended": {
+          "photos_together": {
+            "name": "Photos Together",
+            "description": "Evidence of relationship"
+          },
+          "correspondence": {
+            "name": "Communication Records",
+            "description": "Emails, messages, letters"
+          },
+          "joint_accounts": {
+            "name": "Joint Accounts",
+            "description": "Bank, insurance, property"
+          }
+        }
+      },
+      "student": {
+        "required": {
+          "passport": {
+            "name": "Valid Passport",
+            "description": "Must be valid for entire study period"
+          },
+          "photos": {
+            "name": "Passport Photos",
+            "description": "2x2 inches, white background",
+            "quantity": "2 photos"
+          },
+          "ds160": {
+            "name": "Form DS-160",
+            "description": "Online visa application confirmation"
+          },
+          "i20": {
+            "name": "Form I-20",
+            "description": "Certificate of Eligibility from school",
+            "who": "School provides"
+          },
+          "sevis": {
+            "name": "SEVIS Fee Receipt",
+            "description": "I-901 payment confirmation ($350)"
+          },
+          "acceptance": {
+            "name": "Admission Letter",
+            "description": "Official acceptance from SEVP school"
+          },
+          "transcripts": {
+            "name": "Academic Transcripts",
+            "description": "Previous education records"
+          },
+          "financial_proof": {
+            "name": "Financial Evidence",
+            "description": "Bank statements showing ~$40,000/year"
+          }
+        },
+        "oneOf": {
+          "test_scores": {
+            "name": "TOEFL/IELTS Scores",
+            "description": "English proficiency test"
+          },
+          "english_medium": {
+            "name": "English Medium Certificate",
+            "description": "If previous education was in English"
+          }
+        },
+        "recommended": {
+          "sponsor_letter": {
+            "name": "Sponsor Letter",
+            "description": "If someone else is paying"
+          },
+          "study_plan": {
+            "name": "Study Plan",
+            "description": "Why this program and future goals"
+          },
+          "gre_gmat": {
+            "name": "GRE/GMAT Scores",
+            "description": "If submitted to school"
+          }
+        }
+      },
+      "citizenship": {
+        "required": {
+          "n400": {
+            "name": "Form N-400",
+            "description": "Application for Naturalization — $760 paper / $710 online / $0 military",
+            "who": "Applicant files with USCIS"
+          },
+          "green_card_copy": {
+            "name": "Permanent Resident Card (Green Card)",
+            "description": "Front and back copy of current green card"
+          },
+          "passport_photos": {
+            "name": "Passport Photos",
+            "description": "2x2 inches, white background",
+            "quantity": "2 photos"
+          },
+          "passport_copy": {
+            "name": "Valid Passport or Travel Document",
+            "description": "Copy of every passport used in last 5 years"
+          },
+          "tax_returns": {
+            "name": "Federal Tax Returns",
+            "description": "Last 5 years (3 years if married to U.S. citizen)"
+          },
+          "travel_records": {
+            "name": "Travel History Record",
+            "description": "All trips outside the U.S. in last 5 years — dates, destinations, length"
+          },
+          "selective_service": {
+            "name": "Selective Service Registration",
+            "description": "If male and lived in U.S. between ages 18–26 after 1980",
+            "whenNeeded": "Males aged 18–26 who lived in U.S."
+          }
+        },
+        "oneOf": {
+          "marriage_cert_3yr": {
+            "name": "Marriage Certificate + Spouse's Proof of Citizenship",
+            "description": "Required if applying under 3-year rule (married to U.S. citizen)",
+            "whenNeeded": "3-year marriage route only"
+          },
+          "dd214": {
+            "name": "DD-214 / Military Discharge Papers",
+            "description": "Certificate of Release or Discharge from Active Duty",
+            "whenNeeded": "Military applicants only"
+          }
+        },
+        "recommended": {
+          "birth_cert_citizenship": {
+            "name": "Birth Certificate",
+            "description": "With certified English translation if needed"
+          },
+          "prior_marriage_docs": {
+            "name": "Divorce Decrees / Prior Marriage Records",
+            "description": "For any prior marriages — USCIS may ask for these"
+          },
+          "criminal_records": {
+            "name": "Court Disposition Records",
+            "description": "For any arrests or charges — even dismissed ones",
+            "whenNeeded": "If you have any arrests or criminal history"
+          },
+          "name_change": {
+            "name": "Legal Name Change Documents",
+            "description": "Court order if your name differs from green card"
+          },
+          "civics_study": {
+            "name": "Civics Test Study Materials",
+            "description": "100 questions available free at uscis.gov/citizenship/tessprep"
+          }
+        }
+      },
+      "common": {
+        "interview_appt": {
+          "name": "Interview Appointment Confirmation",
+          "description": "Embassy/consulate appointment"
+        },
+        "fee_receipt": {
+          "name": "Visa Fee Payment Receipt",
+          "description": "MRV fee payment confirmation"
+        }
+      },
+      "medical": {
+        "medical_exam": {
+          "name": "Medical Examination",
+          "description": "From panel physician only",
+          "whenNeeded": "Green card applicants",
+          "cost": "$200-500"
+        },
+        "vaccinations": {
+          "name": "Vaccination Records",
+          "description": "Required vaccines vary by age",
+          "whenNeeded": "If requested"
+        }
+      },
+      "interviewPrep": {
+        "civics_100": {
+          "name": "Study 100 Civics Questions",
+          "description": "USCIS officer will ask up to 10 — must answer 6 correctly",
+          "whenNeeded": "All applicants"
+        },
+        "english_reading": {
+          "name": "English Reading Practice",
+          "description": "Officer will ask you to read 1 of 3 sentences",
+          "whenNeeded": "All applicants under 65 without 20-yr exemption"
+        },
+        "english_writing": {
+          "name": "English Writing Practice",
+          "description": "Officer will ask you to write 1 of 3 sentences",
+          "whenNeeded": "All applicants under 65 without 20-yr exemption"
+        },
+        "n400_review": {
+          "name": "Review Your N-400 Answers",
+          "description": "Officer will go through your N-400 line by line — know your answers",
+          "whenNeeded": "All applicants"
+        }
+      }
+    },
+    "timelineData": {
+      "work": {
+        "h1b": {
+          "totalTime": "8-14 months (plus lottery wait)",
+          "alert": "FY2027 registration closed March 19. Wage-weighted lottery — higher wages = better odds.",
+          "steps": {
+            "s1": {
+              "title": "Job Offer",
+              "duration": "Variable",
+              "description": "Secure employment with sponsoring employer. Wage level affects lottery odds."
+            },
+            "s2": {
+              "title": "H-1B Registration",
+              "duration": "March 4-19",
+              "description": "Registration fee: $215. Employer submits via MyUSCIS. SOC code and wage level required."
+            },
+            "s3": {
+              "title": "Selection Notice",
+              "duration": "By March 31",
+              "description": "Wage-weighted selection: Level IV up to 4x odds vs Level I."
+            },
+            "s4": {
+              "title": "LCA Filing",
+              "duration": "7 days",
+              "description": "Labor Condition Application with DOL"
+            },
+            "s5": {
+              "title": "I-129 Petition",
+              "duration": "6-8 months",
+              "description": "USCIS regular processing (actual: 8+ months). Premium: 15 days for $2,965"
+            },
+            "s6": {
+              "title": "$100K Fee (if applicable)",
+              "duration": "At filing",
+              "description": "Applies to consular processing cases. Does NOT apply to most F-1→H-1B changes of status."
+            },
+            "s7": {
+              "title": "Visa Stamp (if abroad)",
+              "duration": "1-3 months",
+              "description": "DS-160 + embassy interview. India: ~1 month, Mexico: ~1 month"
+            },
+            "s8": {
+              "title": "Start Work",
+              "duration": "Oct 1 or later",
+              "description": "Cannot start before fiscal year begins"
+            }
+          },
+          "label": "H-1B"
+        },
+        "l1": {
+          "totalTime": "4-8 months total",
+          "steps": {
+            "s1": {
+              "title": "Eligibility Check",
+              "duration": "1 week",
+              "description": "Confirm 1 year employment abroad with qualifying company"
+            },
+            "s2": {
+              "title": "I-129 Petition",
+              "duration": "4-6 months",
+              "description": "USCIS regular processing. No cap or lottery."
+            },
+            "s3": {
+              "title": "Premium Option",
+              "duration": "15 days",
+              "description": "Premium processing available for $2,965"
+            },
+            "s4": {
+              "title": "Visa Stamping",
+              "duration": "1-2 months",
+              "description": "Embassy interview if outside U.S."
+            },
+            "s5": {
+              "title": "Start Work",
+              "duration": "Immediately",
+              "description": "L-1 has no fiscal year restriction"
+            }
+          },
+          "label": "L-1"
+        },
+        "o1": {
+          "totalTime": "3-6 months",
+          "steps": {
+            "s1": {
+              "title": "Build Evidence",
+              "duration": "Variable",
+              "description": "Gather awards, publications, media coverage, salary evidence"
+            },
+            "s2": {
+              "title": "Consultation Letter",
+              "duration": "2-4 weeks",
+              "description": "From peer group or labor union if applicable"
+            },
+            "s3": {
+              "title": "I-129 Petition",
+              "duration": "2-4 months",
+              "description": "USCIS regular processing. Premium available for $2,965."
+            },
+            "s4": {
+              "title": "Visa Stamping",
+              "duration": "1-2 months",
+              "description": "Embassy interview if outside U.S."
+            }
+          },
+          "label": "O-1"
+        },
+        "eb": {
+          "totalTime": "1-15 years (depends on country)",
+          "alert": "India EB-2/3 backlog: 12+ years. Most countries: 1-3 years.",
+          "steps": {
+            "s1": {
+              "title": "PERM Labor Cert",
+              "duration": "~17 months",
+              "description": "DOL labor certification (EB-2/EB-3 only)"
+            },
+            "s2": {
+              "title": "I-140 Petition",
+              "duration": "6-12 months",
+              "description": "USCIS approval. Premium 15 days for $2,965."
+            },
+            "s3": {
+              "title": "Priority Date Wait",
+              "duration": "Variable",
+              "description": "Wait for visa number to become current per Visa Bulletin"
+            },
+            "s4": {
+              "title": "I-485 / DS-260",
+              "duration": "8-14 months",
+              "description": "Adjustment of status (in U.S.) or consular processing"
+            },
+            "s5": {
+              "title": "Green Card",
+              "duration": "Card delivery",
+              "description": "Physical card mailed 2-4 weeks after approval"
+            }
+          },
+          "label": "Green Card (EB)"
+        }
+      },
+      "family": {
+        "immediateRelative": {
+          "totalTime": "12-18 months",
+          "steps": {
+            "s1": {
+              "title": "I-130 Petition",
+              "duration": "12-15 months",
+              "description": "Petitioner files for spouse, child under 21, or parent"
+            },
+            "s2": {
+              "title": "NVC Processing",
+              "duration": "2-3 months",
+              "description": "Pay fees, submit civil documents, DS-260"
+            },
+            "s3": {
+              "title": "Embassy Interview",
+              "duration": "2-4 months",
+              "description": "Schedule interview, medical exam, attend interview"
+            },
+            "s4": {
+              "title": "Visa Issuance",
+              "duration": "1-2 weeks",
+              "description": "Receive visa, enter U.S., become LPR"
+            }
+          },
+          "label": "Immediate Relative"
+        },
+        "f4": {
+          "totalTime": "15-20+ years",
+          "alert": "F4 (siblings) has the longest waits — Mexico/Philippines: 25+ years",
+          "steps": {
+            "s1": {
+              "title": "I-130 Petition",
+              "duration": "12-18 months",
+              "description": "U.S. citizen sibling files petition"
+            },
+            "s2": {
+              "title": "Priority Date Wait",
+              "duration": "15-25 years",
+              "description": "Per Visa Bulletin — varies dramatically by country"
+            },
+            "s3": {
+              "title": "NVC Processing",
+              "duration": "2-4 months",
+              "description": "When priority date becomes current"
+            },
+            "s4": {
+              "title": "Embassy Interview",
+              "duration": "2-12 months",
+              "description": "Wait time varies by post"
+            }
+          },
+          "label": "F4 Sibling"
+        }
+      },
+      "student": {
+        "f1": {
+          "totalTime": "2-4 months from acceptance to entry",
+          "steps": {
+            "s1": {
+              "title": "School Acceptance",
+              "duration": "Variable",
+              "description": "Get accepted at SEVP-certified institution"
+            },
+            "s2": {
+              "title": "Form I-20",
+              "duration": "1-2 weeks",
+              "description": "School issues Certificate of Eligibility"
+            },
+            "s3": {
+              "title": "SEVIS Fee",
+              "duration": "Same day",
+              "description": "Pay $350 I-901 fee at FMJfee.com"
+            },
+            "s4": {
+              "title": "DS-160 + Interview",
+              "duration": "1-3 months",
+              "description": "Complete DS-160, schedule embassy interview"
+            },
+            "s5": {
+              "title": "Visa Approval",
+              "duration": "1-2 weeks",
+              "description": "Visa stamped in passport"
+            },
+            "s6": {
+              "title": "U.S. Entry",
+              "duration": "30 days before",
+              "description": "Can enter up to 30 days before program start"
+            }
+          },
+          "label": "F-1 Student"
+        },
+        "opt": {
+          "totalTime": "OPT: 12 months. STEM extension: +24 months.",
+          "alert": "EAD now 18-month max for some categories. Plan renewals early.",
+          "steps": {
+            "s1": {
+              "title": "Eligibility Check",
+              "duration": "Within 90 days of grad",
+              "description": "Apply 90 days before to 60 days after program end"
+            },
+            "s2": {
+              "title": "DSO Recommendation",
+              "duration": "1 week",
+              "description": "Designated School Official issues new I-20"
+            },
+            "s3": {
+              "title": "I-765 Filing",
+              "duration": "Same day",
+              "description": "$520 filing fee. Premium processing $1,780 for 30 days."
+            },
+            "s4": {
+              "title": "EAD Approval",
+              "duration": "3-5 months",
+              "description": "USCIS regular. Premium: 30 days."
+            },
+            "s5": {
+              "title": "Start Work",
+              "duration": "EAD start date",
+              "description": "Cannot work before EAD start date"
+            },
+            "s6": {
+              "title": "STEM Extension (if eligible)",
+              "duration": "Apply 90 days before OPT ends",
+              "description": "Adds 24 months for STEM degrees with E-Verify employer"
+            }
+          },
+          "label": "F-1 to OPT"
+        }
+      },
+      "citizenship": {
+        "standard5yr": {
+          "totalTime": "10-14 months from filing to oath",
+          "alert": "File N-400 up to 90 days before your 5-year green card anniversary.",
+          "steps": {
+            "s1": {
+              "title": "Eligibility Check",
+              "duration": "Before filing",
+              "description": "5+ years as LPR, 30+ months physical presence in U.S., 3 months in state"
+            },
+            "s2": {
+              "title": "File Form N-400",
+              "duration": "Online or paper",
+              "description": "$710 online / $760 paper. File up to 90 days before eligibility date."
+            },
+            "s3": {
+              "title": "Biometrics Appointment",
+              "duration": "5-8 weeks after filing",
+              "description": "Fingerprints, photo, signature at ASC office"
+            },
+            "s4": {
+              "title": "Naturalization Interview",
+              "duration": "6-12 months after filing",
+              "description": "Civics test (10 questions, need 6 correct), English test, N-400 review"
+            },
+            "s5": {
+              "title": "Decision",
+              "duration": "Same day or by mail",
+              "description": "Approved, denied, or continued for more evidence"
+            },
+            "s6": {
+              "title": "Oath Ceremony",
+              "duration": "Same day or 4-8 weeks later",
+              "description": "Take Oath of Allegiance, receive Certificate of Naturalization"
+            },
+            "s7": {
+              "title": "U.S. Citizen!",
+              "duration": "Effective on oath date",
+              "description": "Apply for U.S. passport. Register to vote. Update Social Security."
+            }
+          },
+          "label": "5-Year Standard"
+        },
+        "marriage3yr": {
+          "totalTime": "10-14 months from filing to oath",
+          "alert": "Must be married to AND living with U.S. citizen for the full 3 years.",
+          "steps": {
+            "s1": {
+              "title": "Eligibility Check",
+              "duration": "Before filing",
+              "description": "3+ years as LPR, married to + living with USC for 3 years, 18+ months physical presence"
+            },
+            "s2": {
+              "title": "File Form N-400",
+              "duration": "Online or paper",
+              "description": "Same fees. Include marriage certificate + spouse's USC proof."
+            },
+            "s3": {
+              "title": "Biometrics Appointment",
+              "duration": "5-8 weeks after filing",
+              "description": "Same as standard route"
+            },
+            "s4": {
+              "title": "Naturalization Interview",
+              "duration": "6-12 months after filing",
+              "description": "Same tests. May ask about marriage details."
+            },
+            "s5": {
+              "title": "Decision & Oath",
+              "duration": "Same day or by mail",
+              "description": "If approved, oath ceremony scheduled"
+            },
+            "s6": {
+              "title": "U.S. Citizen!",
+              "duration": "Effective on oath date",
+              "description": "Same benefits as standard route"
+            }
+          },
+          "label": "3-Year (Marriage)"
+        },
+        "military": {
+          "totalTime": "6-10 months — expedited processing",
+          "alert": "N-400 fee waived for active military. File N-426 for service verification.",
+          "steps": {
+            "s1": {
+              "title": "Eligibility Check",
+              "duration": "Before filing",
+              "description": "1+ year honorable service (peacetime) OR any qualifying service during designated hostilities"
+            },
+            "s2": {
+              "title": "Form N-426",
+              "duration": "Before N-400",
+              "description": "Military command certifies your service record"
+            },
+            "s3": {
+              "title": "File Form N-400",
+              "duration": "Online or paper",
+              "description": "$0 fee for military. Attach N-426."
+            },
+            "s4": {
+              "title": "Biometrics + Interview",
+              "duration": "Expedited",
+              "description": "Often combined into single appointment for military"
+            },
+            "s5": {
+              "title": "Decision & Oath",
+              "duration": "Often same day",
+              "description": "Some bases conduct oath ceremonies on-site"
+            },
+            "s6": {
+              "title": "U.S. Citizen!",
+              "duration": "Effective on oath date",
+              "description": "Apply for U.S. passport, expanded job opportunities including federal positions"
+            }
+          },
+          "label": "Military Service"
+        }
+      }
+    },
+    "checklistScreen": {
+      "title": "Document Checklist",
+      "changeButton": "Change ›",
+      "dataUpdateBadgeLabel": "Updated",
+      "selectPathwayPlaceholder": "Select Pathway",
+      "citizenshipBanner": "N-400 checklist. Fee: $710 online / $760 paper. Military: free. You can file up to 90 days before your eligibility date.",
+      "progressTitle": {
+        "default": "Required Documents",
+        "citizenship": "N-400 Documents"
+      },
+      "progressCount": "{{completed}} of {{total}}",
+      "legendTitle": "Document Requirements",
+      "legendRequired": "Required",
+      "legendNeedOne": "Need One",
+      "legendRecommended": "Recommended",
+      "legendIfRequested": "If Requested",
+      "sections": {
+        "requiredTitle": "{{pathway}} - Required Documents",
+        "requiredSubtitle": "Must have ALL of these",
+        "oneOfTitle": "Choose One Document",
+        "oneOfSubtitle": "Need ONE from this list",
+        "recommendedTitle": "Supporting Documents",
+        "recommendedSubtitle": "Strengthen your application",
+        "commonTitle": "Universal Requirements",
+        "commonSubtitle": "Required for ALL visa types",
+        "medicalTitle": "Medical Requirements",
+        "medicalSubtitle": "Only if requested by embassy",
+        "interviewPrepTitle": "Interview Preparation",
+        "interviewPrepSubtitle": "Be ready for your naturalization interview"
+      },
+      "badges": {
+        "required": "REQUIRED",
+        "oneOf": "NEED ONE",
+        "recommended": "RECOMMENDED",
+        "conditional": "IF REQUESTED"
+      },
+      "tip": {
+        "citizenshipText": "File N-400 up to 90 days before your eligibility date. Study the 100 civics questions at uscis.gov/citizenship/tessprep — it's free.",
+        "defaultText": "Focus on REQUIRED documents first. Your checklist is customized for {{pathway}}."
+      },
+      "modal": {
+        "title": "Select Pathway"
+      },
+      "pathwayOptions": {
+        "work": "Work-Based Immigration",
+        "family": "Family-Based Immigration",
+        "student": "Student Pathway",
+        "citizenship": "Path to Citizenship (N-400)"
+      }
+    },
+    "timelineScreen": {
+      "title": {
+        "default": "Process Timeline",
+        "citizenship": "Naturalization Timeline"
+      },
+      "subtitle": "Based on {{date}} USCIS / DOL data",
+      "totalTimeLabel": {
+        "default": "Total Timeline",
+        "citizenship": "Typical Timeline"
+      },
+      "disclaimer": "Based on {{date}} data",
+      "premiumProcessing": {
+        "title": "⚡ Premium Processing (March 2026)",
+        "i129": "I-129 (H-1B, L-1, O-1): 15 days for $2,965",
+        "i140": "I-140 (EB-1, EB-2, EB-3): 15-45 days for $2,965",
+        "i765": "I-765 (OPT/STEM OPT): 30 days for $1,780",
+        "i539": "I-539 (Status Change): 30 days for $2,075"
+      },
+      "afterNaturalize": {
+        "title": "🇺🇸 After You Naturalize",
+        "passport": "Apply for U.S. passport immediately — no waiting period",
+        "sponsorFamily": "Sponsor immediate family members (spouse, children, parents) with no visa quota wait",
+        "childCitizenship": "Children under 18 with green cards may automatically acquire citizenship",
+        "vote": "Register to vote — federal elections require U.S. citizenship",
+        "dualCitizenship": "Check if your birth country allows dual citizenship before renouncing"
+      },
+      "currentDelays": {
+        "title": "⏱️ Current Delays",
+        "familyI130": "Family I-130: 50-95 months (4-8 years)",
+        "indiaEb": "India EB-2/3: 12+ year priority date wait",
+        "perm": "PERM labor certification: ~17 months (503 days)",
+        "canadaB1B2": "Canada B-1/B-2 visitor visa: 16 month wait",
+        "eadValidity": "EAD validity now 18 months max — plan renewals early"
+      },
+      "n400Notes": {
+        "title": "⏱️ N-400 Processing Notes",
+        "interviewWait": "Interview wait varies widely by field office — some cities take 12+ months",
+        "extendedTrips": "Extended trips abroad (6+ months) can break continuous residence — affects eligibility",
+        "criminalHistory": "Criminal history — even dismissed charges — must be disclosed and can delay or deny",
+        "missingTaxes": "Missing tax returns are a common denial reason — file any missing years before applying",
+        "noPremium": "N-400 has no premium processing option — standard processing only"
+      },
+      "dataUpdated": "Data Updated: {{date}}"
+    },
+"visaDetails": {
+  "H1B": {
+    "fullName": "H-1B Specialty Occupation Visa",
+    "purpose": "For professionals in specialty occupations requiring a bachelor's degree or higher",
+    "eligibility": {
+      "e1": "Bachelor's degree or equivalent in specialty field",
+      "e2": "Job offer from U.S. employer",
+      "e3": "Position requires specialized knowledge",
+      "e4": "Employer must pay prevailing wage"
+    },
+    "duration": "Initially 3 years, extendable to 6 years total",
+    "pathToGreenCard": "Yes — employer can sponsor EB-2 or EB-3 green card while on H-1B",
+    "spouseWork": "H-4 spouse can work with EAD if primary has approved I-140",
+    "pros": {
+      "p1": "Dual intent allowed (can pursue green card)",
+      "p2": "Spouse and children can accompany",
+      "p3": "Can change employers (with new petition)"
+    },
+    "cons": {
+      "c1": "Subject to annual lottery — now wage-weighted",
+      "c2": "Tied to sponsoring employer",
+      "c3": "$100,000 additional fee for consular-processing cases (Sept 2025+)",
+      "c4": "6-year maximum without green card progress"
+    },
+    "forms": {
+      "f1": {
+        "name": "LCA (Labor Condition Application)",
+        "purpose": "Certifies wages and working conditions",
+        "who": "Employer files with DOL"
+      },
+      "f2": {
+        "name": "Form I-129",
+        "purpose": "Petition for nonimmigrant worker",
+        "who": "Employer files with USCIS"
+      },
+      "f3": {
+        "name": "Form DS-160",
+        "purpose": "Visa application for consular processing",
+        "who": "Employee completes online"
+      }
+    }
+  },
+  "L1": {
+    "fullName": "L-1 Intracompany Transfer Visa",
+    "purpose": "For employees transferring from foreign branch to U.S. office of same company",
+    "eligibility": {
+      "e1": "Worked for company abroad for 1+ year in past 3 years",
+      "e2": "Manager/Executive (L-1A) or Specialized Knowledge (L-1B)",
+      "e3": "Company must have qualifying relationship"
+    },
+    "duration": "L-1A: 3 years initially (7 total), L-1B: 3 years (5 total)",
+    "pathToGreenCard": "Yes — L-1A can lead to EB-1C green card (faster than H-1B route)",
+    "spouseWork": "L-2 spouse can work with EAD immediately",
+    "pros": {
+      "p1": "No lottery or cap",
+      "p2": "No prevailing wage requirement",
+      "p3": "Spouse can work immediately",
+      "p4": "L-1A to EB-1C is faster green card route"
+    },
+    "cons": {
+      "c1": "Must work for same employer",
+      "c2": "Cannot change companies",
+      "c3": "Requires prior employment abroad"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-129S",
+        "purpose": "L Classification Supplement",
+        "who": "Employer files with I-129"
+      },
+      "f2": {
+        "name": "Form DS-160",
+        "purpose": "Visa application",
+        "who": "Employee completes"
+      }
+    }
+  },
+  "O1": {
+    "fullName": "O-1 Extraordinary Ability Visa",
+    "purpose": "For individuals with extraordinary ability in sciences, arts, education, business, or athletics",
+    "eligibility": {
+      "e1": "Demonstrated extraordinary ability",
+      "e2": "National/international recognition",
+      "e3": "Substantial evidence of achievements",
+      "e4": "Job offer in field of expertise"
+    },
+    "duration": "Up to 3 years initially, unlimited 1-year extensions",
+    "pathToGreenCard": "Yes — can self-petition for EB-1A or employer can sponsor",
+    "spouseWork": "O-3 spouse cannot work",
+    "pros": {
+      "p1": "No lottery or cap",
+      "p2": "No degree requirement",
+      "p3": "Unlimited extensions possible",
+      "p4": "Can have multiple employers"
+    },
+    "cons": {
+      "c1": "High evidence threshold",
+      "c2": "Spouse cannot work",
+      "c3": "Extensive documentation needed"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-129",
+        "purpose": "Petition with O supplement",
+        "who": "Employer or agent files"
+      },
+      "f2": {
+        "name": "Advisory Opinion",
+        "purpose": "Peer group consultation letter",
+        "who": "From relevant union/peer group"
+      }
+    }
+  },
+  "EB": {
+    "fullName": "Employment-Based Green Card (EB-1, EB-2, EB-3, EB-4, EB-5)",
+    "purpose": "Direct path to permanent residency through employment, with five preference categories ranked by skill, education, or investment level",
+    "eligibility": {
+      "e1": "EB-1: Extraordinary ability, outstanding professors/researchers, or multinational executives (no PERM required)",
+      "e2": "EB-2: Advanced degree (master's+) or exceptional ability — National Interest Waiver allows self-petition",
+      "e3": "EB-3: Skilled workers (2+ years experience), professionals (bachelor's degree), or other workers",
+      "e4": "EB-4: Special immigrants (religious workers, special immigrant juveniles, certain government workers)",
+      "e5": "EB-5: Investor — minimum $800K in targeted employment area or $1.05M elsewhere, must create 10 jobs",
+      "e6": "Most categories require employer sponsorship and labor certification (PERM)"
+    },
+    "duration": "Permanent residence (10-year green card, renewable)",
+    "currentWait": "EB-1/EB-2/EB-3 ROW: 1-3 years; India/China EB-2/EB-3: 5-15+ years for priority date",
+    "pathToGreenCard": "This IS the green card — direct path to permanent residence",
+    "spouseWork": "Spouse and unmarried children under 21 receive green cards as derivatives",
+    "pros": {
+      "p1": "Direct path to permanent residence",
+      "p2": "EB-1 and EB-2 NIW allow self-petition (no employer needed)",
+      "p3": "Spouse and minor children included",
+      "p4": "Premium processing available for I-140 ($2,965)",
+      "p5": "EB-1A and NIW skip the lengthy PERM process"
+    },
+    "cons": {
+      "c1": "India and China face severe backlogs in EB-2/EB-3 (10+ years)",
+      "c2": "PERM labor certification adds 12-17 months for EB-2/EB-3 standard",
+      "c3": "Total filing fees: ~$3,000-$5,000+ per applicant",
+      "c4": "Most categories tie you to sponsoring employer until I-485 has been pending 180+ days",
+      "c5": "Visa bulletin retrogression can extend wait times unpredictably"
+    },
+    "note": "EB-1A (extraordinary ability) and EB-2 NIW are self-petition categories — you can file without an employer if you meet the high evidentiary bar.",
+    "forms": {
+      "f1": {
+        "name": "ETA-9089 (PERM)",
+        "purpose": "Labor certification (required for EB-2 and EB-3 standard, not NIW)",
+        "who": "Employer files with DOL"
+      },
+      "f2": {
+        "name": "Form I-140",
+        "purpose": "Immigrant Petition for Alien Worker — establishes EB classification",
+        "who": "Employer files (or self-petition for EB-1A/NIW/EB-5)"
+      },
+      "f3": {
+        "name": "Form I-485",
+        "purpose": "Adjustment of Status to permanent resident (if in U.S.)",
+        "who": "Beneficiary files when priority date is current"
+      },
+      "f4": {
+        "name": "Form DS-260",
+        "purpose": "Immigrant visa application (if outside U.S. — consular processing)",
+        "who": "Beneficiary completes online"
+      }
+    }
+  },
+  "IR": {
+    "fullName": "Immediate Relative of U.S. Citizen",
+    "purpose": "For spouses, unmarried children under 21, and parents of U.S. citizens",
+    "eligibility": {
+      "e1": "Spouse of U.S. citizen (IR-1/CR-1)",
+      "e2": "Unmarried child under 21 of U.S. citizen (IR-2/CR-2)",
+      "e3": "Parent of U.S. citizen who is 21+ (IR-5)"
+    },
+    "duration": "Permanent residence (green card) immediately",
+    "pathToGreenCard": "This IS the green card — immediate permanent residence",
+    "spouseWork": "Yes — green card allows unrestricted work",
+    "pros": {
+      "p1": "No annual limits or waiting for priority date",
+      "p2": "Fastest family immigration category",
+      "p3": "Direct to green card",
+      "p4": "Can work immediately upon arrival"
+    },
+    "cons": {
+      "c1": "Still takes 12-24 months processing",
+      "c2": "Must prove genuine relationship",
+      "c3": "CR-1 conditional if married <2 years"
+    },
+    "note": "IMMEDIATE RELATIVE means no visa number wait — you skip the line! Other family categories wait years for visa numbers.",
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Establishes qualifying family relationship",
+        "who": "U.S. citizen files for relative"
+      },
+      "f2": {
+        "name": "Form I-864",
+        "purpose": "Affidavit of Support — financial sponsorship",
+        "who": "Petitioner provides"
+      },
+      "f3": {
+        "name": "Form DS-260",
+        "purpose": "Immigrant visa application",
+        "who": "Beneficiary completes"
+      }
+    }
+  },
+  "K1": {
+    "fullName": "K-1 Fiancé(e) Visa",
+    "purpose": "Allows a foreign fiancé(e) of a U.S. citizen to enter the U.S. to marry within 90 days, then adjust to green card",
+    "eligibility": {
+      "e1": "Petitioner must be a U.S. citizen (not a green card holder)",
+      "e2": "Both parties must be legally free to marry",
+      "e3": "Must have met in person at least once within the 2 years before filing (waivers exist for cultural or hardship reasons)",
+      "e4": "U.S. citizen must meet income requirement (100% of Federal Poverty Guidelines)",
+      "e5": "Must intend to marry within 90 days of fiancé(e)'s arrival"
+    },
+    "duration": "Single entry, valid 6 months — must marry within 90 days of arrival",
+    "currentWait": "10-12 months I-129F processing; 18-26 months total filing to green card",
+    "pathToGreenCard": "After marriage, file I-485 for adjustment of status — leads to 2-year conditional green card",
+    "spouseWork": "Can apply for EAD after arrival and again after I-485 filing",
+    "pros": {
+      "p1": "Allows fiancé(e) to enter U.S. before marriage",
+      "p2": "Children under 21 can come on K-2 derivative visas",
+      "p3": "Faster than waiting abroad for an IR-1/CR-1 spouse visa in some cases"
+    },
+    "cons": {
+      "c1": "Must marry within 90 days or fiancé(e) must leave",
+      "c2": "$675 I-129F fee (or $625 online) plus separate visa, medical, and adjustment fees (~$2,400+ total)",
+      "c3": "Initial green card is conditional — must file I-751 jointly within 90 days before 2-year anniversary",
+      "c4": "Cannot adjust through any other means if marriage to petitioner doesn't occur",
+      "c5": "If filing fails or relationship ends, fiancé(e) generally has no path to remain in U.S."
+    },
+    "note": "The 90-day marriage deadline is strict — extensions are not available. Plan the wedding date before fiancé(e) travels.",
+    "forms": {
+      "f1": {
+        "name": "Form I-129F",
+        "purpose": "Petition for Alien Fiancé(e) — establishes the relationship",
+        "who": "U.S. citizen petitioner files with USCIS"
+      },
+      "f2": {
+        "name": "Form DS-160",
+        "purpose": "Online nonimmigrant visa application for the consular interview",
+        "who": "Fiancé(e) completes online"
+      },
+      "f3": {
+        "name": "Form I-485",
+        "purpose": "Adjustment of Status after marriage to obtain green card",
+        "who": "Spouse files after the wedding"
+      },
+      "f4": {
+        "name": "Form I-134",
+        "purpose": "Affidavit of Support — proof petitioner can financially sponsor",
+        "who": "U.S. citizen petitioner provides"
+      }
+    }
+  },
+  "F1": {
+    "fullName": "F-1: Unmarried Sons/Daughters of U.S. Citizens",
+    "purpose": "For unmarried children 21+ years old of U.S. citizens",
+    "eligibility": {
+      "e1": "Must be unmarried",
+      "e2": "21 years or older",
+      "e3": "Child of U.S. citizen"
+    },
+    "duration": "Permanent residence after visa available",
+    "currentWait": "7-8 years from petition to visa availability",
+    "pathToGreenCard": "This leads directly to green card once visa number available",
+    "spouseWork": "N/A — must be unmarried",
+    "pros": {
+      "p1": "Leads to permanent residence",
+      "p2": "Can include unmarried children under 21"
+    },
+    "cons": {
+      "c1": "7-8 year wait for visa number",
+      "c2": "Must remain unmarried",
+      "c3": "Marriage terminates eligibility"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Family petition to establish relationship",
+        "who": "U.S. citizen parent files"
+      }
+    }
+  },
+  "F2A": {
+    "fullName": "F-2A: Spouses and Minor Children of Green Card Holders",
+    "purpose": "For spouses and unmarried children under 21 of lawful permanent residents",
+    "eligibility": {
+      "e1": "Spouse of green card holder",
+      "e2": "Unmarried child under 21 of LPR"
+    },
+    "duration": "Permanent residence after visa available",
+    "currentWait": "2-3 years from petition to visa availability",
+    "pathToGreenCard": "This leads directly to green card",
+    "spouseWork": "Yes — once green card received",
+    "pros": {
+      "p1": "Shorter wait than other family preferences",
+      "p2": "Includes spouse and minor children"
+    },
+    "cons": {
+      "c1": "2-3 year wait for visa number",
+      "c2": "Petitioner must maintain LPR status"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Family petition",
+        "who": "Green card holder files"
+      }
+    }
+  },
+  "F2B": {
+    "fullName": "F-2B: Unmarried Adult Children of Green Card Holders",
+    "purpose": "For unmarried children 21+ of lawful permanent residents",
+    "eligibility": {
+      "e1": "Unmarried",
+      "e2": "21 years or older",
+      "e3": "Child of green card holder"
+    },
+    "duration": "Permanent residence after visa available",
+    "currentWait": "6-7 years from petition to visa availability",
+    "pathToGreenCard": "This leads directly to green card",
+    "spouseWork": "N/A — must be unmarried",
+    "pros": {
+      "p1": "Leads to permanent residence"
+    },
+    "cons": {
+      "c1": "6-7 year wait",
+      "c2": "Must remain unmarried",
+      "c3": "If petitioner naturalizes, moves to F-1 (may be longer wait)"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Family petition",
+        "who": "Green card holder parent files"
+      }
+    }
+  },
+  "F3": {
+    "fullName": "F-3: Married Children of U.S. Citizens",
+    "purpose": "For married children of any age of U.S. citizens",
+    "eligibility": {
+      "e1": "Married",
+      "e2": "Any age",
+      "e3": "Child of U.S. citizen"
+    },
+    "duration": "Permanent residence after visa available",
+    "currentWait": "12-13 years from petition to visa availability",
+    "pathToGreenCard": "This leads directly to green card for entire family",
+    "spouseWork": "Yes — spouse and children included",
+    "pros": {
+      "p1": "Includes spouse and children",
+      "p2": "No age limit"
+    },
+    "cons": {
+      "c1": "12-13 year wait for most countries",
+      "c2": "23+ years for Philippines"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Family petition",
+        "who": "U.S. citizen parent files"
+      }
+    }
+  },
+  "F4": {
+    "fullName": "F-4: Brothers and Sisters of U.S. Citizens",
+    "purpose": "For siblings of U.S. citizens (petitioner must be 21+)",
+    "eligibility": {
+      "e1": "Sibling of U.S. citizen",
+      "e2": "Petitioner must be 21+ years old",
+      "e3": "Includes half-siblings and step-siblings"
+    },
+    "duration": "Permanent residence after visa available",
+    "currentWait": "13-24 years depending on country",
+    "pathToGreenCard": "This leads directly to green card for entire family",
+    "spouseWork": "Yes — spouse and children included",
+    "pros": {
+      "p1": "Includes spouse and all unmarried children under 21",
+      "p2": "Leads to permanent residence"
+    },
+    "cons": {
+      "c1": "Longest wait of all categories (13-24 years)",
+      "c2": "India: 15+ years, Mexico: 23+ years, Philippines: 24+ years",
+      "c3": "Many proposals to eliminate this category"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Family petition proving sibling relationship",
+        "who": "U.S. citizen sibling files"
+      }
+    }
+  },
+  "STUDENT": {
+    "fullName": "F-1 Student Visa",
+    "purpose": "For academic study at U.S. universities, colleges, high schools, or language programs",
+    "eligibility": {
+      "e1": "Accepted to SEVP-certified school",
+      "e2": "Demonstrate financial support",
+      "e3": "Maintain full course load",
+      "e4": "Prove ties to home country"
+    },
+    "duration": "Duration of study (D/S) plus 60-day grace period",
+    "pathToGreenCard": "No direct path — but can change to H-1B through employer after graduation",
+    "spouseWork": "F-2 spouse cannot work or study",
+    "pros": {
+      "p1": "Can work on campus",
+      "p2": "OPT allows 1-3 years work after graduation",
+      "p3": "CPT allows internships during study",
+      "p4": "Can apply for H-1B while on OPT"
+    },
+    "cons": {
+      "c1": "Must maintain full-time enrollment",
+      "c2": "Limited work options",
+      "c3": "Spouse cannot work",
+      "c4": "Must show non-immigrant intent"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-20",
+        "purpose": "Certificate of Eligibility from school",
+        "who": "School issues after admission"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "SEVIS fee payment ($350)",
+        "who": "Student pays online"
+      },
+      "f3": {
+        "name": "Form DS-160",
+        "purpose": "Visa application",
+        "who": "Student completes"
+      },
+      "f4": {
+        "name": "Form I-765 (OPT)",
+        "purpose": "Optional Practical Training work permit",
+        "who": "Student files 90 days before graduation"
+      }
+    }
+  },
+  "J1": {
+    "fullName": "J-1 Exchange Visitor Visa",
+    "purpose": "For educational and cultural exchange programs",
+    "eligibility": {
+      "e1": "Accepted to designated exchange program",
+      "e2": "Categories: student, research, teacher, au pair, etc.",
+      "e3": "Must have program sponsor"
+    },
+    "duration": "Varies by program (1-7 years typically)",
+    "pathToGreenCard": "Complicated — many subject to 2-year home residency requirement",
+    "spouseWork": "J-2 spouse can apply for work permit",
+    "pros": {
+      "p1": "Wide variety of programs",
+      "p2": "Spouse can work with EAD",
+      "p3": "Some programs allow repeat participation"
+    },
+    "cons": {
+      "c1": "Many subject to 2-year home rule",
+      "c2": "Must return home for 2 years before H/L/green card",
+      "c3": "Waiver process complex and uncertain"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form DS-2019",
+        "purpose": "Certificate of Eligibility from sponsor",
+        "who": "Program sponsor provides"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "SEVIS fee ($220)",
+        "who": "Participant pays"
+      }
+    }
+  },
+  "M1": {
+    "fullName": "M-1 Vocational Student Visa",
+    "purpose": "For full-time vocational or technical training programs (trade schools, flight schools, culinary arts, mechanics) — distinct from F-1 academic study",
+    "eligibility": {
+      "e1": "Accepted to a SEVP-certified vocational or non-academic institution",
+      "e2": "Enrolled full-time (at least 18 hours/week, or 22 hours for shop/lab programs)",
+      "e3": "Sufficient funds for entire program duration",
+      "e4": "Adequate English proficiency for the program",
+      "e5": "Intent to depart U.S. after program completion (non-immigrant intent)"
+    },
+    "duration": "1 year initially, extendable in 1-year increments up to 3 years total, plus 30-day grace period",
+    "currentWait": "2-3 months for visa interview at most consulates",
+    "pathToGreenCard": "No direct path — most M-1 students return home after training. Switch to other status (F-1, H-1B) is restricted.",
+    "spouseWork": "M-2 spouse cannot work or pursue full-time study",
+    "pros": {
+      "p1": "Allows specialized vocational training not available in home country",
+      "p2": "Lower SEVIS fee than F-1 ($220 vs $350)",
+      "p3": "Family can accompany on M-2 derivative visas"
+    },
+    "cons": {
+      "c1": "Cannot work on-campus or off-campus during studies",
+      "c2": "Practical training only allowed AFTER program completion (not during)",
+      "c3": "Cannot transfer to F-1 academic program easily — must apply for change of status",
+      "c4": "3-year maximum total duration — cannot pursue multi-year programs",
+      "c5": "Spouse cannot work, limiting family financial flexibility"
+    },
+    "note": "M-1 is for vocational training only. If you want academic study (degree programs, language schools), F-1 is the right visa.",
+    "forms": {
+      "f1": {
+        "name": "Form I-20",
+        "purpose": "Certificate of Eligibility from SEVP-certified school",
+        "who": "School issues after admission"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "SEVIS fee payment ($220 for M-1)",
+        "who": "Student pays online before visa interview"
+      },
+      "f3": {
+        "name": "Form DS-160",
+        "purpose": "Online nonimmigrant visa application ($185 fee)",
+        "who": "Student completes online"
+      }
+    }
+  },
+  "N400_5YR": {
+    "fullName": "Naturalization — 5-Year Continuous Residence",
+    "purpose": "Standard path to U.S. citizenship for green card holders after 5 years of continuous residence",
+    "eligibility": {
+      "e1": "Held green card for at least 5 years",
+      "e2": "Continuous residence in the U.S. for 5 years",
+      "e3": "Physical presence for at least 30 of the past 60 months",
+      "e4": "No single trip abroad longer than 6 months",
+      "e5": "18 years of age or older",
+      "e6": "Good moral character for the full 5-year period",
+      "e7": "Ability to read, write, and speak basic English",
+      "e8": "Pass the 100-question civics test"
+    },
+    "duration": "Permanent — you become a U.S. citizen for life",
+    "currentWait": "8–14 months from filing to oath ceremony",
+    "pathToGreenCard": "N/A — this is the step after the green card",
+    "spouseWork": "As a U.S. citizen, your spouse becomes an Immediate Relative — fastest family sponsorship category",
+    "pros": {
+      "p1": "Vote in federal elections",
+      "p2": "U.S. passport — visa-free travel to 180+ countries",
+      "p3": "Sponsor immediate relatives with no quota wait",
+      "p4": "Cannot be deported",
+      "p5": "Eligible for federal jobs and security clearances",
+      "p6": "Children under 18 may automatically acquire citizenship"
+    },
+    "cons": {
+      "c1": "Must renounce prior citizenship (some countries allow dual — check yours)",
+      "c2": "8–14 month processing time",
+      "c3": "Must pass English and civics tests",
+      "c4": "Prior violations or criminal history can disqualify"
+    },
+    "note": "You can file Form N-400 up to 90 days before you reach your 5-year eligibility date.",
+    "forms": {
+      "f1": {
+        "name": "Form N-400",
+        "purpose": "Application for Naturalization",
+        "who": "Applicant files with USCIS"
+      },
+      "f2": {
+        "name": "Form I-90 (if needed)",
+        "purpose": "Renew green card if expired before naturalization",
+        "who": "Applicant files if GC is expired or expiring"
+      }
+    }
+  },
+  "N400_3YR": {
+    "fullName": "Naturalization — 3-Year Rule (Married to U.S. Citizen)",
+    "purpose": "Expedited naturalization path for green card holders married to and living with a U.S. citizen",
+    "eligibility": {
+      "e1": "Held green card for at least 3 years",
+      "e2": "Currently married to the same U.S. citizen who petitioned for you",
+      "e3": "U.S. citizen spouse has been a citizen for all 3 years",
+      "e4": "Living together with citizen spouse at time of filing",
+      "e5": "Physical presence for at least 18 of the past 36 months",
+      "e6": "No single trip abroad longer than 6 months",
+      "e7": "Good moral character",
+      "e8": "Pass English and civics requirements"
+    },
+    "duration": "Permanent — U.S. citizenship for life",
+    "currentWait": "8–14 months from filing to oath ceremony",
+    "pathToGreenCard": "N/A — this is the step after the green card",
+    "spouseWork": "Once you naturalize, you can immediately sponsor other family members as a U.S. citizen",
+    "pros": {
+      "p1": "Eligible 2 years earlier than the standard 5-year route",
+      "p2": "All benefits of U.S. citizenship",
+      "p3": "U.S. passport and visa-free travel",
+      "p4": "Sponsor family members immediately"
+    },
+    "cons": {
+      "c1": "Must still be married to and living with same citizen spouse",
+      "c2": "If marriage ends before filing, must wait for 5-year route",
+      "c3": "Divorce or separation can disqualify you from this route"
+    },
+    "note": "You must still be married to the same U.S. citizen at the time you file AND at the time of your interview.",
+    "forms": {
+      "f1": {
+        "name": "Form N-400",
+        "purpose": "Application for Naturalization",
+        "who": "Applicant files with USCIS"
+      },
+      "f2": {
+        "name": "Marriage Certificate",
+        "purpose": "Proof of valid marriage to U.S. citizen",
+        "who": "Applicant provides"
+      },
+      "f3": {
+        "name": "Proof of Spouse's Citizenship",
+        "purpose": "U.S. passport or birth certificate of citizen spouse",
+        "who": "Applicant provides"
+      }
+    }
+  },
+  "N400_MIL": {
+    "fullName": "Naturalization — Military Service",
+    "purpose": "Expedited or immediate naturalization for active duty service members and honorably discharged veterans",
+    "eligibility": {
+      "e1": "Active duty or honorably discharged from U.S. armed forces",
+      "e2": "1 year of honorable service during peacetime",
+      "e3": "Immediate eligibility during designated periods of hostility",
+      "e4": "Good moral character",
+      "e5": "Pass English and civics requirements (some exemptions apply)"
+    },
+    "duration": "Permanent — U.S. citizenship for life",
+    "currentWait": "Expedited — can be processed faster than civilian route",
+    "pathToGreenCard": "N/A — can apply even without a green card in some cases",
+    "spouseWork": "As a U.S. citizen, you can sponsor immediate family members with no wait",
+    "pros": {
+      "p1": "N-400 filing fee is completely waived ($0)",
+      "p2": "Can naturalize abroad through U.S. embassy",
+      "p3": "Immediate eligibility during hostility periods",
+      "p4": "Some English/civics test exemptions for long-serving members",
+      "p5": "Posthumous citizenship available for those who die in service"
+    },
+    "cons": {
+      "c1": "Must have honorable discharge — dishonorable discharge disqualifies",
+      "c2": "Requires military documentation (DD-214)"
+    },
+    "note": "Filing fee is $0 for all active duty and honorably discharged veterans. Use Form N-426 if filing while serving abroad.",
+    "forms": {
+      "f1": {
+        "name": "Form N-400",
+        "purpose": "Application for Naturalization ($0 fee for military)",
+        "who": "Applicant files with USCIS"
+      },
+      "f2": {
+        "name": "Form N-426",
+        "purpose": "Request for Certification of Military or Naval Service",
+        "who": "Required for active duty abroad"
+      },
+      "f3": {
+        "name": "DD-214",
+        "purpose": "Certificate of Release or Discharge from Active Duty",
+        "who": "Issued by branch of service"
+      }
+    }
+  },
+  "N600": {
+    "fullName": "Certificate of Citizenship for Children",
+    "purpose": "Documents U.S. citizenship for children who acquired it automatically when a parent naturalized",
+    "eligibility": {
+      "e1": "Under 18 years old",
+      "e2": "Lawful permanent resident (green card holder)",
+      "e3": "At least one parent is a U.S. citizen by birth or naturalization",
+      "e4": "Residing in the U.S. in legal and physical custody of citizen parent"
+    },
+    "duration": "Permanent — documents existing citizenship",
+    "currentWait": "Varies — this documents citizenship that already occurred",
+    "pathToGreenCard": "N/A — child is already a citizen",
+    "spouseWork": "N/A — child citizenship document",
+    "pros": {
+      "p1": "May have already happened automatically — N-600 just proves it",
+      "p2": "Child gets U.S. passport and all citizen rights",
+      "p3": "Protects against deportation as an adult",
+      "p4": "Military fee waiver available"
+    },
+    "cons": {
+      "c1": "$1,170 filing fee (highest citizenship form fee)",
+      "c2": "Processing can take 12+ months",
+      "c3": "Does not apply if child was born after parent already naturalized"
+    },
+    "note": "If your parent naturalized while you were under 18 and you had a green card, you may ALREADY be a U.S. citizen — N-600 just documents it. Check before applying!",
+    "forms": {
+      "f1": {
+        "name": "Form N-600",
+        "purpose": "Application for Certificate of Citizenship",
+        "who": "Parent files on behalf of child (or adult child files themselves)"
+      },
+      "f2": {
+        "name": "Parent's Naturalization Certificate",
+        "purpose": "Proof parent is a U.S. citizen",
+        "who": "Applicant provides"
+      },
+      "f3": {
+        "name": "Child's Green Card",
+        "purpose": "Proof of LPR status at time of parent's naturalization",
+        "who": "Applicant provides"
+      }
+    }
+  },
+  "ASYLUM": {
+    "fullName": "Asylum (Form I-589)",
+    "purpose": "Protection for individuals already in the U.S. who fear persecution in their home country based on race, religion, nationality, political opinion, or membership in a particular social group",
+    "eligibility": {
+      "e1": "Physically present in the United States",
+      "e2": "Have suffered or fear future persecution on a protected ground",
+      "e3": "File Form I-589 within 1 year of arrival (limited exceptions)",
+      "e4": "Persecution must be by government, or groups government cannot/will not control",
+      "e5": "Not barred by criminal history, prior persecution of others, or firm resettlement"
+    },
+    "duration": "Asylum status is granted indefinitely — eligible to apply for green card after 1 year",
+    "currentWait": "USCIS affirmative cases: 6 months to 5+ years; immigration court (defensive): often 3-7 years",
+    "pathToGreenCard": "Apply for green card 1 year after asylum is granted (Form I-485)",
+    "spouseWork": "Spouse and children under 21 can be included as derivatives if in U.S. at filing",
+    "pros": {
+      "p1": "Path to permanent residency and eventually citizenship",
+      "p2": "Can apply for work authorization (EAD) after 150 days of pending application",
+      "p3": "Can include spouse and unmarried children under 21",
+      "p4": "Cannot be deported to country of feared persecution while case pending"
+    },
+    "cons": {
+      "c1": "$100 filing fee for Form I-589 (new as of 2025; was previously free)",
+      "c2": "Annual Asylum Fee (AAF) required for pending applications — failure to pay rejects application (effective May 29, 2026)",
+      "c3": "Strict 1-year filing deadline from arrival — exceptions are narrowly granted",
+      "c4": "EAD validity now 18 months max; auto-extensions eliminated as of Oct 2025",
+      "c5": "Policy environment is volatile — enhanced screening, country-specific pauses, increased detention",
+      "c6": "If denied affirmatively, case referred to immigration court for further proceedings",
+      "c7": "Frivolous applications can result in permanent bar from any U.S. immigration benefit"
+    },
+    "note": "⚠️ Asylum policy is changing rapidly in 2026. Strongly recommended to consult an immigration attorney or accredited representative — many legal aid organizations offer free help.",
+    "forms": {
+      "f1": {
+        "name": "Form I-589",
+        "purpose": "Application for Asylum and for Withholding of Removal ($100 fee)",
+        "who": "Applicant files with USCIS or immigration court"
+      },
+      "f2": {
+        "name": "Form I-765 (c)(8)",
+        "purpose": "Employment Authorization based on pending asylum (after 150 days)",
+        "who": "Applicant files after waiting period"
+      },
+      "f3": {
+        "name": "Form I-485",
+        "purpose": "Adjustment to permanent resident (1 year after asylum granted)",
+        "who": "Asylee files after 1 year"
+      },
+      "f4": {
+        "name": "Form I-730",
+        "purpose": "Refugee/Asylee Relative Petition — bring spouse/children abroad",
+        "who": "Asylee files within 2 years of grant"
+      }
+    }
+  },
+  "REFUGEE": {
+    "fullName": "Refugee Resettlement",
+    "purpose": "Protection for individuals OUTSIDE the U.S. who cannot return home due to persecution; processed through UNHCR and USRAP",
+    "eligibility": {
+      "e1": "Outside the United States",
+      "e2": "Of special humanitarian concern to the U.S.",
+      "e3": "Fear of persecution based on race, religion, nationality, political opinion, or social group",
+      "e4": "Generally referred by UNHCR, U.S. embassy, or designated NGO",
+      "e5": "Not firmly resettled in another country",
+      "e6": "Pass extensive security and medical screening"
+    },
+    "duration": "Refugee status leads to permanent residence — must apply for green card 1 year after arrival",
+    "currentWait": "18-24 months from referral to U.S. arrival; processing remains slow",
+    "pathToGreenCard": "Required to apply for green card after 1 year in the U.S. (Form I-485)",
+    "spouseWork": "Authorized to work immediately upon arrival; spouse and children can come as derivatives",
+    "pros": {
+      "p1": "Travel and resettlement costs covered by U.S. government and resettlement agencies",
+      "p2": "Initial benefits including housing assistance, English classes, employment support",
+      "p3": "Work authorized immediately on arrival — no separate EAD needed",
+      "p4": "Path to permanent residency and citizenship",
+      "p5": "Family members can join through derivative status"
+    },
+    "cons": {
+      "c1": "Annual U.S. refugee admissions ceiling has been historically low and politically volatile",
+      "c2": "Long processing — 18-24+ months from referral",
+      "c3": "Limited control over which U.S. city you'll be resettled in",
+      "c4": "Cannot self-apply — must be referred through UNHCR or designated agency",
+      "c5": "Country-specific pauses and program restrictions are common in current policy environment"
+    },
+    "note": "⚠️ The U.S. refugee program has been heavily restricted since 2025. Contact UNHCR (help.unhcr.org) for current intake status — most processing is currently paused or slowed for many countries.",
+    "forms": {
+      "f1": {
+        "name": "Form I-590",
+        "purpose": "Registration for Classification as Refugee",
+        "who": "Completed during overseas processing with USCIS officer"
+      },
+      "f2": {
+        "name": "Form I-485",
+        "purpose": "Adjustment to permanent resident (1 year after arrival)",
+        "who": "Refugee files after 1 year in U.S."
+      },
+      "f3": {
+        "name": "Form I-730",
+        "purpose": "Refugee/Asylee Relative Petition — for family members abroad",
+        "who": "Refugee files within 2 years of arrival"
+      }
+    }
+  }
+},
+    "lifeSetupGuides": {
+      "ssn": {
+        "title": "Social Security Number",
+        "description": "Essential ID for work and benefits",
+        "sections": {
+          "s1": {
+            "title": "Who Can Apply",
+            "content": {
+              "c1": "Work visa holders with employment authorization",
+              "c2": "Green card holders",
+              "c3": "Certain student visa holders with job offers",
+              "c4": "Asylees and refugees"
+            }
+          },
+          "s2": {
+            "title": "How to Apply",
+            "content": {
+              "c1": "Visit local Social Security office",
+              "c2": "Bring passport, visa, I-94, and work authorization",
+              "c3": "Complete SS-5 application form",
+              "c4": "Processing takes 2-4 weeks",
+              "c5": "Card arrives by mail"
+            }
+          },
+          "s3": {
+            "title": "Required Documents",
+            "content": {
+              "c1": "Valid passport",
+              "c2": "Immigration documents (visa, I-94)",
+              "c3": "Work authorization (EAD card or visa)",
+              "c4": "Birth certificate if available"
+            }
+          }
+        }
+      },
+      "banking": {
+        "title": "Banking Without History",
+        "description": "Open accounts without credit history",
+        "sections": {
+          "s1": {
+            "title": "Immigrant-Friendly Banks",
+            "content": {
+              "c1": "Chase Bank - Offers secured cards",
+              "c2": "Bank of America - SafeBalance accounts",
+              "c3": "Wells Fargo - Opportunity Checking",
+              "c4": "Capital One - No-fee checking",
+              "c5": "Local credit unions - Often more flexible"
+            }
+          },
+          "s2": {
+            "title": "What You Need",
+            "content": {
+              "c1": "Passport and visa",
+              "c2": "Proof of address (lease, utility bill)",
+              "c3": "Initial deposit ($25-100)",
+              "c4": "SSN or ITIN (some banks accept passport only)",
+              "c5": "Employment letter (helpful but not always required)"
+            }
+          },
+          "s3": {
+            "title": "Account Types",
+            "content": {
+              "c1": "Checking Account - For daily transactions",
+              "c2": "Savings Account - Build emergency fund",
+              "c3": "Secured Credit Card - Start building credit",
+              "c4": "Money Market - Higher interest savings"
+            }
+          }
+        }
+      },
+      "credit": {
+        "title": "Building Credit Fast",
+        "description": "Establish credit score from zero",
+        "sections": {
+          "s1": {
+            "title": "6-Month Credit Plan",
+            "content": {
+              "c1": "Month 1: Get secured credit card ($200-500 deposit)",
+              "c2": "Month 2: Set up automatic small payment",
+              "c3": "Month 3: Keep utilization under 30%",
+              "c4": "Month 4: Consider becoming authorized user",
+              "c5": "Month 5: Apply for second secured card",
+              "c6": "Month 6: Check credit score - should be 650+"
+            }
+          },
+          "s2": {
+            "title": "Best Secured Cards",
+            "content": {
+              "c1": "Discover it® Secured - Cashback rewards",
+              "c2": "Capital One Secured - Low deposit",
+              "c3": "OpenSky® Secured - No credit check",
+              "c4": "Citi® Secured Mastercard® - Path to unsecured"
+            }
+          },
+          "s3": {
+            "title": "Credit Building Tips",
+            "content": {
+              "c1": "Never miss a payment (35% of score)",
+              "c2": "Keep balances low (30% of score)",
+              "c3": "Don't close old accounts",
+              "c4": "Mix credit types over time",
+              "c5": "Check free credit report annually"
+            }
+          }
+        }
+      },
+      "job": {
+        "title": "First Job Search",
+        "description": "Find work with foreign credentials",
+        "sections": {
+          "s1": {
+            "title": "Work Authorization",
+            "content": {
+              "c1": "H-1B, L-1, O-1 - Tied to specific employer",
+              "c2": "EAD Card - Open work authorization",
+              "c3": "F-1 OPT - For recent graduates",
+              "c4": "Green Card - Unrestricted work",
+              "c5": "Check visa restrictions carefully"
+            }
+          },
+          "s2": {
+            "title": "Job Search Platforms",
+            "content": {
+              "c1": "LinkedIn - Professional networking",
+              "c2": "Indeed - Largest job board",
+              "c3": "Glassdoor - Company reviews",
+              "c4": "AngelList - Startup jobs",
+              "c5": "H1BGrader - H-1B friendly employers",
+              "c6": "MyVisaJobs - Immigration-friendly companies"
+            }
+          },
+          "s3": {
+            "title": "Resume Tips",
+            "content": {
+              "c1": "Use U.S. format (no photo, age, or personal info)",
+              "c2": "Highlight transferable skills",
+              "c3": "Get credentials evaluated if needed",
+              "c4": "Include visa status (e.g., \"Authorized to work\")",
+              "c5": "Quantify achievements with numbers",
+              "c6": "Keep to 1-2 pages maximum"
+            }
+          }
+        }
+      },
+      "itin": {
+        "title": "IRS ITIN Application",
+        "description": "Individual Taxpayer Identification Number",
+        "shortDescription": "If you can't get SSN",
+        "sections": {
+          "s1": {
+            "title": "What is an ITIN?",
+            "content": {
+              "c1": "Tax processing number for those who can't get an SSN",
+              "c2": "Required to file taxes if you earn income",
+              "c3": "Does NOT provide work authorization",
+              "c4": "Format: 9XX-XX-XXXX"
+            }
+          },
+          "s2": {
+            "title": "How to Apply",
+            "content": {
+              "c1": "Complete Form W-7 with IRS",
+              "c2": "Include federal tax return with application",
+              "c3": "Provide original passport or certified copies",
+              "c4": "Apply by mail, in person, or through Certifying Acceptance Agent",
+              "c5": "Processing takes 7-11 weeks"
+            }
+          }
+        }
+      },
+      "dmv": {
+        "title": "DMV License Guide",
+        "description": "Getting a driver's license as an immigrant",
+        "shortDescription": "State-by-state requirements",
+        "sections": {
+          "s1": {
+            "title": "General Requirements",
+            "content": {
+              "c1": "Valid immigration status (requirements vary by state)",
+              "c2": "Proof of identity (passport, visa, I-94)",
+              "c3": "Proof of residency (lease, utility bill)",
+              "c4": "SSN or proof of ineligibility",
+              "c5": "Pass written test, vision test, and road test"
+            }
+          },
+          "s2": {
+            "title": "States with Immigrant-Friendly Policies",
+            "content": {
+              "c1": "19 states + DC allow licenses regardless of status",
+              "c2": "California, New York, Illinois, New Jersey among them",
+              "c3": "Some states issue 'standard' vs 'REAL ID' licenses",
+              "c4": "REAL ID required for domestic flights starting May 2025",
+              "c5": "Check your state's DMV website for specific requirements"
+            }
+          }
+        }
+      },
+      "healthcare": {
+        "title": "Healthcare Options",
+        "description": "Health insurance for immigrants",
+        "shortDescription": "Insurance for immigrants",
+        "sections": {
+          "s1": {
+            "title": "Insurance Options",
+            "content": {
+              "c1": "Employer-sponsored insurance (most common for work visa holders)",
+              "c2": "ACA Marketplace plans (Healthcare.gov) — available to lawful residents",
+              "c3": "Medicaid — varies by state and immigration status",
+              "c4": "University health plans — required for most F-1 students",
+              "c5": "Short-term health insurance — temporary coverage"
+            }
+          },
+          "s2": {
+            "title": "Important Notes",
+            "content": {
+              "c1": "Most visa holders are NOT eligible for Medicaid initially",
+              "c2": "F-1 students typically must enroll in school health plan",
+              "c3": "H-1B holders usually get employer insurance",
+              "c4": "Emergency Medicaid available regardless of status",
+              "c5": "Community health centers offer sliding-scale fees",
+              "c6": "Healthcare.gov open enrollment: Nov 1 – Jan 15 annually"
+            }
+          }
+        }
+      },
+      "tax": {
+        "title": "Tax Filing for Immigrants",
+        "description": "Federal and state tax obligations for immigrants",
+        "sections": {
+          "s1": {
+            "title": "Who Must File",
+            "content": {
+              "c1": "All U.S. residents (green card holders, substantial presence)",
+              "c2": "H-1B, L-1, O-1 holders — taxed as residents",
+              "c3": "F-1 students — generally nonresident for first 5 years",
+              "c4": "Income earned in the U.S. is taxable regardless of status",
+              "c5": "Tax treaties may reduce obligations for some countries"
+            }
+          },
+          "s2": {
+            "title": "Key Forms",
+            "content": {
+              "c1": "Form 1040 — Resident tax return",
+              "c2": "Form 1040-NR — Nonresident tax return",
+              "c3": "Form W-2 — Wage income from employer",
+              "c4": "Form 8843 — Required for F/J visa exempt individuals",
+              "c5": "ITIN (W-7) — If you don't have an SSN"
+            }
+          },
+          "s3": {
+            "title": "Free Filing Resources",
+            "content": {
+              "c1": "IRS Free File — irs.gov/freefile (income under $84,000)",
+              "c2": "VITA — Free tax prep for low-income (irs.gov/vita)",
+              "c3": "Sprintax — Designed for nonresident tax returns",
+              "c4": "TurboTax — For resident filers",
+              "c5": "Filing deadline: April 15 annually"
+            }
+          }
+        }
+      }
+    },
+    "pathwayDetailScreen": {
+      "errorTitle": "Pathway not found",
+      "currentViability": "Current Viability",
+      "immediateRelativeAlert": {
+        "dialogTitle": "What are Immediate Relatives?",
+        "dialogBody": "Immediate Relatives are the FASTEST family category because they have NO annual limits!\n\nWHO QUALIFIES:\n• Spouse of U.S. citizen\n• Unmarried children under 21 of U.S. citizen\n• Parents of U.S. citizen (if citizen is 21+)\n\nWHY IT'S SPECIAL:\n• No waiting for visa numbers\n• No annual caps\n• Process in 12-24 months vs 5-20 years\n\nAll other family categories must wait years for visa numbers to become available.",
+        "gotIt": "Got it!",
+        "bannerTitle": "Immediate Relatives = No Waiting Line!",
+        "bannerText": "Spouse, minor children, and parents of U.S. citizens. Tap to learn why this matters."
+      },
+      "citizenshipAlert": {
+        "dialogTitle": "Why Naturalize?",
+        "dialogBody": "Becoming a U.S. citizen gives you rights and protections beyond a green card:\n\n🗳️ VOTE in federal, state, and local elections\n🛂 U.S. PASSPORT — visa-free travel to 180+ countries\n👨‍👩‍👧 SPONSOR FAMILY immediately as Immediate Relatives\n🛡️ CANNOT BE DEPORTED — permanent security\n💼 FEDERAL JOBS & security clearances\n👶 CHILDREN under 18 may automatically become citizens\n\nMost green card holders are eligible after 5 years. Married to a U.S. citizen? You may qualify after just 3 years.",
+        "bannerTitle": "Why become a U.S. citizen?",
+        "bannerText": "Passport, voting rights, family sponsorship & more. Tap to learn."
+      },
+      "formLinkErrors": {
+        "cantOpenTitle": "Cannot Open Link",
+        "cantOpenBody": "Unable to open {{formName}}. Please search for it on USCIS.gov",
+        "noLinkBody": "This form is provided by your school/employer or requires special access.",
+        "ok": "OK"
+      },
+      "overview": "Overview",
+      "processingTimes": "Processing times",
+      "governmentFees": "Government fees",
+      "visaCategoriesTitle": {
+        "default": "Visa Categories Explained",
+        "citizenship": "Naturalization Routes"
+      },
+      "ucBadge": "🇺🇸 USC",
+      "gcBadge": "→ GC",
+      "details": {
+        "durationLabel": "Duration:",
+        "currentWaitLabel": {
+          "default": "Current Wait:",
+          "citizenship": "Processing Time:"
+        },
+        "spouseWorkLabel": {
+          "default": "Spouse Can Work:",
+          "citizenship": "Family Benefit:"
+        }
+      },
+      "eligibilityLabel": {
+        "default": "Eligibility Requirements:",
+        "citizenship": "Requirements:"
+      },
+      "benefitsLabel": "✅ Benefits",
+      "considerationsLabel": "⚠️ Considerations",
+      "formsLabel": "Required Forms:",
+      "greenCardPath": {
+        "title": "🟢 Path to Permanent Residence (Green Card)",
+        "h1bIndiaWarning": "⚠️ India/China nationals: 12+ year wait for EB-2/EB-3 green cards"
+      },
+      "militaryFeeNote": "🎖️ Filing fee: $0 — completely waived for military applicants",
+      "buttons": {
+        "checklistDefault": "📋 View Document Checklist",
+        "checklistCitizenship": "📋 N-400 Document Checklist",
+        "timelineDefault": "📅 See Processing Timeline",
+        "timelineCitizenship": "📅 Naturalization Timeline",
+        "uscisDefault": "🔗 Visit USCIS Forms Center",
+        "uscisCitizenship": "🔗 USCIS Citizenship Center"
+      }
+    },
+    "guideDetailScreen": {
+      "relatedGuidesTitle": "📚 Related Guides",
+      "needHelpTitle": "Need More Help?",
+      "needHelpText": "Consider consulting with an immigration attorney or visiting your local USCIS office for personalized guidance.",
+      "helpfulLinks": {
+        "immigrationAdvocates": "Immigration Advocates",
+        "uscisOfficeLocator": "USCIS Office Locator",
+        "legalAidDirectory": "Legal Aid Directory"
+      },
+      "cantOpenLinkTitle": "Cannot Open Link",
+      "cantOpenLinkBody": "Unable to open {{name}}. Please search online."
+    },
+    "lifeSetupScreen": {
+      "title": "Life Setup Guide",
+      "subtitle": "Essential steps for your new life in America",
+      "first30DaysTitle": "📍 Your First 30 Days",
+      "first30Days": {
+        "step1": "Apply for SSN (if eligible)",
+        "step2": "Open bank account",
+        "step3": "Get secured credit card",
+        "step4": "Set up phone & utilities",
+        "step5": "Start job applications"
+      },
+      "additionalResourcesTitle": "📚 Additional Resources",
+      "avoidScams": {
+        "title": "Avoid Scams",
+        "body": "Never pay for job offers, SSN applications are free, and only use official government websites."
+      }
+    },
+    "viabilityBadge": {
+      "tapHint": "Tap for details",
+      "updated": "Updated: {{date}}"
+    },
+    "embassySelector": {
+      "noData": "Embassy appointment wait time data is not available for this visa and country.",
+      "title": "Embassy Appointment Estimates",
+      "fastestOption": "Fastest option",
+      "fastestValue": "{{city}} — ~{{days}} days",
+      "daysApprox": "~{{days}} days",
+      "lastUpdated": "Last updated: {{date}}",
+      "disclaimer": "Appointment availability may vary and does not guarantee interview scheduling."
+    },
+    "feeCalculator": {
+      "title": "Estimated Government Fees",
+      "totalLabel": "Total Estimated Fees",
+      "lastUpdated": "Last updated: {{date}}",
+      "feeUpdatedNote": "Updated {{date}} (was ${{previous}})",
+      "disclaimer": "Estimates only. Does not include legal, medical, or travel costs.",
+      "disclaimerWithPremium": "Estimates only. Does not include legal, medical, or travel costs. Premium processing fees effective March 1, 2026."
+    },
+    "pathwaysData": {
+      "work": {
+        "title": "Work-Based Immigration",
+        "overview": "Employment-based immigration allows foreign nationals to work in the United States. Most categories require employer sponsorship.",
+        "categories": {
+          "h1b": {
+            "name": "H-1B Specialty Occupation",
+            "description": "For positions requiring specialized knowledge and a bachelor's degree or higher.",
+            "requirements": {
+              "r1": "Bachelor's degree or equivalent",
+              "r2": "Job offer from U.S. employer",
+              "r3": "Specialty occupation",
+              "r4": "Employer must pay prevailing wage"
+            }
+          },
+          "l1": {
+            "name": "L-1 Intracompany Transfer",
+            "description": "For employees of multinational companies transferring to a U.S. office.",
+            "requirements": {
+              "r1": "Worked for company for 1 year in past 3 years",
+              "r2": "Transfer to qualifying U.S. entity",
+              "r3": "Executive, managerial, or specialized role"
+            }
+          },
+          "o1": {
+            "name": "O-1 Extraordinary Ability",
+            "description": "For individuals with extraordinary ability in sciences, arts, education, business, or athletics.",
+            "requirements": {
+              "r1": "Demonstrated extraordinary ability",
+              "r2": "National or international recognition",
+              "r3": "Work in area of expertise"
+            }
+          },
+          "eb": {
+            "name": "Employment-Based Green Cards",
+            "description": "Permanent residence through employment-based categories (EB-1, EB-2, EB-3)."
+          }
+        }
+      },
+      "family": {
+        "title": "Family-Based Immigration",
+        "overview": "U.S. citizens and permanent residents can sponsor eligible family members. Immediate relatives have no annual limits.",
+        "categories": {
+          "immediate": {
+            "name": "Immediate Relatives",
+            "description": "Spouses, unmarried children under 21, and parents of U.S. citizens. No annual limits."
+          },
+          "k1": {
+            "name": "K-1 Fiancé(e) Visa",
+            "description": "For fiancé(e)s of U.S. citizens.",
+            "requirements": {
+              "r1": "Intent to marry within 90 days",
+              "r2": "Met in person within last 2 years",
+              "r3": "Legally free to marry"
+            }
+          },
+          "f1": {
+            "name": "F-1: Unmarried Sons/Daughters of U.S. Citizens",
+            "description": "For unmarried children 21+ of U.S. citizens. Current wait: 7-8 years."
+          },
+          "f2a": {
+            "name": "F-2A: Spouses/Children of Green Card Holders",
+            "description": "For spouses and unmarried children under 21 of permanent residents. Current wait: 2-3 years."
+          },
+          "f2b": {
+            "name": "F-2B: Unmarried Adult Children of Green Card Holders",
+            "description": "For unmarried children 21+ of permanent residents. Current wait: 6-7 years."
+          },
+          "f3": {
+            "name": "F-3: Married Children of U.S. Citizens",
+            "description": "For married children of U.S. citizens. Current wait: 12-13 years."
+          },
+          "f4": {
+            "name": "F-4: Siblings of U.S. Citizens",
+            "description": "For brothers/sisters of U.S. citizens (petitioner must be 21+). Current wait: 13-24 years."
+          }
+        }
+      },
+      "student": {
+        "title": "Student Pathway",
+        "overview": "International students may study full-time at SEVP-certified U.S. institutions. F-1 students can work through OPT (12 months) and STEM OPT (24 additional months) after graduation.",
+        "categories": {
+          "f1_student": {
+            "name": "F-1 Academic Student",
+            "description": "Full-time study at a U.S. university or college. OPT allows 1-3 years of work after graduation.",
+            "requirements": {
+              "r1": "SEVP-approved school admission",
+              "r2": "Full course of study",
+              "r3": "Financial proof (~$40,000/year)",
+              "r4": "Intent to depart after study"
+            }
+          },
+          "j1": {
+            "name": "J-1 Exchange Visitor",
+            "description": "For exchange programs (research, teaching, au pair). Many subject to 2-year home residency requirement."
+          },
+          "m1": {
+            "name": "M-1 Vocational Student",
+            "description": "For vocational or non-academic programs. Limited work options after completion."
+          }
+        }
+      },
+      "protection": {
+        "title": "Humanitarian Protection",
+        "overview": "Protection pathways for individuals unable to return home safely. Asylum must be filed within 1 year of arrival in the U.S. Policy environment is currently volatile.",
+        "categories": {
+          "asylum": {
+            "name": "Asylum",
+            "description": "For those with a well-founded fear of persecution. Must file within 1 year of arrival."
+          },
+          "refugee": {
+            "name": "Refugee Status",
+            "description": "For individuals referred by UNHCR or a U.S. embassy while outside the United States."
+          }
+        }
+      },
+      "citizenship": {
+        "title": "Path to Citizenship",
+        "overview": "U.S. naturalization allows lawful permanent residents (green card holders) to become U.S. citizens. Most applicants are eligible after 5 years of continuous residence. Spouses of U.S. citizens may qualify after 3 years.",
+        "categories": {
+          "standard": {
+            "name": "5-Year Continuous Residence",
+            "description": "The standard naturalization path for most green card holders after 5 years of continuous residence.",
+            "requirements": {
+              "r1": "Green card held for at least 5 years",
+              "r2": "Continuous residence in the U.S. for 5 years",
+              "r3": "Physical presence for at least 30 months of the 5 years",
+              "r4": "No single trip abroad longer than 6 months",
+              "r5": "18 years of age or older",
+              "r6": "Good moral character",
+              "r7": "Ability to read, write, and speak English",
+              "r8": "Pass the 100-question civics test"
+            }
+          },
+          "marriage": {
+            "name": "3-Year Rule (Married to U.S. Citizen)",
+            "description": "Expedited path for green card holders married to and living with a U.S. citizen. Eligible after 3 years instead of 5.",
+            "requirements": {
+              "r1": "Green card held for at least 3 years",
+              "r2": "Currently married to and living with a U.S. citizen",
+              "r3": "Spouse has been a U.S. citizen for all 3 years",
+              "r4": "Physical presence for at least 18 months of the 3 years",
+              "r5": "No single trip abroad longer than 6 months",
+              "r6": "Good moral character",
+              "r7": "Pass English and civics requirements"
+            }
+          },
+          "military": {
+            "name": "Military Service",
+            "description": "Expedited or immediate naturalization for active duty service members and honorably discharged veterans.",
+            "requirements": {
+              "r1": "Active duty or honorably discharged from U.S. armed forces",
+              "r2": "1 year of honorable service (peacetime)",
+              "r3": "Active duty during designated hostility period = immediate eligibility",
+              "r4": "Good moral character",
+              "r5": "Pass English and civics requirements"
+            }
+          },
+          "children": {
+            "name": "Citizenship for Children",
+            "description": "Children under 18 with a green card may automatically acquire citizenship when a parent naturalizes. N-600 documents this citizenship.",
+            "requirements": {
+              "r1": "Under 18 years old",
+              "r2": "Lawful permanent resident",
+              "r3": "At least one parent is a U.S. citizen (by birth or naturalization)",
+              "r4": "Residing in the U.S. in legal and physical custody of citizen parent"
+            }
+          }
+        }
+      }
+    },
+    "timelineCalculator": {
+      "fallback": "Timeline varies based on individual circumstances.",
+      "title": "Estimated Timeline",
+      "processingTimeLabel": "Processing time",
+      "visaWaitLabel": "Visa availability wait",
+      "priorityYears": "{{min}}–{{max}}+ years",
+      "lastUpdated": "Last updated: {{date}}",
+      "disclaimer": "Timelines are estimates and may vary by country, workload, and case complexity."
+    },
+
+    "caseTracker": {
+      "header": {
+        "title": "USCIS Case Tracker",
+        "subtitle": "Track the official status of your USCIS petitions in real time."
+      },
+      "input": {
+        "label": "Enter your receipt number",
+        "helper": "13 characters: 3 letters + 10 digits. Find it on your I-797 notice from USCIS.",
+        "submit": "Track Case",
+        "invalidFormat": "Receipt number must be 3 letters followed by 10 digits."
+      },
+      "empty": {
+        "title": "No cases tracked yet",
+        "body": "Add your first receipt number above to start tracking your USCIS petitions."
+      },
+      "cases": {
+        "title": "Tracked Cases ({{count}})"
+      },
+      "card": {
+        "lastUpdated": "Updated {{date}}",
+        "showDetails": "Show details",
+        "hideDetails": "Hide details",
+        "description": "Description",
+        "submitted": "Submitted",
+        "history": "Status history",
+        "fetched": "Last checked: {{time}}"
+      },
+      "error": {
+        "title": "Error · {{code}}",
+        "trace": "Trace ID: {{traceId}}"
+      },
+      "remove": {
+        "title": "Remove this case?",
+        "body": "Stop tracking {{receiptNumber}}? You can add it back anytime.",
+        "cancel": "Cancel",
+        "confirm": "Remove"
+      },
+      "dataSource": "Data sourced directly from the official USCIS Case Status API. Information is for tracking purposes only and does not constitute legal advice."
+    },
+
+    "tabNavigator": {
+      "home": "Home",
+      "checklist": "Checklist",
+      "timeline": "Timeline",
+      "lifeSetup": "Life Setup",
+      "resources": "Resources"
+    },
+    "priorityDateTracker": {
+      "noData": "Priority date information not available.",
+      "noBulletin": "Visa bulletin data not available for this category.",
+      "noCountryCutoff": "Country-specific cutoff date not available.",
+      "title": "Visa Availability",
+      "yourPriorityDate": "Your priority date",
+      "currentCutoff": "Current cutoff date",
+      "current": "Current",
+      "notCurrent": "Not current",
+      "backloggedWarning": "Your category is currently backlogged. Movement depends on annual visa limits and demand.",
+      "bulletinUpdated": "Visa Bulletin: {{date}}",
+      "disclaimer": "This information is based on the U.S. Department of State Visa Bulletin and does not guarantee visa availability."
+    }
+  }

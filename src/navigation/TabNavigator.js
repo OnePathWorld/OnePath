@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 // Import screens
 import HomeScreen from '../screens/HomeScreen';
@@ -12,6 +13,8 @@ import ResourcesScreen from '../screens/ResourcesScreen';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const { t } = useTranslation();
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -67,46 +70,46 @@ const TabNavigator = () => {
         },
       })}
     >
-      <Tab.Screen 
-        name="HomeTab" 
+      <Tab.Screen
+        name="HomeTab"
         component={HomeScreen}
         options={{
           headerShown: false,
-          tabBarLabel: 'Home',
+          tabBarLabel: t('tabNavigator.home'),
         }}
       />
-      <Tab.Screen 
-        name="ChecklistTab" 
+      <Tab.Screen
+        name="ChecklistTab"
         component={ChecklistScreen}
         options={{
           headerShown: false,
-          tabBarLabel: 'Checklist',
+          tabBarLabel: t('tabNavigator.checklist'),
         }}
         initialParams={{ pathway: 'work' }} // Default pathway
       />
-      <Tab.Screen 
-        name="TimelineTab" 
+      <Tab.Screen
+        name="TimelineTab"
         component={TimelineScreen}
         options={{
           headerShown: false,
-          tabBarLabel: 'Timeline',
+          tabBarLabel: t('tabNavigator.timeline'),
         }}
         initialParams={{ pathway: 'work' }} // Default pathway
       />
-      <Tab.Screen 
-        name="LifeSetupTab" 
+      <Tab.Screen
+        name="LifeSetupTab"
         component={LifeSetupScreen}
         options={{
           headerShown: false,
-          tabBarLabel: 'Life Setup',
+          tabBarLabel: t('tabNavigator.lifeSetup'),
         }}
       />
-      <Tab.Screen 
-        name="ResourcesTab" 
+      <Tab.Screen
+        name="ResourcesTab"
         component={ResourcesScreen}
         options={{
           headerShown: false,
-          tabBarLabel: 'Resources',
+          tabBarLabel: t('tabNavigator.resources'),
         }}
       />
     </Tab.Navigator>

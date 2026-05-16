@@ -11,15 +11,25 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getWarningsFor } from "../constants/immigrationWarnings";
+import { useTranslation } from "react-i18next";
 import {
-  PATHWAY_VIABILITY,
-  VIABILITY_LEVELS,
+  getWarningsFor,
+  getWarningMessage,
+} from "../constants/immigrationWarnings";
+import {
+  getViability,
   PATHWAY_TO_VIABILITY_MAP,
 } from "../data/pathwayViability";
+import {
+  getVisaLabel,
+  getWorkAuthLabel,
+  getCountryLabel,
+  getExpiryLabel,
+} from "../utils/labels";
 import analytics, { EVENTS } from "../utils/analytics";
 
 const StatusDetailsScreen = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const { profile, warnings = [], healthScore } = route.params || {};
 
   const [daysTracking, setDaysTracking] = useState({
@@ -41,10 +51,11 @@ const StatusDetailsScreen = ({ route, navigation }) => {
   const viabilityKeys = pathwayId
     ? PATHWAY_TO_VIABILITY_MAP[pathwayId] || []
     : [];
-    analytics.screen("StatusDetails", {
-        visaType: profile?.currentVisa,
-        healthStatus: healthScore?.status,
-      });
+
+  analytics.screen("StatusDetails", {
+    visaType: profile?.currentVisa,
+    healthStatus: healthScore?.status,
+  });
 
   const getStatusColor = () => {
     if (!healthScore) return "#2E86AB";
@@ -58,6 +69,23 @@ const StatusDetailsScreen = ({ route, navigation }) => {
     if (healthScore.status === "Critical") return "🚨";
     if (healthScore.status === "Attention") return "⚠️";
     return "✅";
+  };
+
+  // Translate the status string from healthScore (raw enum: "Critical", "Attention", "Good")
+  const getStatusLabel = () => {
+    const raw = healthScore?.status || "Unknown";
+    const key = `statusDetailsScreen.status.${raw}`;
+    const translated = t(key);
+    // Fallback to uppercase raw if key missing
+    return translated === key ? raw.toUpperCase() : translated;
+  };
+
+  // Inside-US / Outside-US display
+  const getLocationLabel = () => {
+    if (profile?.location === "inside_us") {
+      return t("statusDetailsScreen.statusGrid.insideUs");
+    }
+    return t("statusDetailsScreen.statusGrid.outsideUs");
   };
 
   const updateDaysTracking = async (field, value) => {
@@ -83,31 +111,6 @@ const StatusDetailsScreen = ({ route, navigation }) => {
     }
   };
 
-  const getComplianceStatus = () => {
-    const issues = [];
-
-    if (profile?.currentVisa === "OPT") {
-      const remaining = 90 - daysTracking.optUnemployment;
-      if (remaining < 30) {
-        issues.push({
-          type: "Critical",
-          text: `Only ${remaining} unemployment days remaining`,
-        });
-      }
-    }
-
-    if (profile?.complianceRisk && profile.complianceRisk !== "none") {
-      issues.push({
-        type: "Warning",
-        text: "Previous compliance issues detected",
-      });
-    }
-
-    return issues;
-  };
-
-  const complianceIssues = getComplianceStatus();
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -115,28 +118,30 @@ const StatusDetailsScreen = ({ route, navigation }) => {
         <View style={[styles.header, { backgroundColor: getStatusColor() }]}>
           <Text style={styles.headerEmoji}>{getStatusEmoji()}</Text>
           <Text style={styles.headerTitle}>
-            Immigration Status Dashboard
+            {t("statusDetailsScreen.headerTitle")}
           </Text>
           <View style={styles.scoreContainer}>
-            <Text style={styles.scoreNumber}>
-              {healthScore?.score || 0}
-            </Text>
+            <Text style={styles.scoreNumber}>{healthScore?.score || 0}</Text>
             <Text style={styles.scoreLabel}>/100</Text>
           </View>
           <Text style={styles.scoreStatus}>
-            Status: {healthScore?.status?.toUpperCase() || "UNKNOWN"}
+            {t("statusDetailsScreen.statusLabel", {
+              status: getStatusLabel(),
+            })}
           </Text>
         </View>
 
         {/* CRITICAL ALERTS */}
         {warnings.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>🚨 Critical Alerts</Text>
+            <Text style={styles.sectionTitle}>
+              {t("statusDetailsScreen.sections.criticalAlerts")}
+            </Text>
             {warnings.map((warning, idx) => (
               <View key={idx} style={styles.alertCard}>
                 <View style={styles.alertHeader}>
                   <Text style={styles.alertType}>
-                    {warning.type.toUpperCase()}
+                    {warning.type?.toUpperCase()}
                   </Text>
                   {warning.daysUntil !== undefined && (
                     <Text
@@ -145,7 +150,9 @@ const StatusDetailsScreen = ({ route, navigation }) => {
                         warning.daysUntil < 30 && styles.urgentText,
                       ]}
                     >
-                      {warning.daysUntil} days
+                      {t("statusDetailsScreen.alertDays", {
+                        count: warning.daysUntil,
+                      })}
                     </Text>
                   )}
                 </View>
@@ -153,10 +160,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
                 <TouchableOpacity
                   style={styles.alertAction}
                   onPress={() => {
-                    if (
-                      warning.type === "ead" ||
-                      warning.type === "visa"
-                    ) {
+                    if (warning.type === "ead" || warning.type === "visa") {
                       navigation.navigate("Checklist", {
                         pathway: profile?.purpose || "work",
                         focusOn: "renewal",
@@ -165,7 +169,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
                   }}
                 >
                   <Text style={styles.alertActionText}>
-                    Take Action ›
+                    {t("statusDetailsScreen.takeAction")}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -177,7 +181,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
         {immigrationWarnings.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>
-              📢 Policy Alerts Affecting You
+              {t("statusDetailsScreen.sections.policyAlerts")}
             </Text>
             {immigrationWarnings.map((w) => (
               <View
@@ -195,7 +199,9 @@ const StatusDetailsScreen = ({ route, navigation }) => {
                     ? "🟡"
                     : "🔵"}
                 </Text>
-                <Text style={styles.policyWarningText}>{w.message}</Text>
+                <Text style={styles.policyWarningText}>
+                  {getWarningMessage(w)}
+                </Text>
               </View>
             ))}
           </View>
@@ -205,12 +211,12 @@ const StatusDetailsScreen = ({ route, navigation }) => {
         {viabilityKeys.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>
-              📊 Your Pathway Viability
+              {t("statusDetailsScreen.sections.pathwayViability")}
             </Text>
             {viabilityKeys.map((key) => {
-              const assessment = PATHWAY_VIABILITY[key];
+              const assessment = getViability(key);
               if (!assessment) return null;
-              const level = VIABILITY_LEVELS[assessment.viability];
+              const level = assessment.level;
 
               return (
                 <View
@@ -247,34 +253,45 @@ const StatusDetailsScreen = ({ route, navigation }) => {
 
         {/* CURRENT STATUS */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>📋 Current Status</Text>
+          <Text style={styles.sectionTitle}>
+            {t("statusDetailsScreen.sections.currentStatus")}
+          </Text>
           <View style={styles.statusGrid}>
             <View style={styles.statusItem}>
-              <Text style={styles.statusItemLabel}>Visa Type</Text>
+              <Text style={styles.statusItemLabel}>
+                {t("statusDetailsScreen.statusGrid.visaType")}
+              </Text>
               <Text style={styles.statusItemValue}>
-                {getVisaLabel(profile?.currentVisa) || "Not specified"}
+                {profile?.currentVisa
+                  ? getVisaLabel(profile.currentVisa)
+                  : t("statusDetailsScreen.statusGrid.notSpecified")}
               </Text>
             </View>
             <View style={styles.statusItem}>
-              <Text style={styles.statusItemLabel}>Work Auth</Text>
+              <Text style={styles.statusItemLabel}>
+                {t("statusDetailsScreen.statusGrid.workAuth")}
+              </Text>
               <Text style={styles.statusItemValue}>
-                {getWorkAuthLabel(profile?.hasWorkAuth) || "Not specified"}
+                {profile?.hasWorkAuth
+                  ? getWorkAuthLabel(profile.hasWorkAuth)
+                  : t("statusDetailsScreen.statusGrid.notSpecified")}
               </Text>
             </View>
             <View style={styles.statusItem}>
-              <Text style={styles.statusItemLabel}>Country</Text>
+              <Text style={styles.statusItemLabel}>
+                {t("statusDetailsScreen.statusGrid.country")}
+              </Text>
               <Text style={styles.statusItemValue}>
-                {getCountryLabel(profile?.countryOfCitizenship) ||
-                  "Not specified"}
+                {profile?.countryOfCitizenship
+                  ? getCountryLabel(profile.countryOfCitizenship)
+                  : t("statusDetailsScreen.statusGrid.notSpecified")}
               </Text>
             </View>
             <View style={styles.statusItem}>
-              <Text style={styles.statusItemLabel}>Location</Text>
-              <Text style={styles.statusItemValue}>
-                {profile?.location === "inside_us"
-                  ? "Inside US"
-                  : "Outside US"}
+              <Text style={styles.statusItemLabel}>
+                {t("statusDetailsScreen.statusGrid.location")}
               </Text>
+              <Text style={styles.statusItemValue}>{getLocationLabel()}</Text>
             </View>
           </View>
         </View>
@@ -285,14 +302,16 @@ const StatusDetailsScreen = ({ route, navigation }) => {
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Text style={styles.sectionTitle}>
-                ⏱️ Compliance Tracking
+                {t("statusDetailsScreen.sections.complianceTracking")}
               </Text>
               <TouchableOpacity
                 onPress={() => setEditMode(!editMode)}
                 style={styles.editButton}
               >
                 <Text style={styles.editButtonText}>
-                  {editMode ? "Done" : "Edit"}
+                  {editMode
+                    ? t("statusDetailsScreen.compliance.doneButton")
+                    : t("statusDetailsScreen.compliance.editButton")}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -300,7 +319,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
             {profile?.currentVisa === "OPT" && (
               <View style={styles.trackingCard}>
                 <Text style={styles.trackingLabel}>
-                  OPT Unemployment Days
+                  {t("statusDetailsScreen.compliance.optUnemploymentDays")}
                 </Text>
                 <View style={styles.trackingRow}>
                   <View style={styles.progressBarContainer}>
@@ -318,7 +337,9 @@ const StatusDetailsScreen = ({ route, navigation }) => {
                     />
                   </View>
                   <Text style={styles.trackingValue}>
-                    {daysTracking.optUnemployment} / 90
+                    {t("statusDetailsScreen.compliance.optProgress", {
+                      used: daysTracking.optUnemployment,
+                    })}
                   </Text>
                 </View>
                 {editMode && (
@@ -352,7 +373,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
                 )}
                 {daysTracking.optUnemployment > 60 && (
                   <Text style={styles.warningText}>
-                    ⚠️ Approaching 90-day limit! Find employment soon.
+                    {t("statusDetailsScreen.compliance.approachingLimit")}
                   </Text>
                 )}
               </View>
@@ -360,11 +381,13 @@ const StatusDetailsScreen = ({ route, navigation }) => {
 
             <View style={styles.trackingCard}>
               <Text style={styles.trackingLabel}>
-                Days Outside US (This Year)
+                {t("statusDetailsScreen.compliance.daysOutsideUs")}
               </Text>
               <View style={styles.trackingRow}>
                 <Text style={styles.trackingValue}>
-                  {daysTracking.daysOutsideUS} days
+                  {t("statusDetailsScreen.compliance.daysSuffix", {
+                    count: daysTracking.daysOutsideUS,
+                  })}
                 </Text>
               </View>
               {editMode && (
@@ -398,7 +421,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
               )}
               {daysTracking.daysOutsideUS > 150 && (
                 <Text style={styles.warningText}>
-                  ⚠️ Extended absence may affect continuous residence
+                  {t("statusDetailsScreen.compliance.extendedAbsence")}
                 </Text>
               )}
             </View>
@@ -407,7 +430,9 @@ const StatusDetailsScreen = ({ route, navigation }) => {
 
         {/* UPCOMING DEADLINES */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>📅 Important Dates</Text>
+          <Text style={styles.sectionTitle}>
+            {t("statusDetailsScreen.sections.importantDates")}
+          </Text>
 
           {profile?.expiryTimeline && (
             <TouchableOpacity
@@ -419,12 +444,13 @@ const StatusDetailsScreen = ({ route, navigation }) => {
               }
             >
               <View style={styles.deadlineRow}>
-                <Text style={styles.deadlineLabel}>Status Expiry</Text>
+                <Text style={styles.deadlineLabel}>
+                  {t("statusDetailsScreen.statusExpiry")}
+                </Text>
                 <Text
                   style={[
                     styles.deadlineValue,
-                    profile.expiryTimeline === "expired" &&
-                      styles.expiredText,
+                    profile.expiryTimeline === "expired" && styles.expiredText,
                   ]}
                 >
                   {getExpiryLabel(profile.expiryTimeline)}
@@ -436,19 +462,22 @@ const StatusDetailsScreen = ({ route, navigation }) => {
 
         {/* HEALTH SCORE BREAKDOWN */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>📊 Score Breakdown</Text>
+          <Text style={styles.sectionTitle}>
+            {t("statusDetailsScreen.sections.scoreBreakdown")}
+          </Text>
           <View style={styles.scoreBreakdown}>
             {healthScore?.issues?.map((issue, idx) => (
               <View key={idx} style={styles.issueRow}>
                 <Text style={styles.issueIcon}>⚠️</Text>
                 <Text style={styles.issueText}>{issue}</Text>
-                <Text style={styles.issuePoints}>-10</Text>
+                <Text style={styles.issuePoints}>
+                  {t("statusDetailsScreen.issuePoints")}
+                </Text>
               </View>
             ))}
-            {(!healthScore?.issues ||
-              healthScore.issues.length === 0) && (
+            {(!healthScore?.issues || healthScore.issues.length === 0) && (
               <Text style={styles.noIssues}>
-                ✅ No major issues detected
+                {t("statusDetailsScreen.noIssues")}
               </Text>
             )}
           </View>
@@ -465,7 +494,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
             }
           >
             <Text style={styles.primaryButtonText}>
-              Update Documents
+              {t("statusDetailsScreen.actions.updateDocuments")}
             </Text>
           </TouchableOpacity>
 
@@ -478,7 +507,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
             }
           >
             <Text style={styles.secondaryButtonText}>
-              View Timeline
+              {t("statusDetailsScreen.actions.viewTimeline")}
             </Text>
           </TouchableOpacity>
 
@@ -487,7 +516,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
             onPress={() => navigation.navigate("PolicyTracker")}
           >
             <Text style={styles.secondaryButtonText}>
-              Policy Tracker
+              {t("statusDetailsScreen.actions.policyTracker")}
             </Text>
           </TouchableOpacity>
 
@@ -495,16 +524,16 @@ const StatusDetailsScreen = ({ route, navigation }) => {
             style={styles.tertiaryButton}
             onPress={() =>
               Alert.alert(
-                "Export Status Report",
-                "Generate a PDF summary of your immigration status?",
+                t("statusDetailsScreen.exportDialog.title"),
+                t("statusDetailsScreen.exportDialog.body"),
                 [
-                  { text: "Cancel", style: "cancel" },
+                  { text: t("common.cancel"), style: "cancel" },
                   {
-                    text: "Export",
+                    text: t("statusDetailsScreen.exportDialog.export"),
                     onPress: () => {
                       Alert.alert(
-                        "Coming Soon",
-                        "PDF export feature coming in next update"
+                        t("statusDetailsScreen.exportDialog.comingSoonTitle"),
+                        t("statusDetailsScreen.exportDialog.comingSoonBody")
                       );
                     },
                   },
@@ -513,64 +542,13 @@ const StatusDetailsScreen = ({ route, navigation }) => {
             }
           >
             <Text style={styles.tertiaryButtonText}>
-              Export Report 📄
+              {t("statusDetailsScreen.actions.exportReport")}
             </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
-};
-
-// Helper functions
-const getVisaLabel = (visa) => {
-  const labels = {
-    F1: "F-1 Student",
-    H1B: "H-1B Work",
-    L1: "L-1 Transfer",
-    B1B2: "B-1/B-2 Visitor",
-    J1: "J-1 Exchange",
-    OPT: "OPT",
-    EAD: "EAD",
-    GC_pending: "GC Pending",
-    none: "Out of Status",
-  };
-  return labels[visa] || visa;
-};
-
-const getWorkAuthLabel = (auth) => {
-  const labels = {
-    yes_unrestricted: "✅ Unrestricted",
-    yes_restricted: "⚠️ Employer-specific",
-    yes_ead: "EAD Card",
-    pending: "⏳ Pending",
-    no: "❌ None",
-  };
-  return labels[auth] || auth;
-};
-
-const getCountryLabel = (country) => {
-  const labels = {
-    india: "🇮🇳 India",
-    china: "🇨🇳 China",
-    mexico: "🇲🇽 Mexico",
-    philippines: "🇵🇭 Philippines",
-    canada: "🇨🇦 Canada",
-    uk: "🇬🇧 UK",
-  };
-  return labels[country] || "Other";
-};
-
-const getExpiryLabel = (expiry) => {
-  const labels = {
-    expired: "EXPIRED",
-    "30days": "Within 30 days",
-    "90days": "Within 90 days",
-    "6months": "Within 6 months",
-    year: "Within 1 year",
-    safe: "1+ year",
-  };
-  return labels[expiry] || "Unknown";
 };
 
 export default StatusDetailsScreen;
@@ -598,91 +576,87 @@ const styles = StyleSheet.create({
   },
 
   // Sections
-  section: { marginTop: 20, paddingHorizontal: 20 },
+  section: {
+    backgroundColor: "#FFF",
+    margin: 16,
+    padding: 16,
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#1A1A1A",
+    marginBottom: 12,
+  },
   sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 12,
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 15,
-    color: "#1A1A1A",
-  },
-  editButton: {
-    paddingHorizontal: 15,
-    paddingVertical: 6,
-    backgroundColor: "#2E86AB",
-    borderRadius: 15,
-  },
-  editButtonText: { color: "#FFF", fontSize: 14, fontWeight: "500" },
 
-  // Alert Cards
+  // Critical Alerts
   alertCard: {
-    backgroundColor: "#FFF",
-    padding: 15,
-    borderRadius: 12,
+    backgroundColor: "#FFF3E0",
+    padding: 12,
+    borderRadius: 8,
     marginBottom: 10,
     borderLeftWidth: 4,
-    borderLeftColor: "#F44336",
+    borderLeftColor: "#FF9800",
   },
   alertHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 8,
   },
-  alertType: { fontSize: 12, fontWeight: "bold", color: "#F44336" },
-  alertDays: { fontSize: 14, fontWeight: "bold" },
+  alertType: {
+    fontSize: 12,
+    fontWeight: "700",
+    color: "#E65100",
+    letterSpacing: 0.5,
+  },
+  alertDays: { fontSize: 12, color: "#666", fontWeight: "600" },
   urgentText: { color: "#F44336" },
-  alertMessage: { fontSize: 14, color: "#333", lineHeight: 20 },
-  alertAction: { marginTop: 10 },
-  alertActionText: { color: "#2E86AB", fontWeight: "600", fontSize: 14 },
+  alertMessage: {
+    fontSize: 14,
+    color: "#333",
+    marginBottom: 10,
+    lineHeight: 20,
+  },
+  alertAction: { alignSelf: "flex-end" },
+  alertActionText: { color: "#2E86AB", fontSize: 13, fontWeight: "600" },
 
-  // Policy Warning Cards (NEW)
+  // Policy Warnings
   policyWarningCard: {
     flexDirection: "row",
-    alignItems: "flex-start",
-    backgroundColor: "#F0F7FA",
+    backgroundColor: "#FAFAFA",
     padding: 12,
-    borderRadius: 10,
+    borderRadius: 8,
     marginBottom: 8,
+    alignItems: "flex-start",
   },
-  policyAlertCard: {
-    backgroundColor: "#FFEBEE",
-  },
-  policyWarnCard: {
-    backgroundColor: "#FFF8E1",
-  },
-  policyWarningIcon: {
-    fontSize: 14,
-    marginRight: 10,
-    marginTop: 1,
-  },
+  policyAlertCard: { backgroundColor: "#FFEBEE" },
+  policyWarnCard: { backgroundColor: "#FFF8E1" },
+  policyWarningIcon: { fontSize: 16, marginRight: 8, marginTop: 2 },
   policyWarningText: {
-    fontSize: 13,
-    color: "#333",
     flex: 1,
+    fontSize: 13,
+    color: "#444",
     lineHeight: 18,
   },
 
-  // Viability Cards (NEW)
-  viabilityCard: {
-    padding: 12,
-    borderRadius: 10,
-    marginBottom: 8,
-  },
+  // Viability
+  viabilityCard: { padding: 12, borderRadius: 10, marginBottom: 8 },
   viabilityHeader: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 4,
   },
-  viabilityDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginRight: 8,
-  },
+  viabilityDot: { width: 8, height: 8, borderRadius: 4, marginRight: 8 },
   viabilityLabel: {
     fontSize: 12,
     fontWeight: "700",
@@ -696,117 +670,130 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
 
-  // Status Grid
-  statusGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-  },
-  statusItem: {
-    backgroundColor: "#FFF",
-    padding: 15,
-    borderRadius: 12,
-    width: "48%",
-    marginBottom: 12,
-  },
-  statusItemLabel: { fontSize: 12, color: "#666", marginBottom: 6 },
-  statusItemValue: { fontSize: 14, fontWeight: "600", color: "#333" },
+  // Current Status grid
+  statusGrid: { flexDirection: "row", flexWrap: "wrap" },
+  statusItem: { width: "50%", padding: 8 },
+  statusItemLabel: { fontSize: 11, color: "#999", marginBottom: 2 },
+  statusItemValue: { fontSize: 14, color: "#1A1A1A", fontWeight: "500" },
 
-  // Tracking
+  // Compliance Tracking
   trackingCard: {
-    backgroundColor: "#FFF",
-    padding: 15,
-    borderRadius: 12,
-    marginBottom: 12,
-  },
-  trackingLabel: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#333",
+    backgroundColor: "#F8F9FA",
+    padding: 12,
+    borderRadius: 8,
     marginBottom: 10,
   },
+  trackingLabel: { fontSize: 13, color: "#666", marginBottom: 8 },
   trackingRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
+  trackingValue: { fontSize: 14, fontWeight: "600", color: "#1A1A1A" },
   progressBarContainer: {
     flex: 1,
     height: 8,
     backgroundColor: "#E0E0E0",
     borderRadius: 4,
-    marginRight: 15,
+    marginRight: 12,
+    overflow: "hidden",
   },
-  progressBarFill: { height: 8, borderRadius: 4 },
-  trackingValue: { fontSize: 14, fontWeight: "bold", color: "#333" },
+  progressBarFill: { height: "100%", borderRadius: 4 },
+  warningText: {
+    fontSize: 12,
+    color: "#F44336",
+    marginTop: 8,
+    fontWeight: "500",
+  },
+  editButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    backgroundColor: "#E8F4F8",
+    borderRadius: 4,
+  },
+  editButtonText: { fontSize: 12, color: "#2E86AB", fontWeight: "600" },
   editControls: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 15,
+    marginTop: 8,
   },
   editBtn: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
     backgroundColor: "#2E86AB",
-    alignItems: "center",
     justifyContent: "center",
-    marginHorizontal: 20,
+    alignItems: "center",
   },
-  editBtnText: { color: "#FFF", fontSize: 20, fontWeight: "bold" },
-  editValue: { fontSize: 18, fontWeight: "bold", minWidth: 50, textAlign: "center" },
-  warningText: { fontSize: 13, color: "#E65100", marginTop: 10 },
+  editBtnText: { color: "#FFF", fontSize: 18, fontWeight: "bold" },
+  editValue: { fontSize: 16, fontWeight: "600", marginHorizontal: 16 },
 
   // Deadlines
   deadlineCard: {
-    backgroundColor: "#FFF",
-    padding: 15,
-    borderRadius: 12,
-    marginBottom: 12,
+    backgroundColor: "#F8F9FA",
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 8,
   },
   deadlineRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  deadlineLabel: { fontSize: 14, color: "#666" },
-  deadlineValue: { fontSize: 14, fontWeight: "600" },
-  expiredText: { color: "#F44336", fontWeight: "bold" },
+  deadlineLabel: { fontSize: 14, color: "#1A1A1A", fontWeight: "500" },
+  deadlineValue: { fontSize: 14, color: "#666", fontWeight: "600" },
+  expiredText: { color: "#F44336" },
 
   // Score Breakdown
-  scoreBreakdown: { backgroundColor: "#FFF", padding: 15, borderRadius: 12 },
-  issueRow: { flexDirection: "row", alignItems: "center", marginBottom: 10 },
-  issueIcon: { fontSize: 16, marginRight: 10 },
-  issueText: { flex: 1, fontSize: 14, color: "#333" },
-  issuePoints: { fontSize: 14, fontWeight: "bold", color: "#F44336" },
+  scoreBreakdown: { padding: 8 },
+  issueRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 6,
+  },
+  issueIcon: { fontSize: 14, marginRight: 8 },
+  issueText: { flex: 1, fontSize: 13, color: "#333" },
+  issuePoints: { fontSize: 13, color: "#F44336", fontWeight: "600" },
   noIssues: {
     fontSize: 14,
     color: "#4CAF50",
+    fontWeight: "500",
     textAlign: "center",
-    padding: 20,
+    padding: 12,
   },
 
-  // Actions
-  actionSection: { padding: 20 },
+  // Action Buttons
+  actionSection: { padding: 16 },
   primaryButton: {
     backgroundColor: "#2E86AB",
-    padding: 18,
-    borderRadius: 12,
-    alignItems: "center",
-    marginBottom: 12,
+    padding: 16,
+    borderRadius: 25,
+    marginBottom: 10,
   },
-  primaryButtonText: { color: "#FFF", fontSize: 16, fontWeight: "bold" },
+  primaryButtonText: {
+    color: "#FFF",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
   secondaryButton: {
     backgroundColor: "#FFF",
-    padding: 18,
-    borderRadius: 12,
-    alignItems: "center",
-    marginBottom: 12,
-    borderWidth: 2,
+    padding: 16,
+    borderRadius: 25,
+    marginBottom: 10,
+    borderWidth: 1.5,
     borderColor: "#2E86AB",
   },
-  secondaryButtonText: { color: "#2E86AB", fontSize: 16, fontWeight: "600" },
-  tertiaryButton: { padding: 18, alignItems: "center" },
-  tertiaryButtonText: { color: "#666", fontSize: 14, fontWeight: "500" },
+  secondaryButtonText: {
+    color: "#2E86AB",
+    fontSize: 16,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  tertiaryButton: {
+    padding: 14,
+    alignItems: "center",
+  },
+  tertiaryButtonText: { color: "#666", fontSize: 14 },
 });

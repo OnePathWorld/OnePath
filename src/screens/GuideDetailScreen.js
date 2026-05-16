@@ -1,3 +1,5 @@
+// src/screens/GuideDetailScreen.js
+
 import React, { useState } from "react";
 import {
   View,
@@ -9,128 +11,36 @@ import {
   Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
+import { getLifeSetupGuide } from "../data/lifeSetupGuides";
 import analytics, { EVENTS } from "../utils/analytics";
 
-// Related guide data — reusable across all guide detail screens
-const RELATED_GUIDES = {
-  tax: {
-    id: "tax",
-    title: "Tax Filing for Immigrants",
-    icon: "📄",
-    color: "#4CAF50",
-    description: "Federal and state tax obligations for immigrants",
-    guides: [
-      {
-        title: "Who Must File",
-        content: [
-          "All U.S. residents (green card holders, substantial presence)",
-          "H-1B, L-1, O-1 holders — taxed as residents",
-          "F-1 students — generally nonresident for first 5 years",
-          "Income earned in the U.S. is taxable regardless of status",
-          "Tax treaties may reduce obligations for some countries",
-        ],
-      },
-      {
-        title: "Key Forms",
-        content: [
-          "Form 1040 — Resident tax return",
-          "Form 1040-NR — Nonresident tax return",
-          "Form W-2 — Wage income from employer",
-          "Form 8843 — Required for F/J visa exempt individuals",
-          "ITIN (W-7) — If you don't have an SSN",
-        ],
-      },
-      {
-        title: "Free Filing Resources",
-        content: [
-          "IRS Free File — irs.gov/freefile (income under $84,000)",
-          "VITA — Free tax prep for low-income (irs.gov/vita)",
-          "Sprintax — Designed for nonresident tax returns",
-          "TurboTax — For resident filers",
-          "Filing deadline: April 15 annually",
-        ],
-      },
-    ],
-  },
-  healthcare: {
-    id: "healthcare",
-    title: "Healthcare Options",
-    icon: "🏥",
-    color: "#FF9800",
-    description: "Health insurance for immigrants",
-    guides: [
-      {
-        title: "Insurance Options",
-        content: [
-          "Employer-sponsored insurance (most common for work visa holders)",
-          "ACA Marketplace plans (Healthcare.gov) — available to lawful residents",
-          "Medicaid — varies by state and immigration status",
-          "University health plans — required for most F-1 students",
-          "Short-term health insurance — temporary coverage",
-        ],
-      },
-      {
-        title: "Important Notes",
-        content: [
-          "Most visa holders are NOT eligible for Medicaid initially",
-          "F-1 students typically must enroll in school health plan",
-          "H-1B holders usually get employer insurance",
-          "Emergency Medicaid available regardless of status",
-          "Community health centers offer sliding-scale fees",
-          "Healthcare.gov open enrollment: Nov 1 – Jan 15 annually",
-        ],
-      },
-    ],
-  },
-  dmv: {
-    id: "dmv",
-    title: "Driver's License Guide",
-    icon: "🚗",
-    color: "#2196F3",
-    description: "Getting a driver's license as an immigrant",
-    guides: [
-      {
-        title: "General Requirements",
-        content: [
-          "Valid immigration status (requirements vary by state)",
-          "Proof of identity (passport, visa, I-94)",
-          "Proof of residency (lease, utility bill)",
-          "SSN or proof of ineligibility",
-          "Pass written test, vision test, and road test",
-        ],
-      },
-      {
-        title: "State Policies",
-        content: [
-          "19 states + DC allow licenses regardless of status",
-          "California, New York, Illinois, New Jersey among them",
-          "Some states issue 'standard' vs 'REAL ID' licenses",
-          "REAL ID required for domestic flights",
-          "Check your state's DMV website for specific requirements",
-        ],
-      },
-    ],
-  },
+// Related guides shown at the bottom of every guide detail screen
+// (excluding whichever guide is currently being viewed).
+const RELATED_GUIDE_IDS = ["tax", "healthcare", "dmv"];
+
+// Helpful links — URLs preserved exactly as literal English (URLs aren't translated)
+const HELPFUL_LINK_URLS = {
+  immigrationAdvocates: "https://www.immigrationadvocates.org/legaldirectory/",
+  uscisOfficeLocator: "https://www.uscis.gov/about-us/find-a-uscis-office",
+  legalAidDirectory: "https://www.lawhelp.org/",
 };
 
-const HELPFUL_LINKS = [
-  { name: "Immigration Advocates", url: "https://www.immigrationadvocates.org/legaldirectory/" },
-  { name: "USCIS Office Locator", url: "https://www.uscis.gov/about-us/find-a-uscis-office" },
-  { name: "Legal Aid Directory", url: "https://www.lawhelp.org/" },
-];
-
 const GuideDetailScreen = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const { guide } = route.params;
   const [expandedSections, setExpandedSections] = useState({});
 
   const toggleSection = (index) => {
     setExpandedSections({
       ...expandedSections,
-      [index]: expandedSections[index] === undefined ? false : !expandedSections[index],
+      [index]:
+        expandedSections[index] === undefined ? false : !expandedSections[index],
     });
   };
+
   const openRelatedGuide = (guideKey) => {
-    const relatedGuide = RELATED_GUIDES[guideKey];
+    const relatedGuide = getLifeSetupGuide(guideKey);
     if (relatedGuide) {
       analytics.track(EVENTS.LIFE_SETUP_VIEWED, {
         guide: relatedGuide.id,
@@ -146,14 +56,34 @@ const GuideDetailScreen = ({ route, navigation }) => {
       source: "guide_detail",
     });
     Linking.openURL(url).catch(() => {
-      Alert.alert("Cannot Open Link", `Unable to open ${name}. Please search online.`);
+      Alert.alert(
+        t("guideDetailScreen.cantOpenLinkTitle"),
+        t("guideDetailScreen.cantOpenLinkBody", { name })
+      );
     });
   };
 
   // Determine which related guides to show (exclude current guide)
-  const relatedGuideKeys = Object.keys(RELATED_GUIDES).filter(
-    (key) => key !== guide.id
-  );
+  const relatedGuideKeys = RELATED_GUIDE_IDS.filter((key) => key !== guide.id);
+
+  // Build helpful links list with translated names + literal URLs
+  const helpfulLinks = [
+    {
+      key: "immigrationAdvocates",
+      name: t("guideDetailScreen.helpfulLinks.immigrationAdvocates"),
+      url: HELPFUL_LINK_URLS.immigrationAdvocates,
+    },
+    {
+      key: "uscisOfficeLocator",
+      name: t("guideDetailScreen.helpfulLinks.uscisOfficeLocator"),
+      url: HELPFUL_LINK_URLS.uscisOfficeLocator,
+    },
+    {
+      key: "legalAidDirectory",
+      name: t("guideDetailScreen.helpfulLinks.legalAidDirectory"),
+      url: HELPFUL_LINK_URLS.legalAidDirectory,
+    },
+  ];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -191,42 +121,43 @@ const GuideDetailScreen = ({ route, navigation }) => {
           ))}
         </View>
 
-        {/* RELATED GUIDES — with working navigation */}
+        {/* RELATED GUIDES */}
         <View style={styles.relatedCard}>
-          <Text style={styles.relatedTitle}>📚 Related Guides</Text>
-          {relatedGuideKeys.map((key) => (
-            <TouchableOpacity
-              key={key}
-              style={styles.relatedItem}
-              onPress={() => openRelatedGuide(key)}
-            >
-              <Text style={styles.relatedItemIcon}>
-                {RELATED_GUIDES[key].icon}
-              </Text>
-              <Text style={styles.relatedItemText}>
-                {RELATED_GUIDES[key].title}
-              </Text>
-              <Text style={styles.relatedArrow}>›</Text>
-            </TouchableOpacity>
-          ))}
+          <Text style={styles.relatedTitle}>
+            {t("guideDetailScreen.relatedGuidesTitle")}
+          </Text>
+          {relatedGuideKeys.map((key) => {
+            const related = getLifeSetupGuide(key);
+            if (!related) return null;
+            return (
+              <TouchableOpacity
+                key={key}
+                style={styles.relatedItem}
+                onPress={() => openRelatedGuide(key)}
+              >
+                <Text style={styles.relatedItemIcon}>{related.icon}</Text>
+                <Text style={styles.relatedItemText}>{related.title}</Text>
+                <Text style={styles.relatedArrow}>›</Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
-        {/* FIND HELP — with real links */}
+        {/* FIND HELP */}
         <View style={styles.helpCard}>
-          <Text style={styles.helpTitle}>Need More Help?</Text>
-          <Text style={styles.helpText}>
-            Consider consulting with an immigration attorney or visiting your
-            local USCIS office for personalized guidance.
+          <Text style={styles.helpTitle}>
+            {t("guideDetailScreen.needHelpTitle")}
           </Text>
-          {HELPFUL_LINKS.map((link, idx) => (
+          <Text style={styles.helpText}>
+            {t("guideDetailScreen.needHelpText")}
+          </Text>
+          {helpfulLinks.map((link) => (
             <TouchableOpacity
-              key={idx}
+              key={link.key}
               style={styles.helpLink}
               onPress={() => openLink(link.url, link.name)}
             >
-              <Text style={styles.helpLinkText}>
-                {link.name} 🔗
-              </Text>
+              <Text style={styles.helpLinkText}>{link.name} 🔗</Text>
             </TouchableOpacity>
           ))}
         </View>

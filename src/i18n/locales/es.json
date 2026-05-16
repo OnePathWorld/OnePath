@@ -1,0 +1,3594 @@
+{
+    "_translation_notes": "Spanish translations follow USCIS official terminology from uscis.gov/es. Items marked TODO_VERIFY in the master review file should be cross-checked against the OnePath es.html landing page and USCIS glossary before production release.",
+    "labels": {
+      "visa": {
+        "F1": "Estudiante F-1",
+        "H1B": "Trabajo H-1B",
+        "L1": "Transferencia L-1",
+        "B1B2": "Visitante B-1/B-2",
+        "J1": "Intercambio J-1",
+        "OPT": "OPT",
+        "EAD": "EAD",
+        "GC_pending": "Residencia Pendiente",
+        "GC": "🟢 Residente Permanente",
+        "other": "Otro Estatus",
+        "none": "Sin Estatus Legal",
+        "unknown": "Sin Estatus"
+      },
+      "visaShort": {
+        "F1": "F-1",
+        "H1B": "H-1B",
+        "L1": "L-1",
+        "B1B2": "B-1/B-2",
+        "J1": "J-1",
+        "OPT": "OPT",
+        "EAD": "EAD",
+        "GC_pending": "Residencia Pend.",
+        "GC": "🟢 Residente Permanente",
+        "other": "Otro",
+        "none": "Sin Estatus",
+        "unknown": "Sin Estatus"
+      },
+      "expiry": {
+        "expired": "VENCIDO",
+        "30days": "< 30 días",
+        "90days": "< 90 días",
+        "6months": "< 6 meses",
+        "year": "< 1 año",
+        "safe": "Más de 1 año",
+        "unknown": "Desconocido"
+      },
+      "workAuth": {
+        "yes_unrestricted": "✅ Sin restricciones",
+        "yes_restricted": "⚠️ Empleador específico",
+        "yes_ead": "Tarjeta EAD",
+        "pending": "⏳ Pendiente",
+        "no": "❌ Ninguna",
+        "unknown": "Desconocido"
+      },
+        "country": {
+        "mexico": "🇲🇽 México",
+        "india": "🇮🇳 India",
+        "china": "🇨🇳 China",
+        "haiti": "🇭🇹 Haití",
+        "brazil": "🇧🇷 Brasil",
+        "philippines": "🇵🇭 Filipinas",
+        "nigeria": "🇳🇬 Nigeria",
+        "canada": "🇨🇦 Canadá",
+        "uk": "🇬🇧 Reino Unido",
+        "germany": "🇩🇪 Alemania",
+        "south_korea": "🇰🇷 Corea del Sur",
+        "japan": "🇯🇵 Japón",
+        "other": "🌍 Otro"
+        },
+      "gcYears": {
+        "under2": "< 2 años",
+        "2to3": "2–3 años",
+        "3to5": "3–5 años",
+        "over5": "5+ años ✅",
+        "military": "Militar 🎖️"
+      },
+      "location": {
+        "inside_us": "En EE. UU.",
+        "outside_us": "Fuera de EE. UU."
+      },
+      "visaDescriptive": {
+        "F1": "Estudiante F-1",
+        "H1B": "Trabajo H-1B",
+        "L1": "Transferencia L-1",
+        "B1B2": "Visitante B-1/B-2",
+        "J1": "Intercambio J-1",
+        "OPT": "Permiso de Trabajo OPT",
+        "EAD": "Titular de EAD",
+        "GC_pending": "Residencia Pendiente",
+        "GC": "🟢 Residente Permanente Legal",
+        "other": "Otro Estatus",
+        "none": "Sin Estatus Legal",
+        "unknown": "Sin Estatus"
+      },
+      "gcYearsDescriptive": {
+        "under2": "Menos de 2 años",
+        "2to3": "2–3 años",
+        "3to5": "3–5 años",
+        "over5": "5+ años ✅",
+        "military": "Servicio militar 🎖️"
+      },
+      "expiryWarning": {
+        "expired": "🔴 VENCIDO — ¡Acción inmediata requerida!",
+        "30days": "⚠️ Vence dentro de 30 días",
+        "90days": "📅 Vence dentro de 90 días",
+        "6months": "📆 Vence dentro de 6 meses"
+      }
+    },
+    "common": {
+      "cancel": "Cancelar",
+      "back": "Atrás",
+      "next": "Siguiente",
+      "finish": "Finalizar",
+      "skip": "Saltar",
+      "loading": "Cargando...",
+      "save": "Guardar",
+      "reset": "Restablecer",
+      "notSet": "No establecido",
+      "notApplicable": "No aplica",
+      "unknown": "Desconocido",
+      "dataUpdated": "Datos actualizados: {{date}}"
+    },
+    "home": {
+      "greeting": {
+        "morning": "Buenos Días",
+        "afternoon": "Buenas Tardes",
+        "evening": "Buenas Noches"
+      },
+      "status": {
+        "title": "Tu Estatus",
+        "loading": "Cargando...",
+        "critical": "Crítico",
+        "attention": "Atención",
+        "good": "Bueno"
+      },
+      "alerts": {
+        "policyChanges_one": "{{count}} cambio de política te afecta",
+        "policyChanges_other": "{{count}} cambios de política te afectan",
+        "citizenshipNudge": "¿Listo para explorar la ciudadanía? Mira tus opciones de naturalización."
+      },
+      "stats": {
+        "visaExpiration": "Vencimiento de Visa",
+        "gcHeld": "Residencia",
+        "alerts": "Alertas",
+        "policies": "Políticas"
+      },
+      "controlCenter": {
+        "title": "Centro de Control",
+        "policyTracker": "Cambios de Política",
+        "checklist": "Lista de Verificación",
+        "timeline": "Cronología",
+        "resources": "Recursos",
+        "caseTracker": "Rastreador de Casos"
+
+      },
+      "pathways": {
+        "title": "Rutas Migratorias",
+        "work": "Por Empleo",
+        "family": "Por Familia",
+        "student": "Estudiante",
+        "citizenship": "Ciudadanía Estadounidense",
+        "yourNextStep": "Tu próximo paso →"
+      },
+      "lifeSetup": {
+        "title": "Guía de Vida en EE. UU.",
+        "subtitle": "SSN • Bancos • Crédito • Empleo"
+      },
+      "help": {
+        "title": "Ayuda de Emergencia",
+        "dialogTitle": "¿Necesitas ayuda?",
+        "dialogBody": "USCIS: 1-800-375-5283\nAyuda Legal: immigrationadvocates.org",
+        "callUscis": "Llamar a USCIS"
+      }
+    },
+    "onboarding": {
+      "stepIndicator": "Paso {{current}} de {{total}}",
+      "skip": "Saltar",
+      "back": "Atrás",
+      "next": "Siguiente",
+      "finish": "Finalizar",
+      "getStarted": "Comenzar",
+      "privacyDisclaimer": "🔒 No recopilamos ni compartimos datos personales. Tus respuestas permanecen en tu dispositivo y se usan solo para personalizar tu experiencia y enviarte alertas de seguridad.",
+      "welcome": {
+        "title": "Bienvenido a Tu Camino Migratorio",
+        "subtitle": "Te guiaremos paso a paso por el proceso migratorio de EE. UU."
+      },
+      "location": {
+        "title": "¿Dónde te encuentras actualmente?",
+        "subtitle": "Esto nos ayuda a mostrarte rutas relevantes",
+        "options": {
+          "outside_us": "🌍 Fuera de Estados Unidos",
+          "inside_us": "🇺🇸 Dentro de Estados Unidos"
+        }
+      },
+
+      "outsideUsStage": {
+        "title": "¿En qué etapa del proceso migratorio de EE. UU. te encuentras?",
+        "subtitle": "Esto nos ayuda a mostrarte las herramientas y plazos correctos para tu situación",
+        "options": {
+            "no_case": "🆕 Sin caso aún",
+            "petition_filed": "📝 Petición presentada (esperando respuesta de USCIS)",
+            "petition_approved": "✅ Petición aprobada (esperando entrevista consular)",
+            "interview_scheduled": "📅 Entrevista consular programada",
+            "has_us_visa": "🛂 Ya tengo una visa de EE. UU. (regresando)",
+            "former_visa_holder": "↩️ Ex titular de visa de EE. UU.",
+            "exploring": "🔍 Solo explorando opciones"
+        }
+        },
+        "hasReceiptNumber": {
+        "title": "¿Tienes un número de recibo de USCIS?",
+        "subtitle": "Se ve como EAC1234567890, LIN1234567890 o SRC1234567890 — lo encontrarás en tu aviso de recibo I-797",
+        "options": {
+            "yes": "✅ Sí, tengo un número de recibo",
+            "no": "❌ Aún no"
+        }
+        },
+
+      "currentVisa": {
+        "title": "¿Cuál es tu estatus migratorio actual?",
+        "subtitle": "Esto nos ayuda a identificar riesgos y oportunidades",
+        "options": {
+          "F1": "📚 Estudiante F-1",
+          "H1B": "💼 Visa de Trabajo H-1B",
+          "L1": "🏢 Transferencia L-1",
+          "B1B2": "✈️ Visitante B-1/B-2",
+          "J1": "🔄 Intercambio J-1",
+          "OPT": "🎓 OPT/STEM OPT",
+          "EAD": "💳 Titular de EAD",
+          "GC_pending": "⏳ Residencia Pendiente",
+          "GC": "🟢 Residente Permanente Legal",
+          "other": "📋 Otro Estatus",
+          "none": "❌ Sin Estatus Legal"
+        },
+        "groups": {
+  "work": "Trabajo",
+  "study": "Estudio",
+  "resident": "Residente y Visitante",
+  "other": "Otro"
+}
+      },
+      "gcYearsHeld": {
+        "title": "¿Cuánto tiempo has tenido tu residencia permanente?",
+        "subtitle": "Esto determina para qué proceso de naturalización calificas",
+        "options": {
+          "under2": "⏳ Menos de 2 años",
+          "2to3": "📅 2–3 años",
+          "3to5": "🗓️ 3–5 años",
+          "over5": "✅ 5+ años — Elegible para naturalizarse",
+          "military": "🎖️ Servicio militar"
+        }
+      },
+      "purpose": {
+        "title": "¿Cuál es tu objetivo migratorio?",
+        "subtitle": "Selecciona tu enfoque principal",
+        "options": {
+          "work": "💼 Oportunidad Laboral",
+          "family": "👨‍👩‍👧‍👦 Reunificación Familiar",
+          "study": "🎓 Educación",
+          "protection": "🛡️ Buscar Protección"
+        }
+      },
+      "purposeGc": {
+        "title": "¿En qué te gustaría enfocarte?",
+        "subtitle": "Ya tienes tu residencia permanente — ¿qué sigue para ti?",
+        "options": {
+          "citizenship": "🇺🇸 Naturalización y Ciudadanía",
+          "family": "👨‍👩‍👧‍👦 Patrocinar a Familiares",
+          "work": "💼 Empleo y Carrera"
+        }
+      },
+      "urgency": {
+        "title": "¿Cuál es tu plazo?",
+        "subtitle": "Esto nos ayuda a priorizar la información",
+        "options": {
+          "immediate": "🚨 Inmediato (< 1 mes)",
+          "soon": "📅 Pronto (1–6 meses)",
+          "planning": "📊 Planeando (6+ meses)"
+        }
+      },
+      "hasWorkAuth": {
+        "title": "¿Tienes autorización de empleo?",
+        "subtitle": "Esto afecta tus opciones laborales",
+        "options": {
+          "yes_unrestricted": "✅ Sí - Cualquier empleador",
+          "yes_restricted": "⚠️ Sí - Solo empleador específico",
+          "yes_ead": "💳 Sí - Tarjeta EAD",
+          "pending": "⏳ Solicitud pendiente",
+          "no": "❌ Sin autorización de empleo"
+        }
+      },
+      "countryOfCitizenship": {
+        "title": "¿Cuál es tu país de ciudadanía?",
+        "subtitle": "Esto afecta los tiempos de espera y la disponibilidad de visas",
+        "searchPlaceholder": "Buscar países...",
+        "noResults": "Sin coincidencia — toca Siguiente y aún personalizaremos tu experiencia",
+        "options": {
+        "mexico": "🇲🇽 México",
+        "india": "🇮🇳 India",
+        "china": "🇨🇳 China",
+        "haiti": "🇭🇹 Haití",
+        "brazil": "🇧🇷 Brasil",
+        "philippines": "🇵🇭 Filipinas",
+        "nigeria": "🇳🇬 Nigeria",
+        "canada": "🇨🇦 Canadá",
+        "uk": "🇬🇧 Reino Unido",
+        "germany": "🇩🇪 Alemania",
+        "south_korea": "🇰🇷 Corea del Sur",
+        "japan": "🇯🇵 Japón",
+        "other": "🌍 Otro"
+        }
+      },
+      "expiryTimeline": {
+        "title": "¿Tienes fechas críticas próximas?",
+        "subtitleDefault": "p. ej. vencimiento de visa, fin de estatus, plazo de autorización",
+        "subtitleByVisa": {
+          "H1B": "p. ej. fin de estatus H-1B, vencimiento del I-94",
+          "F1": "p. ej. vencimiento del EAD de OPT, fin del programa, periodo de gracia",
+          "OPT": "p. ej. vencimiento de tarjeta EAD de OPT, límite de 90 días sin empleo",
+          "L1": "p. ej. fin de estatus L-1, vencimiento del I-94",
+          "J1": "p. ej. fin del programa DS-2019, periodo de gracia",
+          "B1B2": "p. ej. vencimiento de la estadía autorizada en el I-94",
+          "EAD": "p. ej. vencimiento de tarjeta EAD — ahora válida por máximo 18 meses",
+          "GC_pending": "p. ej. vencimiento de tarjeta combo EAD/AP"
+        },
+        "options": {
+          "expired": "🔴 Ya venció — necesito ayuda urgente",
+          "30days": "⚠️ Dentro de 30 días — urgente",
+          "90days": "📅 Dentro de 90 días — presentando pronto",
+          "6months": "📆 Dentro de 6 meses — planeando con anticipación",
+          "year": "📍 Dentro de 1 año — planeación temprana",
+          "safe": "✅ Más de 1 año — sin urgencia"
+        }
+      },
+    "complianceRisk": {
+    "title": "¿Has enfrentado algún desafío migratorio?",
+    "subtitle": "Esto nos ayuda a darte orientación precisa. Tus respuestas son privadas y se guardan solo en tu dispositivo.",
+    "subtitleStudent": "El estatus de estudiante puede complicarse — esto nos ayuda a señalarte las opciones correctas.",
+    "options": {
+        "none": "✅ Sin problemas — sin complicaciones hasta ahora",
+        "gap": "📋 Breve interrupción de estatus",
+        "unauthorized_work": "💼 Trabajé fuera de los términos de mi visa",
+        "overstay": "⏰ Permanecí más allá del período autorizado",
+        "denied": "📄 Tuve una negación o recibí un RFE",
+        "prefer_not": "🔒 Prefiero omitir esta pregunta"
+    }
+    }
+    },
+    "settings": {
+      "loadingProfile": "Cargando perfil...",
+      "profile": {
+        "title": "Tu Perfil",
+        "subtitle": "Toca cualquier campo para actualizarlo",
+        "fields": {
+          "goal": "Objetivo",
+          "location": "Ubicación",
+          "country": "País",
+          "visaStatus": "Estatus de Visa",
+          "gcHeld": "Residencia",
+          "timeline": "Plazo",
+          "visaExpiry": "Vencimiento",
+          "language": "Idioma"
+        }
+      },
+      "fieldOptions": {
+        "purpose": {
+          "title": "¿Cuál es tu objetivo migratorio?",
+          "options": {
+            "work": "💼 Oportunidad Laboral",
+            "family": "👨‍👩‍👧‍👦 Reunificación Familiar",
+            "study": "🎓 Educación",
+            "protection": "🛡️ Buscar Protección",
+            "citizenship": "🇺🇸 Naturalización y Ciudadanía"
+          }
+        },
+        "location": {
+          "title": "¿Dónde te encuentras actualmente?",
+          "options": {
+            "outside_us": "🌍 Fuera de Estados Unidos",
+            "inside_us": "🇺🇸 Dentro de Estados Unidos"
+          }
+        },
+        "currentVisa": {
+          "title": "Estatus migratorio actual",
+          "options": {
+            "F1": "📚 Estudiante F-1",
+            "H1B": "💼 Visa de Trabajo H-1B",
+            "L1": "🏢 Transferencia L-1",
+            "B1B2": "✈️ Visitante B-1/B-2",
+            "J1": "🔄 Intercambio J-1",
+            "OPT": "🎓 OPT/STEM OPT",
+            "EAD": "💳 Titular de EAD",
+            "GC_pending": "⏳ Residencia Pendiente",
+            "GC": "🟢 Residente Permanente Legal",
+            "other": "📋 Otro Estatus",
+            "none": "❌ Sin Estatus Legal",
+            "empty": "⬜ No aplica"
+          }
+        },
+        "countryOfCitizenship": {
+          "title": "País de ciudadanía",
+            "options": {
+            "mexico": "🇲🇽 México",
+            "india": "🇮🇳 India",
+            "china": "🇨🇳 China",
+            "haiti": "🇭🇹 Haití",
+            "brazil": "🇧🇷 Brasil",
+            "philippines": "🇵🇭 Filipinas",
+            "nigeria": "🇳🇬 Nigeria",
+            "canada": "🇨🇦 Canadá",
+            "uk": "🇬🇧 Reino Unido",
+            "germany": "🇩🇪 Alemania",
+            "south_korea": "🇰🇷 Corea del Sur",
+            "japan": "🇯🇵 Japón",
+            "other": "🌍 Otro"
+            }
+        },
+        "urgency": {
+          "title": "¿Cuál es tu plazo?",
+          "options": {
+            "immediate": "🚨 Inmediato (< 1 mes)",
+            "soon": "📅 Pronto (1–6 meses)",
+            "planning": "📊 Planeando (6+ meses)",
+            "empty": "⬜ No aplica"
+          }
+        },
+        "expiryTimeline": {
+          "title": "Fecha de vencimiento de visa",
+          "options": {
+            "expired": "🔴 Ya venció",
+            "30days": "⚠️ Dentro de 30 días",
+            "90days": "📅 Dentro de 90 días",
+            "6months": "📆 Dentro de 6 meses",
+            "year": "📍 Dentro de 1 año",
+            "safe": "✅ Más de 1 año",
+            "empty": "⬜ No aplica"
+          }
+        },
+        "gcYearsHeld": {
+          "title": "¿Cuánto tiempo has tenido tu residencia permanente?",
+          "options": {
+            "under2": "⏳ Menos de 2 años",
+            "2to3": "📅 2–3 años",
+            "3to5": "🗓️ 3–5 años",
+            "over5": "✅ 5+ años — Elegible para naturalizarse",
+            "military": "🎖️ Servicio militar",
+            "empty": "⬜ No aplica"
+          }
+        },
+        "language": {
+          "title": "Idioma de la app",
+          "options": {
+            "en": "🇺🇸 English",
+            "es": "🇪🇸 Español",
+            "pt": "🇧🇷 Português",
+            "zh": "🇨🇳 中文",
+            "ht": "🇭🇹 Kreyòl"
+          }
+        }
+      },
+      "about": {
+        "title": "Acerca de OnePath",
+        "version": "Versión",
+        "dataUpdated": "Datos Actualizados",
+        "sources": "Fuentes",
+        "sourcesValue": "USCIS, DOS, DOL, Registro Federal"
+      },
+      "disclaimer": "OnePath proporciona información migratoria solo con fines educativos. Esta aplicación no es un bufete de abogados y no proporciona asesoría legal. Consulta a un abogado de inmigración licenciado para recibir asesoría específica a tu situación.",
+      "privacy": {
+        "label": "🔒 Privacidad",
+        "value": "Todos los datos permanecen en tu dispositivo"
+      },
+      "reset": {
+        "button": "Restablecer App y Empezar de Nuevo",
+        "confirmTitle": "Restablecer App",
+        "confirmBody": "Esto borrará todos tus datos y reiniciará el proceso de configuración. Esta acción no se puede deshacer.",
+        "confirmAction": "Restablecer",
+        "doneTitle": "App Restablecida",
+        "doneBody": "Por favor cierra y vuelve a abrir la app para empezar de nuevo."
+      },
+      "modal": {
+        "cancel": "Cancelar"
+      },
+      "updateAlert": {
+        "title": "Actualizado",
+        "body": "Tu perfil ha sido actualizado. Regresa a la pantalla de inicio para ver los cambios."
+      },
+      "languagePicker": {
+        "currentLanguage": "Idioma",
+        "changeLanguage": "Cambiar Idioma",
+        "autoDetected": "Detectado automáticamente del dispositivo"
+      }
+    },
+    "onboardingSummary": {
+      "currentViability": "Viabilidad Actual",
+      "recommendedActions": "Acciones Recomendadas",
+      "immediateHelp": "🆘 Ayuda Inmediata",
+      "exploreAllOptions": "Explorar Todas las Opciones",
+      "statusInfo": {
+        "currentStatus": "Estatus Actual: {{visa}}",
+        "workAuthorization": "Autorización de Empleo: {{auth}}",
+        "country": "País: {{country}}",
+        "countryOfBirth": "País de Nacimiento: {{country}}",
+        "greenCardHeld": "Residencia Permanente: {{years}}",
+        "backlogged": "⚠️ Sujeto a atrasos por cuotas de país",
+        "backlogClear": "✅ Fechas de prioridad al día",
+        "needsStatusChange": "⚠️ Necesita cambio de estatus desde B-1/B-2"
+      },
+      "alerts": {
+        "expired": {
+          "message": "🔴 Tu estatus ha vencido. ¡Acción inmediata requerida!",
+          "action": "Consulta a un abogado de inmigración HOY"
+        },
+        "expiry30days": {
+          "message": "⚠️ Plazo crítico se acerca dentro de 30 días",
+          "action": "Presenta extensiones/renovaciones inmediatamente"
+        },
+        "outOfStatus": {
+          "message": "⚠️ Situación fuera de estatus detectada",
+          "action": "Se recomienda consulta legal urgente"
+        },
+        "noWorkAuth": {
+          "message": "📋 Sin autorización de empleo — No puedes comenzar a trabajar",
+          "action": "Primero debes obtener la visa de trabajo adecuada"
+        },
+        "asylumDeadline": {
+          "message": "⏰ El asilo debe presentarse dentro de 1 año de tu llegada",
+          "action": "Consulta a un abogado de inmediato"
+        },
+        "citizenshipUnder2": {
+          "message": "⏳ Aún no eres elegible para presentar la naturalización",
+          "action": "Necesitarás al menos 3 años (casado con ciudadano de EE. UU.) o 5 años (estándar) de residencia"
+        },
+        "citizenship2to3": {
+          "message": "📅 Acercándote a la elegibilidad — verifica tu ruta específica",
+          "action": "Si estás casado con un ciudadano de EE. UU., podrías ser elegible ahora. De lo contrario, espera hasta los 5 años."
+        },
+        "citizenshipOver5": {
+          "message": "✅ Eres elegible para presentar el Formulario N-400 ahora",
+          "action": "Puedes solicitar de inmediato — empieza a reunir tus documentos"
+        }
+      },
+      "work": {
+        "title": "Estrategia de Inmigración Por Empleo",
+        "summary": {
+          "opt_india": "Estás en OPT — es hora de encontrar un patrocinador de H-1B. El registro de la lotería FY2027 fue del 4 al 19 de marzo de 2026. Nota: USCIS ahora usa un proceso de selección ponderado por salario que favorece posiciones mejor pagadas. India tiene atrasos significativos de EB-2/EB-3 (más de 12 años).",
+          "opt_other": "Estás en OPT — es hora de encontrar un patrocinador de H-1B. El registro de la lotería FY2027 fue del 4 al 19 de marzo de 2026. Nota: USCIS ahora usa un proceso de selección ponderado por salario que favorece posiciones mejor pagadas. Comienza a preparar tu petición temprano.",
+          "restricted": "Tu autorización de empleo está atada a un empleador específico. Cambiar de trabajo requiere una nueva petición.",
+          "urgentNoAuth": "⚠️ Sin autorización de empleo, no puedes comenzar a trabajar. El procesamiento premium (ahora $2,965) puede acelerar algunas visas a 15 días.",
+          "default": "La inmigración por empleo requiere patrocinio de un empleador. Comienza encontrando un empleador dispuesto a patrocinar tu visa.",
+          "haiti_tps": "Si su EAD se basa en TPS, tenga en cuenta que los EAD de TPS ahora tienen un máximo de 1 año según H.R. 1. Presente renovaciones con anticipación. Considere explorar otras vías si su designación TPS es incierta."
+        },
+        "primaryAction": {
+          "expiredStatus": "🆘 Resolver Estatus Vencido",
+          "findH1bSponsor": "Encontrar Patrocinador H-1B",
+          "getWorkAuth": "Obtener Autorización de Empleo",
+          "exploreWorkVisas": "Explorar Visas de Trabajo"
+        },
+        "secondaryAction": {
+          "h1bLotteryInfo": "Información de Lotería H-1B",
+          "documentChecklist": "Lista de Documentos"
+        },
+        "pathway": {
+          "title": "Inmigración Por Empleo",
+          "subtitle": "Visas H-1B, L-1, O-1",
+          "description": "Para trabajadores calificados y profesionales"
+        },
+        "warnings": {
+          "backlog": "📊 Las green cards EB-2/EB-3 tienen esperas de más de 12 años para tu país",
+          "cantWorkOnB1B2": "⚠️ No puedes trabajar con estatus B-1/B-2 — se requiere cambio de visa",
+          "urgentExpiry": "🔴 Urgente: Resuelve el estatus vencido o por vencer inmediatamente",
+          "optUnemployment": "⏰ OPT tiene un límite de 90 días de desempleo — lleva un seguimiento cuidadoso",
+          "eadValidity": "📋 Validez del EAD reducida a 18 meses (de 5 años) para solicitantes de ajuste de estatus desde diciembre de 2025"
+        },
+        "recommendations": {
+          "h1bLottery": "✅ Solicita la lotería H-1B (cada marzo — ahora ponderada por salario)",
+          "dayOneCpt": "✅ Considera programas de Day-1 CPT como respaldo",
+          "cantWorkApplyFirst": "📋 No puedes trabajar sin autorización — solicita primero",
+          "tnVisa": "🍁 Considera la visa TN — más rápida que H-1B para canadienses",
+          "nonCapVisas": "💡 Las visas L-1 y O-1 no están sujetas al cap — explora si eres elegible"
+        }
+      },
+      "family": {
+        "title": "Ruta de Inmigración Familiar",
+        "summary": {
+          "backloggedCountry": "⚠️ Tu país tiene atrasos significativos en preferencias familiares. Los familiares inmediatos (cónyuge/padres de ciudadano estadounidense) no tienen límites de cuota, pero otras categorías pueden tomar 10-20 años.",
+          "insideUsWithVisa": "Podrías ajustar tu estatus sin salir de EE. UU. si mantienes estatus legal y se hace disponible una visa.",
+          "default": "El patrocinio familiar es una ruta estable pero puede tomar varios años dependiendo de tu relación y país de nacimiento."
+        },
+        "primaryAction": {
+          "viewFamilyPathways": "Ver Rutas Familiares"
+        },
+        "secondaryAction": {
+          "checkVisaBulletin": "Ver Boletín de Visas",
+          "processingTimes": "Tiempos de Procesamiento"
+        },
+        "pathway": {
+          "title": "Inmigración Familiar",
+          "subtitle": "Matrimonio, Padres, Hermanos",
+          "description": "Reúnete con tus familiares"
+        },
+        "warnings": {
+          "expectedWait": "⏰ Espera estimada: {{range}} para preferencias familiares",
+          "priorIssues": "⚠️ Problemas migratorios previos pueden afectar la elegibilidad",
+          "proclamations": "📋 Proclamaciones Presidenciales han impactado las tasas de emisión de visas para ciertas nacionalidades — posible retroceso en FY2026"
+        },
+        "waitRanges": {
+          "india": "5-15 años",
+          "china": "5-12 años",
+          "mexico": "10-20 años",
+          "haiti": "3-8 años",
+          "philippines": "10-15 años"
+        },
+        "recommendations": {
+          "fileI130": "📄 Presenta el I-130 lo antes posible para establecer tu fecha de prioridad",
+          "considerEmployment": "💼 Considera opciones por empleo en paralelo",
+          "maintainStatus": "📋 Mantén estatus legal mientras esperas"
+        }
+      },
+      "study": {
+        "title": "Guía de Ruta Estudiantil",
+        "summary": {
+          "changeFromB1B2": "Necesitarás cambiar tu estatus de B-1/B-2 a F-1. Solicita primero a una escuela certificada por SEVP, luego presenta el I-539 para cambio de estatus.",
+          "alreadyOnF1": "Ya estás en F-1. Considera OPT después de graduarte (solicita 90 días antes), y explora opciones H-1B con posibles empleadores. STEM OPT añade 24 meses.",
+          "default": "La visa F-1 de estudiante permite estudiar y trabajar de forma limitada (CPT/OPT). Después de graduarte, puedes usar OPT para entrenamiento práctico y servir de puente hacia el H-1B."
+        },
+        "primaryAction": {
+          "studentVisaOptions": "Opciones de Visa Estudiantil"
+        },
+        "secondaryAction": {
+          "lifeSetupGuide": "Guía de Vida en EE. UU."
+        },
+        "pathway": {
+          "title": "Ruta Estudiantil",
+          "subtitle": "Visas F-1, J-1",
+          "description": "Estudia en Estados Unidos"
+        },
+        "warnings": {
+          "maintainUntilF1": "📚 Debes mantener tu estatus hasta que se apruebe la F-1",
+          "cantStartUntilApproved": "⏰ No puedes comenzar la escuela hasta que se apruebe el cambio de estatus"
+        },
+        "recommendations": {
+          "sevpSchools": "🎓 Solicita solo a escuelas certificadas por SEVP",
+          "financialProof": "💰 Demuestra apoyo financiero",
+          "fullTimeEnrollment": "📋 Mantén inscripción a tiempo completo",
+          "cptOpt": "💼 Usa CPT/OPT para experiencia laboral",
+          "stemMajor": "🔬 Elige una carrera STEM para 36 meses totales de OPT"
+        }
+      },
+      "protection": {
+        "title": "Protección y Alivio Humanitario",
+        "summary": {
+          "insideUs": "El asilo debe presentarse dentro de 1 año de tu llegada. Puedes solicitar autorización de empleo 150 días después de presentar. Nota: La validez del EAD para solicitantes de asilo ahora es de máximo 18 meses, y las extensiones automáticas han sido eliminadas. El proceso es complejo — se recomienda enfáticamente representación legal.",
+          "outsideUs": "Existen varios programas de protección incluyendo reasentamiento de refugiados y permiso humanitario. Contacta a ACNUR o a una agencia de reasentamiento."
+        },
+        "primaryAction": {
+          "emergencyResources": "🆘 Recursos de Emergencia",
+          "protectionOptions": "Opciones de Protección"
+        },
+        "secondaryAction": {
+          "legalAidResources": "Recursos de Ayuda Legal"
+        },
+        "warnings": {
+          "immediateLegal": "⚠️ Los casos de protección requieren asistencia legal inmediata",
+          "asylumVolatile": "⚠️ El entorno de política de asilo es actualmente volátil — busca asesoría legal actualizada"
+        },
+        "resources": {
+          "uscis": "USCIS",
+          "uscisPhone": "1-800-375-5283",
+          "legalAid": "Ayuda Legal",
+          "legalAidUrl": "immigrationadvocates.org",
+          "unhcr": "ACNUR",
+          "unhcrUrl": "help.unhcr.org"
+        }
+      },
+      "citizenship": {
+        "title": "Tu Camino Hacia la Ciudadanía Estadounidense",
+        "summary": {
+          "military": "Los miembros del servicio militar y veteranos pueden ser elegibles para naturalización expedita. El servicio activo durante un periodo de hostilidad designado permite elegibilidad inmediata. La tarifa de presentación del N-400 está exenta para solicitantes militares.",
+          "over5": "Cumples con el requisito de residencia continua de 5 años y puedes presentar el Formulario N-400 ahora. Necesitarás aprobar un examen de inglés y un examen de educación cívica (100 preguntas). El procesamiento típicamente toma de 8 a 14 meses desde la presentación hasta la ceremonia de juramento.",
+          "3to5": "Si estás casado y vives con un ciudadano de EE. UU., podrías calificar bajo la regla de 3 años. Esto requiere 18 meses de presencia física y residencia continua durante esos 3 años. De lo contrario, deberás esperar hasta los 5 años.",
+          "2to3": "Te estás acercando a la elegibilidad. La ruta estándar requiere 5 años como residente permanente, pero si estás casado con un ciudadano de EE. UU., podrías calificar después de solo 3 años. Usa este tiempo para preparar tus documentos y estudiar para el examen cívico.",
+          "under2": "Aún no eres elegible para naturalizarte, pero ahora es un excelente momento para prepararte. Lleva un registro de tu historial de viajes, mantén tu green card en buen estado, y comienza a estudiar las 100 preguntas del examen cívico.",
+          "default": "La naturalización es el proceso de convertirse en ciudadano de EE. UU. La mayoría de los residentes permanentes son elegibles después de 5 años de residencia continua. Si estás casado con un ciudadano de EE. UU., podrías calificar después de solo 3 años."
+        },
+        "primaryAction": {
+          "startN400": "Comenzar Solicitud N-400",
+          "check3Year": "Verificar Elegibilidad de 3 Años",
+          "militaryInfo": "Información de Naturalización Militar",
+          "timelineRequirements": "Cronograma y Requisitos de Naturalización"
+        },
+        "secondaryAction": {
+          "n400Checklist": "Lista de Documentos N-400"
+        },
+        "pathway": {
+          "title": "Camino a la Ciudadanía",
+          "subtitle": "Naturalización y N-400",
+          "description": "Conviértete en ciudadano de EE. UU."
+        },
+        "warnings": {
+          "priorViolations": "⚠️ Violaciones migratorias previas pueden afectar el requisito de buen carácter moral — consulta a un abogado",
+          "priorDenial": "⚠️ Una denegación previa de solicitud podría impactar la naturalización — revisa las circunstancias cuidadosamente",
+          "extendedTrips": "✈️ Los viajes prolongados al extranjero (6+ meses) pueden romper la residencia continua — lleva un seguimiento cuidadoso de tus viajes",
+          "goodMoralCharacter": "📋 Debes mantener buen carácter moral durante todo el periodo de 5 años (o 3 años) antes de presentar",
+          "threeYearMarriage": "💍 La regla de 3 años requiere que sigas casado y viviendo con tu cónyuge ciudadano de EE. UU. al momento de presentar"
+        },
+        "recommendations": {
+          "fileN400": "📄 Presenta el Formulario N-400 — $760 papel / $710 en línea (militar: gratis)",
+          "studyCivics": "📚 Estudia las 100 preguntas cívicas en uscis.gov/citizenship/tessprep",
+          "gatherDocs": "🗂️ Reúne declaraciones de impuestos, registros de viaje y copias de la green card",
+          "startStudying": "📚 Comienza a estudiar las 100 preguntas cívicas ahora — adelántate",
+          "trackTrips": "✈️ Lleva un seguimiento cuidadoso de todos los viajes internacionales (fechas de entrada/salida de EE. UU.)",
+          "keepTaxes": "📋 Mantén tus declaraciones de impuestos al día — requerido para naturalización",
+          "renewGc": "💳 Renueva tu green card si vence antes de que seas elegible para naturalizarte",
+          "consultAttorney": "👨‍⚖️ Consulta a un abogado de inmigración si tienes algún historial criminal o violaciones previas"
+        }
+      },
+      "default": {
+        "title": "Tu Camino Migratorio",
+        "summary": "Exploremos tus opciones según tu situación actual.",
+        "primaryAction": "Explorar Todas las Rutas"
+      },
+      "urgentForm": {
+        "labelUrgent": "PRESENTAR AHORA",
+        "labelAction": "ACCIÓN NECESARIA",
+        "feeKey": "Tarifa:",
+        "deadlineKey": "Plazo:",
+        "forms": {
+          "H1B": {
+            "form": "Formulario I-129 Extensión",
+            "purpose": "Extiende tu estatus H-1B",
+            "fee": "$1,015 + $2,965 premium (15 días)",
+            "deadlineUrgent": "Presenta HOY — el empleador debe actuar de inmediato",
+            "deadlineSoon": "Presenta al menos 6 meses antes del vencimiento",
+            "tip": "El procesamiento premium da una decisión en 15 días. Tu empleador presenta, no tú."
+          },
+          "F1": {
+            "form": "Contacta a tu DSO de Inmediato",
+            "purpose": "Extensión del programa o solicitud de OPT",
+            "fee": "Gratis (acción del DSO) / I-765 OPT: $470 en línea",
+            "deadlineUrgent": "Contacta al DSO hoy — el periodo de gracia es solo 60 días después del fin del programa",
+            "deadlineSoon": "Planea OPT 90 días antes de graduarte",
+            "tip": "Tu Designated School Official (DSO) debe extender tu I-20 antes de que puedas presentar nada."
+          },
+          "OPT": {
+            "form": "Formulario I-765 Extensión STEM",
+            "purpose": "Extiende tu OPT por 24 meses (graduados STEM)",
+            "fee": "$470 en línea / $520 papel",
+            "deadlineUrgent": "Presenta de inmediato — solicita hasta 90 días antes de que venza tu EAD",
+            "deadlineSoon": "Solicita ahora — el procesamiento de USCIS toma de 3 a 5 meses",
+            "tip": "Debes tener título STEM y empleador en E-Verify. Presenta antes de que venza tu EAD actual o pierdes la autorización de empleo."
+          },
+          "L1": {
+            "form": "Formulario I-129 Extensión",
+            "purpose": "Extiende tu estatus L-1",
+            "fee": "$1,015 + $2,965 premium opcional",
+            "deadlineUrgent": "Presenta de inmediato — el empleador debe patrocinar",
+            "deadlineSoon": "Presenta 6 meses antes del vencimiento",
+            "tip": "L-1A máximo 7 años total, L-1B máximo 5 años. Premium da decisión en 15 días."
+          },
+          "J1": {
+            "form": "Extensión del Programa DS-2019",
+            "purpose": "Extiende tu programa de visitante de intercambio J-1",
+            "fee": "Gratis (se requiere acción del patrocinador)",
+            "deadlineUrgent": "Contacta a tu patrocinador del programa de inmediato",
+            "deadlineSoon": "Contacta al patrocinador 3 meses antes de la fecha de fin",
+            "tip": "Solo tu patrocinador del programa puede extender el DS-2019. No puedes presentar esto tú mismo."
+          },
+          "B1B2": {
+            "form": "Formulario I-539",
+            "purpose": "Extiende tu estadía como visitante B-1/B-2",
+            "fee": "$370 en línea / $420 papel",
+            "deadlineUrgent": "Presenta de inmediato — la permanencia indebida tiene consecuencias serias",
+            "deadlineSoon": "Presenta al menos 45 días antes de que venza tu I-94",
+            "tip": "Debes presentar ANTES de que venza tu I-94. Quedarte aunque sea un día puede afectar futuras solicitudes de visa."
+          },
+          "EAD": {
+            "form": "Formulario I-765 Renovación",
+            "purpose": "Renueva tu Documento de Autorización de Empleo",
+            "fee": "$470 en línea / $520 papel",
+            "deadlineUrgent": "Presenta de inmediato — la validez del EAD ahora es máximo 18 meses",
+            "deadlineSoon": "Presenta 6 meses antes del vencimiento — el procesamiento toma de 3 a 5 meses",
+            "tip": "Las extensiones automáticas fueron eliminadas en octubre de 2025. Presenta temprano — una brecha en el EAD significa que no puedes trabajar legalmente."
+          },
+          "GC_pending": {
+            "form": "Renovación de Formularios I-765 / I-131",
+            "purpose": "Renueva tu tarjeta combo EAD/Permiso de Reingreso",
+            "fee": "$260 (con I-485 pendiente presentado después de abril 2024)",
+            "deadlineUrgent": "Presenta de inmediato — no dejes que venza la tarjeta combo",
+            "deadlineSoon": "Presenta 6 meses antes del vencimiento",
+            "tip": "Viajar sin un Permiso de Reingreso válido mientras tu I-485 está pendiente puede abandonar tu solicitud de green card."
+          }
+        }
+      }
+    },
+    "warnings": {
+      "h1bCap": "El periodo de registro de H-1B para FY2027 cierra el 19 de marzo de 2026. Una nueva lotería ponderada por salario favorece posiciones mejor pagadas.",
+      "h1bWeightedLottery": "Nuevo para FY2027: USCIS usa un proceso de selección ponderado. Los niveles salariales más altos tienen probabilidades significativamente mejores de selección. Las posiciones de nivel inicial enfrentan menores probabilidades.",
+      "h1bFeeAlert": "Proclamación Presidencial 10973: Una tarifa adicional de $100,000 aplica a ciertas peticiones H-1B que requieren procesamiento consular (beneficiario fuera de EE. UU.). Esta es adicional a todas las tarifas regulares de presentación.",
+      "h1bPremiumIncrease": "Las tarifas de procesamiento premium aumentaron a partir del 1 de marzo de 2026. I-129/I-140: ahora $2,965. I-765: ahora $1,780. I-539: ahora $2,075.",
+      "familyLongWait": "Algunas categorías de preferencia familiar tienen periodos de espera de varios años debido a los límites anuales de visas. Los hermanos en F4 pueden esperar más de 15 años para ciertos países.",
+      "familyPolicyShifts": "Las Proclamaciones Presidenciales han reducido las tasas de emisión de visas para ciertas nacionalidades. Las fechas han avanzado para otros países pero el retroceso es posible más adelante en FY2026.",
+      "indiaEbBacklog": "Fecha de acción final India EB-2: 15 de septiembre de 2013. EB-3: 15 de noviembre de 2013. El atraso sigue siendo de más de 12 años. Hubo algo de movimiento hacia adelante a principios de 2026.",
+      "chinaEbBacklog": "Fecha de acción final China EB-2: 1 de septiembre de 2021. EB-3: 1 de mayo de 2021. Persiste el atraso de varios años para solicitantes nacidos en China continental.",
+      "eadValidityReduced": "Efectivo el 5 de diciembre de 2025: La validez máxima del EAD se redujo de 5 años a 18 meses para solicitantes de ajuste de estatus, refugiados, asilados y categorías relacionadas. Presenta las renovaciones temprano — ahora son más probables las brechas en la autorización de empleo.",
+      "eadAutoExtensionEnded": "Efectivo el 30 de octubre de 2025: Las extensiones automáticas de 540 días del EAD han sido eliminadas para la mayoría de las categorías. Los EAD ahora vencen en su fecha impresa. Planea las renovaciones al menos 6 meses antes.",
+      "eadTpsParoleOneYear": "Según la H.R. 1 (One Big Beautiful Bill Act): Los EAD de TPS y parole ahora son válidos por un máximo de 1 año o el fin del periodo autorizado, lo que sea más corto.",
+      "asylumVolatility": "La política de asilo está sujeta a cambios activos incluyendo reglas de revisión mejoradas y regulaciones propuestas. Trata esta como una ruta de alta volatilidad y consulta a un abogado para obtener orientación actualizada.",
+      "studentOptPlanning": "Solicita el OPT hasta 90 días antes de graduarte. STEM OPT requiere empleador en E-Verify. El procesamiento actualmente toma aproximadamente 4.5 meses — planea en consecuencia.",
+      "processingTimesDisclaimer": "Los tiempos de procesamiento de USCIS se han ralentizado significativamente en los últimos meses. Los tiempos reales pueden exceder las estimaciones publicadas. Considera el procesamiento premium donde esté disponible."
+    },
+    "pathwayViability": {
+      "disclaimer": "Las evaluaciones de viabilidad son orientación general basada en la política y condiciones de procesamiento actuales. Las circunstancias individuales varían. Consulta a un abogado de inmigración para asesoría personalizada.",
+      "levels": {
+        "HIGH": {
+          "label": "Alta Viabilidad",
+          "description": "Ruta estructuralmente estable con proceso predecible"
+        },
+        "CONDITIONAL": {
+          "label": "Condicional",
+          "description": "Viable para el candidato adecuado, pero más limitada o competitiva"
+        },
+        "LOWER": {
+          "label": "Menor / Volátil",
+          "description": "Barreras significativas, esperas largas o incertidumbre política"
+        }
+      },
+      "pathways": {
+        "H1B": {
+          "shortReason": "La competencia por el cap es alta. La nueva lotería ponderada favorece salarios más altos.",
+          "details": {
+            "d1": "FY2027 introduce selección ponderada por salario — las posiciones de nivel inicial enfrentan menores probabilidades.",
+            "d2": "Tarifa adicional de $100,000 para ciertas peticiones que requieren procesamiento consular.",
+            "d3": "La tarifa de registro aumentó a $215. El procesamiento premium ahora $2,965.",
+            "d4": "La demanda excede consistentemente el cap anual de 85,000 en 4–8 veces."
+          },
+          "recommendation": "Mejor para candidatos con salarios ofrecidos en Nivel III o IV de OEWS. Considera alternativas como O-1 o L-1 si eres elegible."
+        },
+        "L1": {
+          "shortReason": "No sujeta al cap. Buena para empleados de multinacionales calificadas.",
+          "details": {
+            "d1": "No sujeta al cap anual de H-1B ni a la lotería.",
+            "d2": "Requiere 1 año de empleo con una empresa multinacional calificada.",
+            "d3": "Elegibilidad más estrecha, pero evita el cuello de botella de la temporada del cap.",
+            "d4": "Se puede presentar durante todo el año."
+          },
+          "recommendation": "Alta viabilidad para el candidato adecuado. Si has trabajado para una multinacional 1+ año, esta puede ser más fuerte que la H-1B."
+        },
+        "O1": {
+          "shortReason": "Sin cap, pero requiere evidencia de habilidad extraordinaria.",
+          "details": {
+            "d1": "No sujeta al cap anual — se puede presentar en cualquier momento.",
+            "d2": "Requiere documentación de habilidad o logros extraordinarios.",
+            "d3": "Estratégicamente atractiva para fundadores, investigadores, creativos, atletas.",
+            "d4": "Más difícil de calificar, pero más predecible que la H-1B si eres elegible."
+          },
+          "recommendation": "Si tienes premios, publicaciones, cobertura en medios o evidencia de salario alto, explora esta antes que la H-1B."
+        },
+        "IMMEDIATE_RELATIVE": {
+          "shortReason": "La ruta familiar más fuerte. No sujeta al sistema de atrasos por preferencia.",
+          "details": {
+            "d1": "Los familiares inmediatos de ciudadanos de EE. UU. no están limitados por cuotas por país.",
+            "d2": "Incluye cónyuges, hijos solteros menores de 21 años y padres de ciudadanos adultos.",
+            "d3": "Los tiempos de procesamiento se miden en meses, no años (a diferencia de las categorías de preferencia).",
+            "d4": "Proceso estructuralmente estable y bien documentado."
+          },
+          "recommendation": "Si calificas como familiar inmediato, esta es una de las rutas más confiables disponibles."
+        },
+        "FAMILY_PREFERENCE": {
+          "shortReason": "Atrasos de 5–20+ años dependiendo de la categoría y el país.",
+          "details": {
+            "d1": "Las categorías F1, F2B, F3, F4 enfrentan esperas de varios años.",
+            "d2": "México y Filipinas enfrentan los atrasos más largos (algunos de 20+ años).",
+            "d3": "Las Proclamaciones Presidenciales han impactado aún más las tasas de emisión para ciertas nacionalidades.",
+            "d4": "El retroceso es posible más adelante en FY2026."
+          },
+          "recommendation": "Presenta temprano para establecer una fecha de prioridad, pero planea para una espera larga. Considera si hay otras rutas disponibles en paralelo."
+        },
+        "F1_STUDENT": {
+          "shortReason": "Ruta de entrada estable. OPT/STEM OPT proporcionan un puente al trabajo.",
+          "details": {
+            "d1": "El estatus F-1, OPT y la extensión STEM OPT de 24 meses permanecen activos y estructuralmente intactos.",
+            "d2": "No es una ruta directa de inmigrante, pero sí una ruta realista de 'entrar, estudiar, trabajar y luego transicionar'.",
+            "d3": "Los tiempos de espera de embajada para F-1 son generalmente más cortos que otros tipos de visa.",
+            "d4": "Tarifa SEVIS: $350 para estudiantes F-1."
+          },
+          "recommendation": "Una de las rutas de entrada más prácticas para solicitantes jóvenes. Planea tu carrera STEM cuidadosamente para la ventana de OPT de 36 meses."
+        },
+        "EB_GENERAL": {
+          "shortReason": "Viable para la mayoría de países, pero India/China enfrentan atrasos severos.",
+          "details": {
+            "d1": "EB-2 y EB-3 del resto del mundo están relativamente al día o tienen esperas cortas.",
+            "d2": "India EB-2: fecha de acción final 15 de septiembre de 2013 (atraso de 12+ años).",
+            "d3": "China EB-2: fecha de acción final 1 de septiembre de 2021 (atraso de 4+ años).",
+            "d4": "Los límites por país crean disparidades masivas en los tiempos de espera."
+          },
+          "recommendation": "Para países sin atraso, esta es una ruta sólida. Para India/China, planea para una espera muy larga y explora alternativas como EB-1 o NIW."
+        },
+        "ASYLUM": {
+          "shortReason": "El entorno de política es volátil. Hay revisión mejorada en efecto.",
+          "details": {
+            "d1": "Cambios activos de política incluyendo reglas propuestas para revisión más estricta.",
+            "d2": "La validez del EAD para solicitantes de asilo se redujo a 18 meses.",
+            "d3": "Las extensiones automáticas del EAD fueron eliminadas (efectivas desde el 30 de octubre de 2025).",
+            "d4": "No debe tratarse como una 'estrategia' estable — es una ruta de protección para quienes tienen necesidad genuina."
+          },
+          "recommendation": "Si tienes un temor legítimo de persecución, busca asesoría legal de inmediato. No dependas del asilo como una estrategia migratoria planificada."
+        },
+        "CONSULAR_PROCESSING": {
+          "shortReason": "Proceso rastreable a través del NVC para relaciones familiares calificadas.",
+          "details": {
+            "d1": "Las herramientas NVC e IV scheduling del Departamento de Estado hacen esta ruta más rastreable.",
+            "d2": "Estructuralmente estable para familiares inmediatos y casos calificados de familia/empleo.",
+            "d3": "Puede ser lento, pero el proceso es visible a través de herramientas oficiales.",
+            "d4": "Las Proclamaciones Presidenciales han impactado el procesamiento para ciertas nacionalidades."
+          },
+          "recommendation": "Si estás en el extranjero con una petición calificada aprobada, esta es una ruta bien documentada y rastreable."
+        }
+      },
+      "modal": {
+        "recommendation": "Recomendación",
+        "updated": "Actualizado: {{date}}",
+        "close": "Cerrar"
+      }
+    },
+    "resources": {
+      "disclaimer": "Los listados son solo con fines informativos y no constituyen asesoría legal.",
+      "categories": {
+        "all": "Todos los Recursos",
+        "government": "Gobierno",
+        "legal": "Ayuda Legal",
+        "nonprofit": "Organizaciones Sin Fines de Lucro",
+        "education": "Educación"
+      },
+      "items": {
+        "uscis": {
+          "name": "Servicios de Ciudadanía e Inmigración de EE. UU. (USCIS)",
+          "description": "Agencia oficial de inmigración de EE. UU.",
+          "services": {
+            "forms": "Formularios",
+            "caseStatus": "Estatus del caso",
+            "appointments": "Citas"
+          }
+        },
+        "dos_visa": {
+          "name": "Departamento de Estado — Servicios de Visa",
+          "description": "Boletín de Visas, citas en embajadas, procesamiento consular",
+          "services": {
+            "visaBulletin": "Boletín de Visas",
+            "embassyInfo": "Información de embajada",
+            "ds160": "DS-160"
+          }
+        },
+        "doj_eoir": {
+          "name": "Corte de Inmigración EOIR",
+          "description": "",
+          "services": {
+            "courtInfo": "Información de la corte",
+            "hearingNotices": "Avisos de audiencia"
+          }
+        },
+        "dol_flag": {
+          "name": "Departamento de Trabajo — Sistema FLAG",
+          "description": "Certificación laboral, salarios prevalecientes, presentaciones LCA",
+          "services": {
+            "perm": "PERM",
+            "lca": "LCA",
+            "prevailingWages": "Salarios prevalecientes"
+          }
+        },
+        "imm_advocates": {
+          "name": "Immigration Advocates Network",
+          "description": "Directorio de ayuda legal de inmigración gratuita y de bajo costo",
+          "services": {
+            "proBono": "Servicios legales pro bono",
+            "knowYourRights": "Conoce tus derechos"
+          }
+        },
+        "lawhelp": {
+          "name": "LawHelp.org",
+          "description": "Encuentra ayuda legal gratuita en tu estado",
+          "services": {
+            "legalAidDirectory": "Directorio de ayuda legal",
+            "stateResources": "Recursos por estado"
+          }
+        },
+        "aila": {
+          "name": "AILA Lawyer Referral",
+          "description": "American Immigration Lawyers Association — encuentra un abogado",
+          "services": {
+            "referrals": "Referencias de abogados",
+            "lawUpdates": "Actualizaciones de ley migratoria"
+          }
+        },
+        "catholic_charities": {
+          "name": "Catholic Charities",
+          "description": "Servicios legales de inmigración y asistencia a refugiados",
+          "services": {
+            "legalAid": "Ayuda legal",
+            "refugeeServices": "Servicios para refugiados"
+          }
+        },
+        "raices": {
+          "name": "RAICES",
+          "description": "Centro de Refugiados e Inmigrantes para Educación y Servicios Legales",
+          "services": {
+            "legalRep": "Representación legal",
+            "bondAssistance": "Asistencia con fianza"
+          }
+        },
+        "clinic": {
+          "name": "CLINIC — Catholic Legal Immigration Network",
+          "description": "Red de programas sin fines de lucro de servicios legales de inmigración",
+          "services": {
+            "network": "Red de servicios legales",
+            "training": "Capacitación",
+            "advocacy": "Defensoría"
+          }
+        },
+        "usa_hello": {
+          "name": "USAHello",
+          "description": "Clases y recursos gratuitos para inmigrantes",
+          "services": {
+            "englishClasses": "Clases de inglés",
+            "citizenshipPrep": "Preparación para ciudadanía",
+            "gedPrep": "Preparación para GED"
+          }
+        },
+        "uscis_civics": {
+          "name": "Centro de Recursos de Ciudadanía de USCIS",
+          "description": "Materiales oficiales de estudio para el examen de ciudadanía",
+          "services": {
+            "civicsTestPrep": "Preparación para examen cívico",
+            "studyMaterials": "Materiales de estudio",
+            "practiceTests": "Exámenes de práctica"
+          }
+        }
+      },
+      "emergency": {
+        "humanTrafficking": "Línea Directa de Tráfico Humano",
+        "domesticViolence": "Línea Directa de Violencia Doméstica",
+        "uscisContactCenter": "Centro de Contacto de USCIS"
+      }
+    },
+    "policyTracker": {
+      "policies": {
+        "h1b100kFee": {
+          "title": "Tarifa H-1B de $100,000 — Procesamiento Consular",
+          "summary": "Pago adicional de $100,000 requerido para ciertas peticiones H-1B aprobadas para procesamiento consular.",
+          "details": "Aplica cuando el beneficiario está fuera de EE. UU. o cuando la petición es aprobada para procesamiento consular. Generalmente NO aplica a cambios de estatus F-1→H-1B dentro de EE. UU. El costo total para el empleador puede exceder $106,000.",
+          "actions": {
+            "a1": "Determina si el beneficiario califica para cambio de estatus (evita la tarifa)",
+            "a2": "Considera alternativas como L-1 u O-1 si eres elegible",
+            "a3": "Presupuesta de acuerdo si se requiere procesamiento consular"
+          },
+          "impactByStatus": {
+            "F1": "MODERADO — El cambio de estatus F-1→H-1B generalmente evita esta tarifa",
+            "OPT": "MODERADO — Los titulares de OPT elegibles para cap-gap pueden presentar cambio de estatus",
+            "H1B": "ALTO — Las transferencias que requieren procesamiento consular activan la tarifa",
+            "B1B2": "ALTO — Debe usar procesamiento consular, la tarifa aplica"
+          }
+        },
+        "eadValidity18Months": {
+          "title": "Validez del EAD Reducida a 18 Meses",
+          "summary": "La validez máxima del EAD se redujo de 5 años a 18 meses para solicitantes de ajuste de estatus, refugiados, asilados y categorías relacionadas.",
+          "details": "Afecta solicitudes I-765 pendientes y nuevas presentadas en o después del 5 de diciembre de 2025. NO afecta a OPT, STEM OPT, H-4, J-2 o L-2 EAD. Los EAD existentes mantienen su fecha de vencimiento impresa.",
+          "actions": {
+            "a1": "Presenta renovaciones de EAD al menos 6 meses antes del vencimiento",
+            "a2": "Sin extensiones automáticas de 540 días — planea posibles brechas laborales",
+            "a3": "Lleva un seguimiento cuidadoso de las fechas de vencimiento"
+          },
+          "impactByStatus": {
+            "GC_pending": "CRÍTICO — Debe renovar el EAD cada 18 meses",
+            "EAD": "ALTO — Verifica bajo qué categoría cae tu EAD",
+            "H1B": "BAJO — El estatus H-1B no se ve afectado",
+            "F1": "BAJO — Los EAD de OPT no se ven afectados por esta política"
+          }
+        },
+        "eadAutoExtensionEnded": {
+          "title": "Extensiones Automáticas de 540 Días del EAD Eliminadas",
+          "summary": "Las extensiones automáticas de 540 días del EAD terminaron para la mayoría de las categorías. Los EAD ahora vencen en la fecha impresa.",
+          "details": "Anteriormente, las renovaciones de EAD presentadas a tiempo extendían automáticamente el EAD anterior por 540 días. Esto ya no es así. Si USCIS no ha adjudicado tu renovación para la fecha de vencimiento de tu EAD, debes dejar de trabajar.",
+          "actions": {
+            "a1": "Presenta las renovaciones lo antes posible (6 meses antes del vencimiento)",
+            "a2": "Considera el procesamiento premium para I-765 si está disponible ($1,780)",
+            "a3": "Mantén un estatus alternativo si es posible"
+          }
+        },
+        "h1bWeightedLottery": {
+          "title": "Lotería H-1B Ponderada por Salario (FY2027+)",
+          "summary": "USCIS reemplazó la lotería aleatoria de H-1B con un sistema de selección ponderado por salario. Salarios más altos = mejores probabilidades.",
+          "details": "Los salarios de Nivel I (inicial) reciben probabilidades de 1x. Los salarios de Nivel IV (experto) reciben hasta 4x de probabilidades. El registro debe incluir el código SOC y el nivel salarial OEWS. Aplicado por primera vez al registro FY2027 (4-19 de marzo de 2026).",
+          "actions": {
+            "a1": "Ofrece salarios competitivos para maximizar las probabilidades de selección",
+            "a2": "Asegura el código SOC y nivel salarial correctos en el registro",
+            "a3": "Considera O-1 o L-1 si las probabilidades de H-1B no son favorables a tu nivel salarial"
+          },
+          "impactByStatus": {
+            "OPT": "ALTO — Las ofertas de nivel inicial enfrentan probabilidades significativamente reducidas",
+            "F1": "ALTO — Afecta las perspectivas de H-1B después de la graduación",
+            "H1B": "MODERADO — Afecta las transferencias si se necesita un nuevo registro"
+          }
+        },
+        "premiumProcessingFeeIncrease": {
+          "title": "Tarifas de Procesamiento Premium Aumentadas",
+          "summary": "Todas las tarifas de procesamiento premium aumentaron ~5.7% efectivas el 1 de marzo de 2026.",
+          "details": "I-129/I-140: $2,965 (era $2,805). I-539: $2,075 (era $1,965). I-765: $1,780 (era $1,685). Las presentaciones con sello postal antes del 1 de marzo podían usar las tarifas anteriores.",
+          "actions": {
+            "a1": "Presupuesta para costos más altos de procesamiento premium",
+            "a2": "Las presentaciones con sello postal en o después del 1 de marzo deben incluir la nueva tarifa",
+            "a3": "Las tarifas incorrectas resultarán en rechazo"
+          }
+        },
+        "visaBulletinProclamationImpact": {
+          "title": "Proclamaciones Presidenciales Afectando la Emisión de Visas",
+          "summary": "Las Proclamaciones 10949 y 10998 han reducido la emisión de visas de inmigrante para ciertas nacionalidades. Las fechas avanzaron para otros países.",
+          "details": "Algunas categorías de familia y empleo han sido avanzadas para países no afectados. El retroceso puede ocurrir más adelante en FY2026 a medida que la demanda se materializa o cambian las proclamaciones.",
+          "actions": {
+            "a1": "Verifica el Boletín de Visas de marzo de 2026 para fechas actuales",
+            "a2": "Presenta el I-485 prontamente cuando las fechas estén al día",
+            "a3": "Monitorea mensualmente el riesgo de retroceso"
+          }
+        },
+        "tpsParoleEadOneYear": {
+          "title": "EAD de TPS/Parole — Máximo 1 Año",
+          "summary": "H.R. 1 (One Big Beautiful Bill Act) limita los EAD de TPS y parole a 1 año o el fin del periodo autorizado.",
+          "details": "Los EAD iniciales y de renovación para beneficiarios de TPS y personas en parole ahora son válidos por el menor entre 1 año o la fecha de fin del periodo autorizado. Implementado mediante aviso del Registro Federal del 22 de julio de 2025.",
+          "actions": {
+            "a1": "Presenta las renovaciones bastante antes del vencimiento",
+            "a2": "Presupuesta para tarifas de presentación más frecuentes",
+            "a3": "Lleva un seguimiento cuidadoso de las fechas de fin de autorización"
+          }
+        },
+        "indiaEbBacklogUpdate": {
+          "title": "India EB-2/EB-3 — Atraso de 12+ Años",
+          "summary": "India EB-2 fecha de acción final: 15 de septiembre de 2013. EB-3: 15 de noviembre de 2013. Algo de movimiento hacia adelante a principios de 2026.",
+          "details": "EB-2 India avanzó del 15 de mayo de 2013 (enero 2025) al 15 de septiembre de 2013 (marzo 2026). EB-3 India avanzó al 15 de noviembre de 2013. Las Fechas para Presentar muestran más movimiento. El boletín de abril de 2026 muestra avances adicionales.",
+          "actions": {
+            "a1": "Mantén el estatus H-1B — no permitas que venza",
+            "a2": "Presenta extensiones de H-1B basadas en el I-140 aprobado",
+            "a3": "Considera EB-1A/EB-1B si calificas",
+            "a4": "Explora EB-5 como alternativa si es financieramente factible"
+          }
+        },
+        "h4EadPremiumAvailable": {
+          "title": "Procesamiento Premium para EAD H-4 Disponible",
+          "summary": "Procesamiento premium disponible para solicitudes independientes de EAD H-4.",
+          "details": "Procesamiento de 30 días por $1,780 (actualizado el 1 de marzo de 2026).",
+          "actions": {
+            "a1": "Considera el procesamiento premium si la autorización de empleo es urgente",
+            "a2": "Presenta junto con la extensión de H-1B para agilizar"
+          }
+        },
+        "srCategoryExtended": {
+          "title": "Categoría de Trabajadores Religiosos (SR) Extendida",
+          "summary": "Categoría EB-4 de Trabajadores Religiosos extendida hasta el 30 de septiembre de 2026.",
+          "details": "La categoría SR está sujeta a las mismas fechas para presentar y fechas de acción final que otras categorías EB-4."
+        }
+      },
+      "courtCases": {
+        "weightedLotteryChallenge": {
+          "case": "Múltiples impugnaciones a la selección H-1B ponderada por salario",
+          "impact": "Podría retrasar o modificar el sistema de lotería ponderada por salario",
+          "probability": "30% de probabilidad de medida cautelar",
+          "contingencyActions": {
+            "a1": "Prepárate para resultados de lotería tanto aleatoria como ponderada",
+            "a2": "Presenta al nivel salarial apropiado independientemente"
+          }
+        }
+      },
+      "upcomingChanges": {
+        "fy2027SelectionsComplete": {
+          "title": "Selecciones H-1B FY2027 Completas",
+          "impact": "Todas las notificaciones iniciales de selección enviadas. Tasa de selección de ~34-42%.",
+          "action": "Si fuiste seleccionado, comienza la preparación de la petición de inmediato. Si está 'Sometido', es posible una segunda ronda."
+        },
+        "h1bFilingWindowOpen": {
+          "title": "Ventana de Presentación H-1B AHORA ABIERTA",
+          "impact": "Los registros seleccionados pueden presentar peticiones I-129 hasta el 30 de junio",
+          "action": "Presenta la petición lo antes posible — la ventana de 90 días cierra el 30 de junio de 2026"
+        },
+        "h1bFilingWindowCloses": {
+          "title": "Ventana de Presentación H-1B Cierra",
+          "impact": "Último día para presentar peticiones FY2027 sujetas al cap",
+          "action": "Asegúrate de que la petición se presente antes de la fecha límite"
+        },
+        "newOewsWageData": {
+          "title": "Se Esperan Nuevos Datos Salariales OEWS",
+          "impact": "Salarios prevalecientes actualizados para julio 2026–junio 2027",
+          "action": "Revisa los nuevos niveles salariales para presentaciones pendientes y futuras"
+        },
+        "fy2026EndsDvExpires": {
+          "title": "FY2026 Termina — DV-2026 Vence",
+          "impact": "Los números de visa de diversidad para DV-2026 vencen",
+          "action": "Los seleccionados de DV-2026 deben completar el procesamiento antes de esta fecha"
+        },
+        "fy2027EmploymentStart": {
+          "title": "Inicio del Empleo H-1B FY2027",
+          "impact": "Los beneficiarios H-1B FY2027 aprobados pueden comenzar a trabajar",
+          "action": "Verifica la aprobación I-797 y la fecha de inicio"
+        }
+      },
+      "embassyAlerts": {
+        "torontoDelays": {
+          "location": "Toronto, Canadá",
+          "currentWait": "16 meses para B-1/B-2",
+          "normalWait": "3 meses",
+          "reason": "Demanda alta sostenida",
+          "alternatives": {
+            "alt1": "Ottawa (11.5 meses)",
+            "alt2": "Vancouver (8 meses)"
+          },
+          "action": "Considera solicitar en tu país de origen o embajada alternativa"
+        },
+        "juarezB1B2Delays": {
+          "location": "Ciudad Juárez, México",
+          "currentWait": "15.5 meses para B-1/B-2",
+          "normalWait": "3 meses",
+          "reason": "Alta demanda de visas inmigrantes y no inmigrantes",
+          "alternatives": {
+            "alt1": "Ciudad de México (10 meses)",
+            "alt2": "Monterrey (10 meses)"
+          },
+          "action": "Reserva la primera cita disponible; considera puestos alternativos"
+        }
+      },
+      "analyzer": {
+        "imminentEffect": "⚠️ Entra en vigor en {{days}} días — se necesita acción inmediata",
+        "optToH1bImpact": "Afecta directamente tu transición de OPT a H-1B",
+        "indiaSpecific": "Impacta específicamente a nacionales indios",
+        "genericImpact": "Puede afectar tu camino migratorio",
+        "courtCaseImpact": "{{probability}} — Decisión esperada {{date}}"
+      }
+    },
+    "resourcesScreen": {
+      "title": "Recursos y Herramientas",
+      "subtitle": "Información oficial y calculadoras",
+      "dataUpdateBadgeLabel": "Recursos",
+      "searchPlaceholder": "Buscar recursos...",
+      "toolsTitle": "🧮 Calculadoras Rápidas",
+      "tools": {
+        "h1bCost": {
+          "name": "Costo H-1B",
+          "desc": "Con tarifa de $100k"
+        },
+        "wageCheck": {
+          "name": "Verificar Salario",
+          "desc": "Salario prevaleciente"
+        },
+        "timeline": {
+          "name": "Cronograma",
+          "desc": "Recorrido total"
+        },
+        "priorityDate": {
+          "name": "Fecha de Prioridad",
+          "desc": "Boletín de visas"
+        }
+      },
+      "h1bCostDialog": {
+        "title": "💰 Calculadora de Costo H-1B",
+        "body": "Costo Total Estimado: ${{total}}\n\nDesglose:\n• Registro: ${{registration}}\n• Presentación: ${{filing}}\n• Prevención de Fraude: ${{fraudPrevention}}\n• Competitividad: ${{competitiveness}}\n• Tarifa Presidencial: ${{presidentialFee}}\n• Procesamiento Premium: ${{premium}}\n\n⚠️ La tarifa presidencial aplica después del 21 de septiembre de 2025"
+      },
+      "wageDialog": {
+        "title": "💼 Verificación de Salario Requerido",
+        "meets": "✅ Salario CUMPLE el requisito\n\nOfrecido: ${{offered}}\nRequerido: ${{required}}\nDiferencia: +${{difference}}\nNivel: {{level}}",
+        "below": "❌ Salario POR DEBAJO del requisito\n\nOfrecido: ${{offered}}\nRequerido: ${{required}}\nDéficit: ${{shortfall}}\nNivel: {{level}}"
+      },
+      "timelineDialog": {
+        "title": "⏱️ Calculadora de Cronograma",
+        "body": "Ejemplo: Familiar (Familiar Inmediato)\n\n• Procesamiento I-130: 50 meses\n• Procesamiento NVC: 2-3 meses\n• Entrevista en Embajada: 2-12 meses\n• Total: ~58 meses (5 años)\n\nPara un cronograma personalizado, usa el Visualizador de Cronograma",
+        "openTimeline": "Abrir Cronograma"
+      },
+      "priorityDateDialog": {
+        "title": "📊 Fecha de Prioridad",
+        "body": "Revisa el Boletín de Visas para fechas actuales:\n\n• Familiar F4 (hermanos): 2001-2008\n• India EB-2: mayo 2013\n• India EB-3: septiembre 2013\n\nActualizado mensualmente en travel.state.gov"
+      },
+      "officialProcessing": {
+        "title": "🏛️ Tiempos Oficiales de Procesamiento",
+        "uscisProcessingTimes": "Tiempos de Procesamiento de USCIS",
+        "visaBulletin": "Boletín de Visas",
+        "embassyWaitTimes": "Tiempos de Espera en Embajadas"
+      },
+      "emergencyTitle": "🆘 Líneas de Emergencia (24/7)",
+      "officialBadge": "Oficial",
+      "callButton": "📞 Llamar",
+      "websiteButton": "🌐 Sitio Web",
+      "ok": "OK"
+    },
+    "statusDetailsScreen": {
+      "headerTitle": "Panel de Estatus Migratorio",
+      "statusLabel": "Estatus: {{status}}",
+      "status": {
+        "Critical": "CRÍTICO",
+        "Attention": "ATENCIÓN",
+        "Good": "BUENO",
+        "Unknown": "DESCONOCIDO"
+      },
+      "sections": {
+        "criticalAlerts": "🚨 Alertas Críticas",
+        "policyAlerts": "📢 Alertas de Política Que Te Afectan",
+        "pathwayViability": "📊 Viabilidad de Tu Ruta",
+        "currentStatus": "📋 Estatus Actual",
+        "complianceTracking": "⏱️ Seguimiento de Cumplimiento",
+        "importantDates": "📅 Fechas Importantes",
+        "scoreBreakdown": "📊 Desglose del Puntaje"
+      },
+      "alertDays": "{{count}} días",
+      "takeAction": "Tomar Acción ›",
+      "statusGrid": {
+        "visaType": "Tipo de Visa",
+        "workAuth": "Aut. de Empleo",
+        "country": "País",
+        "location": "Ubicación",
+        "notSpecified": "No especificado",
+        "insideUs": "En EE. UU.",
+        "outsideUs": "Fuera de EE. UU."
+      },
+      "compliance": {
+        "editButton": "Editar",
+        "doneButton": "Listo",
+        "optUnemploymentDays": "Días de Desempleo en OPT",
+        "daysOutsideUs": "Días Fuera de EE. UU. (Este Año)",
+        "optProgress": "{{used}} / 90",
+        "daysSuffix": "{{count}} días",
+        "approachingLimit": "⚠️ ¡Acercándote al límite de 90 días! Encuentra empleo pronto.",
+        "extendedAbsence": "⚠️ La ausencia prolongada puede afectar la residencia continua"
+      },
+      "statusExpiry": "Vencimiento de Estatus",
+      "noIssues": "✅ No se detectaron problemas mayores",
+      "issuePoints": "-10",
+      "actions": {
+        "updateDocuments": "Actualizar Documentos",
+        "viewTimeline": "Ver Cronograma",
+        "policyTracker": "Rastreador de Políticas",
+        "exportReport": "Exportar Reporte 📄"
+      },
+      "exportDialog": {
+        "title": "Exportar Reporte de Estatus",
+        "body": "¿Generar un resumen PDF de tu estatus migratorio?",
+        "export": "Exportar",
+        "comingSoonTitle": "Próximamente",
+        "comingSoonBody": "La función de exportar PDF llegará en la próxima actualización"
+      }
+    },
+    "policyTrackerScreen": {
+      "nextImportantDate": "Próxima Fecha Importante",
+      "nextImportantDateText": "{{title}} en {{days}} días",
+      "tabs": {
+        "affectingYou": "Te Afectan",
+        "allPolicies": "Todas las Políticas",
+        "courtCases": "Casos Judiciales",
+        "calendar": "Calendario"
+      },
+      "daysSuffix": "{{count}} días",
+      "policyCard": {
+        "yourImpact": "Tu Impacto:",
+        "recommendedActions": "Acciones Recomendadas:",
+        "source": "Fuente: {{source}}",
+        "published": "Publicado: {{date}}",
+        "more": "Más",
+        "less": "Menos"
+      },
+      "courtCard": {
+        "status": "Estatus: {{status}}",
+        "expectedDecision": "Decisión esperada: {{date}}",
+        "contingencyPlans": "Planes de Contingencia:"
+      },
+      "caseStatuses": {
+        "pending": "Pendiente",
+        "decided": "Decidido",
+        "dismissed": "Desestimado"
+      },
+      "embassyCard": {
+        "currentWait": "Espera actual: {{wait}}",
+        "alternatives": "Alternativas: {{list}}"
+      },
+      "alertTypes": {
+        "processing_delay": "RETRASO DE PROCESAMIENTO",
+        "appointment_unavailable": "CITA NO DISPONIBLE",
+        "post_closure": "CIERRE DE PUESTO"
+      },
+      "affectsYour": {
+        "count_one": "{{count}} política afecta tu estatus",
+        "count_other": "{{count}} políticas afectan tu estatus"
+      },
+      "emptyState": {
+        "title": "Sin Cambios Críticos",
+        "body": "Ninguna política actual afecta directamente tu estatus migratorio"
+      },
+      "sectionTitles": {
+        "criticalChanges": "Cambios Críticos",
+        "warnings": "Advertencias",
+        "information": "Información",
+        "casesMonitored": "Casos Monitoreados",
+        "embassyAlerts": "Alertas de Embajada",
+        "upcomingChanges": "Cambios Próximos"
+      },
+      "lastChecked": "Última verificación: {{datetime}}"
+    },
+    "checklistDocuments": {
+      "work": {
+        "required": {
+          "passport": {
+            "name": "Pasaporte Vigente",
+            "description": "Debe ser válido al menos 6 meses más allá de la estadía prevista"
+          },
+          "photos": {
+            "name": "Fotos de Pasaporte",
+            "description": "2x2 pulgadas, fondo blanco",
+            "quantity": "2 fotos"
+          },
+          "ds160": {
+            "name": "Formulario DS-160",
+            "description": "Confirmación de solicitud de visa en línea"
+          },
+          "i129": {
+            "name": "Aprobación del Formulario I-129",
+            "description": "Aprobación de la petición del empleador por USCIS",
+            "who": "El empleador la proporciona"
+          },
+          "lca": {
+            "name": "Solicitud de Condición Laboral",
+            "description": "Certificación del DOL para H-1B",
+            "who": "El empleador la presenta"
+          },
+          "degree": {
+            "name": "Título de Licenciatura o Superior",
+            "description": "En el campo de especialidad con expedientes"
+          },
+          "resume": {
+            "name": "Currículum/CV",
+            "description": "Experiencia profesional"
+          }
+        },
+        "oneOf": {
+          "employment_letter": {
+            "name": "Carta de Oferta de Empleo",
+            "description": "Detalla puesto, salario, deberes"
+          },
+          "employment_contract": {
+            "name": "Contrato de Empleo",
+            "description": "Acuerdo firmado con el empleador"
+          }
+        },
+        "recommended": {
+          "experience_letters": {
+            "name": "Cartas de Experiencia",
+            "description": "De empleadores anteriores"
+          },
+          "awards": {
+            "name": "Premios/Publicaciones",
+            "description": "Logros profesionales"
+          }
+        }
+      },
+      "family": {
+        "required": {
+          "passport": {
+            "name": "Pasaporte Vigente",
+            "description": "Debe ser válido al menos 6 meses"
+          },
+          "photos": {
+            "name": "Fotos de Pasaporte",
+            "description": "2x2 pulgadas, fondo blanco",
+            "quantity": "2 fotos"
+          },
+          "ds260": {
+            "name": "Formulario DS-260",
+            "description": "Solicitud de visa de inmigrante en línea"
+          },
+          "i130": {
+            "name": "Aprobación del Formulario I-130",
+            "description": "Aprobación de la petición familiar por USCIS",
+            "who": "El peticionario la presenta"
+          },
+          "birth_cert": {
+            "name": "Acta de Nacimiento",
+            "description": "Original con traducción"
+          },
+          "marriage_cert": {
+            "name": "Acta de Matrimonio",
+            "description": "Si la petición es de cónyuge",
+            "whenNeeded": "Peticiones de cónyuge"
+          },
+          "i864": {
+            "name": "Formulario I-864 Declaración de Apoyo",
+            "description": "Patrocinio financiero del peticionario",
+            "who": "El peticionario lo proporciona"
+          },
+          "police_cert": {
+            "name": "Certificados Policiales",
+            "description": "De todos los países donde se vivió 6+ meses"
+          }
+        },
+        "oneOf": {
+          "petitioner_citizenship": {
+            "name": "Pasaporte Estadounidense del Peticionario",
+            "description": "Prueba de ciudadanía estadounidense"
+          },
+          "petitioner_greencard": {
+            "name": "Tarjeta Verde del Peticionario",
+            "description": "Si el peticionario es residente permanente legal"
+          }
+        },
+        "recommended": {
+          "photos_together": {
+            "name": "Fotos Juntos",
+            "description": "Evidencia de la relación"
+          },
+          "correspondence": {
+            "name": "Registros de Comunicación",
+            "description": "Correos, mensajes, cartas"
+          },
+          "joint_accounts": {
+            "name": "Cuentas Conjuntas",
+            "description": "Banco, seguros, propiedad"
+          }
+        }
+      },
+      "student": {
+        "required": {
+          "passport": {
+            "name": "Pasaporte Vigente",
+            "description": "Debe ser válido durante todo el período de estudio"
+          },
+          "photos": {
+            "name": "Fotos de Pasaporte",
+            "description": "2x2 pulgadas, fondo blanco",
+            "quantity": "2 fotos"
+          },
+          "ds160": {
+            "name": "Formulario DS-160",
+            "description": "Confirmación de solicitud de visa en línea"
+          },
+          "i20": {
+            "name": "Formulario I-20",
+            "description": "Certificado de Elegibilidad de la escuela",
+            "who": "La escuela lo proporciona"
+          },
+          "sevis": {
+            "name": "Recibo de Tarifa SEVIS",
+            "description": "Confirmación de pago I-901 ($350)"
+          },
+          "acceptance": {
+            "name": "Carta de Admisión",
+            "description": "Aceptación oficial de escuela SEVP"
+          },
+          "transcripts": {
+            "name": "Expedientes Académicos",
+            "description": "Registros de educación previa"
+          },
+          "financial_proof": {
+            "name": "Evidencia Financiera",
+            "description": "Estados bancarios mostrando ~$40,000/año"
+          }
+        },
+        "oneOf": {
+          "test_scores": {
+            "name": "Puntajes TOEFL/IELTS",
+            "description": "Examen de competencia en inglés"
+          },
+          "english_medium": {
+            "name": "Certificado de Educación en Inglés",
+            "description": "Si la educación previa fue en inglés"
+          }
+        },
+        "recommended": {
+          "sponsor_letter": {
+            "name": "Carta de Patrocinador",
+            "description": "Si alguien más está pagando"
+          },
+          "study_plan": {
+            "name": "Plan de Estudios",
+            "description": "Por qué este programa y metas futuras"
+          },
+          "gre_gmat": {
+            "name": "Puntajes GRE/GMAT",
+            "description": "Si se enviaron a la escuela"
+          }
+        }
+      },
+      "citizenship": {
+        "required": {
+          "n400": {
+            "name": "Formulario N-400",
+            "description": "Solicitud de Naturalización — $760 papel / $710 en línea / $0 militar",
+            "who": "El solicitante lo presenta a USCIS"
+          },
+          "green_card_copy": {
+            "name": "Tarjeta de Residente Permanente (Green Card)",
+            "description": "Copia del frente y reverso de la tarjeta verde actual"
+          },
+          "passport_photos": {
+            "name": "Fotos de Pasaporte",
+            "description": "2x2 pulgadas, fondo blanco",
+            "quantity": "2 fotos"
+          },
+          "passport_copy": {
+            "name": "Pasaporte Vigente o Documento de Viaje",
+            "description": "Copia de cada pasaporte usado en los últimos 5 años"
+          },
+          "tax_returns": {
+            "name": "Declaraciones de Impuestos Federales",
+            "description": "Últimos 5 años (3 años si está casado con ciudadano de EE. UU.)"
+          },
+          "travel_records": {
+            "name": "Registro de Historial de Viajes",
+            "description": "Todos los viajes fuera de EE. UU. en los últimos 5 años — fechas, destinos, duración"
+          },
+          "selective_service": {
+            "name": "Registro del Servicio Selectivo",
+            "description": "Si es hombre y vivió en EE. UU. entre los 18–26 años después de 1980",
+            "whenNeeded": "Hombres de 18–26 años que vivieron en EE. UU."
+          }
+        },
+        "oneOf": {
+          "marriage_cert_3yr": {
+            "name": "Acta de Matrimonio + Prueba de Ciudadanía del Cónyuge",
+            "description": "Requerido si solicita bajo la regla de 3 años (casado con ciudadano de EE. UU.)",
+            "whenNeeded": "Solo ruta de matrimonio de 3 años"
+          },
+          "dd214": {
+            "name": "DD-214 / Documentos de Baja Militar",
+            "description": "Certificado de Liberación o Baja del Servicio Activo",
+            "whenNeeded": "Solo solicitantes militares"
+          }
+        },
+        "recommended": {
+          "birth_cert_citizenship": {
+            "name": "Acta de Nacimiento",
+            "description": "Con traducción certificada al inglés si es necesario"
+          },
+          "prior_marriage_docs": {
+            "name": "Decretos de Divorcio / Registros de Matrimonios Anteriores",
+            "description": "Para cualquier matrimonio anterior — USCIS puede solicitarlos"
+          },
+          "criminal_records": {
+            "name": "Registros de Disposición Judicial",
+            "description": "Para cualquier arresto o cargo — incluso los desestimados",
+            "whenNeeded": "Si tienes algún arresto o historial criminal"
+          },
+          "name_change": {
+            "name": "Documentos de Cambio Legal de Nombre",
+            "description": "Orden judicial si tu nombre difiere de la tarjeta verde"
+          },
+          "civics_study": {
+            "name": "Materiales de Estudio del Examen Cívico",
+            "description": "100 preguntas disponibles gratis en uscis.gov/citizenship/tessprep"
+          }
+        }
+      },
+      "common": {
+        "interview_appt": {
+          "name": "Confirmación de Cita de Entrevista",
+          "description": "Cita en embajada/consulado"
+        },
+        "fee_receipt": {
+          "name": "Recibo de Pago de Tarifa de Visa",
+          "description": "Confirmación de pago de tarifa MRV"
+        }
+      },
+      "medical": {
+        "medical_exam": {
+          "name": "Examen Médico",
+          "description": "Solo de un médico panel",
+          "whenNeeded": "Solicitantes de tarjeta verde",
+          "cost": "$200-500"
+        },
+        "vaccinations": {
+          "name": "Registros de Vacunación",
+          "description": "Las vacunas requeridas varían según la edad",
+          "whenNeeded": "Si se solicita"
+        }
+      },
+      "interviewPrep": {
+        "civics_100": {
+          "name": "Estudia las 100 Preguntas Cívicas",
+          "description": "El oficial de USCIS hará hasta 10 — debes responder 6 correctamente",
+          "whenNeeded": "Todos los solicitantes"
+        },
+        "english_reading": {
+          "name": "Práctica de Lectura en Inglés",
+          "description": "El oficial te pedirá leer 1 de 3 oraciones",
+          "whenNeeded": "Todos los solicitantes menores de 65 años sin exención de 20 años"
+        },
+        "english_writing": {
+          "name": "Práctica de Escritura en Inglés",
+          "description": "El oficial te pedirá escribir 1 de 3 oraciones",
+          "whenNeeded": "Todos los solicitantes menores de 65 años sin exención de 20 años"
+        },
+        "n400_review": {
+          "name": "Revisa Tus Respuestas del N-400",
+          "description": "El oficial repasará tu N-400 línea por línea — conoce tus respuestas",
+          "whenNeeded": "Todos los solicitantes"
+        }
+      }
+    },
+    "timelineData": {
+      "work": {
+        "h1b": {
+          "label": "H-1B",
+          "totalTime": "8-14 meses (más espera de lotería)",
+          "alert": "Registro FY2027 cerrado el 19 de marzo. Lotería ponderada por salario — salarios más altos = mejores probabilidades.",
+          "steps": {
+            "s1": {
+              "title": "Oferta de Trabajo",
+              "duration": "Variable",
+              "description": "Asegura empleo con empleador patrocinador. El nivel salarial afecta las probabilidades de la lotería."
+            },
+            "s2": {
+              "title": "Registro H-1B",
+              "duration": "4-19 de marzo",
+              "description": "Tarifa de registro: $215. El empleador presenta vía MyUSCIS. Se requiere código SOC y nivel salarial."
+            },
+            "s3": {
+              "title": "Aviso de Selección",
+              "duration": "Antes del 31 de marzo",
+              "description": "Selección ponderada por salario: Nivel IV hasta 4x probabilidades vs Nivel I."
+            },
+            "s4": {
+              "title": "Presentación LCA",
+              "duration": "7 días",
+              "description": "Solicitud de Condición Laboral con DOL"
+            },
+            "s5": {
+              "title": "Petición I-129",
+              "duration": "6-8 meses",
+              "description": "Procesamiento regular de USCIS (real: 8+ meses). Premium: 15 días por $2,965"
+            },
+            "s6": {
+              "title": "Tarifa de $100K (si aplica)",
+              "duration": "Al presentar",
+              "description": "Aplica a casos de procesamiento consular. NO aplica a la mayoría de cambios de estatus F-1→H-1B."
+            },
+            "s7": {
+              "title": "Sello de Visa (si está en el extranjero)",
+              "duration": "1-3 meses",
+              "description": "DS-160 + entrevista en embajada. India: ~1 mes, México: ~1 mes"
+            },
+            "s8": {
+              "title": "Comenzar a Trabajar",
+              "duration": "1 de octubre o después",
+              "description": "No puede comenzar antes de que comience el año fiscal"
+            }
+          }
+        },
+        "l1": {
+          "label": "L-1",
+          "totalTime": "4-8 meses en total",
+          "steps": {
+            "s1": {
+              "title": "Verificación de Elegibilidad",
+              "duration": "1 semana",
+              "description": "Confirma 1 año de empleo en el extranjero con empresa calificada"
+            },
+            "s2": {
+              "title": "Petición I-129",
+              "duration": "4-6 meses",
+              "description": "Procesamiento regular de USCIS. Sin cap ni lotería."
+            },
+            "s3": {
+              "title": "Opción Premium",
+              "duration": "15 días",
+              "description": "Procesamiento premium disponible por $2,965"
+            },
+            "s4": {
+              "title": "Estampado de Visa",
+              "duration": "1-2 meses",
+              "description": "Entrevista en embajada si está fuera de EE. UU."
+            },
+            "s5": {
+              "title": "Comenzar a Trabajar",
+              "duration": "Inmediatamente",
+              "description": "L-1 no tiene restricción de año fiscal"
+            }
+          }
+        },
+        "o1": {
+          "label": "O-1",
+          "totalTime": "3-6 meses",
+          "steps": {
+            "s1": {
+              "title": "Construir Evidencia",
+              "duration": "Variable",
+              "description": "Reunir premios, publicaciones, cobertura mediática, evidencia salarial"
+            },
+            "s2": {
+              "title": "Carta de Consulta",
+              "duration": "2-4 semanas",
+              "description": "De grupo de pares o sindicato si aplica"
+            },
+            "s3": {
+              "title": "Petición I-129",
+              "duration": "2-4 meses",
+              "description": "Procesamiento regular de USCIS. Premium disponible por $2,965."
+            },
+            "s4": {
+              "title": "Estampado de Visa",
+              "duration": "1-2 meses",
+              "description": "Entrevista en embajada si está fuera de EE. UU."
+            }
+          }
+        },
+        "eb": {
+          "label": "Tarjeta Verde (EB)",
+          "totalTime": "1-15 años (depende del país)",
+          "alert": "Atraso India EB-2/3: 12+ años. La mayoría de países: 1-3 años.",
+          "steps": {
+            "s1": {
+              "title": "Certificación Laboral PERM",
+              "duration": "~17 meses",
+              "description": "Certificación laboral del DOL (solo EB-2/EB-3)"
+            },
+            "s2": {
+              "title": "Petición I-140",
+              "duration": "6-12 meses",
+              "description": "Aprobación de USCIS. Premium 15 días por $2,965."
+            },
+            "s3": {
+              "title": "Espera de Fecha de Prioridad",
+              "duration": "Variable",
+              "description": "Espera a que el número de visa esté disponible según el Boletín de Visas"
+            },
+            "s4": {
+              "title": "I-485 / DS-260",
+              "duration": "8-14 meses",
+              "description": "Ajuste de estatus (en EE. UU.) o procesamiento consular"
+            },
+            "s5": {
+              "title": "Tarjeta Verde",
+              "duration": "Entrega de tarjeta",
+              "description": "Tarjeta física enviada por correo 2-4 semanas después de la aprobación"
+            }
+          }
+        }
+      },
+      "family": {
+        "immediateRelative": {
+          "label": "Familiar Inmediato",
+          "totalTime": "12-18 meses",
+          "steps": {
+            "s1": {
+              "title": "Petición I-130",
+              "duration": "12-15 meses",
+              "description": "El peticionario presenta para cónyuge, hijo menor de 21 años o padre"
+            },
+            "s2": {
+              "title": "Procesamiento NVC",
+              "duration": "2-3 meses",
+              "description": "Pagar tarifas, presentar documentos civiles, DS-260"
+            },
+            "s3": {
+              "title": "Entrevista en Embajada",
+              "duration": "2-4 meses",
+              "description": "Programar entrevista, examen médico, asistir a entrevista"
+            },
+            "s4": {
+              "title": "Emisión de Visa",
+              "duration": "1-2 semanas",
+              "description": "Recibir visa, ingresar a EE. UU., convertirse en residente permanente"
+            }
+          }
+        },
+        "f4": {
+          "label": "F4 Hermano",
+          "totalTime": "15-20+ años",
+          "alert": "F4 (hermanos) tiene las esperas más largas — México/Filipinas: 25+ años",
+          "steps": {
+            "s1": {
+              "title": "Petición I-130",
+              "duration": "12-18 meses",
+              "description": "Hermano ciudadano estadounidense presenta la petición"
+            },
+            "s2": {
+              "title": "Espera de Fecha de Prioridad",
+              "duration": "15-25 años",
+              "description": "Según el Boletín de Visas — varía dramáticamente según el país"
+            },
+            "s3": {
+              "title": "Procesamiento NVC",
+              "duration": "2-4 meses",
+              "description": "Cuando la fecha de prioridad se vuelve actual"
+            },
+            "s4": {
+              "title": "Entrevista en Embajada",
+              "duration": "2-12 meses",
+              "description": "El tiempo de espera varía según el puesto"
+            }
+          }
+        }
+      },
+      "student": {
+        "f1": {
+          "label": "Estudiante F-1",
+          "totalTime": "2-4 meses desde la aceptación hasta la entrada",
+          "steps": {
+            "s1": {
+              "title": "Aceptación de la Escuela",
+              "duration": "Variable",
+              "description": "Acepta en una institución certificada por SEVP"
+            },
+            "s2": {
+              "title": "Formulario I-20",
+              "duration": "1-2 semanas",
+              "description": "La escuela emite el Certificado de Elegibilidad"
+            },
+            "s3": {
+              "title": "Tarifa SEVIS",
+              "duration": "Mismo día",
+              "description": "Pagar tarifa I-901 de $350 en FMJfee.com"
+            },
+            "s4": {
+              "title": "DS-160 + Entrevista",
+              "duration": "1-3 meses",
+              "description": "Completar DS-160, programar entrevista en embajada"
+            },
+            "s5": {
+              "title": "Aprobación de Visa",
+              "duration": "1-2 semanas",
+              "description": "Visa estampada en el pasaporte"
+            },
+            "s6": {
+              "title": "Entrada a EE. UU.",
+              "duration": "30 días antes",
+              "description": "Puede ingresar hasta 30 días antes del inicio del programa"
+            }
+          }
+        },
+        "opt": {
+          "label": "F-1 a OPT",
+          "totalTime": "OPT: 12 meses. Extensión STEM: +24 meses.",
+          "alert": "EAD ahora máximo 18 meses para algunas categorías. Planea las renovaciones temprano.",
+          "steps": {
+            "s1": {
+              "title": "Verificación de Elegibilidad",
+              "duration": "Dentro de 90 días de graduación",
+              "description": "Solicita 90 días antes a 60 días después del fin del programa"
+            },
+            "s2": {
+              "title": "Recomendación del DSO",
+              "duration": "1 semana",
+              "description": "El Oficial Designado de la Escuela emite un nuevo I-20"
+            },
+            "s3": {
+              "title": "Presentación I-765",
+              "duration": "Mismo día",
+              "description": "Tarifa de $520. Procesamiento premium $1,780 por 30 días."
+            },
+            "s4": {
+              "title": "Aprobación EAD",
+              "duration": "3-5 meses",
+              "description": "Regular USCIS. Premium: 30 días."
+            },
+            "s5": {
+              "title": "Comenzar a Trabajar",
+              "duration": "Fecha de inicio del EAD",
+              "description": "No puede trabajar antes de la fecha de inicio del EAD"
+            },
+            "s6": {
+              "title": "Extensión STEM (si elegible)",
+              "duration": "Solicitar 90 días antes que termine OPT",
+              "description": "Agrega 24 meses para títulos STEM con empleador E-Verify"
+            }
+          }
+        }
+      },
+      "citizenship": {
+        "standard5yr": {
+          "label": "Estándar de 5 Años",
+          "totalTime": "10-14 meses desde la presentación hasta el juramento",
+          "alert": "Presenta el N-400 hasta 90 días antes de tu aniversario de 5 años con tarjeta verde.",
+          "steps": {
+            "s1": {
+              "title": "Verificación de Elegibilidad",
+              "duration": "Antes de presentar",
+              "description": "5+ años como residente permanente, 30+ meses de presencia física en EE. UU., 3 meses en el estado"
+            },
+            "s2": {
+              "title": "Presentar Formulario N-400",
+              "duration": "En línea o en papel",
+              "description": "$710 en línea / $760 en papel. Presenta hasta 90 días antes de la fecha de elegibilidad."
+            },
+            "s3": {
+              "title": "Cita de Biométricos",
+              "duration": "5-8 semanas después de presentar",
+              "description": "Huellas, foto, firma en oficina ASC"
+            },
+            "s4": {
+              "title": "Entrevista de Naturalización",
+              "duration": "6-12 meses después de presentar",
+              "description": "Examen cívico (10 preguntas, necesitas 6 correctas), examen de inglés, revisión del N-400"
+            },
+            "s5": {
+              "title": "Decisión",
+              "duration": "Mismo día o por correo",
+              "description": "Aprobado, denegado o continuado para más evidencia"
+            },
+            "s6": {
+              "title": "Ceremonia de Juramento",
+              "duration": "Mismo día o 4-8 semanas después",
+              "description": "Toma el Juramento de Lealtad, recibe el Certificado de Naturalización"
+            },
+            "s7": {
+              "title": "¡Ciudadano de EE. UU.!",
+              "duration": "Efectivo en la fecha del juramento",
+              "description": "Solicita pasaporte estadounidense. Regístrate para votar. Actualiza el Seguro Social."
+            }
+          }
+        },
+        "marriage3yr": {
+          "label": "3 Años (Matrimonio)",
+          "totalTime": "10-14 meses desde la presentación hasta el juramento",
+          "alert": "Debes estar casado Y viviendo con un ciudadano estadounidense durante los 3 años completos.",
+          "steps": {
+            "s1": {
+              "title": "Verificación de Elegibilidad",
+              "duration": "Antes de presentar",
+              "description": "3+ años como residente permanente, casado y viviendo con ciudadano estadounidense por 3 años, 18+ meses de presencia física"
+            },
+            "s2": {
+              "title": "Presentar Formulario N-400",
+              "duration": "En línea o en papel",
+              "description": "Mismas tarifas. Incluir acta de matrimonio + prueba de ciudadanía del cónyuge."
+            },
+            "s3": {
+              "title": "Cita de Biométricos",
+              "duration": "5-8 semanas después de presentar",
+              "description": "Igual que la ruta estándar"
+            },
+            "s4": {
+              "title": "Entrevista de Naturalización",
+              "duration": "6-12 meses después de presentar",
+              "description": "Mismos exámenes. Pueden preguntar sobre detalles del matrimonio."
+            },
+            "s5": {
+              "title": "Decisión y Juramento",
+              "duration": "Mismo día o por correo",
+              "description": "Si se aprueba, se programa la ceremonia de juramento"
+            },
+            "s6": {
+              "title": "¡Ciudadano de EE. UU.!",
+              "duration": "Efectivo en la fecha del juramento",
+              "description": "Mismos beneficios que la ruta estándar"
+            }
+          }
+        },
+        "military": {
+          "label": "Servicio Militar",
+          "totalTime": "6-10 meses — procesamiento expeditado",
+          "alert": "Tarifa N-400 exonerada para militares activos. Presenta N-426 para verificación de servicio.",
+          "steps": {
+            "s1": {
+              "title": "Verificación de Elegibilidad",
+              "duration": "Antes de presentar",
+              "description": "1+ año de servicio honorable (tiempo de paz) O cualquier servicio calificado durante hostilidades designadas"
+            },
+            "s2": {
+              "title": "Formulario N-426",
+              "duration": "Antes del N-400",
+              "description": "El comando militar certifica tu registro de servicio"
+            },
+            "s3": {
+              "title": "Presentar Formulario N-400",
+              "duration": "En línea o en papel",
+              "description": "Tarifa $0 para militares. Adjunta el N-426."
+            },
+            "s4": {
+              "title": "Biométricos + Entrevista",
+              "duration": "Expeditado",
+              "description": "A menudo combinados en una sola cita para militares"
+            },
+            "s5": {
+              "title": "Decisión y Juramento",
+              "duration": "A menudo el mismo día",
+              "description": "Algunas bases realizan ceremonias de juramento en el sitio"
+            },
+            "s6": {
+              "title": "¡Ciudadano de EE. UU.!",
+              "duration": "Efectivo en la fecha del juramento",
+              "description": "Solicita pasaporte estadounidense, oportunidades laborales ampliadas incluyendo posiciones federales"
+            }
+          }
+        }
+      }
+    },
+    "checklistScreen": {
+      "title": "Lista de Documentos",
+      "changeButton": "Cambiar ›",
+      "dataUpdateBadgeLabel": "Actualizado",
+      "selectPathwayPlaceholder": "Seleccionar Ruta",
+      "citizenshipBanner": "Lista N-400. Tarifa: $710 en línea / $760 papel. Militar: gratis. Puedes presentar hasta 90 días antes de tu fecha de elegibilidad.",
+      "progressTitle": {
+        "default": "Documentos Requeridos",
+        "citizenship": "Documentos N-400"
+      },
+      "progressCount": "{{completed}} de {{total}}",
+      "legendTitle": "Requisitos de Documentos",
+      "legendRequired": "Requerido",
+      "legendNeedOne": "Necesita Uno",
+      "legendRecommended": "Recomendado",
+      "legendIfRequested": "Si Se Solicita",
+      "sections": {
+        "requiredTitle": "{{pathway}} - Documentos Requeridos",
+        "requiredSubtitle": "Debes tener TODOS estos",
+        "oneOfTitle": "Elige Un Documento",
+        "oneOfSubtitle": "Necesitas UNO de esta lista",
+        "recommendedTitle": "Documentos de Apoyo",
+        "recommendedSubtitle": "Fortalece tu solicitud",
+        "commonTitle": "Requisitos Universales",
+        "commonSubtitle": "Requeridos para TODOS los tipos de visa",
+        "medicalTitle": "Requisitos Médicos",
+        "medicalSubtitle": "Solo si lo solicita la embajada",
+        "interviewPrepTitle": "Preparación para la Entrevista",
+        "interviewPrepSubtitle": "Prepárate para tu entrevista de naturalización"
+      },
+      "badges": {
+        "required": "REQUERIDO",
+        "oneOf": "NECESITA UNO",
+        "recommended": "RECOMENDADO",
+        "conditional": "SI SE SOLICITA"
+      },
+      "tip": {
+        "citizenshipText": "Presenta el N-400 hasta 90 días antes de tu fecha de elegibilidad. Estudia las 100 preguntas cívicas en uscis.gov/citizenship/tessprep — es gratis.",
+        "defaultText": "Enfócate primero en los documentos REQUERIDOS. Tu lista está personalizada para {{pathway}}."
+      },
+      "modal": {
+        "title": "Seleccionar Ruta"
+      },
+      "pathwayOptions": {
+        "work": "Inmigración Basada en Trabajo",
+        "family": "Inmigración Basada en Familia",
+        "student": "Ruta de Estudiante",
+        "citizenship": "Camino a la Ciudadanía (N-400)"
+      }
+    },
+    "timelineScreen": {
+      "title": {
+        "default": "Cronograma del Proceso",
+        "citizenship": "Cronograma de Naturalización"
+      },
+      "subtitle": "Basado en datos USCIS / DOL de {{date}}",
+      "totalTimeLabel": {
+        "default": "Cronograma Total",
+        "citizenship": "Cronograma Típico"
+      },
+      "disclaimer": "Basado en datos de {{date}}",
+      "premiumProcessing": {
+        "title": "⚡ Procesamiento Premium (Marzo 2026)",
+        "i129": "I-129 (H-1B, L-1, O-1): 15 días por $2,965",
+        "i140": "I-140 (EB-1, EB-2, EB-3): 15-45 días por $2,965",
+        "i765": "I-765 (OPT/STEM OPT): 30 días por $1,780",
+        "i539": "I-539 (Cambio de Estatus): 30 días por $2,075"
+      },
+      "afterNaturalize": {
+        "title": "🇺🇸 Después de Naturalizarte",
+        "passport": "Solicita pasaporte estadounidense de inmediato — sin período de espera",
+        "sponsorFamily": "Patrocina familiares inmediatos (cónyuge, hijos, padres) sin espera de cuota de visa",
+        "childCitizenship": "Hijos menores de 18 años con tarjetas verdes pueden adquirir ciudadanía automáticamente",
+        "vote": "Regístrate para votar — las elecciones federales requieren ciudadanía estadounidense",
+        "dualCitizenship": "Verifica si tu país de nacimiento permite la doble ciudadanía antes de renunciar"
+      },
+      "currentDelays": {
+        "title": "⏱️ Retrasos Actuales",
+        "familyI130": "I-130 Familiar: 50-95 meses (4-8 años)",
+        "indiaEb": "India EB-2/3: 12+ años de espera de fecha de prioridad",
+        "perm": "Certificación laboral PERM: ~17 meses (503 días)",
+        "canadaB1B2": "Visa de visitante B-1/B-2 de Canadá: 16 meses de espera",
+        "eadValidity": "EAD ahora máximo 18 meses — planea las renovaciones temprano"
+      },
+      "n400Notes": {
+        "title": "⏱️ Notas de Procesamiento N-400",
+        "interviewWait": "El tiempo de espera para la entrevista varía mucho según la oficina de campo — algunas ciudades tardan 12+ meses",
+        "extendedTrips": "Viajes prolongados al extranjero (6+ meses) pueden romper la residencia continua — afecta la elegibilidad",
+        "criminalHistory": "Historial criminal — incluso cargos desestimados — debe divulgarse y puede retrasar o denegar",
+        "missingTaxes": "Las declaraciones de impuestos faltantes son una razón común de denegación — presenta los años faltantes antes de solicitar",
+        "noPremium": "El N-400 no tiene opción de procesamiento premium — solo procesamiento estándar"
+      },
+      "dataUpdated": "Datos Actualizados: {{date}}"
+    },
+"visaDetails": {
+  "H1B": {
+    "fullName": "Visa H-1B de Ocupación Especializada",
+    "purpose": "Para profesionales en ocupaciones especializadas que requieren un título de licenciatura o superior",
+    "eligibility": {
+      "e1": "Título de licenciatura o equivalente en campo de especialidad",
+      "e2": "Oferta de empleo de empleador estadounidense",
+      "e3": "El puesto requiere conocimiento especializado",
+      "e4": "El empleador debe pagar el salario prevaleciente"
+    },
+    "duration": "Inicialmente 3 años, extensible a 6 años en total",
+    "pathToGreenCard": "Sí — el empleador puede patrocinar tarjeta verde EB-2 o EB-3 mientras estés en H-1B",
+    "spouseWork": "El cónyuge H-4 puede trabajar con EAD si el principal tiene I-140 aprobado",
+    "pros": {
+      "p1": "Doble intención permitida (puedes buscar tarjeta verde)",
+      "p2": "Cónyuge e hijos pueden acompañar",
+      "p3": "Puedes cambiar de empleador (con nueva petición)"
+    },
+    "cons": {
+      "c1": "Sujeta a lotería anual — ahora ponderada por salario",
+      "c2": "Atada al empleador patrocinador",
+      "c3": "Tarifa adicional de $100,000 para casos de procesamiento consular (sept. 2025+)",
+      "c4": "Máximo de 6 años sin progreso de tarjeta verde"
+    },
+    "forms": {
+      "f1": {
+        "name": "LCA (Solicitud de Condición Laboral)",
+        "purpose": "Certifica salarios y condiciones de trabajo",
+        "who": "El empleador la presenta al DOL"
+      },
+      "f2": {
+        "name": "Formulario I-129",
+        "purpose": "Petición para trabajador no inmigrante",
+        "who": "El empleador la presenta al USCIS"
+      },
+      "f3": {
+        "name": "Formulario DS-160",
+        "purpose": "Solicitud de visa para procesamiento consular",
+        "who": "El empleado la completa en línea"
+      }
+    }
+  },
+  "L1": {
+    "fullName": "Visa L-1 de Transferencia Intracorporativa",
+    "purpose": "Para empleados que se transfieren de una sucursal extranjera a la oficina estadounidense de la misma empresa",
+    "eligibility": {
+      "e1": "Trabajaste para la empresa en el extranjero por 1+ año en los últimos 3 años",
+      "e2": "Gerente/Ejecutivo (L-1A) o Conocimiento Especializado (L-1B)",
+      "e3": "La empresa debe tener una relación calificada"
+    },
+    "duration": "L-1A: 3 años inicialmente (7 en total), L-1B: 3 años (5 en total)",
+    "pathToGreenCard": "Sí — L-1A puede llevar a tarjeta verde EB-1C (más rápido que la ruta H-1B)",
+    "spouseWork": "El cónyuge L-2 puede trabajar con EAD inmediatamente",
+    "pros": {
+      "p1": "Sin lotería ni cap",
+      "p2": "Sin requisito de salario prevaleciente",
+      "p3": "El cónyuge puede trabajar inmediatamente",
+      "p4": "L-1A a EB-1C es ruta más rápida a tarjeta verde"
+    },
+    "cons": {
+      "c1": "Debes trabajar para el mismo empleador",
+      "c2": "No puedes cambiar de empresa",
+      "c3": "Requiere empleo previo en el extranjero"
+    },
+    "forms": {
+      "f1": {
+        "name": "Formulario I-129S",
+        "purpose": "Suplemento de Clasificación L",
+        "who": "El empleador lo presenta con el I-129"
+      },
+      "f2": {
+        "name": "Formulario DS-160",
+        "purpose": "Solicitud de visa",
+        "who": "El empleado lo completa"
+      }
+    }
+  },
+  "O1": {
+    "fullName": "Visa O-1 de Habilidad Extraordinaria",
+    "purpose": "Para individuos con habilidad extraordinaria en ciencias, artes, educación, negocios o atletismo",
+    "eligibility": {
+      "e1": "Habilidad extraordinaria demostrada",
+      "e2": "Reconocimiento nacional/internacional",
+      "e3": "Evidencia sustancial de logros",
+      "e4": "Oferta de empleo en el campo de experiencia"
+    },
+    "duration": "Hasta 3 años inicialmente, extensiones de 1 año ilimitadas",
+    "pathToGreenCard": "Sí — puedes auto-peticionar para EB-1A o el empleador puede patrocinar",
+    "spouseWork": "El cónyuge O-3 no puede trabajar",
+    "pros": {
+      "p1": "Sin lotería ni cap",
+      "p2": "Sin requisito de título",
+      "p3": "Extensiones ilimitadas posibles",
+      "p4": "Puedes tener múltiples empleadores"
+    },
+    "cons": {
+      "c1": "Alto umbral de evidencia",
+      "c2": "El cónyuge no puede trabajar",
+      "c3": "Documentación extensiva necesaria"
+    },
+    "forms": {
+      "f1": {
+        "name": "Formulario I-129",
+        "purpose": "Petición con suplemento O",
+        "who": "El empleador o agente la presenta"
+      },
+      "f2": {
+        "name": "Opinión Consultiva",
+        "purpose": "Carta de consulta del grupo de pares",
+        "who": "De sindicato/grupo de pares relevante"
+      }
+    }
+  },
+  "EB": {
+    "fullName": "Tarjeta Verde Basada en Empleo (EB-1, EB-2, EB-3, EB-4, EB-5)",
+    "purpose": "Camino directo a la residencia permanente a través del empleo, con cinco categorías de preferencia clasificadas por nivel de habilidad, educación o inversión",
+    "eligibility": {
+      "e1": "EB-1: Habilidad extraordinaria, profesores/investigadores destacados, o ejecutivos multinacionales (no se requiere PERM)",
+      "e2": "EB-2: Título avanzado (maestría+) o habilidad excepcional — la Exención de Interés Nacional permite autopetición",
+      "e3": "EB-3: Trabajadores calificados (2+ años de experiencia), profesionales (licenciatura), u otros trabajadores",
+      "e4": "EB-4: Inmigrantes especiales (trabajadores religiosos, jóvenes inmigrantes especiales, ciertos empleados gubernamentales)",
+      "e5": "EB-5: Inversionista — mínimo $800,000 en área de empleo objetivo o $1.05M en otras áreas, debe crear 10 empleos",
+      "e6": "La mayoría de las categorías requieren patrocinio del empleador y certificación laboral (PERM)"
+    },
+    "duration": "Residencia permanente (tarjeta verde de 10 años, renovable)",
+    "currentWait": "EB-1/EB-2/EB-3 ROW: 1-3 años; India/China EB-2/EB-3: 5-15+ años para fecha de prioridad",
+    "pathToGreenCard": "Esto ES la tarjeta verde — camino directo a la residencia permanente",
+    "spouseWork": "El cónyuge e hijos solteros menores de 21 reciben tarjetas verdes como derivados",
+    "pros": {
+      "p1": "Camino directo a la residencia permanente",
+      "p2": "EB-1 y EB-2 NIW permiten autopetición (no se necesita empleador)",
+      "p3": "Cónyuge e hijos menores incluidos",
+      "p4": "Procesamiento prémium disponible para I-140 ($2,965)",
+      "p5": "EB-1A y NIW omiten el largo proceso PERM"
+    },
+    "cons": {
+      "c1": "India y China enfrentan retrasos severos en EB-2/EB-3 (más de 10 años)",
+      "c2": "La certificación laboral PERM agrega 12-17 meses para EB-2/EB-3 estándar",
+      "c3": "Tarifas totales de presentación: aproximadamente $3,000-$5,000+ por solicitante",
+      "c4": "La mayoría de las categorías te atan al empleador patrocinador hasta que el I-485 haya estado pendiente 180+ días",
+      "c5": "El retroceso del boletín de visas puede extender los tiempos de espera de manera impredecible"
+    },
+    "note": "EB-1A (habilidad extraordinaria) y EB-2 NIW son categorías de autopetición — puedes presentar sin empleador si cumples con el alto estándar de evidencia.",
+    "forms": {
+      "f1": {
+        "name": "ETA-9089 (PERM)",
+        "purpose": "Certificación laboral (requerida para EB-2 y EB-3 estándar, no para NIW)",
+        "who": "El empleador la presenta al DOL"
+      },
+      "f2": {
+        "name": "Formulario I-140",
+        "purpose": "Petición de Inmigrante para Trabajador Extranjero — establece la clasificación EB",
+        "who": "El empleador la presenta (o autopetición para EB-1A/NIW/EB-5)"
+      },
+      "f3": {
+        "name": "Formulario I-485",
+        "purpose": "Ajuste de Estatus a residente permanente (si estás en EE. UU.)",
+        "who": "El beneficiario presenta cuando la fecha de prioridad esté actualizada"
+      },
+      "f4": {
+        "name": "Formulario DS-260",
+        "purpose": "Solicitud de visa de inmigrante (si estás fuera de EE. UU. — procesamiento consular)",
+        "who": "El beneficiario completa en línea"
+      }
+    }
+  },
+  "IR": {
+    "fullName": "Familiar Inmediato de Ciudadano de EE. UU.",
+    "purpose": "Para cónyuges, hijos solteros menores de 21 años y padres de ciudadanos estadounidenses",
+    "eligibility": {
+      "e1": "Cónyuge de ciudadano estadounidense (IR-1/CR-1)",
+      "e2": "Hijo soltero menor de 21 años de ciudadano estadounidense (IR-2/CR-2)",
+      "e3": "Padre de ciudadano estadounidense que tenga 21+ años (IR-5)"
+    },
+    "duration": "Residencia permanente (tarjeta verde) inmediatamente",
+    "pathToGreenCard": "ESTA es la tarjeta verde — residencia permanente inmediata",
+    "spouseWork": "Sí — la tarjeta verde permite trabajo sin restricciones",
+    "pros": {
+      "p1": "Sin límites anuales ni espera de fecha de prioridad",
+      "p2": "Categoría de inmigración familiar más rápida",
+      "p3": "Directo a tarjeta verde",
+      "p4": "Puedes trabajar inmediatamente al llegar"
+    },
+    "cons": {
+      "c1": "Aún tarda 12-24 meses en procesarse",
+      "c2": "Debes probar relación genuina",
+      "c3": "CR-1 condicional si llevas <2 años casado"
+    },
+    "note": "FAMILIAR INMEDIATO significa que no esperas número de visa — ¡te saltas la fila! Otras categorías familiares esperan años por números de visa.",
+    "forms": {
+      "f1": {
+        "name": "Formulario I-130",
+        "purpose": "Establece relación familiar calificada",
+        "who": "El ciudadano estadounidense la presenta por el familiar"
+      },
+      "f2": {
+        "name": "Formulario I-864",
+        "purpose": "Declaración de Apoyo — patrocinio financiero",
+        "who": "El peticionario la proporciona"
+      },
+      "f3": {
+        "name": "Formulario DS-260",
+        "purpose": "Solicitud de visa de inmigrante",
+        "who": "El beneficiario la completa"
+      }
+    }
+  },
+  "K1": {
+    "fullName": "Visa K-1 de Prometido(a)",
+    "purpose": "Permite que el prometido(a) extranjero(a) de un ciudadano estadounidense entre a EE. UU. para casarse dentro de 90 días, luego ajustar a tarjeta verde",
+    "eligibility": {
+      "e1": "El peticionario debe ser ciudadano estadounidense (no titular de tarjeta verde)",
+      "e2": "Ambas partes deben estar legalmente libres para casarse",
+      "e3": "Deben haberse conocido en persona al menos una vez dentro de los 2 años anteriores a la presentación (existen exenciones por razones culturales o de dificultad)",
+      "e4": "El ciudadano estadounidense debe cumplir con el requisito de ingresos (100% de las Pautas Federales de Pobreza)",
+      "e5": "Deben tener la intención de casarse dentro de los 90 días de la llegada del prometido(a)"
+    },
+    "duration": "Entrada única, válida 6 meses — debe casarse dentro de 90 días de la llegada",
+    "currentWait": "10-12 meses para procesamiento de I-129F; 18-26 meses en total desde presentación hasta tarjeta verde",
+    "pathToGreenCard": "Después del matrimonio, presenta el I-485 para ajuste de estatus — lleva a una tarjeta verde condicional de 2 años",
+    "spouseWork": "Puede solicitar EAD después de la llegada y nuevamente después de presentar el I-485",
+    "pros": {
+      "p1": "Permite que el prometido(a) entre a EE. UU. antes del matrimonio",
+      "p2": "Hijos menores de 21 pueden venir con visas derivadas K-2",
+      "p3": "Más rápido que esperar en el extranjero por una visa de cónyuge IR-1/CR-1 en algunos casos"
+    },
+    "cons": {
+      "c1": "Debe casarse dentro de 90 días o el prometido(a) debe irse",
+      "c2": "Tarifa I-129F de $675 (o $625 en línea) más tarifas separadas de visa, examen médico y ajuste (~$2,400+ en total)",
+      "c3": "La tarjeta verde inicial es condicional — debe presentar I-751 conjuntamente dentro de los 90 días anteriores al segundo aniversario",
+      "c4": "No puede ajustar por ningún otro medio si el matrimonio con el peticionario no ocurre",
+      "c5": "Si la presentación falla o la relación termina, el prometido(a) generalmente no tiene camino para permanecer en EE. UU."
+    },
+    "note": "El plazo de 90 días para casarse es estricto — no hay extensiones disponibles. Planifica la fecha de la boda antes de que el prometido(a) viaje.",
+    "forms": {
+      "f1": {
+        "name": "Formulario I-129F",
+        "purpose": "Petición para Prometido(a) Extranjero(a) — establece la relación",
+        "who": "El peticionario ciudadano estadounidense lo presenta a USCIS"
+      },
+      "f2": {
+        "name": "Formulario DS-160",
+        "purpose": "Solicitud de visa de no inmigrante en línea para la entrevista consular",
+        "who": "El prometido(a) completa en línea"
+      },
+      "f3": {
+        "name": "Formulario I-485",
+        "purpose": "Ajuste de Estatus después del matrimonio para obtener la tarjeta verde",
+        "who": "El cónyuge presenta después de la boda"
+      },
+      "f4": {
+        "name": "Formulario I-134",
+        "purpose": "Declaración Jurada de Apoyo — prueba que el peticionario puede patrocinar financieramente",
+        "who": "El peticionario ciudadano estadounidense la provee"
+      }
+    }
+  },
+  "F1": {
+    "fullName": "F-1: Hijos Solteros de Ciudadanos de EE. UU.",
+    "purpose": "Para hijos solteros mayores de 21 años de ciudadanos estadounidenses",
+    "eligibility": {
+      "e1": "Debe ser soltero",
+      "e2": "21 años o mayor",
+      "e3": "Hijo de ciudadano estadounidense"
+    },
+    "duration": "Residencia permanente después de visa disponible",
+    "currentWait": "7-8 años desde la petición hasta la disponibilidad de visa",
+    "pathToGreenCard": "Esto lleva directamente a tarjeta verde una vez que el número de visa esté disponible",
+    "spouseWork": "N/A — debe ser soltero",
+    "pros": {
+      "p1": "Lleva a residencia permanente",
+      "p2": "Puede incluir hijos solteros menores de 21"
+    },
+    "cons": {
+      "c1": "Espera de 7-8 años por número de visa",
+      "c2": "Debe permanecer soltero",
+      "c3": "El matrimonio termina la elegibilidad"
+    },
+    "forms": {
+      "f1": {
+        "name": "Formulario I-130",
+        "purpose": "Petición familiar para establecer relación",
+        "who": "El padre ciudadano estadounidense la presenta"
+      }
+    }
+  },
+  "F2A": {
+    "fullName": "F-2A: Cónyuges e Hijos Menores de Titulares de Tarjeta Verde",
+    "purpose": "Para cónyuges e hijos solteros menores de 21 años de residentes permanentes legales",
+    "eligibility": {
+      "e1": "Cónyuge de titular de tarjeta verde",
+      "e2": "Hijo soltero menor de 21 años de LPR"
+    },
+    "duration": "Residencia permanente después de visa disponible",
+    "currentWait": "2-3 años desde la petición hasta la disponibilidad de visa",
+    "pathToGreenCard": "Esto lleva directamente a tarjeta verde",
+    "spouseWork": "Sí — una vez recibida la tarjeta verde",
+    "pros": {
+      "p1": "Espera más corta que otras preferencias familiares",
+      "p2": "Incluye cónyuge e hijos menores"
+    },
+    "cons": {
+      "c1": "Espera de 2-3 años por número de visa",
+      "c2": "El peticionario debe mantener estatus LPR"
+    },
+    "forms": {
+      "f1": {
+        "name": "Formulario I-130",
+        "purpose": "Petición familiar",
+        "who": "El titular de tarjeta verde la presenta"
+      }
+    }
+  },
+  "F2B": {
+    "fullName": "F-2B: Hijos Adultos Solteros de Titulares de Tarjeta Verde",
+    "purpose": "Para hijos solteros mayores de 21 años de residentes permanentes legales",
+    "eligibility": {
+      "e1": "Soltero",
+      "e2": "21 años o mayor",
+      "e3": "Hijo de titular de tarjeta verde"
+    },
+    "duration": "Residencia permanente después de visa disponible",
+    "currentWait": "6-7 años desde la petición hasta la disponibilidad de visa",
+    "pathToGreenCard": "Esto lleva directamente a tarjeta verde",
+    "spouseWork": "N/A — debe ser soltero",
+    "pros": {
+      "p1": "Lleva a residencia permanente"
+    },
+    "cons": {
+      "c1": "Espera de 6-7 años",
+      "c2": "Debe permanecer soltero",
+      "c3": "Si el peticionario se naturaliza, pasa a F-1 (puede ser espera más larga)"
+    },
+    "forms": {
+      "f1": {
+        "name": "Formulario I-130",
+        "purpose": "Petición familiar",
+        "who": "El padre titular de tarjeta verde la presenta"
+      }
+    }
+  },
+  "F3": {
+    "fullName": "F-3: Hijos Casados de Ciudadanos de EE. UU.",
+    "purpose": "Para hijos casados de cualquier edad de ciudadanos estadounidenses",
+    "eligibility": {
+      "e1": "Casado",
+      "e2": "Cualquier edad",
+      "e3": "Hijo de ciudadano estadounidense"
+    },
+    "duration": "Residencia permanente después de visa disponible",
+    "currentWait": "12-13 años desde la petición hasta la disponibilidad de visa",
+    "pathToGreenCard": "Esto lleva directamente a tarjeta verde para toda la familia",
+    "spouseWork": "Sí — cónyuge e hijos incluidos",
+    "pros": {
+      "p1": "Incluye cónyuge e hijos",
+      "p2": "Sin límite de edad"
+    },
+    "cons": {
+      "c1": "Espera de 12-13 años para la mayoría de países",
+      "c2": "23+ años para Filipinas"
+    },
+    "forms": {
+      "f1": {
+        "name": "Formulario I-130",
+        "purpose": "Petición familiar",
+        "who": "El padre ciudadano estadounidense la presenta"
+      }
+    }
+  },
+  "F4": {
+    "fullName": "F-4: Hermanos y Hermanas de Ciudadanos de EE. UU.",
+    "purpose": "Para hermanos de ciudadanos estadounidenses (el peticionario debe tener 21+)",
+    "eligibility": {
+      "e1": "Hermano de ciudadano estadounidense",
+      "e2": "El peticionario debe tener 21+ años",
+      "e3": "Incluye medio hermanos y hermanastros"
+    },
+    "duration": "Residencia permanente después de visa disponible",
+    "currentWait": "13-24 años dependiendo del país",
+    "pathToGreenCard": "Esto lleva directamente a tarjeta verde para toda la familia",
+    "spouseWork": "Sí — cónyuge e hijos incluidos",
+    "pros": {
+      "p1": "Incluye cónyuge y todos los hijos solteros menores de 21",
+      "p2": "Lleva a residencia permanente"
+    },
+    "cons": {
+      "c1": "Espera más larga de todas las categorías (13-24 años)",
+      "c2": "India: 15+ años, México: 23+ años, Filipinas: 24+ años",
+      "c3": "Muchas propuestas para eliminar esta categoría"
+    },
+    "forms": {
+      "f1": {
+        "name": "Formulario I-130",
+        "purpose": "Petición familiar probando relación de hermanos",
+        "who": "El hermano ciudadano estadounidense la presenta"
+      }
+    }
+  },
+  "STUDENT": {
+    "fullName": "Visa de Estudiante F-1",
+    "purpose": "Para estudios académicos en universidades, colegios, escuelas secundarias o programas de idiomas de EE. UU.",
+    "eligibility": {
+      "e1": "Aceptado en escuela certificada por SEVP",
+      "e2": "Demostrar apoyo financiero",
+      "e3": "Mantener carga académica completa",
+      "e4": "Probar lazos con el país de origen"
+    },
+    "duration": "Duración del estudio (D/S) más período de gracia de 60 días",
+    "pathToGreenCard": "Sin ruta directa — pero puede cambiar a H-1B a través de empleador después de graduarse",
+    "spouseWork": "El cónyuge F-2 no puede trabajar ni estudiar",
+    "pros": {
+      "p1": "Puede trabajar en el campus",
+      "p2": "OPT permite 1-3 años de trabajo después de graduarse",
+      "p3": "CPT permite pasantías durante el estudio",
+      "p4": "Puede solicitar H-1B mientras está en OPT"
+    },
+    "cons": {
+      "c1": "Debe mantener inscripción a tiempo completo",
+      "c2": "Opciones de trabajo limitadas",
+      "c3": "El cónyuge no puede trabajar",
+      "c4": "Debe mostrar intención no inmigrante"
+    },
+    "forms": {
+      "f1": {
+        "name": "Formulario I-20",
+        "purpose": "Certificado de Elegibilidad de la escuela",
+        "who": "La escuela lo emite después de la admisión"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "Pago de tarifa SEVIS ($350)",
+        "who": "El estudiante paga en línea"
+      },
+      "f3": {
+        "name": "Formulario DS-160",
+        "purpose": "Solicitud de visa",
+        "who": "El estudiante lo completa"
+      },
+      "f4": {
+        "name": "Formulario I-765 (OPT)",
+        "purpose": "Permiso de Capacitación Práctica Opcional",
+        "who": "El estudiante lo presenta 90 días antes de graduarse"
+      }
+    }
+  },
+  "J1": {
+    "fullName": "Visa J-1 de Visitante de Intercambio",
+    "purpose": "Para programas educativos y de intercambio cultural",
+    "eligibility": {
+      "e1": "Aceptado en programa de intercambio designado",
+      "e2": "Categorías: estudiante, investigación, profesor, au pair, etc.",
+      "e3": "Debe tener patrocinador del programa"
+    },
+    "duration": "Varía según el programa (típicamente 1-7 años)",
+    "pathToGreenCard": "Complicado — muchos están sujetos al requisito de residencia en el país de origen de 2 años",
+    "spouseWork": "El cónyuge J-2 puede solicitar permiso de trabajo",
+    "pros": {
+      "p1": "Amplia variedad de programas",
+      "p2": "El cónyuge puede trabajar con EAD",
+      "p3": "Algunos programas permiten participación repetida"
+    },
+    "cons": {
+      "c1": "Muchos están sujetos a la regla de origen de 2 años",
+      "c2": "Debe regresar a casa por 2 años antes de H/L/tarjeta verde",
+      "c3": "Proceso de exención complejo e incierto"
+    },
+    "forms": {
+      "f1": {
+        "name": "Formulario DS-2019",
+        "purpose": "Certificado de Elegibilidad del patrocinador",
+        "who": "El patrocinador del programa lo proporciona"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "Tarifa SEVIS ($220)",
+        "who": "El participante paga"
+      }
+    }
+  },
+  "M1": {
+    "fullName": "Visa M-1 de Estudiante Vocacional",
+    "purpose": "Para programas de capacitación vocacional o técnica de tiempo completo (escuelas de oficios, escuelas de aviación, artes culinarias, mecánica) — distinto del estudio académico F-1",
+    "eligibility": {
+      "e1": "Aceptado en una institución vocacional o no académica certificada por SEVP",
+      "e2": "Inscrito a tiempo completo (al menos 18 horas/semana, o 22 horas para programas de taller/laboratorio)",
+      "e3": "Fondos suficientes para toda la duración del programa",
+      "e4": "Dominio adecuado del inglés para el programa",
+      "e5": "Intención de salir de EE. UU. después de completar el programa (intención de no inmigrante)"
+    },
+    "duration": "1 año inicialmente, extensible en incrementos de 1 año hasta un total de 3 años, más periodo de gracia de 30 días",
+    "currentWait": "2-3 meses para entrevista de visa en la mayoría de los consulados",
+    "pathToGreenCard": "Sin camino directo — la mayoría de los estudiantes M-1 regresan a casa después de la capacitación. El cambio a otro estatus (F-1, H-1B) está restringido.",
+    "spouseWork": "El cónyuge M-2 no puede trabajar ni hacer estudios de tiempo completo",
+    "pros": {
+      "p1": "Permite capacitación vocacional especializada no disponible en el país de origen",
+      "p2": "Tarifa SEVIS más baja que F-1 ($220 vs $350)",
+      "p3": "La familia puede acompañar con visas derivadas M-2"
+    },
+    "cons": {
+      "c1": "No puede trabajar dentro ni fuera del campus durante los estudios",
+      "c2": "La capacitación práctica solo se permite DESPUÉS de completar el programa (no durante)",
+      "c3": "No puede transferirse fácilmente a un programa académico F-1 — debe solicitar cambio de estatus",
+      "c4": "Duración máxima total de 3 años — no puede cursar programas de varios años",
+      "c5": "El cónyuge no puede trabajar, lo que limita la flexibilidad financiera familiar"
+    },
+    "note": "M-1 es solo para capacitación vocacional. Si quieres estudio académico (programas de grado, escuelas de idiomas), F-1 es la visa correcta.",
+    "forms": {
+      "f1": {
+        "name": "Formulario I-20",
+        "purpose": "Certificado de Elegibilidad de la escuela certificada por SEVP",
+        "who": "La escuela lo emite tras la admisión"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "Pago de tarifa SEVIS ($220 para M-1)",
+        "who": "El estudiante paga en línea antes de la entrevista de visa"
+      },
+      "f3": {
+        "name": "Formulario DS-160",
+        "purpose": "Solicitud de visa de no inmigrante en línea (tarifa de $185)",
+        "who": "El estudiante completa en línea"
+      }
+    }
+  },
+  "N400_5YR": {
+    "fullName": "Naturalización — Residencia Continua de 5 Años",
+    "purpose": "Ruta estándar a la ciudadanía estadounidense para titulares de tarjeta verde después de 5 años de residencia continua",
+    "eligibility": {
+      "e1": "Tener tarjeta verde por al menos 5 años",
+      "e2": "Residencia continua en EE. UU. por 5 años",
+      "e3": "Presencia física por al menos 30 de los últimos 60 meses",
+      "e4": "Sin viaje al extranjero único de más de 6 meses",
+      "e5": "18 años de edad o mayor",
+      "e6": "Buen carácter moral durante todo el período de 5 años",
+      "e7": "Capacidad de leer, escribir y hablar inglés básico",
+      "e8": "Aprobar el examen cívico de 100 preguntas"
+    },
+    "duration": "Permanente — te conviertes en ciudadano estadounidense de por vida",
+    "currentWait": "8–14 meses desde la presentación hasta la ceremonia de juramento",
+    "pathToGreenCard": "N/A — este es el paso después de la tarjeta verde",
+    "spouseWork": "Como ciudadano estadounidense, tu cónyuge se convierte en Familiar Inmediato — categoría de patrocinio familiar más rápida",
+    "pros": {
+      "p1": "Votar en elecciones federales",
+      "p2": "Pasaporte estadounidense — viaje sin visa a 180+ países",
+      "p3": "Patrocinar familiares inmediatos sin espera de cuota",
+      "p4": "No puedes ser deportado",
+      "p5": "Elegible para empleos federales y autorizaciones de seguridad",
+      "p6": "Hijos menores de 18 pueden adquirir ciudadanía automáticamente"
+    },
+    "cons": {
+      "c1": "Debe renunciar a ciudadanía previa (algunos países permiten doble — verifica el tuyo)",
+      "c2": "Tiempo de procesamiento de 8–14 meses",
+      "c3": "Debe aprobar exámenes de inglés y cívico",
+      "c4": "Violaciones previas o historial criminal pueden descalificar"
+    },
+    "note": "Puedes presentar el Formulario N-400 hasta 90 días antes de alcanzar tu fecha de elegibilidad de 5 años.",
+    "forms": {
+      "f1": {
+        "name": "Formulario N-400",
+        "purpose": "Solicitud de Naturalización",
+        "who": "El solicitante la presenta al USCIS"
+      },
+      "f2": {
+        "name": "Formulario I-90 (si es necesario)",
+        "purpose": "Renovar tarjeta verde si vence antes de la naturalización",
+        "who": "El solicitante la presenta si la tarjeta verde está vencida o por vencer"
+      }
+    }
+  },
+  "N400_3YR": {
+    "fullName": "Naturalización — Regla de 3 Años (Casado con Ciudadano de EE. UU.)",
+    "purpose": "Ruta de naturalización expedida para titulares de tarjeta verde casados y viviendo con un ciudadano estadounidense",
+    "eligibility": {
+      "e1": "Tener tarjeta verde por al menos 3 años",
+      "e2": "Actualmente casado con el mismo ciudadano estadounidense que peticionó por ti",
+      "e3": "El cónyuge ciudadano estadounidense ha sido ciudadano por los 3 años completos",
+      "e4": "Viviendo con el cónyuge ciudadano al momento de presentar",
+      "e5": "Presencia física por al menos 18 de los últimos 36 meses",
+      "e6": "Sin viaje al extranjero único de más de 6 meses",
+      "e7": "Buen carácter moral",
+      "e8": "Aprobar requisitos de inglés y cívico"
+    },
+    "duration": "Permanente — ciudadanía estadounidense de por vida",
+    "currentWait": "8–14 meses desde la presentación hasta la ceremonia de juramento",
+    "pathToGreenCard": "N/A — este es el paso después de la tarjeta verde",
+    "spouseWork": "Una vez que te naturalices, puedes patrocinar inmediatamente a otros familiares como ciudadano estadounidense",
+    "pros": {
+      "p1": "Elegible 2 años antes que la ruta estándar de 5 años",
+      "p2": "Todos los beneficios de la ciudadanía estadounidense",
+      "p3": "Pasaporte estadounidense y viajes sin visa",
+      "p4": "Patrocinar familiares inmediatamente"
+    },
+    "cons": {
+      "c1": "Debe seguir casado y viviendo con el mismo cónyuge ciudadano",
+      "c2": "Si el matrimonio termina antes de presentar, debe esperar la ruta de 5 años",
+      "c3": "El divorcio o la separación puede descalificarte de esta ruta"
+    },
+    "note": "Debes seguir casado con el mismo ciudadano estadounidense al momento de presentar Y al momento de tu entrevista.",
+    "forms": {
+      "f1": {
+        "name": "Formulario N-400",
+        "purpose": "Solicitud de Naturalización",
+        "who": "El solicitante la presenta al USCIS"
+      },
+      "f2": {
+        "name": "Acta de Matrimonio",
+        "purpose": "Prueba de matrimonio válido con ciudadano estadounidense",
+        "who": "El solicitante la proporciona"
+      },
+      "f3": {
+        "name": "Prueba de Ciudadanía del Cónyuge",
+        "purpose": "Pasaporte estadounidense o acta de nacimiento del cónyuge ciudadano",
+        "who": "El solicitante la proporciona"
+      }
+    }
+  },
+  "N400_MIL": {
+    "fullName": "Naturalización — Servicio Militar",
+    "purpose": "Naturalización expedida o inmediata para miembros en servicio activo y veteranos honrosamente dados de baja",
+    "eligibility": {
+      "e1": "Servicio activo o baja honorable de las fuerzas armadas estadounidenses",
+      "e2": "1 año de servicio honorable durante tiempo de paz",
+      "e3": "Elegibilidad inmediata durante períodos designados de hostilidad",
+      "e4": "Buen carácter moral",
+      "e5": "Aprobar requisitos de inglés y cívico (algunas exenciones aplican)"
+    },
+    "duration": "Permanente — ciudadanía estadounidense de por vida",
+    "currentWait": "Expedida — puede procesarse más rápido que la ruta civil",
+    "pathToGreenCard": "N/A — puede solicitar incluso sin tarjeta verde en algunos casos",
+    "spouseWork": "Como ciudadano estadounidense, puedes patrocinar familiares inmediatos sin espera",
+    "pros": {
+      "p1": "La tarifa de presentación N-400 está completamente exonerada ($0)",
+      "p2": "Puede naturalizar en el extranjero a través de embajada estadounidense",
+      "p3": "Elegibilidad inmediata durante períodos de hostilidad",
+      "p4": "Algunas exenciones de exámenes de inglés/cívico para miembros con servicio prolongado",
+      "p5": "Ciudadanía póstuma disponible para los que mueren en servicio"
+    },
+    "cons": {
+      "c1": "Debe tener baja honorable — la baja deshonrosa descalifica",
+      "c2": "Requiere documentación militar (DD-214)"
+    },
+    "note": "La tarifa de presentación es $0 para todo servicio activo y veteranos honrosamente dados de baja. Usa el Formulario N-426 si presentas mientras sirves en el extranjero.",
+    "forms": {
+      "f1": {
+        "name": "Formulario N-400",
+        "purpose": "Solicitud de Naturalización ($0 tarifa para militares)",
+        "who": "El solicitante la presenta al USCIS"
+      },
+      "f2": {
+        "name": "Formulario N-426",
+        "purpose": "Solicitud de Certificación de Servicio Militar o Naval",
+        "who": "Requerido para servicio activo en el extranjero"
+      },
+      "f3": {
+        "name": "DD-214",
+        "purpose": "Certificado de Liberación o Baja del Servicio Activo",
+        "who": "Emitido por la rama de servicio"
+      }
+    }
+  },
+  "N600": {
+    "fullName": "Certificado de Ciudadanía para Niños",
+    "purpose": "Documenta la ciudadanía estadounidense para niños que la adquirieron automáticamente cuando un padre se naturalizó",
+    "eligibility": {
+      "e1": "Menor de 18 años",
+      "e2": "Residente permanente legal (titular de tarjeta verde)",
+      "e3": "Al menos uno de los padres es ciudadano estadounidense por nacimiento o naturalización",
+      "e4": "Residiendo en EE. UU. en custodia legal y física del padre ciudadano"
+    },
+    "duration": "Permanente — documenta ciudadanía existente",
+    "currentWait": "Varía — esto documenta ciudadanía que ya ocurrió",
+    "pathToGreenCard": "N/A — el niño ya es ciudadano",
+    "spouseWork": "N/A — documento de ciudadanía infantil",
+    "pros": {
+      "p1": "Puede haber sucedido automáticamente — N-600 solo lo prueba",
+      "p2": "El niño obtiene pasaporte estadounidense y todos los derechos de ciudadano",
+      "p3": "Protege contra la deportación como adulto",
+      "p4": "Exención militar disponible"
+    },
+    "cons": {
+      "c1": "Tarifa de presentación de $1,170 (la más alta de los formularios de ciudadanía)",
+      "c2": "El procesamiento puede tomar 12+ meses",
+      "c3": "No aplica si el niño nació después de que el padre ya se naturalizó"
+    },
+    "note": "Si tu padre se naturalizó mientras eras menor de 18 y tenías tarjeta verde, puedes YA SER ciudadano estadounidense — el N-600 solo lo documenta. ¡Verifica antes de solicitar!",
+    "forms": {
+      "f1": {
+        "name": "Formulario N-600",
+        "purpose": "Solicitud de Certificado de Ciudadanía",
+        "who": "El padre la presenta en nombre del niño (o el hijo adulto la presenta él mismo)"
+      },
+      "f2": {
+        "name": "Certificado de Naturalización del Padre",
+        "purpose": "Prueba de que el padre es ciudadano estadounidense",
+        "who": "El solicitante la proporciona"
+      },
+      "f3": {
+        "name": "Tarjeta Verde del Niño",
+        "purpose": "Prueba de estatus LPR al momento de la naturalización del padre",
+        "who": "El solicitante la proporciona"
+      }
+    }
+  },
+  "ASYLUM": {
+    "fullName": "Asilo (Formulario I-589)",
+    "purpose": "Protección para personas que ya están en EE. UU. y temen persecución en su país de origen por motivos de raza, religión, nacionalidad, opinión política o pertenencia a un grupo social particular",
+    "eligibility": {
+      "e1": "Físicamente presente en los Estados Unidos",
+      "e2": "Ha sufrido o teme persecución futura por un motivo protegido",
+      "e3": "Presentar el Formulario I-589 dentro de 1 año de la llegada (excepciones limitadas)",
+      "e4": "La persecución debe ser por el gobierno, o grupos que el gobierno no puede o no quiere controlar",
+      "e5": "No estar excluido por antecedentes penales, persecución previa de otros, o reasentamiento firme"
+    },
+    "duration": "El estatus de asilo se otorga indefinidamente — elegible para solicitar tarjeta verde después de 1 año",
+    "currentWait": "Casos afirmativos de USCIS: 6 meses a 5+ años; corte de inmigración (defensivo): a menudo 3-7 años",
+    "pathToGreenCard": "Solicita la tarjeta verde 1 año después de que se otorgue el asilo (Formulario I-485)",
+    "spouseWork": "Cónyuge e hijos menores de 21 pueden ser incluidos como derivados si están en EE. UU. al momento de la presentación",
+    "pros": {
+      "p1": "Camino a la residencia permanente y eventualmente a la ciudadanía",
+      "p2": "Puede solicitar autorización de empleo (EAD) después de 150 días con la solicitud pendiente",
+      "p3": "Puede incluir cónyuge e hijos solteros menores de 21",
+      "p4": "No puede ser deportado al país de persecución temida mientras el caso esté pendiente"
+    },
+    "cons": {
+      "c1": "Tarifa de presentación de $100 para el Formulario I-589 (nueva desde 2025; antes era gratis)",
+      "c2": "Tarifa Anual de Asilo (AAF) requerida para solicitudes pendientes — no pagarla rechaza la solicitud (vigente desde el 29 de mayo de 2026)",
+      "c3": "Plazo estricto de 1 año desde la llegada para presentar — las excepciones se otorgan de forma limitada",
+      "c4": "Validez del EAD ahora máximo 18 meses; las extensiones automáticas fueron eliminadas en octubre de 2025",
+      "c5": "El entorno de políticas es volátil — verificación reforzada, pausas por país, mayor detención",
+      "c6": "Si se niega de forma afirmativa, el caso se remite a la corte de inmigración para procedimientos adicionales",
+      "c7": "Las solicitudes frívolas pueden resultar en una prohibición permanente de cualquier beneficio migratorio en EE. UU."
+    },
+    "note": "⚠️ La política de asilo está cambiando rápidamente en 2026. Se recomienda firmemente consultar a un abogado de inmigración o representante acreditado — muchas organizaciones de ayuda legal ofrecen ayuda gratuita.",
+    "forms": {
+      "f1": {
+        "name": "Formulario I-589",
+        "purpose": "Solicitud de Asilo y de Suspensión de Deportación (tarifa de $100)",
+        "who": "El solicitante presenta a USCIS o a la corte de inmigración"
+      },
+      "f2": {
+        "name": "Formulario I-765 (c)(8)",
+        "purpose": "Autorización de Empleo basada en asilo pendiente (después de 150 días)",
+        "who": "El solicitante presenta después del periodo de espera"
+      },
+      "f3": {
+        "name": "Formulario I-485",
+        "purpose": "Ajuste a residente permanente (1 año después de otorgado el asilo)",
+        "who": "El asilado presenta después de 1 año"
+      },
+      "f4": {
+        "name": "Formulario I-730",
+        "purpose": "Petición de Familiar Refugiado/Asilado — para traer cónyuge/hijos del extranjero",
+        "who": "El asilado presenta dentro de los 2 años de otorgado el asilo"
+      }
+    }
+  },
+  "REFUGEE": {
+    "fullName": "Reasentamiento de Refugiados",
+    "purpose": "Protección para personas FUERA de EE. UU. que no pueden regresar a casa por persecución; procesado a través de ACNUR y USRAP",
+    "eligibility": {
+      "e1": "Fuera de los Estados Unidos",
+      "e2": "De preocupación humanitaria especial para EE. UU.",
+      "e3": "Temor de persecución por raza, religión, nacionalidad, opinión política o grupo social",
+      "e4": "Generalmente referido por ACNUR, embajada de EE. UU. u ONG designada",
+      "e5": "No estar reasentado firmemente en otro país",
+      "e6": "Pasar amplia verificación de seguridad y médica"
+    },
+    "duration": "El estatus de refugiado lleva a la residencia permanente — debe solicitar la tarjeta verde 1 año después de la llegada",
+    "currentWait": "18-24 meses desde la remisión hasta la llegada a EE. UU.; el procesamiento sigue siendo lento",
+    "pathToGreenCard": "Se requiere solicitar la tarjeta verde después de 1 año en EE. UU. (Formulario I-485)",
+    "spouseWork": "Autorizado para trabajar inmediatamente al llegar; cónyuge e hijos pueden venir como derivados",
+    "pros": {
+      "p1": "Costos de viaje y reasentamiento cubiertos por el gobierno de EE. UU. y agencias de reasentamiento",
+      "p2": "Beneficios iniciales que incluyen asistencia de vivienda, clases de inglés, apoyo de empleo",
+      "p3": "Trabajo autorizado inmediatamente al llegar — no se necesita un EAD por separado",
+      "p4": "Camino a la residencia permanente y la ciudadanía",
+      "p5": "Los miembros de la familia pueden unirse a través de estatus derivado"
+    },
+    "cons": {
+      "c1": "El techo anual de admisiones de refugiados de EE. UU. ha sido históricamente bajo y políticamente volátil",
+      "c2": "Procesamiento largo — más de 18-24 meses desde la remisión",
+      "c3": "Control limitado sobre la ciudad de EE. UU. donde serás reasentado",
+      "c4": "No puedes presentar solicitud por tu cuenta — debes ser referido a través de ACNUR o agencia designada",
+      "c5": "Las pausas específicas por país y restricciones del programa son comunes en el entorno político actual"
+    },
+    "note": "⚠️ El programa de refugiados de EE. UU. ha sido fuertemente restringido desde 2025. Contacta a ACNUR (help.unhcr.org) para el estado actual de admisión — la mayor parte del procesamiento está actualmente pausado o lento para muchos países.",
+    "forms": {
+      "f1": {
+        "name": "Formulario I-590",
+        "purpose": "Registro para Clasificación como Refugiado",
+        "who": "Completado durante el procesamiento en el extranjero con un oficial de USCIS"
+      },
+      "f2": {
+        "name": "Formulario I-485",
+        "purpose": "Ajuste a residente permanente (1 año después de la llegada)",
+        "who": "El refugiado presenta después de 1 año en EE. UU."
+      },
+      "f3": {
+        "name": "Formulario I-730",
+        "purpose": "Petición de Familiar Refugiado/Asilado — para familiares en el extranjero",
+        "who": "El refugiado presenta dentro de los 2 años de la llegada"
+      }
+    }
+  }
+},
+    "lifeSetupGuides": {
+      "ssn": {
+        "title": "Número de Seguro Social",
+        "description": "Identificación esencial para trabajo y beneficios",
+        "sections": {
+          "s1": {
+            "title": "Quién Puede Solicitar",
+            "content": {
+              "c1": "Titulares de visa de trabajo con autorización de empleo",
+              "c2": "Titulares de tarjeta verde",
+              "c3": "Ciertos titulares de visa de estudiante con ofertas de trabajo",
+              "c4": "Asilados y refugiados"
+            }
+          },
+          "s2": {
+            "title": "Cómo Solicitar",
+            "content": {
+              "c1": "Visita la oficina local del Seguro Social",
+              "c2": "Lleva pasaporte, visa, I-94 y autorización de trabajo",
+              "c3": "Completa el formulario de solicitud SS-5",
+              "c4": "El procesamiento toma 2-4 semanas",
+              "c5": "La tarjeta llega por correo"
+            }
+          },
+          "s3": {
+            "title": "Documentos Requeridos",
+            "content": {
+              "c1": "Pasaporte vigente",
+              "c2": "Documentos migratorios (visa, I-94)",
+              "c3": "Autorización de trabajo (tarjeta EAD o visa)",
+              "c4": "Acta de nacimiento si está disponible"
+            }
+          }
+        }
+      },
+      "banking": {
+        "title": "Banca Sin Historial",
+        "description": "Abre cuentas sin historial crediticio",
+        "sections": {
+          "s1": {
+            "title": "Bancos Amigables con Inmigrantes",
+            "content": {
+              "c1": "Chase Bank - Ofrece tarjetas aseguradas",
+              "c2": "Bank of America - Cuentas SafeBalance",
+              "c3": "Wells Fargo - Opportunity Checking",
+              "c4": "Capital One - Cuenta corriente sin tarifa",
+              "c5": "Cooperativas de crédito locales - A menudo más flexibles"
+            }
+          },
+          "s2": {
+            "title": "Lo Que Necesitas",
+            "content": {
+              "c1": "Pasaporte y visa",
+              "c2": "Comprobante de domicilio (contrato de alquiler, factura de servicios)",
+              "c3": "Depósito inicial ($25-100)",
+              "c4": "SSN o ITIN (algunos bancos aceptan solo pasaporte)",
+              "c5": "Carta de empleo (útil pero no siempre requerida)"
+            }
+          },
+          "s3": {
+            "title": "Tipos de Cuenta",
+            "content": {
+              "c1": "Cuenta Corriente - Para transacciones diarias",
+              "c2": "Cuenta de Ahorros - Construye fondo de emergencia",
+              "c3": "Tarjeta de Crédito Asegurada - Comienza a construir crédito",
+              "c4": "Mercado Monetario - Ahorros con interés más alto"
+            }
+          }
+        }
+      },
+      "credit": {
+        "title": "Construir Crédito Rápido",
+        "description": "Establece puntaje crediticio desde cero",
+        "sections": {
+          "s1": {
+            "title": "Plan de Crédito de 6 Meses",
+            "content": {
+              "c1": "Mes 1: Obtén tarjeta de crédito asegurada (depósito $200-500)",
+              "c2": "Mes 2: Configura pago automático pequeño",
+              "c3": "Mes 3: Mantén utilización bajo 30%",
+              "c4": "Mes 4: Considera ser usuario autorizado",
+              "c5": "Mes 5: Solicita una segunda tarjeta asegurada",
+              "c6": "Mes 6: Verifica puntaje crediticio - debería ser 650+"
+            }
+          },
+          "s2": {
+            "title": "Mejores Tarjetas Aseguradas",
+            "content": {
+              "c1": "Discover it® Secured - Recompensas en efectivo",
+              "c2": "Capital One Secured - Depósito bajo",
+              "c3": "OpenSky® Secured - Sin verificación de crédito",
+              "c4": "Citi® Secured Mastercard® - Camino a no asegurada"
+            }
+          },
+          "s3": {
+            "title": "Consejos para Construir Crédito",
+            "content": {
+              "c1": "Nunca pierdas un pago (35% del puntaje)",
+              "c2": "Mantén balances bajos (30% del puntaje)",
+              "c3": "No cierres cuentas antiguas",
+              "c4": "Mezcla tipos de crédito con el tiempo",
+              "c5": "Verifica reporte de crédito gratis anualmente"
+            }
+          }
+        }
+      },
+      "job": {
+        "title": "Primera Búsqueda de Empleo",
+        "description": "Encuentra trabajo con credenciales extranjeras",
+        "sections": {
+          "s1": {
+            "title": "Autorización de Trabajo",
+            "content": {
+              "c1": "H-1B, L-1, O-1 - Atadas a empleador específico",
+              "c2": "Tarjeta EAD - Autorización de trabajo abierta",
+              "c3": "F-1 OPT - Para recién graduados",
+              "c4": "Tarjeta Verde - Trabajo sin restricciones",
+              "c5": "Verifica las restricciones de visa cuidadosamente"
+            }
+          },
+          "s2": {
+            "title": "Plataformas de Búsqueda",
+            "content": {
+              "c1": "LinkedIn - Networking profesional",
+              "c2": "Indeed - Mayor bolsa de trabajo",
+              "c3": "Glassdoor - Reseñas de empresas",
+              "c4": "AngelList - Empleos en startups",
+              "c5": "H1BGrader - Empleadores amigables con H-1B",
+              "c6": "MyVisaJobs - Empresas amigables con inmigración"
+            }
+          },
+          "s3": {
+            "title": "Consejos de Currículum",
+            "content": {
+              "c1": "Usa formato de EE. UU. (sin foto, edad o info personal)",
+              "c2": "Resalta habilidades transferibles",
+              "c3": "Obtén evaluación de credenciales si es necesario",
+              "c4": "Incluye estatus de visa (ej. \"Autorizado para trabajar\")",
+              "c5": "Cuantifica logros con números",
+              "c6": "Mantén máximo 1-2 páginas"
+            }
+          }
+        }
+      },
+      "itin": {
+        "title": "Solicitud ITIN del IRS",
+        "description": "Número de Identificación de Contribuyente Individual",
+        "shortDescription": "Si no puedes obtener SSN",
+        "sections": {
+          "s1": {
+            "title": "¿Qué es un ITIN?",
+            "content": {
+              "c1": "Número de procesamiento de impuestos para quienes no pueden obtener SSN",
+              "c2": "Requerido para presentar impuestos si ganas ingresos",
+              "c3": "NO proporciona autorización de trabajo",
+              "c4": "Formato: 9XX-XX-XXXX"
+            }
+          },
+          "s2": {
+            "title": "Cómo Solicitar",
+            "content": {
+              "c1": "Completa el Formulario W-7 con el IRS",
+              "c2": "Incluye declaración de impuestos federal con la solicitud",
+              "c3": "Proporciona pasaporte original o copias certificadas",
+              "c4": "Solicita por correo, en persona o a través de Agente Certificado de Aceptación",
+              "c5": "El procesamiento toma 7-11 semanas"
+            }
+          }
+        }
+      },
+      "dmv": {
+        "title": "Guía de Licencia DMV",
+        "description": "Obtener licencia de conducir como inmigrante",
+        "shortDescription": "Requisitos por estado",
+        "sections": {
+          "s1": {
+            "title": "Requisitos Generales",
+            "content": {
+              "c1": "Estatus migratorio válido (los requisitos varían por estado)",
+              "c2": "Prueba de identidad (pasaporte, visa, I-94)",
+              "c3": "Prueba de residencia (contrato de alquiler, factura de servicios)",
+              "c4": "SSN o prueba de inelegibilidad",
+              "c5": "Aprobar examen escrito, examen visual y examen de manejo"
+            }
+          },
+          "s2": {
+            "title": "Estados con Políticas Amigables",
+            "content": {
+              "c1": "19 estados + DC permiten licencias sin importar el estatus",
+              "c2": "California, Nueva York, Illinois, Nueva Jersey entre ellos",
+              "c3": "Algunos estados emiten licencias 'estándar' vs 'REAL ID'",
+              "c4": "REAL ID requerido para vuelos domésticos a partir de mayo 2025",
+              "c5": "Verifica el sitio web del DMV de tu estado para requisitos específicos"
+            }
+          }
+        }
+      },
+      "healthcare": {
+        "title": "Opciones de Salud",
+        "description": "Seguro de salud para inmigrantes",
+        "shortDescription": "Seguro para inmigrantes",
+        "sections": {
+          "s1": {
+            "title": "Opciones de Seguro",
+            "content": {
+              "c1": "Seguro patrocinado por el empleador (más común para titulares de visa de trabajo)",
+              "c2": "Planes del Mercado ACA (Healthcare.gov) — disponibles para residentes legales",
+              "c3": "Medicaid — varía por estado y estatus migratorio",
+              "c4": "Planes de salud universitarios — requeridos para la mayoría de estudiantes F-1",
+              "c5": "Seguro de salud a corto plazo — cobertura temporal"
+            }
+          },
+          "s2": {
+            "title": "Notas Importantes",
+            "content": {
+              "c1": "La mayoría de titulares de visa NO son elegibles para Medicaid inicialmente",
+              "c2": "Los estudiantes F-1 típicamente deben inscribirse en plan de salud escolar",
+              "c3": "Los titulares H-1B usualmente obtienen seguro del empleador",
+              "c4": "Medicaid de Emergencia disponible sin importar el estatus",
+              "c5": "Centros comunitarios de salud ofrecen tarifas escalonadas",
+              "c6": "Inscripción abierta de Healthcare.gov: 1 nov – 15 ene anualmente"
+            }
+          }
+        }
+      },
+      "tax": {
+        "title": "Declaración de Impuestos para Inmigrantes",
+        "description": "Obligaciones tributarias federales y estatales para inmigrantes",
+        "sections": {
+          "s1": {
+            "title": "Quién Debe Declarar",
+            "content": {
+              "c1": "Todos los residentes de EE. UU. (titulares de tarjeta verde, presencia sustancial)",
+              "c2": "Titulares H-1B, L-1, O-1 — gravados como residentes",
+              "c3": "Estudiantes F-1 — generalmente no residentes los primeros 5 años",
+              "c4": "Los ingresos ganados en EE. UU. son gravables sin importar el estatus",
+              "c5": "Los tratados tributarios pueden reducir obligaciones para algunos países"
+            }
+          },
+          "s2": {
+            "title": "Formularios Clave",
+            "content": {
+              "c1": "Formulario 1040 — Declaración de impuestos de residente",
+              "c2": "Formulario 1040-NR — Declaración de impuestos de no residente",
+              "c3": "Formulario W-2 — Ingresos salariales del empleador",
+              "c4": "Formulario 8843 — Requerido para individuos exentos con visa F/J",
+              "c5": "ITIN (W-7) — Si no tienes SSN"
+            }
+          },
+          "s3": {
+            "title": "Recursos de Declaración Gratuita",
+            "content": {
+              "c1": "IRS Free File — irs.gov/freefile (ingresos menores a $84,000)",
+              "c2": "VITA — Preparación gratis de impuestos para bajos ingresos (irs.gov/vita)",
+              "c3": "Sprintax — Diseñado para declaraciones de no residentes",
+              "c4": "TurboTax — Para declarantes residentes",
+              "c5": "Fecha límite: 15 de abril anualmente"
+            }
+          }
+        }
+      }
+    },
+    "pathwayDetailScreen": {
+      "errorTitle": "Ruta no encontrada",
+      "currentViability": "Viabilidad Actual",
+      "immediateRelativeAlert": {
+        "dialogTitle": "¿Qué son los Familiares Inmediatos?",
+        "dialogBody": "¡Los Familiares Inmediatos son la categoría familiar MÁS RÁPIDA porque NO tienen límites anuales!\n\nQUIÉN CALIFICA:\n• Cónyuge de ciudadano estadounidense\n• Hijos solteros menores de 21 de ciudadano estadounidense\n• Padres de ciudadano estadounidense (si el ciudadano tiene 21+)\n\nPOR QUÉ ES ESPECIAL:\n• Sin esperar números de visa\n• Sin límites anuales\n• Procesamiento en 12-24 meses vs 5-20 años\n\nTodas las demás categorías familiares deben esperar años por números de visa disponibles.",
+        "gotIt": "¡Entendido!",
+        "bannerTitle": "¡Familiares Inmediatos = Sin Fila de Espera!",
+        "bannerText": "Cónyuge, hijos menores y padres de ciudadanos estadounidenses. Toca para saber por qué importa."
+      },
+      "citizenshipAlert": {
+        "dialogTitle": "¿Por qué naturalizarse?",
+        "dialogBody": "Convertirse en ciudadano estadounidense te otorga derechos y protecciones más allá de la tarjeta verde:\n\n🗳️ VOTAR en elecciones federales, estatales y locales\n🛂 PASAPORTE ESTADOUNIDENSE — viaje sin visa a 180+ países\n👨‍👩‍👧 PATROCINAR FAMILIA inmediatamente como Familiares Inmediatos\n🛡️ NO PUEDES SER DEPORTADO — seguridad permanente\n💼 EMPLEOS FEDERALES y autorizaciones de seguridad\n👶 HIJOS menores de 18 pueden convertirse automáticamente en ciudadanos\n\nLa mayoría de titulares de tarjeta verde son elegibles después de 5 años. ¿Casado con ciudadano estadounidense? Puedes calificar después de solo 3 años.",
+        "bannerTitle": "¿Por qué convertirse en ciudadano de EE. UU.?",
+        "bannerText": "Pasaporte, derecho a voto, patrocinio familiar y más. Toca para saber."
+      },
+      "formLinkErrors": {
+        "cantOpenTitle": "No se Puede Abrir el Enlace",
+        "cantOpenBody": "No se puede abrir {{formName}}. Por favor búscalo en USCIS.gov",
+        "noLinkBody": "Este formulario lo proporciona tu escuela/empleador o requiere acceso especial.",
+        "ok": "OK"
+      },
+      "overview": "Descripción General",
+      "processingTimes": "Tiempos de procesamiento",
+      "governmentFees": "Tarifas gubernamentales",
+      "visaCategoriesTitle": {
+        "default": "Categorías de Visa Explicadas",
+        "citizenship": "Rutas de Naturalización"
+      },
+      "ucBadge": "🇺🇸 USC",
+      "gcBadge": "→ TV",
+      "details": {
+        "durationLabel": "Duración:",
+        "currentWaitLabel": {
+          "default": "Espera Actual:",
+          "citizenship": "Tiempo de Procesamiento:"
+        },
+        "spouseWorkLabel": {
+          "default": "Cónyuge Puede Trabajar:",
+          "citizenship": "Beneficio Familiar:"
+        }
+      },
+      "eligibilityLabel": {
+        "default": "Requisitos de Elegibilidad:",
+        "citizenship": "Requisitos:"
+      },
+      "benefitsLabel": "✅ Beneficios",
+      "considerationsLabel": "⚠️ Consideraciones",
+      "formsLabel": "Formularios Requeridos:",
+      "greenCardPath": {
+        "title": "🟢 Camino a la Residencia Permanente (Tarjeta Verde)",
+        "h1bIndiaWarning": "⚠️ Nacionales de India/China: 12+ años de espera para tarjetas verdes EB-2/EB-3"
+      },
+      "militaryFeeNote": "🎖️ Tarifa de presentación: $0 — completamente exonerada para solicitantes militares",
+      "buttons": {
+        "checklistDefault": "📋 Ver Lista de Documentos",
+        "checklistCitizenship": "📋 Lista de Documentos N-400",
+        "timelineDefault": "📅 Ver Cronograma de Procesamiento",
+        "timelineCitizenship": "📅 Cronograma de Naturalización",
+        "uscisDefault": "🔗 Visitar Centro de Formularios USCIS",
+        "uscisCitizenship": "🔗 Centro de Ciudadanía USCIS"
+      }
+    },
+    "guideDetailScreen": {
+      "relatedGuidesTitle": "📚 Guías Relacionadas",
+      "needHelpTitle": "¿Necesitas Más Ayuda?",
+      "needHelpText": "Considera consultar con un abogado de inmigración o visitar tu oficina local de USCIS para orientación personalizada.",
+      "helpfulLinks": {
+        "immigrationAdvocates": "Immigration Advocates",
+        "uscisOfficeLocator": "Localizador de Oficinas USCIS",
+        "legalAidDirectory": "Directorio de Ayuda Legal"
+      },
+      "cantOpenLinkTitle": "No se Puede Abrir el Enlace",
+      "cantOpenLinkBody": "No se puede abrir {{name}}. Por favor busca en línea."
+    },
+    "lifeSetupScreen": {
+      "title": "Guía de Configuración de Vida",
+      "subtitle": "Pasos esenciales para tu nueva vida en América",
+      "first30DaysTitle": "📍 Tus Primeros 30 Días",
+      "first30Days": {
+        "step1": "Solicita SSN (si eres elegible)",
+        "step2": "Abre cuenta bancaria",
+        "step3": "Obtén tarjeta de crédito asegurada",
+        "step4": "Configura teléfono y servicios",
+        "step5": "Comienza solicitudes de empleo"
+      },
+      "additionalResourcesTitle": "📚 Recursos Adicionales",
+      "avoidScams": {
+        "title": "Evita Estafas",
+        "body": "Nunca pagues por ofertas de trabajo, las solicitudes de SSN son gratuitas y solo usa sitios web oficiales del gobierno."
+      }
+    },
+    "viabilityBadge": {
+      "tapHint": "Toca para ver detalles",
+      "updated": "Actualizado: {{date}}"
+    },
+    "embassySelector": {
+      "noData": "Los datos de tiempo de espera para citas de embajada no están disponibles para esta visa y país.",
+      "title": "Estimaciones de Citas en Embajada",
+      "fastestOption": "Opción más rápida",
+      "fastestValue": "{{city}} — ~{{days}} días",
+      "daysApprox": "~{{days}} días",
+      "lastUpdated": "Última actualización: {{date}}",
+      "disclaimer": "La disponibilidad de citas puede variar y no garantiza la programación de la entrevista."
+    },
+    "feeCalculator": {
+      "title": "Tarifas Gubernamentales Estimadas",
+      "totalLabel": "Total Estimado de Tarifas",
+      "lastUpdated": "Última actualización: {{date}}",
+      "feeUpdatedNote": "Actualizado {{date}} (era ${{previous}})",
+      "disclaimer": "Solo estimaciones. No incluye costos legales, médicos ni de viaje.",
+      "disclaimerWithPremium": "Solo estimaciones. No incluye costos legales, médicos ni de viaje. Las tarifas de procesamiento premium entran en vigor el 1 de marzo de 2026."
+    },
+    "pathwaysData": {
+      "work": {
+        "title": "Inmigración Basada en Trabajo",
+        "overview": "La inmigración basada en empleo permite a los extranjeros trabajar en Estados Unidos. La mayoría de las categorías requieren patrocinio del empleador.",
+        "categories": {
+          "h1b": {
+            "name": "H-1B Ocupación Especializada",
+            "description": "Para puestos que requieren conocimiento especializado y un título de licenciatura o superior.",
+            "requirements": {
+              "r1": "Título de licenciatura o equivalente",
+              "r2": "Oferta de trabajo de empleador estadounidense",
+              "r3": "Ocupación especializada",
+              "r4": "El empleador debe pagar el salario prevaleciente"
+            }
+          },
+          "l1": {
+            "name": "L-1 Transferencia Intracorporativa",
+            "description": "Para empleados de empresas multinacionales que se transfieren a una oficina en EE. UU.",
+            "requirements": {
+              "r1": "Trabajó para la empresa por 1 año en los últimos 3 años",
+              "r2": "Transferencia a entidad calificada en EE. UU.",
+              "r3": "Rol ejecutivo, gerencial o especializado"
+            }
+          },
+          "o1": {
+            "name": "O-1 Habilidad Extraordinaria",
+            "description": "Para personas con habilidad extraordinaria en ciencias, artes, educación, negocios o atletismo.",
+            "requirements": {
+              "r1": "Habilidad extraordinaria demostrada",
+              "r2": "Reconocimiento nacional o internacional",
+              "r3": "Trabajo en área de experiencia"
+            }
+          },
+          "eb": {
+            "name": "Tarjetas Verdes Basadas en Empleo",
+            "description": "Residencia permanente a través de categorías basadas en empleo (EB-1, EB-2, EB-3)."
+          }
+        }
+      },
+      "family": {
+        "title": "Inmigración Basada en Familia",
+        "overview": "Los ciudadanos estadounidenses y residentes permanentes pueden patrocinar a familiares elegibles. Los familiares inmediatos no tienen límites anuales.",
+        "categories": {
+          "immediate": {
+            "name": "Familiares Inmediatos",
+            "description": "Cónyuges, hijos solteros menores de 21 años y padres de ciudadanos estadounidenses. Sin límites anuales."
+          },
+          "k1": {
+            "name": "Visa K-1 de Prometido(a)",
+            "description": "Para prometidos(as) de ciudadanos estadounidenses.",
+            "requirements": {
+              "r1": "Intención de casarse en 90 días",
+              "r2": "Se conocieron en persona en los últimos 2 años",
+              "r3": "Legalmente libres para casarse"
+            }
+          },
+          "f1": {
+            "name": "F-1: Hijos Solteros de Ciudadanos Estadounidenses",
+            "description": "Para hijos solteros mayores de 21 años de ciudadanos estadounidenses. Espera actual: 7-8 años."
+          },
+          "f2a": {
+            "name": "F-2A: Cónyuges/Hijos de Titulares de Tarjeta Verde",
+            "description": "Para cónyuges e hijos solteros menores de 21 años de residentes permanentes. Espera actual: 2-3 años."
+          },
+          "f2b": {
+            "name": "F-2B: Hijos Adultos Solteros de Titulares de Tarjeta Verde",
+            "description": "Para hijos solteros mayores de 21 años de residentes permanentes. Espera actual: 6-7 años."
+          },
+          "f3": {
+            "name": "F-3: Hijos Casados de Ciudadanos Estadounidenses",
+            "description": "Para hijos casados de ciudadanos estadounidenses. Espera actual: 12-13 años."
+          },
+          "f4": {
+            "name": "F-4: Hermanos de Ciudadanos Estadounidenses",
+            "description": "Para hermanos/hermanas de ciudadanos estadounidenses (peticionario debe tener 21+). Espera actual: 13-24 años."
+          }
+        }
+      },
+      "student": {
+        "title": "Ruta de Estudiante",
+        "overview": "Los estudiantes internacionales pueden estudiar a tiempo completo en instituciones certificadas por SEVP en EE. UU. Los estudiantes F-1 pueden trabajar a través de OPT (12 meses) y STEM OPT (24 meses adicionales) después de graduarse.",
+        "categories": {
+          "f1_student": {
+            "name": "Estudiante Académico F-1",
+            "description": "Estudio a tiempo completo en una universidad o colegio de EE. UU. OPT permite 1-3 años de trabajo después de graduarse.",
+            "requirements": {
+              "r1": "Admisión en escuela aprobada por SEVP",
+              "r2": "Carga académica completa",
+              "r3": "Prueba financiera (~$40,000/año)",
+              "r4": "Intención de partir después del estudio"
+            }
+          },
+          "j1": {
+            "name": "J-1 Visitante de Intercambio",
+            "description": "Para programas de intercambio (investigación, enseñanza, au pair). Muchos están sujetos al requisito de residencia en el país de origen de 2 años."
+          },
+          "m1": {
+            "name": "M-1 Estudiante Vocacional",
+            "description": "Para programas vocacionales o no académicos. Opciones de trabajo limitadas después de completar."
+          }
+        }
+      },
+      "protection": {
+        "title": "Protección Humanitaria",
+        "overview": "Rutas de protección para personas que no pueden regresar a casa de manera segura. El asilo debe presentarse dentro de 1 año de llegada a EE. UU. El entorno político actualmente es volátil.",
+        "categories": {
+          "asylum": {
+            "name": "Asilo",
+            "description": "Para quienes tienen un temor fundado de persecución. Debe presentarse dentro de 1 año de la llegada."
+          },
+          "refugee": {
+            "name": "Estatus de Refugiado",
+            "description": "Para personas referidas por ACNUR o una embajada estadounidense fuera de Estados Unidos."
+          }
+        }
+      },
+      "citizenship": {
+        "title": "Camino a la Ciudadanía",
+        "overview": "La naturalización estadounidense permite que los residentes permanentes legales (titulares de tarjeta verde) se conviertan en ciudadanos estadounidenses. La mayoría de los solicitantes son elegibles después de 5 años de residencia continua. Los cónyuges de ciudadanos estadounidenses pueden calificar después de 3 años.",
+        "categories": {
+          "standard": {
+            "name": "5 Años de Residencia Continua",
+            "description": "La ruta de naturalización estándar para la mayoría de los titulares de tarjeta verde después de 5 años de residencia continua.",
+            "requirements": {
+              "r1": "Tarjeta verde por al menos 5 años",
+              "r2": "Residencia continua en EE. UU. por 5 años",
+              "r3": "Presencia física por al menos 30 meses de los 5 años",
+              "r4": "Ningún viaje al extranjero de más de 6 meses",
+              "r5": "18 años de edad o más",
+              "r6": "Buen carácter moral",
+              "r7": "Capacidad de leer, escribir y hablar inglés",
+              "r8": "Aprobar el examen cívico de 100 preguntas"
+            }
+          },
+          "marriage": {
+            "name": "Regla de 3 Años (Casado con Ciudadano Estadounidense)",
+            "description": "Ruta acelerada para titulares de tarjeta verde casados y viviendo con un ciudadano estadounidense. Elegible después de 3 años en lugar de 5.",
+            "requirements": {
+              "r1": "Tarjeta verde por al menos 3 años",
+              "r2": "Actualmente casado y viviendo con un ciudadano estadounidense",
+              "r3": "El cónyuge ha sido ciudadano estadounidense durante los 3 años",
+              "r4": "Presencia física por al menos 18 meses de los 3 años",
+              "r5": "Ningún viaje al extranjero de más de 6 meses",
+              "r6": "Buen carácter moral",
+              "r7": "Aprobar requisitos de inglés y cívico"
+            }
+          },
+          "military": {
+            "name": "Servicio Militar",
+            "description": "Naturalización acelerada o inmediata para miembros activos del servicio y veteranos honrosamente dados de baja.",
+            "requirements": {
+              "r1": "Servicio activo o baja honorable de las fuerzas armadas estadounidenses",
+              "r2": "1 año de servicio honorable (en tiempo de paz)",
+              "r3": "Servicio activo durante período de hostilidad designado = elegibilidad inmediata",
+              "r4": "Buen carácter moral",
+              "r5": "Aprobar requisitos de inglés y cívico"
+            }
+          },
+          "children": {
+            "name": "Ciudadanía para Niños",
+            "description": "Los niños menores de 18 años con tarjeta verde pueden adquirir ciudadanía automáticamente cuando un padre se naturaliza. El N-600 documenta esta ciudadanía.",
+            "requirements": {
+              "r1": "Menor de 18 años",
+              "r2": "Residente permanente legal",
+              "r3": "Al menos un padre es ciudadano estadounidense (por nacimiento o naturalización)",
+              "r4": "Residiendo en EE. UU. bajo custodia legal y física del padre ciudadano"
+            }
+          }
+        }
+      }
+    },
+    "timelineCalculator": {
+      "fallback": "El cronograma varía según las circunstancias individuales.",
+      "title": "Cronograma Estimado",
+      "processingTimeLabel": "Tiempo de procesamiento",
+      "visaWaitLabel": "Espera de disponibilidad de visa",
+      "priorityYears": "{{min}}–{{max}}+ años",
+      "lastUpdated": "Última actualización: {{date}}",
+      "disclaimer": "Los cronogramas son estimaciones y pueden variar según el país, la carga de trabajo y la complejidad del caso."
+    },
+
+    "caseTracker": {
+        "header": {
+          "title": "Rastreador de Casos USCIS",
+          "subtitle": "Sigue el estado oficial de tus peticiones de USCIS en tiempo real."
+        },
+        "input": {
+          "label": "Ingresa tu número de recibo",
+          "helper": "13 caracteres: 3 letras + 10 dígitos. Encuéntralo en tu aviso I-797 de USCIS.",
+          "submit": "Rastrear Caso",
+          "invalidFormat": "El número de recibo debe tener 3 letras seguidas de 10 dígitos."
+        },
+        "empty": {
+          "title": "Aún no hay casos rastreados",
+          "body": "Agrega tu primer número de recibo arriba para comenzar a rastrear tus peticiones de USCIS."
+        },
+        "cases": {
+          "title": "Casos Rastreados ({{count}})"
+        },
+        "card": {
+          "lastUpdated": "Actualizado el {{date}}",
+          "showDetails": "Mostrar detalles",
+          "hideDetails": "Ocultar detalles",
+          "description": "Descripción",
+          "submitted": "Enviado",
+          "history": "Historial de estado",
+          "fetched": "Última consulta: {{time}}"
+        },
+        "error": {
+          "title": "Error · {{code}}",
+          "trace": "ID de Rastreo: {{traceId}}"
+        },
+        "remove": {
+          "title": "¿Dejar de rastrear este caso?",
+          "body": "¿Dejar de rastrear {{receiptNumber}}? Puedes agregarlo de nuevo en cualquier momento.",
+          "cancel": "Cancelar",
+          "confirm": "Eliminar"
+        },
+        "dataSource": "Datos obtenidos directamente de la API oficial de Estado de Casos de USCIS. La información es solo para fines de rastreo y no constituye asesoramiento legal."
+      },
+
+    "tabNavigator": {
+      "home": "Inicio",
+      "checklist": "Lista",
+      "timeline": "Cronograma",
+      "lifeSetup": "Configuración",
+      "resources": "Recursos"
+    },
+    "priorityDateTracker": {
+      "noData": "Información de fecha de prioridad no disponible.",
+      "noBulletin": "Datos del boletín de visa no disponibles para esta categoría.",
+      "noCountryCutoff": "Fecha de corte específica del país no disponible.",
+      "title": "Disponibilidad de Visa",
+      "yourPriorityDate": "Tu fecha de prioridad",
+      "currentCutoff": "Fecha de corte actual",
+      "current": "Actual",
+      "notCurrent": "No actual",
+      "backloggedWarning": "Tu categoría actualmente tiene retraso. El movimiento depende de los límites anuales de visa y la demanda.",
+      "bulletinUpdated": "Boletín de Visa: {{date}}",
+      "disclaimer": "Esta información se basa en el Boletín de Visa del Departamento de Estado de EE. UU. y no garantiza la disponibilidad de visa."
+    }
+  }

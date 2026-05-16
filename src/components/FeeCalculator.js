@@ -2,9 +2,12 @@
 
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 import { FEES, FEES_LAST_UPDATED } from "../data/fees";
 
 export default function FeeCalculator({ formKeys = [], context = {} }) {
+  const { t } = useTranslation();
+
   /**
    * context example:
    * {
@@ -41,7 +44,10 @@ export default function FeeCalculator({ formKeys = [], context = {} }) {
 
     // Check for recently changed fees
     if (form.previousFee && form.effectiveDate) {
-      note = `Updated ${form.effectiveDate} (was $${form.previousFee.toLocaleString()})`;
+      note = t("feeCalculator.feeUpdatedNote", {
+        date: form.effectiveDate,
+        previous: form.previousFee.toLocaleString(),
+      });
     }
 
     if (range) {
@@ -72,7 +78,7 @@ export default function FeeCalculator({ formKeys = [], context = {} }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Estimated Government Fees</Text>
+      <Text style={styles.title}>{t("feeCalculator.title")}</Text>
 
       {validBreakdown.map((item, idx) => (
         <View key={idx}>
@@ -84,10 +90,7 @@ export default function FeeCalculator({ formKeys = [], context = {} }) {
               )}
             </View>
             <Text
-              style={[
-                styles.amount,
-                item.fee >= 10000 && styles.highAmount,
-              ]}
+              style={[styles.amount, item.fee >= 10000 && styles.highAmount]}
             >
               {item.range
                 ? `$${item.range[0].toLocaleString()}–$${item.range[1].toLocaleString()}`
@@ -99,7 +102,7 @@ export default function FeeCalculator({ formKeys = [], context = {} }) {
       ))}
 
       <View style={styles.total}>
-        <Text style={styles.totalLabel}>Total Estimated Fees</Text>
+        <Text style={styles.totalLabel}>{t("feeCalculator.totalLabel")}</Text>
         <Text style={styles.totalAmount}>
           {minTotal === maxTotal
             ? `$${minTotal.toLocaleString()}`
@@ -107,12 +110,14 @@ export default function FeeCalculator({ formKeys = [], context = {} }) {
         </Text>
       </View>
 
-      <Text style={styles.updated}>Last updated: {FEES_LAST_UPDATED}</Text>
+      <Text style={styles.updated}>
+        {t("feeCalculator.lastUpdated", { date: FEES_LAST_UPDATED })}
+      </Text>
 
       <Text style={styles.disclaimer}>
-        Estimates only. Does not include legal, medical, or travel costs.
-        {hasPremium &&
-          " Premium processing fees effective March 1, 2026."}
+        {hasPremium
+          ? t("feeCalculator.disclaimerWithPremium")
+          : t("feeCalculator.disclaimer")}
       </Text>
     </View>
   );

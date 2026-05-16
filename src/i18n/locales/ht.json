@@ -1,0 +1,3590 @@
+{
+    "_translation_notes": "Haitian Creole (ht / Kreyòl ayisyen). DRAFT — REQUIRES NATIVE SPEAKER REVIEW BEFORE PRODUCTION. Immigration terminology (visa types, form numbers, agency names, legal terms) intentionally kept in English per project convention — these are official identifiers that Haitian immigrants already use in English. USCIS does not publish official Haitian Creole terminology. Register: informal, conversational Kreyòl (Standard Haitian Creole based on Port-au-Prince usage). Diacritics (è, ò, etc.) are meaningful in Kreyòl and must be preserved. Terms kept in English: all visa codes (H-1B, F-1, L-1, OPT, EAD, etc.), form numbers (I-129, N-400, DS-160, etc.), agency acronyms (USCIS, DOS, DOL, NVC, EOIR, SEVIS, etc.), 'green card', 'priority date', 'adjustment of status', 'premium processing', 'lottery', 'prevailing wage', dollar amounts, dates.",
+    "labels": {
+      "visa": {
+        "F1": "Etidyan F-1",
+        "H1B": "Travay H-1B",
+        "L1": "Transfè L-1",
+        "B1B2": "Vizitè B-1/B-2",
+        "J1": "Echanj J-1",
+        "OPT": "OPT",
+        "EAD": "EAD",
+        "GC_pending": "Green Card an Trant",
+        "GC": "🟢 Titilè Green Card",
+        "other": "Lòt Estati",
+        "none": "San Estati",
+        "unknown": "Pa Konnen"
+      },
+      "visaShort": {
+        "F1": "F-1",
+        "H1B": "H-1B",
+        "L1": "L-1",
+        "B1B2": "B-1/B-2",
+        "J1": "J-1",
+        "OPT": "OPT",
+        "EAD": "EAD",
+        "GC_pending": "GC an Trant",
+        "GC": "🟢 Titilè Green Card",
+        "other": "Lòt",
+        "none": "San Estati",
+        "unknown": "Pa Konnen"
+      },
+      "visaDescriptive": {
+        "F1": "Etidyan F-1",
+        "H1B": "Travay H-1B",
+        "L1": "Transfè L-1",
+        "B1B2": "Vizitè B-1/B-2",
+        "J1": "Echanj J-1",
+        "OPT": "Pèmi Travay OPT",
+        "EAD": "Titilè EAD",
+        "GC_pending": "Green Card an Trant",
+        "GC": "🟢 Rezidan Pèmanan (LPR)",
+        "other": "Lòt Estati",
+        "none": "San Estati Legal",
+        "unknown": "Pa Konnen"
+      },
+      "expiry": {
+        "expired": "EKSPIRE",
+        "30days": "< 30 jou",
+        "90days": "< 90 jou",
+        "6months": "< 6 mwa",
+        "year": "< 1 an",
+        "safe": "1 an +",
+        "unknown": "Pa Konnen"
+      },
+      "workAuth": {
+        "yes_unrestricted": "✅ San Restriksyon",
+        "yes_restricted": "⚠️ Espesifik pou Anplwayè",
+        "yes_ead": "Kat EAD",
+        "pending": "⏳ An Trant",
+        "no": "❌ Okenn",
+        "unknown": "Pa Konnen"
+      },
+        "country": {
+        "haiti": "🇭🇹 Ayiti",
+        "mexico": "🇲🇽 Meksik",
+        "india": "🇮🇳 Zend",
+        "china": "🇨🇳 Lachin",
+        "philippines": "🇵🇭 Filipin",
+        "brazil": "🇧🇷 Brezil",
+        "nigeria": "🇳🇬 Nijerya",
+        "canada": "🇨🇦 Kanada",
+        "uk": "🇬🇧 Wayòm Ini",
+        "germany": "🇩🇪 Almay",
+        "south_korea": "🇰🇷 Kore di Sid",
+        "japan": "🇯🇵 Japon",
+        "other": "🌍 Lòt"
+        },
+      "gcYears": {
+        "under2": "< 2 an",
+        "2to3": "2–3 an",
+        "3to5": "3–5 an",
+        "over5": "5+ an ✅",
+        "military": "Militè 🎖️"
+      },
+      "location": {
+        "inside_us": "Nan Etazini",
+        "outside_us": "Deyò Etazini"
+      },
+      "gcYearsDescriptive": {
+        "under2": "Mwens pase 2 an",
+        "2to3": "2–3 an",
+        "3to5": "3–5 an",
+        "over5": "5+ an ✅",
+        "military": "Sèvis militè 🎖️"
+      },
+      "expiryWarning": {
+        "expired": "🔴 EKSPIRE — Ou bezwen aji kounye a!",
+        "30days": "⚠️ Ekspire nan 30 jou",
+        "90days": "📅 Ekspire nan 90 jou",
+        "6months": "📆 Ekspire nan 6 mwa"
+      }
+    },
+    "common": {
+      "cancel": "Anile",
+      "back": "Retounen",
+      "next": "Kontinye",
+      "finish": "Fini",
+      "skip": "Sote",
+      "loading": "Ap chaje...",
+      "save": "Sove",
+      "reset": "Reyajiste",
+      "notSet": "Pa defini",
+      "notApplicable": "Pa aplike",
+      "unknown": "Pa Konnen",
+      "dataUpdated": "Done mete ajou: {{date}}"
+    },
+    "home": {
+      "greeting": {
+        "morning": "Bonjou",
+        "afternoon": "Bonswa",
+        "evening": "Bonswa"
+      },
+      "status": {
+        "title": "Estati Ou",
+        "loading": "Ap chaje...",
+        "critical": "Kritik",
+        "attention": "Atansyon",
+        "good": "Bon"
+      },
+      "alerts": {
+        "policyChanges_one": "{{count}} chanjman politik afekte ou",
+        "policyChanges_other": "{{count}} chanjman politik afekte ou",
+        "citizenshipNudge": "Prè pou eksplore sitwayènte? Gade opsyon natiralizasyon ou yo."
+      },
+      "stats": {
+        "visaExpiration": "Eksprasyon Viza",
+        "gcHeld": "Green Card Genyen",
+        "alerts": "Alèt",
+        "policies": "Politik"
+      },
+      "controlCenter": {
+        "title": "Sant Kontwòl",
+        "policyTracker": "Swivi Politik",
+        "checklist": "Lis Dokiman",
+        "timeline": "Kalandriye",
+        "resources": "Resous",
+        "caseTracker": "Swivi Ka"
+      },
+      "pathways": {
+        "title": "Chemen Imigrasyon",
+        "work": "Baze sou Travay",
+        "family": "Baze sou Fanmi",
+        "student": "Etidyan",
+        "citizenship": "Sitwayènte Ameriken",
+        "yourNextStep": "Pwochen etap ou →"
+      },
+      "lifeSetup": {
+        "title": "Gid Lavi nan Amerik",
+        "subtitle": "SSN • Bank • Kredi • Travay"
+      },
+      "help": {
+        "title": "Ijans",
+        "dialogTitle": "Bezwen Èd?",
+        "dialogBody": "USCIS: 1-800-375-5283\nAid Legal: immigrationadvocates.org",
+        "callUscis": "Rele USCIS"
+      }
+    },
+    "onboarding": {
+      "stepIndicator": "Etap {{current}} sou {{total}}",
+      "skip": "Sote",
+      "back": "Retounen",
+      "next": "Kontinye",
+      "finish": "Fini",
+      "getStarted": "Kòmanse",
+      "privacyDisclaimer": "🔒 Nou pa kolekte ni pataje done pèsonèl. Repons ou yo rete sou aparèy ou epi yo sèvi sèlman pou pèsonalize eksperyans ou ak voye alèt sekirite.",
+      "welcome": {
+        "title": "Byenveni nan Vwayaj Imigrasyon Ou",
+        "subtitle": "N ap ede ou navige pwosesis imigrasyon Etazini etap pa etap"
+      },
+      "location": {
+        "title": "Kote ou ye kounye a?",
+        "subtitle": "Sa ede nou montre chemen ki apwopriye yo",
+        "options": {
+          "outside_us": "🌍 Deyò Etazini",
+          "inside_us": "🇺🇸 Anndan Etazini"
+        }
+      },
+
+      "outsideUsStage": {
+        "title": "Kibo ou ye nan pwosesis imigrasyon Etazini?",
+        "subtitle": "Sa ede nou montre bon zouti ak dat limit pou sitiyasyon ou",
+        "options": {
+            "no_case": "🆕 Pa gen ka ankò",
+            "petition_filed": "📝 Petisyon depoze (ap tann USCIS)",
+            "petition_approved": "✅ Petisyon apwouve (ap tann entèvyou konsila)",
+            "interview_scheduled": "📅 Entèvyou konsila pwograme",
+            "has_us_visa": "🛂 Mwen deja gen viza Etazini (retounen)",
+            "former_visa_holder": "↩️ Ansyen detantè viza Etazini",
+            "exploring": "🔍 Jis ap eksplore opsyon"
+        }
+        },
+        "hasReceiptNumber": {
+        "title": "Èske ou gen yon nimewo resi USCIS?",
+        "subtitle": "Li sanble EAC1234567890, LIN1234567890 oswa SRC1234567890 — jwenn li sou avi resi I-797 ou",
+        "options": {
+            "yes": "✅ Wi, mwen gen yon nimewo resi",
+            "no": "❌ Poko"
+        }
+        },
+      "currentVisa": {
+        "title": "Ki estati imigrasyon ou kounye a?",
+        "subtitle": "Sa ede nou idantifye risk ak opòtinite",
+        "options": {
+          "F1": "📚 Etidyan F-1",
+          "H1B": "💼 Viza Travay H-1B",
+          "L1": "🏢 Transfè L-1",
+          "B1B2": "✈️ Vizitè B-1/B-2",
+          "J1": "🔄 Echanj J-1",
+          "OPT": "🎓 OPT/STEM OPT",
+          "EAD": "💳 Titilè EAD",
+          "GC_pending": "⏳ Green Card an Trant",
+          "GC": "🟢 Titilè Green Card (LPR)",
+          "other": "📋 Lòt Estati",
+          "none": "❌ San Estati Legal"
+        },
+        "groups": {
+  "work": "Travay",
+  "study": "Etid",
+  "resident": "Rezidan ak Vizitè",
+  "other": "Lòt"
+}
+      },
+      "gcYearsHeld": {
+        "title": "Depi konbyen tan ou gen green card ou?",
+        "subtitle": "Sa detèmine ki chemen natiralizasyon ou kalifye pou",
+        "options": {
+          "under2": "⏳ Mwens pase 2 an",
+          "2to3": "📅 2–3 an",
+          "3to5": "🗓️ 3–5 an",
+          "over5": "✅ 5 an + — Ou kalifye pou natiralize",
+          "military": "🎖️ Sèvis militè"
+        }
+      },
+      "purpose": {
+        "title": "Ki objektif imigrasyon ou?",
+        "subtitle": "Chwazi prensipal objektif ou",
+        "options": {
+          "work": "💼 Opòtinite Travay",
+          "family": "👨‍👩‍👧‍👦 Reyinifikasyon Fanmi",
+          "study": "🎓 Edikasyon",
+          "protection": "🛡️ Chèche Pwoteksyon"
+        }
+      },
+      "purposeGc": {
+        "title": "Sou ki sa ou ta renmen konsantre?",
+        "subtitle": "Ou gen green card deja — kisa ki pwochen etap ou?",
+        "options": {
+          "citizenship": "🇺🇸 Natiralizasyon & Sitwayènte",
+          "family": "👨‍👩‍👧‍👦 Patwone Manm Fanmi",
+          "work": "💼 Opsyon Travay & Karyè"
+        }
+      },
+      "urgency": {
+        "title": "Ki kalandriye ou?",
+        "subtitle": "Sa ede nou priyorize enfòmasyon",
+        "options": {
+          "immediate": "🚨 Ijan (< 1 mwa)",
+          "soon": "📅 Byento (1–6 mwa)",
+          "planning": "📊 Planifikasyon (6+ mwa)"
+        }
+      },
+      "hasWorkAuth": {
+        "title": "Èske ou gen otorizasyon travay?",
+        "subtitle": "Sa afekte opsyon anplwa ou yo",
+        "options": {
+          "yes_unrestricted": "✅ Wi - Nenpòt anplwayè",
+          "yes_restricted": "⚠️ Wi - Yon anplwayè espesifik sèlman",
+          "yes_ead": "💳 Wi - Kat EAD",
+          "pending": "⏳ Aplikasyon an trant",
+          "no": "❌ Pa gen otorizasyon travay"
+        }
+      },
+      "countryOfCitizenship": {
+        "title": "Ki peyi sitwayènte ou?",
+        "subtitle": "Sa afekte delè ak disponibilite viza",
+        "searchPlaceholder": "Chèche peyi...",
+        "noResults": "Pa gen rezilta — tape Suivant epi n ap toujou personalize eksperyans ou",
+        "options": {
+        "haiti": "🇭🇹 Ayiti",
+        "mexico": "🇲🇽 Meksik",
+        "india": "🇮🇳 Zend",
+        "china": "🇨🇳 Lachin",
+        "philippines": "🇵🇭 Filipin",
+        "brazil": "🇧🇷 Brezil",
+        "nigeria": "🇳🇬 Nijerya",
+        "canada": "🇨🇦 Kanada",
+        "uk": "🇬🇧 Wayòm Ini",
+        "germany": "🇩🇪 Almay",
+        "south_korea": "🇰🇷 Kore di Sid",
+        "japan": "🇯🇵 Japon",
+        "other": "🌍 Lòt"
+        }
+      },
+      "expiryTimeline": {
+        "title": "Èske gen dat enpòtan k ap vini?",
+        "subtitleDefault": "pa egzanp eksprasyon viza, dat fen estati, delè otorizasyon",
+        "subtitleByVisa": {
+          "H1B": "pa egz. dat fen estati H-1B, eksprasyon I-94",
+          "F1": "pa egz. eksprasyon EAD OPT, dat fen pwogram, peryòd gras",
+          "OPT": "pa egz. eksprasyon kat EAD OPT, limit 90 jou chomaj",
+          "L1": "pa egz. dat fen estati L-1, eksprasyon I-94",
+          "J1": "pa egz. dat fen pwogram DS-2019, peryòd gras",
+          "B1B2": "pa egz. eksprasyon sejou otorize I-94",
+          "EAD": "pa egz. eksprasyon kat EAD — maksimòm 18 mwa kounye a",
+          "GC_pending": "pa egz. eksprasyon kat combo EAD/AP"
+        },
+        "options": {
+          "expired": "🔴 Deja ekspire — bezwen èd kounye a",
+          "30days": "⚠️ Nan 30 jou — ijan",
+          "90days": "📅 Nan 90 jou — ap depoze byento",
+          "6months": "📆 Nan 6 mwa — planifikasyon alavans",
+          "year": "📍 Nan 1 an — planifikasyon bonè",
+          "safe": "✅ Plis pase 1 an — pa ijan"
+        }
+      },
+    "complianceRisk": {
+    "title": "Èske ou te fè fas ak defi imigrasyon?",
+    "subtitle": "Sa ede nou ba ou konsèy ki egzak. Repons ou yo prive epi rete sèlman sou aparèy ou.",
+    "subtitleStudent": "Estati etidyan ka vin konplike — sa ede nou montre ou bon opsyon yo.",
+    "options": {
+        "none": "✅ Pa gen pwoblèm — san konplikasyon jiskaprezan",
+        "gap": "📋 Ti entèripsyon nan estati",
+        "unauthorized_work": "💼 Mwen travay andeyò kondisyon viza mwen",
+        "overstay": "⏰ Mwen rete pase dat otorizasyon mwen",
+        "denied": "📄 Yo te refize mwen oswa mwen te resevwa yon RFE",
+        "prefer_not": "🔒 Prefere sote kesyon sa a"
+    }
+    }
+    },
+    "settings": {
+      "loadingProfile": "Ap chaje pwofil...",
+      "profile": {
+        "title": "Pwofil Ou",
+        "subtitle": "Touche nenpòt chan pou mete ajou",
+        "fields": {
+          "goal": "Objektif",
+          "location": "Kote",
+          "country": "Peyi",
+          "visaStatus": "Estati Viza",
+          "gcHeld": "Green Card Genyen",
+          "timeline": "Kalandriye",
+          "visaExpiry": "Eksprasyon Viza",
+          "language": "Lang"
+        }
+      },
+      "fieldOptions": {
+        "purpose": {
+          "title": "Ki objektif imigrasyon ou?",
+          "options": {
+            "work": "💼 Opòtinite Travay",
+            "family": "👨‍👩‍👧‍👦 Reyinifikasyon Fanmi",
+            "study": "🎓 Edikasyon",
+            "protection": "🛡️ Chèche Pwoteksyon",
+            "citizenship": "🇺🇸 Natiralizasyon & Sitwayènte"
+          }
+        },
+        "location": {
+          "title": "Kote ou ye kounye a?",
+          "options": {
+            "outside_us": "🌍 Deyò Etazini",
+            "inside_us": "🇺🇸 Anndan Etazini"
+          }
+        },
+        "currentVisa": {
+          "title": "Estati imigrasyon kounye a",
+          "options": {
+            "F1": "📚 Etidyan F-1",
+            "H1B": "💼 Viza Travay H-1B",
+            "L1": "🏢 Transfè L-1",
+            "B1B2": "✈️ Vizitè B-1/B-2",
+            "J1": "🔄 Echanj J-1",
+            "OPT": "🎓 OPT/STEM OPT",
+            "EAD": "💳 Titilè EAD",
+            "GC_pending": "⏳ Green Card an Trant",
+            "GC": "🟢 Titilè Green Card (LPR)",
+            "other": "📋 Lòt Estati",
+            "none": "❌ San Estati Legal",
+            "empty": "⬜ Pa aplike"
+          }
+        },
+        "countryOfCitizenship": {
+          "title": "Peyi sitwayènte",
+            "options": {
+            "haiti": "🇭🇹 Ayiti",
+            "mexico": "🇲🇽 Meksik",
+            "india": "🇮🇳 Zend",
+            "china": "🇨🇳 Lachin",
+            "philippines": "🇵🇭 Filipin",
+            "brazil": "🇧🇷 Brezil",
+            "nigeria": "🇳🇬 Nijerya",
+            "canada": "🇨🇦 Kanada",
+            "uk": "🇬🇧 Wayòm Ini",
+            "germany": "🇩🇪 Almay",
+            "south_korea": "🇰🇷 Kore di Sid",
+            "japan": "🇯🇵 Japon",
+            "other": "🌍 Lòt"
+            }
+        },
+        "urgency": {
+          "title": "Ki kalandriye ou?",
+          "options": {
+            "immediate": "🚨 Ijan (< 1 mwa)",
+            "soon": "📅 Byento (1–6 mwa)",
+            "planning": "📊 Planifikasyon (6+ mwa)",
+            "empty": "⬜ Pa aplike"
+          }
+        },
+        "expiryTimeline": {
+          "title": "Dat eksprasyon viza",
+          "options": {
+            "expired": "🔴 Deja ekspire",
+            "30days": "⚠️ Nan 30 jou",
+            "90days": "📅 Nan 90 jou",
+            "6months": "📆 Nan 6 mwa",
+            "year": "📍 Nan 1 an",
+            "safe": "✅ Plis pase 1 an",
+            "empty": "⬜ Pa aplike"
+          }
+        },
+        "gcYearsHeld": {
+          "title": "Depi konbyen tan ou gen green card ou?",
+          "options": {
+            "under2": "⏳ Mwens pase 2 an",
+            "2to3": "📅 2–3 an",
+            "3to5": "🗓️ 3–5 an",
+            "over5": "✅ 5 an + — Ou kalifye pou natiralize",
+            "military": "🎖️ Sèvis militè",
+            "empty": "⬜ Pa aplike"
+          }
+        },
+        "language": {
+          "title": "Lang aplikasyon",
+          "options": {
+            "en": "🇺🇸 English",
+            "es": "🇪🇸 Español",
+            "pt": "🇧🇷 Português",
+            "zh": "🇨🇳 中文",
+            "ht": "🇭🇹 Kreyòl"
+          }
+        }
+      },
+      "about": {
+        "title": "Konsènan OnePath",
+        "version": "Vèsyon",
+        "dataUpdated": "Done Mete Ajou",
+        "sources": "Sous",
+        "sourcesValue": "USCIS, DOS, DOL, Federal Register"
+      },
+      "disclaimer": "OnePath bay enfòmasyon imigrasyon pou rezon edikasyonèl sèlman. Aplikasyon sa a pa yon kabinè avoka epi li pa bay konsèy legal. Konsilte yon avoka imigrasyon ki gen lisans pou konsèy espesifik pou sitiyasyon ou.",
+      "privacy": {
+        "label": "🔒 Konfidansyalite",
+        "value": "Tout done rete sou aparèy ou"
+      },
+      "reset": {
+        "button": "Reyajiste Aplikasyon & Rekòmanse",
+        "confirmTitle": "Reyajiste Aplikasyon",
+        "confirmBody": "Sa a pral efase tout done ou yo epi rekòmanse pwosesis onbòding la. Sa pa ka defèt.",
+        "confirmAction": "Reyajiste",
+        "doneTitle": "Aplikasyon Reyajiste",
+        "doneBody": "Tanpri fèmen epi reouvri aplikasyon pou rekòmanse."
+      },
+      "modal": {
+        "cancel": "Anile"
+      },
+      "updateAlert": {
+        "title": "Mete Ajou",
+        "body": "Pwofil ou mete ajou. Retounen nan ekran akèy pou wè chanjman yo."
+      },
+      "languagePicker": {
+        "currentLanguage": "Lang",
+        "changeLanguage": "Chanje Lang",
+        "autoDetected": "Detekte otomatikman sou aparèy"
+      }
+    },
+    "onboardingSummary": {
+      "currentViability": "Fezabilite Aktyèl",
+      "recommendedActions": "Aksyon Rekòmande",
+      "immediateHelp": "🆘 Èd Ijan",
+      "exploreAllOptions": "Eksplore Tout Opsyon",
+      "statusInfo": {
+        "currentStatus": "Estati Aktyèl: {{visa}}",
+        "workAuthorization": "Otorizasyon Travay: {{auth}}",
+        "country": "Peyi: {{country}}",
+        "countryOfBirth": "Peyi Nesans: {{country}}",
+        "greenCardHeld": "Green Card Genyen: {{years}}",
+        "backlogged": "⚠️ Sijè a akimile pou kota peyi",
+        "backlogClear": "✅ Dat priyorite aktyèl",
+        "needsStatusChange": "⚠️ Bezwen chanje estati soti B-1/B-2"
+      },
+      "alerts": {
+        "expired": {
+          "message": "🔴 Estati ou ekspire. Aksyon ijan obligatwa!",
+          "action": "Konsilte yon avoka imigrasyon JODI A"
+        },
+        "expiry30days": {
+          "message": "⚠️ Delè kritik ap pwoche nan 30 jou",
+          "action": "Depoze renouvèlman/pwolongasyon imedyatman"
+        },
+        "outOfStatus": {
+          "message": "⚠️ Sitiyasyon san estati legal detekte",
+          "action": "Konsiltasyon legal fò rekòmande"
+        },
+        "noWorkAuth": {
+          "message": "📋 Pa gen otorizasyon travay — Pa ka kòmanse travay",
+          "action": "Dwe jwenn viza travay apwopriye anvan"
+        },
+        "asylumDeadline": {
+          "message": "⏰ Azil dwe depoze nan 1 an apre rive",
+          "action": "Konsilte avoka imedyatman"
+        },
+        "citizenshipUnder2": {
+          "message": "⏳ Pa elijib toujou pou depoze pou natiralizasyon",
+          "action": "Ou pral bezwen omwen 3 an (marye ak sitwayen ameriken) oswa 5 an (estanda) kòm rezidan pèmanan"
+        },
+        "citizenship2to3": {
+          "message": "📅 Ap pwoche elijibilite — verifye wout espesifik ou a",
+          "action": "Si ou marye ak yon sitwayen ameriken, ou ka elijib kounye a. Sinon tann jiska 5 an."
+        },
+        "citizenshipOver5": {
+          "message": "✅ Ou elijib pou depoze Form N-400 kounye a",
+          "action": "Ou ka aplike imedyatman — kòmanse rasanble dokiman ou yo"
+        }
+      },
+      "work": {
+        "title": "Estrateji Imigrasyon Baze sou Travay",
+        "summary": {
+          "opt_india": "Ou sou OPT — li lè pou jwenn yon patwon H-1B. Enskripsyon lottery FY2027 te kouri 4–19 mas 2026. Remake: USCIS itilize yon pwosesis seleksyon baze sou salè ki favorize pozisyon ki peye plis. Zend gen akimilasyon EB-2/EB-3 enpòtan (12+ an).",
+          "opt_other": "Ou sou OPT — li lè pou jwenn yon patwon H-1B. Enskripsyon lottery FY2027 te kouri 4–19 mas 2026. Kòmanse prepare petisyon ou bonè.",
+          "restricted": "Otorizasyon travay ou lye ak yon anplwayè espesifik. Chanje travay nesesite yon nouvo petisyon.",
+          "urgentNoAuth": "⚠️ San otorizasyon travay, ou pa ka kòmanse travay. Premium processing (kounye a $2,965) ka ekspedye kèk viza nan 15 jou.",
+          "default": "Imigrasyon baze sou anplwa nesesite patwonaj anplwayè. Kòmanse jwenn yon anplwayè ki vle patwone viza ou.",
+          "haiti_tps": "Si EAD ou baze sou TPS, konnen ke EAD TPS kounye a limite a 1 an maksimòm selon H.R. 1. Depoze renouvèlman byen anvan eksprasyon. Konsidere eksplore lòt chemen si deziynasyon TPS ou ensèten."
+        },
+        "primaryAction": {
+          "expiredStatus": "🆘 Regle Estati Ekspire",
+          "findH1bSponsor": "Jwenn Patwon H-1B",
+          "getWorkAuth": "Jwenn Otorizasyon Travay",
+          "exploreWorkVisas": "Eksplore Viza Travay"
+        },
+        "secondaryAction": {
+          "h1bLotteryInfo": "Enfò Lottery H-1B",
+          "documentChecklist": "Lis Dokiman"
+        },
+        "pathway": {
+          "title": "Imigrasyon Baze sou Travay",
+          "subtitle": "Viza H-1B, L-1, O-1",
+          "description": "Pou travayè ki gen konpetans ak pwofesyonèl"
+        },
+        "warnings": {
+          "backlog": "📊 Green card EB-2/EB-3 gen delè 12+ an pou peyi ou",
+          "cantWorkOnB1B2": "⚠️ Pa ka travay sou estati B-1/B-2 — chanjman viza nesesè",
+          "urgentExpiry": "🔴 Ijan: Regle estati k ap ekspire/ekspire imedyatman",
+          "optUnemployment": "⏰ OPT gen limit 90 jou chomaj — swiv ak atansyon",
+          "eadValidity": "📋 Validite EAD redwi a 18 mwa (soti 5 an) pou aplikan adjustment of status depi des 2025"
+        },
+        "recommendations": {
+          "h1bLottery": "✅ Aplike pou lottery H-1B (mas chak ane — baze sou salè kounye a)",
+          "dayOneCpt": "✅ Konsidere pwogram Day-1 CPT kòm opsyon siplemantè",
+          "cantWorkApplyFirst": "📋 Pa ka travay san otorizasyon — aplike anvan",
+          "tnVisa": "🍁 Konsidere viza TN — pi rapid pase H-1B pou Kanadyen",
+          "nonCapVisas": "💡 Viza L-1 ak O-1 pa gen cap — eksplore si elijib"
+        }
+      },
+      "family": {
+        "title": "Chemen Imigrasyon Baze sou Fanmi",
+        "summary": {
+          "backloggedCountry": "⚠️ Peyi ou gen akimilasyon enpòtan nan preferans fanmi. Fanmi imedya (konjwen/paran sitwayen ameriken) pa gen limit kota, men lòt kategori ka pran 10-20 an.",
+          "insideUsWithVisa": "Ou ka kapab ajiste estati san kite Etazini si ou kenbe estati legal epi yon viza disponib.",
+          "default": "Patwonaj fanmi se yon chemen estab men li ka pran plizyè ane depan sou relasyon ou ak peyi nesans ou."
+        },
+        "primaryAction": {
+          "viewFamilyPathways": "Wè Chemen Fanmi"
+        },
+        "secondaryAction": {
+          "checkVisaBulletin": "Tcheke Visa Bulletin",
+          "processingTimes": "Tan Tretman"
+        },
+        "pathway": {
+          "title": "Imigrasyon Baze sou Fanmi",
+          "subtitle": "Maryaj, Paran, Frè ak Sè",
+          "description": "Reyini ak manm fanmi"
+        },
+        "warnings": {
+          "expectedWait": "⏰ Delè prevwa: {{range}} pou preferans fanmi",
+          "priorIssues": "⚠️ Pwoblèm imigrasyon anvan yo ka afekte elijibilite",
+          "proclamations": "📋 Pwoklamasyon Prezidansyèl te gen enpak sou to emisyon viza pou kèk nasyonalite — retrogresyon posib nan FY2026"
+        },
+        "waitRanges": {
+          "india": "5-15 an",
+          "china": "5-12 an",
+          "mexico": "10-20 an",
+          "haiti": "3-8 an",
+          "philippines": "10-15 an"
+        },
+        "recommendations": {
+          "fileI130": "📄 Depoze I-130 pi vit posib pou etabli priority date",
+          "considerEmployment": "💼 Konsidere opsyon baze sou anplwa an paralèl",
+          "maintainStatus": "📋 Kenbe estati legal pandan w ap tann"
+        }
+      },
+      "study": {
+        "title": "Gid Chemen Etidyan",
+        "summary": {
+          "changeFromB1B2": "Ou pral bezwen chanje estati soti B-1/B-2 vin F-1. Aplike nan yon lekòl sètifye SEVP anvan, epi depoze I-539 pou chanjman estati.",
+          "alreadyOnF1": "Ou deja sou F-1. Konsidere OPT apre gradyasyon (aplike 90 jou anvan), epi eksplore opsyon H-1B ak anplwayè potansyèl. STEM OPT ajoute 24 mwa.",
+          "default": "Viza etidyan F-1 pèmèt etid ak travay limite (CPT/OPT). Apre gradyasyon, ou ka itilize OPT pou fòmasyon pratik epi pase nan H-1B."
+        },
+        "primaryAction": {
+          "studentVisaOptions": "Opsyon Viza Etidyan"
+        },
+        "secondaryAction": {
+          "lifeSetupGuide": "Gid Konfigirasyon Lavi"
+        },
+        "pathway": {
+          "title": "Chemen Etidyan",
+          "subtitle": "Viza F-1, J-1",
+          "description": "Etidye Etazini"
+        },
+        "warnings": {
+          "maintainUntilF1": "📚 Dwe kenbe estati jiskaske F-1 apwouve",
+          "cantStartUntilApproved": "⏰ Pa ka kòmanse lekòl jiskaske chanjman estati apwouve"
+        },
+        "recommendations": {
+          "sevpSchools": "🎓 Aplike nan lekòl sètifye SEVP sèlman",
+          "financialProof": "💰 Montre prèv sipò finansyè",
+          "fullTimeEnrollment": "📋 Kenbe enskripsyon plen tan",
+          "cptOpt": "💼 Itilize CPT/OPT pou eksperyans travay",
+          "stemMajor": "🔬 Chwazi yon spesyalite STEM pou 36 mwa total OPT"
+        }
+      },
+      "protection": {
+        "title": "Pwoteksyon & Sekou Imilanitè",
+        "summary": {
+          "insideUs": "Azil dwe depoze nan 1 an apre rive. Ou ka aplike pou otorizasyon travay 150 jou apre depoze. Remake: Validite EAD pou aplikan azil kounye a se 18 mwa maksimòm, epi pwolongasyon otomatik elimine. Pwosesis la konplèks — reprezantasyon legal fòtman rekòmande.",
+          "outsideUs": "Plizyè pwogram pwoteksyon egziste tankou reyenstalonman refijye ak parole imilanitè. Kontakte UNHCR oswa yon ajans reyenstalonman."
+        },
+        "primaryAction": {
+          "emergencyResources": "🆘 Resous Ijans",
+          "protectionOptions": "Opsyon Pwoteksyon"
+        },
+        "secondaryAction": {
+          "legalAidResources": "Resous Èd Legal"
+        },
+        "warnings": {
+          "immediateLegal": "⚠️ Ka pwoteksyon nesesite asistans legal imedya",
+          "asylumVolatile": "⚠️ Anviwonman politik azil trè volatil kounye a — chèche konsèy legal aktyalizé"
+        },
+        "resources": {
+          "uscis": "USCIS",
+          "uscisPhone": "1-800-375-5283",
+          "legalAid": "Èd Legal",
+          "legalAidUrl": "immigrationadvocates.org",
+          "unhcr": "UNHCR",
+          "unhcrUrl": "help.unhcr.org"
+        }
+      },
+      "citizenship": {
+        "title": "Chemen Ou Pou Sitwayènte Ameriken",
+        "summary": {
+          "military": "Manm militè ak veteran ka elijib pou natiralizasyon ekspedye. Sèvis aktif pandan yon peryòd ostilite deziyen pèmèt elijibilite imedya. Frè depo N-400 anile pou aplikan militè.",
+          "over5": "Ou satisfè kondisyon rezidans kontinyèl 5 an epi ou ka depoze Form N-400 kounye a. Ou pral bezwen pase yon egzamen anglè ak yon egzamen sivik (100 kesyon). Tretman pran anjeneral 8–14 mwa soti depo rive sèman.",
+          "3to5": "Si ou marye epi w ap viv ak yon sitwayen ameriken, ou ka kalifye sou règ 3 an. Sa a nesesite 18 mwa prezans fizik ak rezidans kontinyèl pandan 3 an sa yo. Sinon, ou pral bezwen tann jiska 5 an.",
+          "2to3": "Ou ap pwoche elijibilite. Wout estanda a nesesite 5 an kòm titilè green card, men si ou marye ak yon sitwayen ameriken, ou ka kalifye apre 3 an sèlman. Itilize tan sa a pou prepare dokiman ou yo ak etidye pou egzamen sivik la.",
+          "under2": "Ou pa elijib toujou pou natiralize, men kounye a se yon bon moman pou prepare. Swiv istwa vwayaj ou, kenbe green card ou an bon eta, epi kòmanse etidye 100 kesyon egzamen sivik la.",
+          "default": "Natiralizasyon se pwosesis pou vin sitwayen ameriken. Pifò titilè green card elijib apre 5 an rezidans kontinyèl. Si ou marye ak yon sitwayen ameriken, ou ka kalifye apre 3 an sèlman."
+        },
+        "primaryAction": {
+          "startN400": "Kòmanse Aplikasyon N-400",
+          "check3Year": "Verifye Elijibilite 3 An",
+          "militaryInfo": "Enfò Natiralizasyon Militè",
+          "timelineRequirements": "Kalandriye & Kondisyon Natiralizasyon"
+        },
+        "secondaryAction": {
+          "n400Checklist": "Lis Dokiman N-400"
+        },
+        "pathway": {
+          "title": "Chemen Pou Sitwayènte",
+          "subtitle": "Natiralizasyon & N-400",
+          "description": "Vin sitwayen ameriken"
+        },
+        "warnings": {
+          "priorViolations": "⚠️ Vyolasyon imigrasyon anvan ka afekte kondisyon bon karaktè moral — konsilte yon avoka",
+          "priorDenial": "⚠️ Refize anvan ka gen enpak sou natiralizasyon — revize sikonstans ak atansyon",
+          "extendedTrips": "✈️ Vwayaj long aletranje (6+ mwa) ka kraze rezidans kontinyèl — swiv vwayaj ou ak atansyon",
+          "goodMoralCharacter": "📋 Ou dwe kenbe bon karaktè moral pou tout peryòd 5 an (oswa 3 an) anvan depo",
+          "threeYearMarriage": "💍 Règ 3 an nesesite ou toujou marye epi viv ak konjwen sitwayen ameriken an lè w ap depoze"
+        },
+        "recommendations": {
+          "fileN400": "📄 Depoze Form N-400 — $760 papye / $710 sou entènèt (militè: gratis)",
+          "studyCivics": "📚 Etidye 100 kesyon sivik nan uscis.gov/citizenship/tessprep",
+          "gatherDocs": "🗂️ Rasanble deklarasyon taks, dosye vwayaj, ak kopi green card",
+          "startStudying": "📚 Kòmanse etidye 100 kesyon sivik kounye a — pran avans",
+          "trackTrips": "✈️ Swiv tout vwayaj entènasyonal ak atansyon (dat antre/soti Etazini)",
+          "keepTaxes": "📋 Kenbe deklarasyon taks aktyèl — obligatwa pou natiralizasyon",
+          "renewGc": "💳 Renouvle green card ou si li ekspire anvan ou elijib pou natiralize",
+          "consultAttorney": "👨‍⚖️ Konsilte yon avoka imigrasyon si ou gen nenpòt istwa kriminèl oswa vyolasyon anvan"
+        }
+      },
+      "default": {
+        "title": "Vwayaj Imigrasyon Ou",
+        "summary": "Ann eksplore opsyon ou yo baze sou sitiyasyon aktyèl ou.",
+        "primaryAction": "Eksplore Tout Chemen"
+      },
+      "urgentForm": {
+        "labelUrgent": "DEPOZE KOUNYE A",
+        "labelAction": "AKSYON NESESÈ",
+        "feeKey": "Frè:",
+        "deadlineKey": "Delè:",
+        "forms": {
+          "H1B": {
+            "form": "Pwolongasyon Form I-129",
+            "purpose": "Pwolonge estati H-1B ou",
+            "fee": "$1,015 + $2,965 premium (15 jou)",
+            "deadlineUrgent": "Depoze JODI A — anplwayè dwe aji imedyatman",
+            "deadlineSoon": "Depoze omwen 6 mwa anvan eksprasyon",
+            "tip": "Premium processing bay desizyon nan 15 jou. Anplwayè ou depoze, pa ou."
+          },
+          "F1": {
+            "form": "Kontakte DSO Ou Imedyatman",
+            "purpose": "Pwolongasyon pwogram oswa aplikasyon OPT",
+            "fee": "Gratis (aksyon DSO) / OPT I-765: $470 sou entènèt",
+            "deadlineUrgent": "Kontakte DSO jodi a — peryòd gras se sèlman 60 jou apre fen pwogram",
+            "deadlineSoon": "Planifye OPT 90 jou anvan gradyasyon",
+            "tip": "Ofisyèl Lekòl Deziyen (DSO) ou dwe pwolonge I-20 ou anvan ou ka depoze nenpòt bagay."
+          },
+          "OPT": {
+            "form": "Pwolongasyon STEM Form I-765",
+            "purpose": "Pwolonge OPT 24 mwa (diplome STEM)",
+            "fee": "$470 sou entènèt / $520 papye",
+            "deadlineUrgent": "Depoze imedyatman — aplike jiska 90 jou anvan EAD ekspire",
+            "deadlineSoon": "Aplike kounye a — tretman USCIS pran 3-5 mwa",
+            "tip": "Dwe gen diplòm STEM ak anplwayè E-Verify. Depoze anvan EAD aktyèl ekspire oswa ou pèdi otorizasyon travay."
+          },
+          "L1": {
+            "form": "Pwolongasyon Form I-129",
+            "purpose": "Pwolonge estati L-1 ou",
+            "fee": "$1,015 + $2,965 premium opsyonèl",
+            "deadlineUrgent": "Depoze imedyatman — anplwayè dwe patwone",
+            "deadlineSoon": "Depoze 6 mwa anvan eksprasyon",
+            "tip": "L-1A maksimòm 7 an total, L-1B maksimòm 5 an. Premium bay desizyon nan 15 jou."
+          },
+          "J1": {
+            "form": "Pwolongasyon Pwogram DS-2019",
+            "purpose": "Pwolonge pwogram vizitè echanj J-1 ou",
+            "fee": "Gratis (aksyon patwon obligatwa)",
+            "deadlineUrgent": "Kontakte patwon pwogram ou imedyatman",
+            "deadlineSoon": "Kontakte patwon 3 mwa anvan dat fen",
+            "tip": "Sèlman patwon pwogram ou ka pwolonge DS-2019. Ou pa ka depoze sa pou kont ou."
+          },
+          "B1B2": {
+            "form": "Form I-539",
+            "purpose": "Pwolonge sejou vizitè B-1/B-2 ou",
+            "fee": "$370 sou entènèt / $420 papye",
+            "deadlineUrgent": "Depoze imedyatman — rete pase dat gen konsekans grav",
+            "deadlineSoon": "Depoze omwen 45 jou anvan I-94 ekspire",
+            "tip": "Dwe depoze ANVAN I-94 ou ekspire. Rete menm yon sèl jou ka afekte aplikasyon viza nan lavni."
+          },
+          "EAD": {
+            "form": "Renouvèlman Form I-765",
+            "purpose": "Renouvle Dokiman Otorizasyon Anplwa ou",
+            "fee": "$470 sou entènèt / $520 papye",
+            "deadlineUrgent": "Depoze imedyatman — validite EAD kounye a se 18 mwa maksimòm",
+            "deadlineSoon": "Depoze 6 mwa anvan eksprasyon — tretman pran 3-5 mwa",
+            "tip": "Pwolongasyon otomatik elimine depi okt 2025. Depoze bonè — yon entèval nan EAD vle di ou pa ka travay legalement."
+          },
+          "GC_pending": {
+            "form": "Renouvèlman Form I-765 / I-131",
+            "purpose": "Renouvle kat combo EAD/Advance Parole ou",
+            "fee": "$260 (ak I-485 an trant depoze apre avr 2024)",
+            "deadlineUrgent": "Depoze imedyatman — pa kite kat combo ekspire",
+            "deadlineSoon": "Depoze 6 mwa anvan eksprasyon",
+            "tip": "Vwayaje san Advance Parole valid pandan I-485 an trant ka abandone aplikasyon green card ou."
+          }
+        }
+      }
+    },
+    "warnings": {
+      "h1bCap": "Peryòd enskripsyon H-1B FY2027 fèmen 19 mas 2026. Yon nouvo lottery baze sou salè favorize pozisyon ki peye plis.",
+      "h1bWeightedLottery": "Nouvo pou FY2027: USCIS itilize yon pwosesis seleksyon baze sou salè. Nivo salè pi wo gen chans pi bon ijan. Pozisyon nivo debitan fè fas a chans redwi.",
+      "h1bFeeAlert": "Pwoklamasyon Prezidansyèl 10973: $100,000 frè adisyonèl aplike pou kèk petisyon H-1B ki nesesite tretman konsila (benefisyè deyò Etazini). Sa an plis tout frè depo regilye.",
+      "h1bPremiumIncrease": "Frè premium processing ogmante efikas 1 mas 2026. I-129/I-140: kounye a $2,965. I-765: kounye a $1,780. I-539: kounye a $2,075.",
+      "familyLongWait": "Kèk kategori preferans fanmi gen peryòd trant plizye ane akòz limit viza anyèl. Frè ak sè F4 ka tann 15+ an pou kèk peyi.",
+      "familyPolicyShifts": "Pwoklamasyon Prezidansyèl redwi to emisyon viza pou kèk nasyonalite. Dat avanse pou lòt peyi men retrogresyon posib pita nan FY2026.",
+      "indiaEbBacklog": "Dat aksyon final Zend EB-2: 15 septanm 2013. EB-3: 15 novanm 2013. Akimilasyon an rete 12+ an. Kèk pwogrè nan debidane 2026.",
+      "chinaEbBacklog": "Dat aksyon final Lachin EB-2: 1 septanm 2021. EB-3: 1 me 2021. Akimilasyon plizye ane pèsiste pou aplikan ne nan kontinan an.",
+      "eadValidityReduced": "Efikas 5 desanm 2025: Validite maksimòm EAD redwi soti 5 an vin 18 mwa pou aplikan adjustment of status, refijye, moun ki jwenn azil, ak kategori ki asosye. Depoze renouvèlman bonè — entèval nan otorizasyon travay pi pwobab kounye a.",
+      "eadAutoExtensionEnded": "Efikas 30 oktòb 2025: Pwolongasyon EAD otomatik 540 jou elimine pou pifò kategori. EAD ekspire kounye a nan dat enprime yo. Planifye renouvèlman omwen 6 mwa alavans.",
+      "eadTpsParoleOneYear": "Selon H.R. 1 (One Big Beautiful Bill Act): EAD TPS ak parole kounye a valid pou yon maksimòm de 1 an oswa fen peryòd otorize a, sa ki pi kout.",
+      "asylumVolatility": "Politik azil sijè a chanjman aktif ki gen ladan règ ekzamen amelyore ak regilasyon pwopoze. Trete sa kòm yon chemen ki trè volatil epi konsilte yon avoka pou gidans aktyèl.",
+      "studentOptPlanning": "Aplike pou OPT jiska 90 jou anvan gradyasyon. STEM OPT nesesite anplwayè E-Verify. Tretman pran ~4.5 mwa kounye a — planifye an konsekans.",
+      "processingTimesDisclaimer": "Tan tretman USCIS ralanti ijan nan dènye mwa yo. Tan reyèl yo ka depase estimasyon pibliye yo. Konsidere premium processing kote disponib."
+    },
+    "pathwayViability": {
+      "disclaimer": "Evalyasyon fezabilite se gidans jeneral baze sou politik aktyèl ak kondisyon tretman. Sikonstans pèsonèl varye. Konsilte yon avoka imigrasyon pou konsèy pèsonalize.",
+      "levels": {
+        "HIGH": {
+          "label": "Fezabilite Wo",
+          "description": "Chemen estab avèk pwosesis previzib"
+        },
+        "CONDITIONAL": {
+          "label": "Kondisyonèl",
+          "description": "Fezab pou kandida ki apwopriye, men pi restrenn oswa konpetitif"
+        },
+        "LOWER": {
+          "label": "Ba / Volatil",
+          "description": "Baryè enpòtan, delè long, oswa ensètitiid politik"
+        }
+      },
+      "pathways": {
+        "H1B": {
+          "shortReason": "Konpetisyon cap wo. Nouvo lottery baze sou salè favorize salè pi wo.",
+          "details": {
+            "d1": "FY2027 entrodwi seleksyon baze sou salè — pozisyon nivo debitan fè fas a chans redwi.",
+            "d2": "$100,000 frè adisyonèl pou kèk petisyon ki nesesite tretman konsila.",
+            "d3": "Frè enskripsyon ogmante a $215. Premium processing kounye a $2,965.",
+            "d4": "Demann konsistamman depase cap anyèl 85,000 pa 4–8 fwa."
+          },
+          "recommendation": "Pi bon pou kandida ki ofri salè nivo OEWS III oswa IV. Konsidere altènatif O-1 oswa L-1 si elijib."
+        },
+        "L1": {
+          "shortReason": "Pa sijè cap. Bon pou anplwaye multinasyonal ki kalifye.",
+          "details": {
+            "d1": "Pa sijè cap anyèl H-1B oswa lottery.",
+            "d2": "Nesesite 1 an anplwa ak konpayi multinasyonal ki kalifye.",
+            "d3": "Elijibilite pi restrenn, men evite goulèt etranglèman sezon cap.",
+            "d4": "Ka depoze tout ane."
+          },
+          "recommendation": "Fezabilite wo pou kandida ki apwopriye. Si ou travay pou yon multinasyonal pou 1+ an, sa ka pi solid pase H-1B."
+        },
+        "O1": {
+          "shortReason": "Pa gen cap, men nesesite prèv kapasite ekstraòdinè.",
+          "details": {
+            "d1": "Pa sijè cap anyèl — ka depoze nenpòt ki lè.",
+            "d2": "Nesesite kapasite oswa reyalizasyon ekstraòdinè dokimante.",
+            "d3": "Atraktif estratejikman pou fondatè, chèchè, kreyatif, atlèt.",
+            "d4": "Pi difisil pou kalifye, men pi previzib pase H-1B si elijib."
+          },
+          "recommendation": "Si ou gen prim, piblikasyon, kouvèti medya, oswa prèv salè wo, eksplore sa anvan H-1B."
+        },
+        "IMMEDIATE_RELATIVE": {
+          "shortReason": "Chemen fanmi ki pi solid. Pa sijè sistèm akimilasyon preferans.",
+          "details": {
+            "d1": "Fanmi imedya sitwayen ameriken pa gen limit pa peyi.",
+            "d2": "Gen ladan konjwen, pitit ki poko gen 21 an, ak paran sitwayen adilt.",
+            "d3": "Tan tretman mezire an mwa, pa an ane (kontrèman a kategori preferans).",
+            "d4": "Chemen estab ak dokimante byen."
+          },
+          "recommendation": "Si ou kalifye kòm fanmi imedya, sa se youn nan chemen ki pi fyab disponib yo."
+        },
+        "FAMILY_PREFERENCE": {
+          "shortReason": "Akimilasyon 5–20+ an depan sou kategori ak peyi.",
+          "details": {
+            "d1": "Kategori F1, F2B, F3, F4 tout fè fas a delè plizye ane.",
+            "d2": "Meksik ak Filipin fè fas a pi long akimilasyon (kèk 20+ an).",
+            "d3": "Pwoklamasyon Prezidansyèl gen plis enpak sou to emisyon pou kèk nasyonalite.",
+            "d4": "Retrogresyon posib pita nan FY2026."
+          },
+          "recommendation": "Depoze bonè pou etabli yon priority date, men planifye pou yon long trant. Konsidere si lòt chemen disponib an paralèl."
+        },
+        "F1_STUDENT": {
+          "shortReason": "Chemen antre estab. OPT/STEM OPT bay yon pont travay.",
+          "details": {
+            "d1": "Estati F-1, OPT, ak pwolongasyon STEM OPT 24 mwa rete aktif ak entegralmman entakt.",
+            "d2": "Pa yon chemen imigran dirèk, men yon wout reyalis 'antre, etidye, travay, epi transisyon'.",
+            "d3": "Tan trant ambasad pou F-1 jeneralman pi kout pase lòt tip viza.",
+            "d4": "Frè SEVIS: $350 pou etidyan F-1."
+          },
+          "recommendation": "Youn nan chemen antre ki pi pratik pou aplikan ki pi jèn. Planifye spesyalite STEM ou ak atansyon pou fenèt OPT 36 mwa."
+        },
+        "EB_GENERAL": {
+          "shortReason": "Fezab pou pifò peyi, men Zend/Lachin fè fas a akimilasyon grav.",
+          "details": {
+            "d1": "EB-2 ak EB-3 pou rès mond yo relativman aktyèl oswa gen kout trant.",
+            "d2": "Zend EB-2: dat aksyon final 15 sep 2013 (akimilasyon 12+ an).",
+            "d3": "Lachin EB-2: dat aksyon final 1 sep 2021 (akimilasyon 4+ an).",
+            "d4": "Limit pa peyi kreye disparite masif nan tan trant."
+          },
+          "recommendation": "Pou peyi ki pa gen akimilasyon, sa se yon chemen solid. Pou Zend/Lachin, planifye pou yon très long trant epi eksplore altènatif tankou EB-1 oswa NIW."
+        },
+        "ASYLUM": {
+          "shortReason": "Anviwonman politik volatil. Ekzamen amelyore an vigè.",
+          "details": {
+            "d1": "Chanjman politik aktif ki gen ladan règ pwopoze pou ekzamen pi pouse.",
+            "d2": "Validite EAD pou aplikan azil redwi a 18 mwa.",
+            "d3": "Pwolongasyon EAD otomatik elimine (efikas 30 okt 2025).",
+            "d4": "Pa dwe trete kòm yon 'estrateji' estab — se yon chemen pwoteksyon pou moun ki nan vre bezwen."
+          },
+          "recommendation": "Si ou gen yon vre krent pèsekisyon, chèche konsèy legal imedyatman. Pa konte sou azil kòm yon estrateji imigrasyon planifye."
+        },
+        "CONSULAR_PROCESSING": {
+          "shortReason": "Chemen ki ka swiv nan NVC pou relasyon fanmi ki kalifye.",
+          "details": {
+            "d1": "Zouti NVC ak planifikasyon IV Depatman Deta rann chemen sa a pi fasil swiv.",
+            "d2": "Estab pou fanmi imedya ak ka fanmi/anplwa ki kalifye.",
+            "d3": "Ka lan, men pipeline la vizib nan zouti ofisyèl.",
+            "d4": "Pwoklamasyon Prezidansyèl gen enpak sou tretman pou kèk nasyonalite."
+          },
+          "recommendation": "Si ou deyò avèk yon petisyon ki califye apwouve, sa se yon chemen dokimante ak fasil swiv."
+        }
+      },
+      "modal": {
+        "recommendation": "Rekòmandasyon",
+        "updated": "Mete ajou: {{date}}",
+        "close": "Fèmen"
+      }
+    },
+    "resources": {
+      "disclaimer": "Lis yo se pou rezon enfòmasyon sèlman epi yo pa konstitye konsèy legal.",
+      "categories": {
+        "all": "Tout Resous",
+        "government": "Gouvènman",
+        "legal": "Èd Legal",
+        "nonprofit": "Òganizasyon San Bi Likratif",
+        "education": "Edikasyon"
+      },
+      "items": {
+        "uscis": {
+          "name": "USCIS — Sèvis Sitwayènte ak Imigrasyon Etazini",
+          "description": "Ajans imigrasyon ofisyèl Etazini",
+          "services": {
+            "forms": "Fòmilè",
+            "caseStatus": "Estati ka",
+            "appointments": "Randevou"
+          }
+        },
+        "dos_visa": {
+          "name": "Depatman Deta — Sèvis Viza",
+          "description": "Visa Bulletin, randevou ambasad, tretman konsila",
+          "services": {
+            "visaBulletin": "Visa Bulletin",
+            "embassyInfo": "Enfò ambasad",
+            "ds160": "DS-160"
+          }
+        },
+        "doj_eoir": {
+          "name": "Tribinal Imigrasyon EOIR",
+          "description": "",
+          "services": {
+            "courtInfo": "Enfòmasyon tribinal",
+            "hearingNotices": "Avi odyans"
+          }
+        },
+        "dol_flag": {
+          "name": "Depatman Travay — Sistèm FLAG",
+          "description": "Sètifikasyon travay, salè dominan, depo LCA",
+          "services": {
+            "perm": "PERM",
+            "lca": "LCA",
+            "prevailingWages": "Salè dominan"
+          }
+        },
+        "imm_advocates": {
+          "name": "Rezo Defansè Imigrasyon",
+          "description": "Anyè èd legal imigrasyon gratis ak a ba pri",
+          "services": {
+            "proBono": "Sèvis legal pro bono",
+            "knowYourRights": "Konnen dwa ou yo"
+          }
+        },
+        "lawhelp": {
+          "name": "LawHelp.org",
+          "description": "Jwenn èd legal gratis nan eta ou",
+          "services": {
+            "legalAidDirectory": "Anyè èd legal",
+            "stateResources": "Resous pa eta"
+          }
+        },
+        "aila": {
+          "name": "Referans Avoka AILA",
+          "description": "Asosyasyon Avoka Imigrasyon Ameriken — jwenn yon avoka",
+          "services": {
+            "referrals": "Referans avoka",
+            "lawUpdates": "Mete ajou lwa imigrasyon"
+          }
+        },
+        "catholic_charities": {
+          "name": "Charite Katolik",
+          "description": "Sèvis legal imigrasyon ak asistans refijye",
+          "services": {
+            "legalAid": "Èd legal",
+            "refugeeServices": "Sèvis refijye"
+          }
+        },
+        "raices": {
+          "name": "RAICES",
+          "description": "Sant Refijye ak Imigran pou Edikasyon ak Sèvis Legal",
+          "services": {
+            "legalRep": "Reprezantasyon legal",
+            "bondAssistance": "Asistans kaosyon"
+          }
+        },
+        "clinic": {
+          "name": "CLINIC — Rezo Legal Imigrasyon Katolik",
+          "description": "Rezo pwogram sèvis legal imigrasyon san bi likratif",
+          "services": {
+            "network": "Rezo sèvis legal",
+            "training": "Fòmasyon",
+            "advocacy": "Defans"
+          }
+        },
+        "usa_hello": {
+          "name": "USAHello",
+          "description": "Kou gratis ak resous pou imigran",
+          "services": {
+            "englishClasses": "Kou anglè",
+            "citizenshipPrep": "Preparasyon sitwayènte",
+            "gedPrep": "Preparasyon GED"
+          }
+        },
+        "uscis_civics": {
+          "name": "Sant Resous Sitwayènte USCIS",
+          "description": "Materyèl etid egzamen sitwayènte ofisyèl",
+          "services": {
+            "civicsTestPrep": "Preparasyon egzamen sivik",
+            "studyMaterials": "Materyèl etid",
+            "practiceTests": "Tès pratik"
+          }
+        }
+      },
+      "emergency": {
+        "humanTrafficking": "Liy Dirèk Trafik Imen",
+        "domesticViolence": "Liy Dirèk Vyolans Domestik",
+        "uscisContactCenter": "Sant Kontak USCIS"
+      }
+    },
+    "policyTracker": {
+      "policies": {
+        "h1b100kFee": {
+          "title": "Frè H-1B $100,000 — Tretman Konsila",
+          "summary": "Pèman $100,000 adisyonèl obligatwa pou kèk petisyon H-1B apwouve pou tretman konsila.",
+          "details": "Aplike lè benefisyè a deyò Etazini oswa lè petisyon an apwouve pou tretman konsila. Jeneralman PA aplike pou chanjman estati F-1→H-1B anndan Etazini. Depans total anplwayè ka depase $106,000.",
+          "actions": {
+            "a1": "Detèmine si benefisyè a kalifye pou chanjman estati (evite frè a)",
+            "a2": "Konsidere altènatif L-1 oswa O-1 si elijib",
+            "a3": "Bidjete an konsekans si tretman konsila obligatwa"
+          },
+          "impactByStatus": {
+            "F1": "MODERE — Chanjman estati F-1→H-1B jeneralman evite frè sa a",
+            "OPT": "MODERE — Titilè OPT elijib cap-gap ka depoze chanjman estati",
+            "H1B": "WO — Transfè ki nesesite tretman konsila deklanche frè a",
+            "B1B2": "WO — Dwe itilize tretman konsila, frè aplike"
+          }
+        },
+        "eadValidity18Months": {
+          "title": "Validite EAD Redwi a 18 Mwa",
+          "summary": "Validite EAD maksimòm koupe soti 5 an vin 18 mwa pou aplikan adjustment of status, refijye, moun ki jwenn azil, ak kategori ki asosye.",
+          "details": "Afekte aplikasyon I-765 an trant ak nouvo yo depoze sou oswa apre 5 des 2025. PA afekte OPT, STEM OPT, H-4, J-2, oswa EAD L-2. EAD ki egziste yo kenbe dat eksprasyon enprime yo.",
+          "actions": {
+            "a1": "Depoze renouvèlman EAD omwen 6 mwa anvan eksprasyon",
+            "a2": "Pa gen pwolongasyon 540 jou otomatik — planifye pou potansyèl entèval travay",
+            "a3": "Swiv dat eksprasyon ak atansyon"
+          },
+          "impactByStatus": {
+            "GC_pending": "KRITIK — Dwe renouvle EAD chak 18 mwa",
+            "EAD": "WO — Verifye ki kategori EAD ou tonbe anba",
+            "H1B": "BA — Estati H-1B pa afekte",
+            "F1": "BA — EAD OPT pa afekte pa politik sa a"
+          }
+        },
+        "eadAutoExtensionEnded": {
+          "title": "Pwolongasyon Otomatik EAD 540 Jou Elimine",
+          "summary": "Pwolongasyon EAD otomatik 540 jou fini pou pifò kategori. EAD ekspire kounye a nan dat enprime yo.",
+          "details": "Anvan, renouvèlman EAD depoze nan tan otomatikman pwolonge ansyen EAD pou 540 jou. Sa pa ka plis. Si USCIS pa jije renouvèlman ou anvan dat eksprasyon EAD ou, ou dwe sispann travay.",
+          "actions": {
+            "a1": "Depoze renouvèlman pi bonè posib (6 mwa anvan eksprasyon)",
+            "a2": "Konsidere premium processing pou I-765 si disponib ($1,780)",
+            "a3": "Kenbe estati altènatif si posib"
+          }
+        },
+        "h1bWeightedLottery": {
+          "title": "Lottery H-1B Baze sou Salè (FY2027+)",
+          "summary": "USCIS ranplase lottery H-1B aleatwa avèk yon sistèm seleksyon baze sou salè. Salè pi wo = pi bon chans.",
+          "details": "Salè Nivo I (debitan) jwenn 1x chans. Salè Nivo IV (ekspè) jwenn jiska 4x chans. Enskripsyon dwe gen kòd SOC ak nivo salè OEWS. Aplike premye fwa pou enskripsyon FY2027 (4-19 mas 2026).",
+          "actions": {
+            "a1": "Ofri salè konpetitif pou maksimize chans seleksyon",
+            "a2": "Asire kòd SOC kòrèk ak nivo salè sou enskripsyon",
+            "a3": "Konsidere O-1 oswa L-1 si chans H-1B pa favorab nan nivo salè ou a"
+          },
+          "impactByStatus": {
+            "OPT": "WO — Ofri nivo debitan fè fas a chans ijan redwi",
+            "F1": "WO — Afekte pèspektiv H-1B apre gradyasyon",
+            "H1B": "MODERE — Afekte transfè si nouvo enskripsyon nesesè"
+          }
+        },
+        "premiumProcessingFeeIncrease": {
+          "title": "Frè Premium Processing Ogmante",
+          "summary": "Tout frè premium processing ogmante ~5.7% efikas 1 mas 2026.",
+          "details": "I-129/I-140: $2,965 (te $2,805). I-539: $2,075 (te $1,965). I-765: $1,780 (te $1,685). Depo ki cachète anvan 1 mas ka itilize ansyen frè yo.",
+          "actions": {
+            "a1": "Bidjete pou frè premium processing pi wo",
+            "a2": "Depo cachète sou oswa apre 1 mas dwe gen nouvo frè a",
+            "a3": "Frè enkòrèk pral rezilte nan reji"
+          }
+        },
+        "visaBulletinProclamationImpact": {
+          "title": "Pwoklamasyon Prezidansyèl ki Afekte Emisyon Viza",
+          "summary": "Pwoklamasyon 10949 ak 10998 redwi emisyon viza imigran pou kèk nasyonalite. Dat avanse pou lòt peyi.",
+          "details": "Kèk kategori fanmi ak anplwa avanse pou peyi ki pa afekte yo. Retrogresyon ka rive pita nan FY2026 lè demann materyalize oswa pwoklamasyon yo chanje.",
+          "actions": {
+            "a1": "Verifye Visa Bulletin mas 2026 pou dat aktyèl yo",
+            "a2": "Depoze I-485 vit lè dat yo vin aktyèl",
+            "a3": "Swiv chak mwa pou risk retrogresyon"
+          }
+        },
+        "tpsParoleEadOneYear": {
+          "title": "EAD TPS/Parole — Maksimòm 1 An",
+          "summary": "H.R. 1 (One Big Beautiful Bill Act) limite EAD TPS ak parole a 1 an oswa fen peryòd otorize a.",
+          "details": "EAD inisyal ak renouvèlman pou benefisyè TPS ak moun ki jwenn parole kounye a valid pou sa ki pi kout: 1 an oswa dat fen peryòd otorize a. Aplike nan avi Federal Register 22 jiyè 2025.",
+          "actions": {
+            "a1": "Depoze renouvèlman byen anvan eksprasyon",
+            "a2": "Bidjete pou frè depo ki pi frekè",
+            "a3": "Swiv dat fen otorizasyon ak atansyon"
+          }
+        },
+        "indiaEbBacklogUpdate": {
+          "title": "Zend EB-2/EB-3 — Akimilasyon 12+ An",
+          "summary": "Dat aksyon final Zend EB-2: 15 sep 2013. EB-3: 15 nov 2013. Kèk pwogrè nan debidane 2026.",
+          "details": "EB-2 Zend avanse soti 15 me 2013 (jan 2025) rive 15 sep 2013 (mas 2026). EB-3 Zend avanse a 15 nov 2013. Dat pou Depo montre plis pwogrè. Bilten avril 2026 montre avansman adisyonèl.",
+          "actions": {
+            "a1": "Kenbe estati H-1B — pa kite ekspire",
+            "a2": "Depoze pwolongasyon H-1B baze sou I-140 apwouve",
+            "a3": "Konsidere EB-1A/EB-1B si kalifye",
+            "a4": "Eksplore EB-5 kòm altènatif si fezab finansyèman"
+          }
+        },
+        "h4EadPremiumAvailable": {
+          "title": "Premium Processing H-4 EAD Disponib",
+          "summary": "Premium processing disponib pou aplikasyon EAD H-4 endepandan.",
+          "details": "Tretman 30 jou pou $1,780 (mete ajou 1 mas 2026).",
+          "actions": {
+            "a1": "Konsidere premium processing si otorizasyon travay ijan",
+            "a2": "Depoze avèk pwolongasyon H-1B pou efisyans"
+          }
+        },
+        "srCategoryExtended": {
+          "title": "Kategori Travayè Relijye (SR) Pwolonge",
+          "summary": "Kategori Travayè Relijye EB-4 pwolonge jiska 30 septanm 2026.",
+          "details": "Kategori SR sijè a menm dat pou depo ak dat aksyon final kòm lòt kategori EB-4."
+        }
+      },
+      "courtCases": {
+        "weightedLotteryChallenge": {
+          "case": "Plizyè defi kont seleksyon H-1B baze sou salè",
+          "impact": "Ka retade oswa modifye sistèm lottery baze sou salè a",
+          "probability": "30% chans pou enjonksyon",
+          "contingencyActions": {
+            "a1": "Prepare pou rezilta lottery aleatwa ak baze sou salè",
+            "a2": "Depoze nan nivo salè apwopriye kèlkeswa"
+          }
+        }
+      },
+      "upcomingChanges": {
+        "fy2027SelectionsComplete": {
+          "title": "Seleksyon H-1B FY2027 Konplè",
+          "impact": "Tout notifikasyon seleksyon inisyal voye. ~34-42% to seleksyon.",
+          "action": "Si seleksyone, kòmanse prepare petisyon imedyatman. Si 'Soumèt', dezyèm wònd posib."
+        },
+        "h1bFilingWindowOpen": {
+          "title": "Fenèt Depo H-1B KOUNYE A OUVRI",
+          "impact": "Enskripsyon seleksyone yo ka depoze petisyon I-129 jiska 30 jen",
+          "action": "Depoze petisyon pi bonè posib — fenèt 90 jou fèmen 30 jen 2026"
+        },
+        "h1bFilingWindowCloses": {
+          "title": "Fenèt Depo H-1B Fèmen",
+          "impact": "Dènye jou pou depoze petisyon cap-subject FY2027",
+          "action": "Asire petisyon depoze anvan delè"
+        },
+        "newOewsWageData": {
+          "title": "Nouvo Done Salè OEWS Prevwa",
+          "impact": "Salè dominan mete ajou pou jiyè 2026–jen 2027",
+          "action": "Revize nouvo nivo salè pou depo an trant ak lavni"
+        },
+        "fy2026EndsDvExpires": {
+          "title": "FY2026 Fini — DV-2026 Ekspire",
+          "impact": "Nimewo viza divèsite pou DV-2026 ekspire",
+          "action": "Benefisyè DV-2026 yo dwe konplete tretman anvan dat sa"
+        },
+        "fy2027EmploymentStart": {
+          "title": "Kòmansman Anplwa H-1B FY2027",
+          "impact": "Benefisyè H-1B FY2027 apwouve ka kòmanse travay",
+          "action": "Verifye apwobasyon I-797 ak dat kòmansman"
+        }
+      },
+      "embassyAlerts": {
+        "torontoDelays": {
+          "location": "Toronto, Kanada",
+          "currentWait": "16 mwa pou B-1/B-2",
+          "normalWait": "3 mwa",
+          "reason": "Demann wo kontinyèl",
+          "alternatives": {
+            "alt1": "Ottawa (11.5 mwa)",
+            "alt2": "Vancouver (8 mwa)"
+          },
+          "action": "Konsidere aplike nan peyi ou oswa ambasad altènatif"
+        },
+        "juarezB1B2Delays": {
+          "location": "Ciudad Juarez, Meksik",
+          "currentWait": "15.5 mwa pou B-1/B-2",
+          "normalWait": "3 mwa",
+          "reason": "Demann viza imigran ak nonimigran wo",
+          "alternatives": {
+            "alt1": "Mexico City (10 mwa)",
+            "alt2": "Monterrey (10 mwa)"
+          },
+          "action": "Rezève randevou ki disponib pi bonè; konsidere pòs altènatif"
+        }
+      },
+      "analyzer": {
+        "imminentEffect": "⚠️ Pran efè nan {{days}} jou — aksyon ijan nesesè",
+        "optToH1bImpact": "Afekte dirèkteman tranzisyon ou soti OPT rive H-1B",
+        "indiaSpecific": "Afekte espesifikman nasyonal Endyen",
+        "genericImpact": "Ka afekte vwayaj imigrasyon ou",
+        "courtCaseImpact": "{{probability}} — Desizyon prevwa {{date}}"
+      }
+    },
+    "resourcesScreen": {
+      "title": "Resous & Zouti",
+      "subtitle": "Enfòmasyon ofisyèl ak kalkitatè",
+      "dataUpdateBadgeLabel": "Resous",
+      "searchPlaceholder": "Chèche resous...",
+      "toolsTitle": "🧮 Kalkitatè Rapid",
+      "tools": {
+        "h1bCost": {
+          "name": "Depans H-1B",
+          "desc": "Avèk frè $100k"
+        },
+        "wageCheck": {
+          "name": "Verifye Salè",
+          "desc": "Salè dominan"
+        },
+        "timeline": {
+          "name": "Kalandriye",
+          "desc": "Vwayaj total"
+        },
+        "priorityDate": {
+          "name": "Priority Date",
+          "desc": "Visa bulletin"
+        }
+      },
+      "h1bCostDialog": {
+        "title": "💰 Kalkitatè Depans H-1B",
+        "body": "Depans Total Estimé: ${{total}}\n\nDetailye:\n• Enskripsyon: ${{registration}}\n• Depo: ${{filing}}\n• Prevansyon Fwòd: ${{fraudPrevention}}\n• Konpetitivite: ${{competitiveness}}\n• Frè Prezidansyèl: ${{presidentialFee}}\n• Premium Processing: ${{premium}}\n\n⚠️ Frè prezidansyèl aplike apre 21 sep 2025"
+      },
+      "wageDialog": {
+        "title": "💼 Verifikasyon Kondisyon Salè",
+        "meets": "✅ Salè SATISFÈ kondisyon\n\nOfri: ${{offered}}\nNesesè: ${{required}}\nDiferans: +${{difference}}\nNivo: {{level}}",
+        "below": "❌ Salè PI BA kondisyon\n\nOfri: ${{offered}}\nNesesè: ${{required}}\nManke: ${{shortfall}}\nNivo: {{level}}"
+      },
+      "timelineDialog": {
+        "title": "⏱️ Kalkitatè Kalandriye",
+        "body": "Egzanp: Baze sou Fanmi (Fanmi Imedya)\n\n• Tretman I-130: 50 mwa\n• Tretman NVC: 2-3 mwa\n• Entèvyou Ambasad: 2-12 mwa\n• Total: ~58 mwa (5 an)\n\nPou kalandriye pèsonalize, itilize Kalandriye Vizializè",
+        "openTimeline": "Ouvri Kalandriye"
+      },
+      "priorityDateDialog": {
+        "title": "📊 Priority Date",
+        "body": "Verifye Visa Bulletin pou dat aktyèl yo:\n\n• Fanmi F4 (frè ak sè): 2001-2008\n• Zend EB-2: Me 2013\n• Zend EB-3: Sep 2013\n\nMete ajou chak mwa sou travel.state.gov"
+      },
+      "officialProcessing": {
+        "title": "🏛️ Tan Tretman Ofisyèl",
+        "uscisProcessingTimes": "Tan Tretman USCIS",
+        "visaBulletin": "Visa Bulletin",
+        "embassyWaitTimes": "Tan Trant Ambasad"
+      },
+      "emergencyTitle": "🆘 Liy Dirèk Ijans (24/7)",
+      "officialBadge": "Ofisyèl",
+      "callButton": "📞 Rele",
+      "websiteButton": "🌐 Sit Wèb",
+      "ok": "OK"
+    },
+    "statusDetailsScreen": {
+      "headerTitle": "Tablo Bò Estati Imigrasyon",
+      "statusLabel": "Estati: {{status}}",
+      "status": {
+        "Critical": "KRITIK",
+        "Attention": "ATANSYON",
+        "Good": "BON",
+        "Unknown": "PA KONNEN"
+      },
+      "sections": {
+        "criticalAlerts": "🚨 Alèt Kritik",
+        "policyAlerts": "📢 Alèt Politik ki Afekte Ou",
+        "pathwayViability": "📊 Fezabilite Chemen Ou",
+        "currentStatus": "📋 Estati Aktyèl",
+        "complianceTracking": "⏱️ Swivi Konfòmite",
+        "importantDates": "📅 Dat Enpòtan",
+        "scoreBreakdown": "📊 Detay Nòt"
+      },
+      "alertDays": "{{count}} jou",
+      "takeAction": "Pran Aksyon ›",
+      "statusGrid": {
+        "visaType": "Tip Viza",
+        "workAuth": "Otorizasyon Travay",
+        "country": "Peyi",
+        "location": "Kote",
+        "notSpecified": "Pa spesifye",
+        "insideUs": "Anndan Etazini",
+        "outsideUs": "Deyò Etazini"
+      },
+      "compliance": {
+        "editButton": "Modifye",
+        "doneButton": "Fini",
+        "optUnemploymentDays": "Jou Chomaj OPT",
+        "daysOutsideUs": "Jou Deyò Etazini (Ane Sa)",
+        "optProgress": "{{used}} / 90",
+        "daysSuffix": "{{count}} jou",
+        "approachingLimit": "⚠️ Ap pwoche limit 90 jou! Jwenn anplwa vit.",
+        "extendedAbsence": "⚠️ Absans pwolonje ka afekte rezidans kontinyèl"
+      },
+      "statusExpiry": "Eksprasyon Estati",
+      "noIssues": "✅ Pa gen gwo pwoblèm detekte",
+      "issuePoints": "-10",
+      "actions": {
+        "updateDocuments": "Mete Ajou Dokiman",
+        "viewTimeline": "Wè Kalandriye",
+        "policyTracker": "Swivi Politik",
+        "exportReport": "Ekspòte Rapò 📄"
+      },
+      "exportDialog": {
+        "title": "Ekspòte Rapò Estati",
+        "body": "Jenere yon rezime PDF estati imigrasyon ou?",
+        "export": "Ekspòte",
+        "comingSoonTitle": "Ap Vini Byento",
+        "comingSoonBody": "Fonksyon ekspòtasyon PDF ap vini nan pwochen mete ajou"
+      }
+    },
+    "policyTrackerScreen": {
+      "nextImportantDate": "Pwochen Dat Enpòtan",
+      "nextImportantDateText": "{{title}} nan {{days}} jou",
+      "tabs": {
+        "affectingYou": "Ki Afekte Ou",
+        "allPolicies": "Tout Politik",
+        "courtCases": "Ka Tribinal",
+        "calendar": "Kalandriye"
+      },
+      "daysSuffix": "{{count}} jou",
+      "policyCard": {
+        "yourImpact": "Enpak sou Ou:",
+        "recommendedActions": "Aksyon Rekòmande:",
+        "source": "Sous: {{source}}",
+        "published": "Pibliye: {{date}}",
+        "more": "Plis",
+        "less": "Mwens"
+      },
+      "courtCard": {
+        "status": "Estati: {{status}}",
+        "expectedDecision": "Desizyon prevwa: {{date}}",
+        "contingencyPlans": "Plan Kontenjans:"
+      },
+      "caseStatuses": {
+        "pending": "An Trant",
+        "decided": "Deside",
+        "dismissed": "Rejete"
+      },
+      "embassyCard": {
+        "currentWait": "Trant aktyèl: {{wait}}",
+        "alternatives": "Altènatif: {{list}}"
+      },
+      "alertTypes": {
+        "processing_delay": "RETADE TRETMAN",
+        "appointment_unavailable": "RANDEVOU PA DISPONIB",
+        "post_closure": "FÈMTI PÒS"
+      },
+      "affectsYour": {
+        "count_one": "{{count}} politik afekte estati ou",
+        "count_other": "{{count}} politik afekte estati ou"
+      },
+      "emptyState": {
+        "title": "Pa Gen Chanjman Kritik",
+        "body": "Pa gen politik aktyèl ki afekte dirèkteman estati imigrasyon ou"
+      },
+      "sectionTitles": {
+        "criticalChanges": "Chanjman Kritik",
+        "warnings": "Avètisman",
+        "information": "Enfòmasyon",
+        "casesMonitored": "Ka Anba Siveyans",
+        "embassyAlerts": "Alèt Ambasad",
+        "upcomingChanges": "Chanjman K ap Vini"
+      },
+      "lastChecked": "Dènye verifye: {{datetime}}"
+    },
+    "checklistDocuments": {
+      "work": {
+        "required": {
+          "passport": {
+            "name": "Paspò Valid",
+            "description": "Dwe valid omwen 6 mwa pi long pase sejou prevwa"
+          },
+          "photos": {
+            "name": "Foto Paspò",
+            "description": "2x2 pous, fon blan",
+            "quantity": "2 foto"
+          },
+          "ds160": {
+            "name": "Form DS-160",
+            "description": "Konfirmasyon aplikasyon viza sou entènèt"
+          },
+          "i129": {
+            "name": "Apwobasyon Form I-129",
+            "description": "Apwobasyon petisyon anplwayè soti USCIS",
+            "who": "Anplwayè bay"
+          },
+          "lca": {
+            "name": "Aplikasyon Kondisyon Travay (LCA)",
+            "description": "Sètifikasyon DOL pou H-1B",
+            "who": "Anplwayè depoze"
+          },
+          "degree": {
+            "name": "Diplòm Lisans oswa Pi Wo",
+            "description": "Nan domèn espesyalize avèk transkrip"
+          },
+          "resume": {
+            "name": "CV/Rezime",
+            "description": "Eksperyans pwofesyonèl"
+          }
+        },
+        "oneOf": {
+          "employment_letter": {
+            "name": "Lèt Ofri Travay",
+            "description": "Detaye pozisyon, salè, responsablite"
+          },
+          "employment_contract": {
+            "name": "Kontra Travay",
+            "description": "Akò siyen avèk anplwayè"
+          }
+        },
+        "recommended": {
+          "experience_letters": {
+            "name": "Lèt Eksperyans",
+            "description": "Soti ansyen anplwayè yo"
+          },
+          "awards": {
+            "name": "Prim/Piblikasyon",
+            "description": "Reyalizasyon pwofesyonèl"
+          }
+        }
+      },
+      "family": {
+        "required": {
+          "passport": {
+            "name": "Paspò Valid",
+            "description": "Dwe valid omwen 6 mwa"
+          },
+          "photos": {
+            "name": "Foto Paspò",
+            "description": "2x2 pous, fon blan",
+            "quantity": "2 foto"
+          },
+          "ds260": {
+            "name": "Form DS-260",
+            "description": "Aplikasyon viza imigran sou entènèt"
+          },
+          "i130": {
+            "name": "Apwobasyon Form I-130",
+            "description": "Apwobasyon petisyon fanmi soti USCIS",
+            "who": "Petisyonè depoze"
+          },
+          "birth_cert": {
+            "name": "Akt Nesans",
+            "description": "Orijinal avèk tradiksyon"
+          },
+          "marriage_cert": {
+            "name": "Akt Maryaj",
+            "description": "Si petisyon konjwen",
+            "whenNeeded": "Petisyon konjwen"
+          },
+          "i864": {
+            "name": "Form I-864 Afidavit de Sipò",
+            "description": "Patwonaj finansyè soti petisyonè",
+            "who": "Petisyonè bay"
+          },
+          "police_cert": {
+            "name": "Sètifika Lapolis",
+            "description": "Soti tout peyi kote ou viv 6+ mwa"
+          }
+        },
+        "oneOf": {
+          "petitioner_citizenship": {
+            "name": "Paspò Ameriken Petisyonè",
+            "description": "Prèv sitwayènte ameriken"
+          },
+          "petitioner_greencard": {
+            "name": "Green Card Petisyonè",
+            "description": "Si petisyonè se LPR"
+          }
+        },
+        "recommended": {
+          "photos_together": {
+            "name": "Foto Ansanm",
+            "description": "Prèv relasyon"
+          },
+          "correspondence": {
+            "name": "Dosye Kominikasyon",
+            "description": "Imèl, mesaj, lèt"
+          },
+          "joint_accounts": {
+            "name": "Kont Konjwen",
+            "description": "Bank, asirans, pwopriyete"
+          }
+        }
+      },
+      "student": {
+        "required": {
+          "passport": {
+            "name": "Paspò Valid",
+            "description": "Dwe valid pou tout peryòd etid"
+          },
+          "photos": {
+            "name": "Foto Paspò",
+            "description": "2x2 pous, fon blan",
+            "quantity": "2 foto"
+          },
+          "ds160": {
+            "name": "Form DS-160",
+            "description": "Konfirmasyon aplikasyon viza sou entènèt"
+          },
+          "i20": {
+            "name": "Form I-20",
+            "description": "Sètifika Elijibilite soti lekòl",
+            "who": "Lekòl bay"
+          },
+          "sevis": {
+            "name": "Resi Frè SEVIS",
+            "description": "Konfirmasyon pèman I-901 ($350)"
+          },
+          "acceptance": {
+            "name": "Lèt Admisyon",
+            "description": "Akseptasyon ofisyèl soti lekòl sètifye SEVP"
+          },
+          "transcripts": {
+            "name": "Transkrip Akademik",
+            "description": "Dosye edikasyon anvan"
+          },
+          "financial_proof": {
+            "name": "Prèv Finansyè",
+            "description": "Rele labank ki montre ~$40,000/an"
+          }
+        },
+        "oneOf": {
+          "test_scores": {
+            "name": "Nòt TOEFL/IELTS",
+            "description": "Tès konpetans anglè"
+          },
+          "english_medium": {
+            "name": "Sètifika Anglè Kòm Lang Enstriksyon",
+            "description": "Si edikasyon anvan te nan anglè"
+          }
+        },
+        "recommended": {
+          "sponsor_letter": {
+            "name": "Lèt Patwon",
+            "description": "Si yon lòt moun ap peye"
+          },
+          "study_plan": {
+            "name": "Plan Etid",
+            "description": "Poukisa pwogram sa a ak objektif lavni"
+          },
+          "gre_gmat": {
+            "name": "Nòt GRE/GMAT",
+            "description": "Si soumèt nan lekòl"
+          }
+        }
+      },
+      "citizenship": {
+        "required": {
+          "n400": {
+            "name": "Form N-400",
+            "description": "Aplikasyon pou Natiralizasyon — $760 papye / $710 sou entènèt / $0 militè",
+            "who": "Aplikan depoze avèk USCIS"
+          },
+          "green_card_copy": {
+            "name": "Kat Rezidan Pèmanan (Green Card)",
+            "description": "Kopi devan ak dèyè green card aktyèl"
+          },
+          "passport_photos": {
+            "name": "Foto Paspò",
+            "description": "2x2 pous, fon blan",
+            "quantity": "2 foto"
+          },
+          "passport_copy": {
+            "name": "Paspò Valid oswa Dokiman Vwayaj",
+            "description": "Kopi tout paspò itilize nan dènye 5 an"
+          },
+          "tax_returns": {
+            "name": "Deklarasyon Taks Federal",
+            "description": "Dènye 5 an (3 an si marye ak sitwayen ameriken)"
+          },
+          "travel_records": {
+            "name": "Dosye Istwa Vwayaj",
+            "description": "Tout vwayaj deyò Etazini nan dènye 5 an — dat, destinasyon, dire"
+          },
+          "selective_service": {
+            "name": "Enskripsyon Selective Service",
+            "description": "Si gason epi ou te viv Etazini ant 18–26 an apre 1980",
+            "whenNeeded": "Gason 18–26 an ki te viv Etazini"
+          }
+        },
+        "oneOf": {
+          "marriage_cert_3yr": {
+            "name": "Akt Maryaj + Prèv Sitwayènte Konjwen",
+            "description": "Obligatwa si ap aplike sou règ 3 an (marye ak sitwayen ameriken)",
+            "whenNeeded": "Wout maryaj 3 an sèlman"
+          },
+          "dd214": {
+            "name": "DD-214 / Papye Liberasyon Militè",
+            "description": "Sètifika Liberasyon soti Sèvis Aktif",
+            "whenNeeded": "Aplikan militè sèlman"
+          }
+        },
+        "recommended": {
+          "birth_cert_citizenship": {
+            "name": "Akt Nesans",
+            "description": "Avèk tradiksyon sètifye si nesesè"
+          },
+          "prior_marriage_docs": {
+            "name": "Dekrè Divòs / Dosye Maryaj Anvan",
+            "description": "Pou nenpòt maryaj anvan — USCIS ka mande yo"
+          },
+          "criminal_records": {
+            "name": "Dosye Dispozisyon Tribinal",
+            "description": "Pou nenpòt arèstasyon oswa akizasyon — menm sa yo rejte",
+            "whenNeeded": "Si ou gen nenpòt arèstasyon oswa istwa kriminèl"
+          },
+          "name_change": {
+            "name": "Dokiman Chanjman Non Legal",
+            "description": "Òdonnans tribinal si non ou diferan de green card"
+          },
+          "civics_study": {
+            "name": "Materyèl Etid Egzamen Sivik",
+            "description": "100 kesyon disponib gratis nan uscis.gov/citizenship/tessprep"
+          }
+        }
+      },
+      "common": {
+        "interview_appt": {
+          "name": "Konfirmasyon Randevou Entèvyou",
+          "description": "Randevou ambasad/konsila"
+        },
+        "fee_receipt": {
+          "name": "Resi Pèman Frè Viza",
+          "description": "Konfirmasyon pèman frè MRV"
+        }
+      },
+      "medical": {
+        "medical_exam": {
+          "name": "Egzamen Medikal",
+          "description": "Soti doktè panel sèlman",
+          "whenNeeded": "Aplikan green card",
+          "cost": "$200-500"
+        },
+        "vaccinations": {
+          "name": "Dosye Vaksinasyon",
+          "description": "Vaksen obligatwa varye selon laj",
+          "whenNeeded": "Si mande"
+        }
+      },
+      "interviewPrep": {
+        "civics_100": {
+          "name": "Etidye 100 Kesyon Sivik",
+          "description": "Ofisyèl USCIS pral poze jiska 10 — dwe reponn 6 kòrèkteman",
+          "whenNeeded": "Tout aplikan"
+        },
+        "english_reading": {
+          "name": "Pratik Lekti Anglè",
+          "description": "Ofisyèl pral mande ou li 1 nan 3 fraz",
+          "whenNeeded": "Tout aplikan anba 65 san egzanpsyon 20 an"
+        },
+        "english_writing": {
+          "name": "Pratik Ekriti Anglè",
+          "description": "Ofisyèl pral mande ou ekri 1 nan 3 fraz",
+          "whenNeeded": "Tout aplikan anba 65 san egzanpsyon 20 an"
+        },
+        "n400_review": {
+          "name": "Revize Repons N-400 Ou",
+          "description": "Ofisyèl pral pase N-400 ou liy pa liy — konnen repons ou yo",
+          "whenNeeded": "Tout aplikan"
+        }
+      }
+    },
+    "timelineData": {
+      "work": {
+        "h1b": {
+          "totalTime": "8-14 mwa (plis trant lottery)",
+          "alert": "Enskripsyon FY2027 fèmen 19 mas. Lottery baze sou salè — salè pi wo = pi bon chans.",
+          "steps": {
+            "s1": {
+              "title": "Ofri Travay",
+              "duration": "Varye",
+              "description": "Jwenn anplwa avèk anplwayè ki patwone. Nivo salè afekte chans lottery."
+            },
+            "s2": {
+              "title": "Enskripsyon H-1B",
+              "duration": "4-19 mas",
+              "description": "Frè enskripsyon: $215. Anplwayè soumèt nan MyUSCIS. Kòd SOC ak nivo salè obligatwa."
+            },
+            "s3": {
+              "title": "Avi Seleksyon",
+              "duration": "Avan 31 mas",
+              "description": "Seleksyon baze sou salè: Nivo IV jiska 4x chans vs Nivo I."
+            },
+            "s4": {
+              "title": "Depo LCA",
+              "duration": "7 jou",
+              "description": "Aplikasyon Kondisyon Travay avèk DOL"
+            },
+            "s5": {
+              "title": "Petisyon I-129",
+              "duration": "6-8 mwa",
+              "description": "Tretman regilye USCIS (reyèl: 8+ mwa). Premium: 15 jou pou $2,965"
+            },
+            "s6": {
+              "title": "Frè $100K (si aplike)",
+              "duration": "Nan depo",
+              "description": "Aplike pou ka tretman konsila. PA aplike pou pifò chanjman estati F-1→H-1B."
+            },
+            "s7": {
+              "title": "Enstamp Viza (si aletranje)",
+              "duration": "1-3 mwa",
+              "description": "DS-160 + entèvyou ambasad. Zend: ~1 mwa, Meksik: ~1 mwa"
+            },
+            "s8": {
+              "title": "Kòmanse Travay",
+              "duration": "1 oktòb oswa pita",
+              "description": "Pa ka kòmanse anvan ane fiskal kòmanse"
+            }
+          },
+          "label": "H-1B"
+        },
+        "l1": {
+          "totalTime": "4-8 mwa total",
+          "steps": {
+            "s1": {
+              "title": "Verifye Elijibilite",
+              "duration": "1 semèn",
+              "description": "Konfime 1 an anplwa aletranje avèk konpayi ki kalifye"
+            },
+            "s2": {
+              "title": "Petisyon I-129",
+              "duration": "4-6 mwa",
+              "description": "Tretman regilye USCIS. Pa gen cap ni lottery."
+            },
+            "s3": {
+              "title": "Opsyon Premium",
+              "duration": "15 jou",
+              "description": "Premium processing disponib pou $2,965"
+            },
+            "s4": {
+              "title": "Enstamp Viza",
+              "duration": "1-2 mwa",
+              "description": "Entèvyou ambasad si deyò Etazini"
+            },
+            "s5": {
+              "title": "Kòmanse Travay",
+              "duration": "Imedyatman",
+              "description": "L-1 pa gen restriksyon ane fiskal"
+            }
+          },
+          "label": "L-1"
+        },
+        "o1": {
+          "totalTime": "3-6 mwa",
+          "steps": {
+            "s1": {
+              "title": "Bati Prèv",
+              "duration": "Varye",
+              "description": "Rasanble prim, piblikasyon, kouvèti medya, prèv salè"
+            },
+            "s2": {
+              "title": "Lèt Konsiltasyon",
+              "duration": "2-4 semèn",
+              "description": "Soti gwoup kolèg oswa sendika si aplike"
+            },
+            "s3": {
+              "title": "Petisyon I-129",
+              "duration": "2-4 mwa",
+              "description": "Tretman regilye USCIS. Premium disponib pou $2,965."
+            },
+            "s4": {
+              "title": "Enstamp Viza",
+              "duration": "1-2 mwa",
+              "description": "Entèvyou ambasad si deyò Etazini"
+            }
+          },
+          "label": "O-1"
+        },
+        "eb": {
+          "totalTime": "1-15 an (depan sou peyi)",
+          "alert": "Akimilasyon Zend EB-2/3: 12+ an. Pifò peyi: 1-3 an.",
+          "steps": {
+            "s1": {
+              "title": "Sètifikasyon Travay PERM",
+              "duration": "~17 mwa",
+              "description": "Sètifikasyon travay DOL (EB-2/EB-3 sèlman)"
+            },
+            "s2": {
+              "title": "Petisyon I-140",
+              "duration": "6-12 mwa",
+              "description": "Apwobasyon USCIS. Premium 15 jou pou $2,965."
+            },
+            "s3": {
+              "title": "Trant Priority Date",
+              "duration": "Varye",
+              "description": "Tann nimewo viza vin disponib selon Visa Bulletin"
+            },
+            "s4": {
+              "title": "I-485 / DS-260",
+              "duration": "8-14 mwa",
+              "description": "Adjustment of status (nan Etazini) oswa tretman konsila"
+            },
+            "s5": {
+              "title": "Green Card",
+              "duration": "Livrezon kat",
+              "description": "Kat fizik voye pa lapòs 2-4 semèn apre apwobasyon"
+            }
+          },
+          "label": "Green Card (EB)"
+        }
+      },
+      "family": {
+        "immediateRelative": {
+          "totalTime": "12-18 mwa",
+          "steps": {
+            "s1": {
+              "title": "Petisyon I-130",
+              "duration": "12-15 mwa",
+              "description": "Petisyonè depoze pou konjwen, pitit anba 21 an, oswa paran"
+            },
+            "s2": {
+              "title": "Tretman NVC",
+              "duration": "2-3 mwa",
+              "description": "Peye frè, soumèt dokiman sivil, DS-260"
+            },
+            "s3": {
+              "title": "Entèvyou Ambasad",
+              "duration": "2-4 mwa",
+              "description": "Planifye entèvyou, egzamen medikal, asiste entèvyou"
+            },
+            "s4": {
+              "title": "Emisyon Viza",
+              "duration": "1-2 semèn",
+              "description": "Resevwa viza, antre Etazini, vin LPR"
+            }
+          },
+          "label": "Fanmi Imedya"
+        },
+        "f4": {
+          "totalTime": "15-20+ an",
+          "alert": "F4 (frè ak sè) gen pi long delè — Meksik/Filipin: 25+ an",
+          "steps": {
+            "s1": {
+              "title": "Petisyon I-130",
+              "duration": "12-18 mwa",
+              "description": "Frè ak sè sitwayen ameriken depoze petisyon"
+            },
+            "s2": {
+              "title": "Trant Priority Date",
+              "duration": "15-25 an",
+              "description": "Selon Visa Bulletin — varye dramatikman pa peyi"
+            },
+            "s3": {
+              "title": "Tretman NVC",
+              "duration": "2-4 mwa",
+              "description": "Lè priority date vin disponib"
+            },
+            "s4": {
+              "title": "Entèvyou Ambasad",
+              "duration": "2-12 mwa",
+              "description": "Tan trant varye pa pòs"
+            }
+          },
+          "label": "Frè/Sè F4"
+        }
+      },
+      "student": {
+        "f1": {
+          "totalTime": "2-4 mwa soti akseptasyon rive antre",
+          "steps": {
+            "s1": {
+              "title": "Akseptasyon Lekòl",
+              "duration": "Varye",
+              "description": "Jwenn akseptasyon nan yon enstitisyon sètifye SEVP"
+            },
+            "s2": {
+              "title": "Form I-20",
+              "duration": "1-2 semèn",
+              "description": "Lekòl bay Sètifika Elijibilite"
+            },
+            "s3": {
+              "title": "Frè SEVIS",
+              "duration": "Menm jou",
+              "description": "Peye frè I-901 $350 nan FMJfee.com"
+            },
+            "s4": {
+              "title": "DS-160 + Entèvyou",
+              "duration": "1-3 mwa",
+              "description": "Ranpli DS-160, planifye entèvyou ambasad"
+            },
+            "s5": {
+              "title": "Apwobasyon Viza",
+              "duration": "1-2 semèn",
+              "description": "Viza enstamp nan paspò"
+            },
+            "s6": {
+              "title": "Antre Etazini",
+              "duration": "30 jou anvan",
+              "description": "Ka antre jiska 30 jou anvan kòmansman pwogram"
+            }
+          },
+          "label": "Etidyan F-1"
+        },
+        "opt": {
+          "totalTime": "OPT: 12 mwa. Pwolongasyon STEM: +24 mwa.",
+          "alert": "EAD kounye a maksimòm 18 mwa pou kèk kategori. Planifye renouvèlman bonè.",
+          "steps": {
+            "s1": {
+              "title": "Verifye Elijibilite",
+              "duration": "Nan 90 jou apre gradyasyon",
+              "description": "Aplike 90 jou anvan rive 60 jou apre fen pwogram"
+            },
+            "s2": {
+              "title": "Rekòmandasyon DSO",
+              "duration": "1 semèn",
+              "description": "Ofisyèl Lekòl Deziyen bay nouvo I-20"
+            },
+            "s3": {
+              "title": "Depo I-765",
+              "duration": "Menm jou",
+              "description": "Frè depo $520. Premium processing $1,780 pou 30 jou."
+            },
+            "s4": {
+              "title": "Apwobasyon EAD",
+              "duration": "3-5 mwa",
+              "description": "Regilye USCIS. Premium: 30 jou."
+            },
+            "s5": {
+              "title": "Kòmanse Travay",
+              "duration": "Dat kòmansman EAD",
+              "description": "Pa ka travay anvan dat kòmansman EAD"
+            },
+            "s6": {
+              "title": "Pwolongasyon STEM (si elijib)",
+              "duration": "Aplike 90 jou anvan OPT fini",
+              "description": "Ajoute 24 mwa pou diplòm STEM avèk anplwayè E-Verify"
+            }
+          },
+          "label": "F-1 vin OPT"
+        }
+      },
+      "citizenship": {
+        "standard5yr": {
+          "totalTime": "10-14 mwa soti depo rive sèman",
+          "alert": "Depoze N-400 jiska 90 jou anvan 5yèm anivèsè green card ou.",
+          "steps": {
+            "s1": {
+              "title": "Verifye Elijibilite",
+              "duration": "Anvan depo",
+              "description": "5+ an kòm LPR, 30+ mwa prezans fizik Etazini, 3 mwa nan eta"
+            },
+            "s2": {
+              "title": "Depoze Form N-400",
+              "duration": "Sou entènèt oswa papye",
+              "description": "$710 sou entènèt / $760 papye. Depoze jiska 90 jou anvan dat elijibilite."
+            },
+            "s3": {
+              "title": "Randevou Biometrik",
+              "duration": "5-8 semèn apre depo",
+              "description": "Anprent dwèt, foto, siyati nan biwo ASC"
+            },
+            "s4": {
+              "title": "Entèvyou Natiralizasyon",
+              "duration": "6-12 mwa apre depo",
+              "description": "Egzamen sivik (10 kesyon, bezwen 6 kòrèkt), egzamen anglè, revizyon N-400"
+            },
+            "s5": {
+              "title": "Desizyon",
+              "duration": "Menm jou oswa pa lapòs",
+              "description": "Apwouve, refize, oswa kontinye pou plis prèv"
+            },
+            "s6": {
+              "title": "Sèremoni Sèman",
+              "duration": "Menm jou oswa 4-8 semèn pita",
+              "description": "Pran Sèman Alyans, resevwa Sètifika Natiralizasyon"
+            },
+            "s7": {
+              "title": "Sitwayen Ameriken!",
+              "duration": "Efikas nan dat sèman",
+              "description": "Aplike pou paspò ameriken. Enskri pou vote. Mete ajou Sekirite Sosyal."
+            }
+          },
+          "label": "Estanda 5 An"
+        },
+        "marriage3yr": {
+          "totalTime": "10-14 mwa soti depo rive sèman",
+          "alert": "Dwe marye EPI viv avèk sitwayen ameriken pou tout 3 an yo.",
+          "steps": {
+            "s1": {
+              "title": "Verifye Elijibilite",
+              "duration": "Anvan depo",
+              "description": "3+ an kòm LPR, marye avèk + viv avèk sitwayen ameriken pou 3 an, 18+ mwa prezans fizik"
+            },
+            "s2": {
+              "title": "Depoze Form N-400",
+              "duration": "Sou entènèt oswa papye",
+              "description": "Menm frè. Enkli akt maryaj + prèv sitwayènte konjwen."
+            },
+            "s3": {
+              "title": "Randevou Biometrik",
+              "duration": "5-8 semèn apre depo",
+              "description": "Menm kòm wout estanda"
+            },
+            "s4": {
+              "title": "Entèvyou Natiralizasyon",
+              "duration": "6-12 mwa apre depo",
+              "description": "Menm tès. Ka poze kesyon sou detay maryaj."
+            },
+            "s5": {
+              "title": "Desizyon & Sèman",
+              "duration": "Menm jou oswa pa lapòs",
+              "description": "Si apwouve, sèremoni sèman planifye"
+            },
+            "s6": {
+              "title": "Sitwayen Ameriken!",
+              "duration": "Efikas nan dat sèman",
+              "description": "Menm benefis kòm wout estanda"
+            }
+          },
+          "label": "3 An (Maryaj)"
+        },
+        "military": {
+          "totalTime": "6-10 mwa — tretman ekspedye",
+          "alert": "Frè N-400 anile pou militè aktif. Depoze N-426 pou verifikasyon sèvis.",
+          "steps": {
+            "s1": {
+              "title": "Verifye Elijibilite",
+              "duration": "Anvan depo",
+              "description": "1+ an sèvis onorèb (lapè) OSWA nenpòt sèvis ki kalifye pandan ostilite deziyen"
+            },
+            "s2": {
+              "title": "Form N-426",
+              "duration": "Anvan N-400",
+              "description": "Kòmandman militè sètifye dosye sèvis ou"
+            },
+            "s3": {
+              "title": "Depoze Form N-400",
+              "duration": "Sou entènèt oswa papye",
+              "description": "Frè $0 pou militè. Tache N-426."
+            },
+            "s4": {
+              "title": "Biometrik + Entèvyou",
+              "duration": "Ekspedye",
+              "description": "Souvan konbine nan yon sèl randevou pou militè"
+            },
+            "s5": {
+              "title": "Desizyon & Sèman",
+              "duration": "Souvan menm jou",
+              "description": "Kèk baz kondwi sèremoni sèman sou plas"
+            },
+            "s6": {
+              "title": "Sitwayen Ameriken!",
+              "duration": "Efikas nan dat sèman",
+              "description": "Aplike pou paspò ameriken, plis opòtinite travay ki gen ladan pozisyon federal"
+            }
+          },
+          "label": "Sèvis Militè"
+        }
+      }
+    },
+    "checklistScreen": {
+      "title": "Lis Dokiman",
+      "changeButton": "Chanje ›",
+      "dataUpdateBadgeLabel": "Mete Ajou",
+      "selectPathwayPlaceholder": "Chwazi Chemen",
+      "citizenshipBanner": "Lis dokiman N-400. Frè: $710 sou entènèt / $760 papye. Militè: gratis. Ou ka depoze jiska 90 jou anvan dat elijibilite ou.",
+      "progressTitle": {
+        "default": "Dokiman Obligatwa",
+        "citizenship": "Dokiman N-400"
+      },
+      "progressCount": "{{completed}} sou {{total}}",
+      "legendTitle": "Kondisyon Dokiman",
+      "legendRequired": "Obligatwa",
+      "legendNeedOne": "Bezwen Youn",
+      "legendRecommended": "Rekòmande",
+      "legendIfRequested": "Si Mande",
+      "sections": {
+        "requiredTitle": "{{pathway}} - Dokiman Obligatwa",
+        "requiredSubtitle": "Dwe gen TOUT sa yo",
+        "oneOfTitle": "Chwazi Yon Dokiman",
+        "oneOfSubtitle": "Bezwen YON SÈLMAN nan lis sa a",
+        "recommendedTitle": "Dokiman Sipò",
+        "recommendedSubtitle": "Ranfòse aplikasyon ou",
+        "commonTitle": "Kondisyon Inivèsèl",
+        "commonSubtitle": "Obligatwa pou TOUT tip viza",
+        "medicalTitle": "Kondisyon Medikal",
+        "medicalSubtitle": "Sèlman si mande pa ambasad",
+        "interviewPrepTitle": "Preparasyon Entèvyou",
+        "interviewPrepSubtitle": "Pare pou entèvyou natiralizasyon ou"
+      },
+      "badges": {
+        "required": "OBLIGATWA",
+        "oneOf": "BEZWEN YON",
+        "recommended": "REKÒMANDE",
+        "conditional": "SI MANDE"
+      },
+      "tip": {
+        "citizenshipText": "Depoze N-400 jiska 90 jou anvan dat elijibilite ou. Etidye 100 kesyon sivik nan uscis.gov/citizenship/tessprep — gratis.",
+        "defaultText": "Konsantre sou dokiman OBLIGATWA yo anvan. Lis ou a pèsonalize pou {{pathway}}."
+      },
+      "modal": {
+        "title": "Chwazi Chemen"
+      },
+      "pathwayOptions": {
+        "work": "Imigrasyon Baze sou Travay",
+        "family": "Imigrasyon Baze sou Fanmi",
+        "student": "Chemen Etidyan",
+        "citizenship": "Chemen Sitwayènte (N-400)"
+      }
+    },
+    "timelineScreen": {
+      "title": {
+        "default": "Kalandriye Pwosesis",
+        "citizenship": "Kalandriye Natiralizasyon"
+      },
+      "subtitle": "Baze sou done USCIS / DOL {{date}}",
+      "totalTimeLabel": {
+        "default": "Kalandriye Total",
+        "citizenship": "Kalandriye Tipik"
+      },
+      "disclaimer": "Baze sou done {{date}}",
+      "premiumProcessing": {
+        "title": "⚡ Premium Processing (Mas 2026)",
+        "i129": "I-129 (H-1B, L-1, O-1): 15 jou pou $2,965",
+        "i140": "I-140 (EB-1, EB-2, EB-3): 15-45 jou pou $2,965",
+        "i765": "I-765 (OPT/STEM OPT): 30 jou pou $1,780",
+        "i539": "I-539 (Chanjman Estati): 30 jou pou $2,075"
+      },
+      "afterNaturalize": {
+        "title": "🇺🇸 Apre Ou Natiralize",
+        "passport": "Aplike pou paspò ameriken imedyatman — pa gen peryòd trant",
+        "sponsorFamily": "Patwone manm fanmi imedya (konjwen, pitit, paran) san trant kota viza",
+        "childCitizenship": "Pitit ki anba 18 an avèk green card ka otomatikman jwenn sitwayènte",
+        "vote": "Enskri pou vote — eleksyon federal nesesite sitwayènte ameriken",
+        "dualCitizenship": "Verifye si peyi nesans ou pèmèt double sitwayènte anvan ou renonse"
+      },
+      "currentDelays": {
+        "title": "⏱️ Retad Aktyèl",
+        "familyI130": "Fanmi I-130: 50-95 mwa (4-8 an)",
+        "indiaEb": "Zend EB-2/3: trant priority date 12+ an",
+        "perm": "Sètifikasyon travay PERM: ~17 mwa (503 jou)",
+        "canadaB1B2": "Viza vizitè B-1/B-2 Kanada: trant 16 mwa",
+        "eadValidity": "Validite EAD kounye a 18 mwa maksimòm — planifye renouvèlman bonè"
+      },
+      "n400Notes": {
+        "title": "⏱️ Nòt Tretman N-400",
+        "interviewWait": "Trant entèvyou varye anpil selon biwo rejyonal — kèk vil pran 12+ mwa",
+        "extendedTrips": "Vwayaj long aletranje (6+ mwa) ka kraze rezidans kontinyèl — afekte elijibilite",
+        "criminalHistory": "Istwa kriminèl — menm akizasyon rejte — dwe reveye epi ka retade oswa refize",
+        "missingTaxes": "Deklarasyon taks ki manke se yon rezon refi komen — depoze ane ki manke yo anvan aplike",
+        "noPremium": "N-400 pa gen opsyon premium processing — tretman estanda sèlman"
+      },
+      "dataUpdated": "Done Mete Ajou: {{date}}"
+    },
+"visaDetails": {
+  "H1B": {
+    "fullName": "Viza Okipasyon Espesyalize H-1B",
+    "purpose": "Pou pwofesyonèl nan okipasyon espesyalize ki nesesite yon diplòm lisans oswa pi wo",
+    "eligibility": {
+      "e1": "Diplòm lisans oswa ekivalan nan domèn espesyalize",
+      "e2": "Ofri travay soti anplwayè ameriken",
+      "e3": "Pozisyon nesesite konesans espesyalize",
+      "e4": "Anplwayè dwe peye salè dominan"
+    },
+    "duration": "Inisyalman 3 an, ka pwolonge jiska 6 an total",
+    "pathToGreenCard": "Wi — anplwayè ka patwone green card EB-2 oswa EB-3 pandan ou sou H-1B",
+    "spouseWork": "Konjwen H-4 ka travay avèk EAD si primè gen I-140 apwouve",
+    "pros": {
+      "p1": "Entansyon doub pèmis (ka pousuiv green card)",
+      "p2": "Konjwen ak pitit ka akonpaye",
+      "p3": "Ka chanje anplwayè (avèk nouvo petisyon)"
+    },
+    "cons": {
+      "c1": "Sijè lottery anyèl — kounye a baze sou salè",
+      "c2": "Lye ak anplwayè ki patwone",
+      "c3": "$100,000 frè adisyonèl pou ka tretman konsila (sep 2025+)",
+      "c4": "Maksimòm 6 an san pwogrè green card"
+    },
+    "forms": {
+      "f1": {
+        "name": "LCA (Aplikasyon Kondisyon Travay)",
+        "purpose": "Sètifye salè ak kondisyon travay",
+        "who": "Anplwayè depoze avèk DOL"
+      },
+      "f2": {
+        "name": "Form I-129",
+        "purpose": "Petisyon pou travayè nonimigran",
+        "who": "Anplwayè depoze avèk USCIS"
+      },
+      "f3": {
+        "name": "Form DS-160",
+        "purpose": "Aplikasyon viza pou tretman konsila",
+        "who": "Anplwaye ranpli sou entènèt"
+      }
+    }
+  },
+  "L1": {
+    "fullName": "Viza Transfè Entèkonpayi L-1",
+    "purpose": "Pou anplwaye k ap transfere soti branch etranje vin nan biwo ameriken menm konpayi",
+    "eligibility": {
+      "e1": "Travay pou konpayi aletranje pou 1+ an nan dènye 3 an",
+      "e2": "Manadjè/Direktè (L-1A) oswa Konesans Espesyalize (L-1B)",
+      "e3": "Konpayi dwe gen relasyon ki kalifye"
+    },
+    "duration": "L-1A: 3 an inisyalman (7 total), L-1B: 3 an (5 total)",
+    "pathToGreenCard": "Wi — L-1A ka mennen nan green card EB-1C (pi rapid pase wout H-1B)",
+    "spouseWork": "Konjwen L-2 ka travay avèk EAD imedyatman",
+    "pros": {
+      "p1": "Pa gen lottery ni cap",
+      "p2": "Pa gen kondisyon salè dominan",
+      "p3": "Konjwen ka travay imedyatman",
+      "p4": "L-1A vin EB-1C se wout green card pi rapid"
+    },
+    "cons": {
+      "c1": "Dwe travay pou menm anplwayè",
+      "c2": "Pa ka chanje konpayi",
+      "c3": "Nesesite anplwa anvan aletranje"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-129S",
+        "purpose": "Sipleman Klasifikasyon L",
+        "who": "Anplwayè depoze avèk I-129"
+      },
+      "f2": {
+        "name": "Form DS-160",
+        "purpose": "Aplikasyon viza",
+        "who": "Anplwaye ranpli"
+      }
+    }
+  },
+  "O1": {
+    "fullName": "Viza Kapasite Ekstraòdinè O-1",
+    "purpose": "Pou moun ki gen kapasite ekstraòdinè nan syans, atizana, edikasyon, biznis, oswa atletik",
+    "eligibility": {
+      "e1": "Kapasite ekstraòdinè dokimante",
+      "e2": "Rekonesans nasyonal/entènasyonal",
+      "e3": "Prèv sibstansyèl reyalizasyon",
+      "e4": "Ofri travay nan domèn espètyiz"
+    },
+    "duration": "Jiska 3 an inisyalman, pwolongasyon 1 an ilimite",
+    "pathToGreenCard": "Wi — ka otopetisyone pou EB-1A oswa anplwayè ka patwone",
+    "spouseWork": "Konjwen O-3 pa ka travay",
+    "pros": {
+      "p1": "Pa gen lottery ni cap",
+      "p2": "Pa gen kondisyon diplòm",
+      "p3": "Pwolongasyon ilimite posib",
+      "p4": "Ka gen plizyè anplwayè"
+    },
+    "cons": {
+      "c1": "Sèy prèv wo",
+      "c2": "Konjwen pa ka travay",
+      "c3": "Anpil dokimantasyon nesesè"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-129",
+        "purpose": "Petisyon avèk sipleman O",
+        "who": "Anplwayè oswa ajan depoze"
+      },
+      "f2": {
+        "name": "Opinyòn Konsiltativ",
+        "purpose": "Lèt konsiltasyon gwoup kolèg",
+        "who": "Soti sendika/gwoup kolèg ki enpòtan"
+      }
+    }
+  },
+  "EB": {
+    "fullName": "Green Card Baze sou Travay (EB-1, EB-2, EB-3, EB-4, EB-5)",
+    "purpose": "Chemen dirèk pou rezidans pèmanan atravè travay, avèk senk kategori preferans klase pa nivo konpetans, edikasyon, oswa envestisman",
+    "eligibility": {
+      "e1": "EB-1: Kapasite ekstraòdinè, pwofesè/chèchè eksepsyonèl, oswa egzekitif miltinasyonal (PERM pa nesesè)",
+      "e2": "EB-2: Diplòm avanse (mèt+) oswa kapasite eksepsyonèl — National Interest Waiver pèmèt oto-petisyon",
+      "e3": "EB-3: Travayè kalifye (2+ ane eksperyans), pwofesyonèl (lisans), oswa lòt travayè",
+      "e4": "EB-4: Imigran espesyal (travayè relijye, jèn imigran espesyal, sèten anplwaye gouvènman)",
+      "e5": "EB-5: Envestisè — minimòm $800,000 nan zòn travay sib oswa $1.05M nan lòt zòn, dwe kreye 10 djòb",
+      "e6": "Pifò kategori bezwen patwonaj anplwayè ak sètifikasyon travay (PERM)"
+    },
+    "duration": "Rezidans pèmanan (green card 10 ane, ka renouvle)",
+    "currentWait": "EB-1/EB-2/EB-3 ROW: 1-3 an; Lend/Lachin EB-2/EB-3: 5-15+ an pou priority date",
+    "pathToGreenCard": "Sa a SE green card la — chemen dirèk pou rezidans pèmanan",
+    "spouseWork": "Konjwen ak pitit ki poko gen 21 an resevwa green card kòm derive",
+    "pros": {
+      "p1": "Chemen dirèk pou rezidans pèmanan",
+      "p2": "EB-1 ak EB-2 NIW pèmèt oto-petisyon (pa bezwen anplwayè)",
+      "p3": "Konjwen ak pitit minè enkli",
+      "p4": "Premium processing disponib pou I-140 ($2,965)",
+      "p5": "EB-1A ak NIW evite pwosesis PERM long lan"
+    },
+    "cons": {
+      "c1": "Lend ak Lachin gen reta grav nan EB-2/EB-3 (10+ ane)",
+      "c2": "Sètifikasyon travay PERM ajoute 12-17 mwa pou EB-2/EB-3 estanda",
+      "c3": "Frè depo total: ~$3,000-$5,000+ pou chak aplikan",
+      "c4": "Pifò kategori atache w ak anplwayè patwone a jiskaske I-485 la te annatant 180+ jou",
+      "c5": "Retwogrès nan visa bulletin ka pwolonje tan datant nan fason ki pa previzib"
+    },
+    "note": "EB-1A (kapasite ekstraòdinè) ak EB-2 NIW se kategori oto-petisyon — ou ka depoze san anplwayè si w rive nan estanda prèv ki wo a.",
+    "forms": {
+      "f1": {
+        "name": "ETA-9089 (PERM)",
+        "purpose": "Sètifikasyon travay (nesesè pou EB-2 ak EB-3 estanda, pa pou NIW)",
+        "who": "Anplwayè depoze avèk DOL"
+      },
+      "f2": {
+        "name": "Form I-140",
+        "purpose": "Petisyon Imigran pou Travayè Etranje — etabli klasifikasyon EB",
+        "who": "Anplwayè depoze (oswa oto-petisyon pou EB-1A/NIW/EB-5)"
+      },
+      "f3": {
+        "name": "Form I-485",
+        "purpose": "Ajisteman Estati pou rezidan pèmanan (si w nan Etazini)",
+        "who": "Benefisyè depoze lè priority date kouran"
+      },
+      "f4": {
+        "name": "Form DS-260",
+        "purpose": "Aplikasyon viza imigran (si w deyò Etazini — tretman konsilè)",
+        "who": "Benefisyè ranpli sou entènèt"
+      }
+    }
+  },
+  "IR": {
+    "fullName": "Fanmi Imedya Sitwayen Ameriken",
+    "purpose": "Pou konjwen, pitit ki poko gen 21 an, ak paran sitwayen ameriken",
+    "eligibility": {
+      "e1": "Konjwen sitwayen ameriken (IR-1/CR-1)",
+      "e2": "Pitit ki poko gen 21 an sitwayen ameriken (IR-2/CR-2)",
+      "e3": "Paran sitwayen ameriken ki gen 21+ (IR-5)"
+    },
+    "duration": "Rezidans pèmanan (green card) imedyatman",
+    "pathToGreenCard": "SA A SE green card la — rezidans pèmanan imedya",
+    "spouseWork": "Wi — green card pèmèt travay san restriksyon",
+    "pros": {
+      "p1": "Pa gen limit anyèl ni trant pou priority date",
+      "p2": "Kategori imigrasyon fanmi pi rapid",
+      "p3": "Dirèkteman nan green card",
+      "p4": "Ka travay imedyatman dès rive"
+    },
+    "cons": {
+      "c1": "Toujou pran 12-24 mwa tretman",
+      "c2": "Dwe prouv relasyon otantik",
+      "c3": "CR-1 kondisyonèl si marye <2 an"
+    },
+    "note": "FANMI IMEDYA vle di pa gen trant pou nimewo viza — ou sote liy nan! Lòt kategori fanmi tann ane pou nimewo viza.",
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Etabli relasyon fanmi ki kalifye",
+        "who": "Sitwayen ameriken depoze pou fanmi"
+      },
+      "f2": {
+        "name": "Form I-864",
+        "purpose": "Afidavit de Sipò — patwonaj finansyè",
+        "who": "Petisyonè bay"
+      },
+      "f3": {
+        "name": "Form DS-260",
+        "purpose": "Aplikasyon viza imigran",
+        "who": "Benefisyè ranpli"
+      }
+    }
+  },
+  "K1": {
+    "fullName": "Viza Fiyanse(e) K-1",
+    "purpose": "Pèmèt fiyanse(e) etranje yon sitwayen ameriken antre Etazini pou marye nan 90 jou, epi ajiste pou green card",
+    "eligibility": {
+      "e1": "Petisyonè a dwe yon sitwayen ameriken (pa yon detanteur green card)",
+      "e2": "Toulède pati dwe lib legalman pou marye",
+      "e3": "Dwe rankontre an pèsòn omwen yon fwa nan 2 ane anvan depo (egzansyon disponib pou rezon kiltirèl oswa difikilte)",
+      "e4": "Sitwayen ameriken dwe satisfè kondisyon revni (100% Federal Poverty Guidelines)",
+      "e5": "Dwe gen entansyon pou marye nan 90 jou apre rive fiyanse(e) a"
+    },
+    "duration": "Antre yon sèl fwa, valid 6 mwa — dwe marye nan 90 jou apre rive",
+    "currentWait": "10-12 mwa pou tretman I-129F; 18-26 mwa total depo rive nan green card",
+    "pathToGreenCard": "Apre maryaj, depoze I-485 pou ajisteman estati — mennen nan green card kondisyonèl 2 an",
+    "spouseWork": "Ka aplike pou EAD apre rive epi ankò apre depo I-485",
+    "pros": {
+      "p1": "Pèmèt fiyanse(e) antre Etazini anvan maryaj",
+      "p2": "Pitit ki poko gen 21 an ka vini sou viza derive K-2",
+      "p3": "Pi rapid pase tann aletranje pou viza konjwen IR-1/CR-1 nan kèk ka"
+    },
+    "cons": {
+      "c1": "Dwe marye nan 90 jou oswa fiyanse(e) dwe kite",
+      "c2": "Frè I-129F $675 (oswa $625 sou entènèt) plis frè separe pou viza, egzamen medikal, ak ajisteman (~$2,400+ total)",
+      "c3": "Green card inisyal la kondisyonèl — dwe depoze I-751 ansanm nan 90 jou anvan 2yèm anivèsè",
+      "c4": "Pa ka ajiste pa okenn lòt mwayen si maryaj avèk petisyonè a pa rive",
+      "c5": "Si depo a echwe oswa relasyon an fini, fiyanse(e) jeneralman pa gen chemen pou rete Etazini"
+    },
+    "note": "Limit 90 jou pou marye a estrik — pa gen ekstansyon disponib. Planifye dat maryaj la anvan fiyanse(e) a vwayaje.",
+    "forms": {
+      "f1": {
+        "name": "Form I-129F",
+        "purpose": "Petisyon pou Fiyanse(e) Etranje — etabli relasyon an",
+        "who": "Petisyonè sitwayen ameriken depoze ak USCIS"
+      },
+      "f2": {
+        "name": "Form DS-160",
+        "purpose": "Aplikasyon viza pa-imigran sou entènèt pou entèvyou konsilè",
+        "who": "Fiyanse(e) ranpli sou entènèt"
+      },
+      "f3": {
+        "name": "Form I-485",
+        "purpose": "Ajisteman Estati apre maryaj pou jwenn green card",
+        "who": "Konjwen depoze apre maryaj la"
+      },
+      "f4": {
+        "name": "Form I-134",
+        "purpose": "Affidavit of Support — prèv petisyonè ka patwone finansyèman",
+        "who": "Petisyonè sitwayen ameriken bay"
+      }
+    }
+  },
+  "F1": {
+    "fullName": "F-1: Pitit Gason/Fi Ki Pa Marye Sitwayen Ameriken",
+    "purpose": "Pou pitit ki pa marye ki gen 21+ an sitwayen ameriken",
+    "eligibility": {
+      "e1": "Dwe pa marye",
+      "e2": "21 an oswa plis",
+      "e3": "Pitit sitwayen ameriken"
+    },
+    "duration": "Rezidans pèmanan apre viza disponib",
+    "currentWait": "7-8 an soti petisyon rive disponibilite viza",
+    "pathToGreenCard": "Sa a mennen dirèkteman nan green card yon fwa nimewo viza disponib",
+    "spouseWork": "Pa aplike — dwe pa marye",
+    "pros": {
+      "p1": "Mennen nan rezidans pèmanan",
+      "p2": "Ka enkli pitit ki pa marye anba 21 an"
+    },
+    "cons": {
+      "c1": "Delè 7-8 an pou nimewo viza",
+      "c2": "Dwe rete pa marye",
+      "c3": "Maryaj mete fen elijibilite"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Petisyon fanmi pou etabli relasyon",
+        "who": "Paran sitwayen ameriken depoze"
+      }
+    }
+  },
+  "F2A": {
+    "fullName": "F-2A: Konjwen ak Pitit Minè Titilè Green Card",
+    "purpose": "Pou konjwen ak pitit ki pa marye anba 21 an rezidan pèmanan",
+    "eligibility": {
+      "e1": "Konjwen titilè green card",
+      "e2": "Pitit ki pa marye anba 21 an LPR"
+    },
+    "duration": "Rezidans pèmanan apre viza disponib",
+    "currentWait": "2-3 an soti petisyon rive disponibilite viza",
+    "pathToGreenCard": "Sa a mennen dirèkteman nan green card",
+    "spouseWork": "Wi — yon fwa green card resevwa",
+    "pros": {
+      "p1": "Trant pi kout pase lòt preferans fanmi",
+      "p2": "Enkli konjwen ak pitit minè"
+    },
+    "cons": {
+      "c1": "Delè 2-3 an pou nimewo viza",
+      "c2": "Petisyonè dwe kenbe estati LPR"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Petisyon fanmi",
+        "who": "Titilè green card depoze"
+      }
+    }
+  },
+  "F2B": {
+    "fullName": "F-2B: Pitit Adilt Ki Pa Marye Titilè Green Card",
+    "purpose": "Pou pitit ki pa marye ki gen 21+ an rezidan pèmanan",
+    "eligibility": {
+      "e1": "Pa marye",
+      "e2": "21 an oswa plis",
+      "e3": "Pitit titilè green card"
+    },
+    "duration": "Rezidans pèmanan apre viza disponib",
+    "currentWait": "6-7 an soti petisyon rive disponibilite viza",
+    "pathToGreenCard": "Sa a mennen dirèkteman nan green card",
+    "spouseWork": "Pa aplike — dwe pa marye",
+    "pros": {
+      "p1": "Mennen nan rezidans pèmanan"
+    },
+    "cons": {
+      "c1": "Delè 6-7 an",
+      "c2": "Dwe rete pa marye",
+      "c3": "Si petisyonè natiralize, deplase nan F-1 (ka pi long trant)"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Petisyon fanmi",
+        "who": "Paran titilè green card depoze"
+      }
+    }
+  },
+  "F3": {
+    "fullName": "F-3: Pitit Marye Sitwayen Ameriken",
+    "purpose": "Pou pitit marye nenpòt laj sitwayen ameriken",
+    "eligibility": {
+      "e1": "Marye",
+      "e2": "Nenpòt laj",
+      "e3": "Pitit sitwayen ameriken"
+    },
+    "duration": "Rezidans pèmanan apre viza disponib",
+    "currentWait": "12-13 an soti petisyon rive disponibilite viza",
+    "pathToGreenCard": "Sa a mennen dirèkteman nan green card pou tout fanmi",
+    "spouseWork": "Wi — konjwen ak pitit enkli",
+    "pros": {
+      "p1": "Enkli konjwen ak pitit",
+      "p2": "Pa gen limit laj"
+    },
+    "cons": {
+      "c1": "Delè 12-13 an pou pifò peyi",
+      "c2": "23+ an pou Filipin"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Petisyon fanmi",
+        "who": "Paran sitwayen ameriken depoze"
+      }
+    }
+  },
+  "F4": {
+    "fullName": "F-4: Frè ak Sè Sitwayen Ameriken",
+    "purpose": "Pou frè ak sè sitwayen ameriken (petisyonè dwe gen 21+ an)",
+    "eligibility": {
+      "e1": "Frè ak sè sitwayen ameriken",
+      "e2": "Petisyonè dwe gen 21+ an",
+      "e3": "Gen ladan demi-frè ak sè, ak frè ak sè bèlmè/bòpè"
+    },
+    "duration": "Rezidans pèmanan apre viza disponib",
+    "currentWait": "13-24 an depan sou peyi",
+    "pathToGreenCard": "Sa a mennen dirèkteman nan green card pou tout fanmi",
+    "spouseWork": "Wi — konjwen ak pitit enkli",
+    "pros": {
+      "p1": "Enkli konjwen ak tout pitit ki pa marye anba 21 an",
+      "p2": "Mennen nan rezidans pèmanan"
+    },
+    "cons": {
+      "c1": "Pi long trant nan tout kategori (13-24 an)",
+      "c2": "Zend: 15+ an, Meksik: 23+ an, Filipin: 24+ an",
+      "c3": "Anpil pwopozisyon pou elimine kategori sa a"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-130",
+        "purpose": "Petisyon fanmi ki prouv relasyon frè ak sè",
+        "who": "Frè ak sè sitwayen ameriken depoze"
+      }
+    }
+  },
+  "STUDENT": {
+    "fullName": "Viza Etidyan F-1",
+    "purpose": "Pou etid akademik nan inivèsite, kolèj, lekòl segondè, oswa pwogram lang Etazini",
+    "eligibility": {
+      "e1": "Aksepte nan yon lekòl sètifye SEVP",
+      "e2": "Demontre sipò finansyè",
+      "e3": "Kenbe plen chaj kous",
+      "e4": "Prouv lyen ak peyi natal"
+    },
+    "duration": "Dire etid (D/S) plis peryòd gras 60 jou",
+    "pathToGreenCard": "Pa gen chemen dirèk — men ka chanje nan H-1B nan anplwayè apre gradyasyon",
+    "spouseWork": "Konjwen F-2 pa ka travay ni etidye",
+    "pros": {
+      "p1": "Ka travay sou kanpis",
+      "p2": "OPT pèmèt 1-3 an travay apre gradyasyon",
+      "p3": "CPT pèmèt estaj pandan etid",
+      "p4": "Ka aplike pou H-1B pandan sou OPT"
+    },
+    "cons": {
+      "c1": "Dwe kenbe enskripsyon plen tan",
+      "c2": "Opsyon travay limite",
+      "c3": "Konjwen pa ka travay",
+      "c4": "Dwe montre entansyon nonimigran"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form I-20",
+        "purpose": "Sètifika Elijibilite soti lekòl",
+        "who": "Lekòl bay apre admisyon"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "Pèman frè SEVIS ($350)",
+        "who": "Etidyan peye sou entènèt"
+      },
+      "f3": {
+        "name": "Form DS-160",
+        "purpose": "Aplikasyon viza",
+        "who": "Etidyan ranpli"
+      },
+      "f4": {
+        "name": "Form I-765 (OPT)",
+        "purpose": "Pèmi travay Optional Practical Training",
+        "who": "Etidyan depoze 90 jou anvan gradyasyon"
+      }
+    }
+  },
+  "J1": {
+    "fullName": "Viza Vizitè Echanj J-1",
+    "purpose": "Pou pwogram echanj edikasyonèl ak kiltirèl",
+    "eligibility": {
+      "e1": "Aksepte nan yon pwogram echanj deziyen",
+      "e2": "Kategori: etidyan, rechèch, pwofesè, au pair, elatriye",
+      "e3": "Dwe gen patwon pwogram"
+    },
+    "duration": "Varye selon pwogram (tipikman 1-7 an)",
+    "pathToGreenCard": "Konplèks — anpil sijè kondisyon rezidans lakay 2 an",
+    "spouseWork": "Konjwen J-2 ka aplike pou pèmi travay",
+    "pros": {
+      "p1": "Gwo varyete pwogram",
+      "p2": "Konjwen ka travay avèk EAD",
+      "p3": "Kèk pwogram pèmèt patisipasyon repete"
+    },
+    "cons": {
+      "c1": "Anpil sijè règ lakay 2 an",
+      "c2": "Dwe retounen lakay pou 2 an anvan H/L/green card",
+      "c3": "Pwosesis dispans konplèks ak ensèten"
+    },
+    "forms": {
+      "f1": {
+        "name": "Form DS-2019",
+        "purpose": "Sètifika Elijibilite soti patwon",
+        "who": "Patwon pwogram bay"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "Frè SEVIS ($220)",
+        "who": "Patisipan peye"
+      }
+    }
+  },
+  "M1": {
+    "fullName": "Viza Etidyan Vokasyonèl M-1",
+    "purpose": "Pou pwogram fòmasyon vokasyonèl oswa teknik a tan plen (lekòl metye, lekòl avyon, ar kilinè, mekanik) — diferan de etid akademik F-1",
+    "eligibility": {
+      "e1": "Aksepte nan yon enstitisyon vokasyonèl oswa pa-akademik sètifye SEVP",
+      "e2": "Enskri a tan plen (omwen 18 èdtan/semèn, oswa 22 èdtan pou pwogram atelye/laboratwa)",
+      "e3": "Lajan ase pou tout dire pwogram lan",
+      "e4": "Konpetans angle adekwat pou pwogram lan",
+      "e5": "Entansyon kite Etazini apre fini pwogram lan (entansyon pa-imigran)"
+    },
+    "duration": "1 an inisyalman, ka pwolonje pa moso 1 an jiska 3 ane total, plis peryòd gras 30 jou",
+    "currentWait": "2-3 mwa pou entèvyou viza nan pifò konsila",
+    "pathToGreenCard": "Pa gen chemen dirèk — pifò etidyan M-1 retounen lakay apre fòmasyon. Chanje nan lòt estati (F-1, H-1B) gen restriksyon.",
+    "spouseWork": "Konjwen M-2 pa ka travay ni etidye a tan plen",
+    "pros": {
+      "p1": "Pèmèt fòmasyon vokasyonèl espesyalize ki pa disponib nan peyi orijin",
+      "p2": "Frè SEVIS pi ba pase F-1 ($220 vs $350)",
+      "p3": "Fanmi ka akonpanye sou viza derive M-2"
+    },
+    "cons": {
+      "c1": "Pa ka travay sou kanpis ni andeyò kanpis pandan etid",
+      "c2": "Fòmasyon pratik sèlman pèmèt APRE fini pwogram lan (pa pandan)",
+      "c3": "Pa ka transfere fasilman nan pwogram akademik F-1 — dwe aplike pou chanje estati",
+      "c4": "Maksimòm 3 ane total — pa ka pousuiv pwogram plizyè ane",
+      "c5": "Konjwen pa ka travay, sa limite fleksibilite finansyè fanmi"
+    },
+    "note": "M-1 se sèlman pou fòmasyon vokasyonèl. Si w vle etid akademik (pwogram diplòm, lekòl lang), F-1 se viza ki kòrèk la.",
+    "forms": {
+      "f1": {
+        "name": "Form I-20",
+        "purpose": "Sètifika Elijibilite soti lekòl sètifye SEVP",
+        "who": "Lekòl bay apre admisyon"
+      },
+      "f2": {
+        "name": "SEVIS I-901",
+        "purpose": "Peman frè SEVIS ($220 pou M-1)",
+        "who": "Etidyan peye sou entènèt anvan entèvyou viza"
+      },
+      "f3": {
+        "name": "Form DS-160",
+        "purpose": "Aplikasyon viza pa-imigran sou entènèt (frè $185)",
+        "who": "Etidyan ranpli sou entènèt"
+      }
+    }
+  },
+  "N400_5YR": {
+    "fullName": "Natiralizasyon — Rezidans Kontinyèl 5 An",
+    "purpose": "Chemen estanda pou sitwayènte ameriken pou titilè green card apre 5 an rezidans kontinyèl",
+    "eligibility": {
+      "e1": "Kenbe green card omwen 5 an",
+      "e2": "Rezidans kontinyèl Etazini pou 5 an",
+      "e3": "Prezans fizik omwen 30 nan dènye 60 mwa",
+      "e4": "Pa gen yon sèl vwayaj aletranje pi long pase 6 mwa",
+      "e5": "18 an oswa plis",
+      "e6": "Bon karaktè moral pou tout peryòd 5 an",
+      "e7": "Kapasite pou li, ekri, ak pale anglè debaz",
+      "e8": "Pase egzamen sivik 100 kesyon"
+    },
+    "duration": "Pèmanan — ou vin sitwayen ameriken pou rès lavi",
+    "currentWait": "8–14 mwa soti depo rive sèremoni sèman",
+    "pathToGreenCard": "Pa aplike — sa a se etap apre green card",
+    "spouseWork": "Kòm sitwayen ameriken, konjwen ou vin Fanmi Imedya — kategori patwonaj fanmi ki pi rapid",
+    "pros": {
+      "p1": "Vote nan eleksyon federal",
+      "p2": "Paspò ameriken — vwayaj san viza nan 180+ peyi",
+      "p3": "Patwone fanmi imedya san trant kota",
+      "p4": "Pa ka depòte",
+      "p5": "Elijib pou travay federal ak otorizasyon sekirite",
+      "p6": "Pitit anba 18 an ka otomatikman jwenn sitwayènte"
+    },
+    "cons": {
+      "c1": "Dwe renonse sitwayènte anvan (kèk peyi pèmèt double — verifye pa ou)",
+      "c2": "Tan tretman 8–14 mwa",
+      "c3": "Dwe pase egzamen anglè ak sivik",
+      "c4": "Vyolasyon anvan oswa istwa kriminèl ka diskaalifye"
+    },
+    "note": "Ou ka depoze Form N-400 jiska 90 jou anvan ou rive nan dat elijibilite 5 an ou.",
+    "forms": {
+      "f1": {
+        "name": "Form N-400",
+        "purpose": "Aplikasyon pou Natiralizasyon",
+        "who": "Aplikan depoze avèk USCIS"
+      },
+      "f2": {
+        "name": "Form I-90 (si nesesè)",
+        "purpose": "Renouvle green card si ekspire anvan natiralizasyon",
+        "who": "Aplikan depoze si green card ekspire oswa ap ekspire"
+      }
+    }
+  },
+  "N400_3YR": {
+    "fullName": "Natiralizasyon — Règ 3 An (Marye ak Sitwayen Ameriken)",
+    "purpose": "Chemen natiralizasyon ekspedye pou titilè green card ki marye epi viv avèk yon sitwayen ameriken",
+    "eligibility": {
+      "e1": "Kenbe green card omwen 3 an",
+      "e2": "Kounye a marye ak menm sitwayen ameriken ki te petisyone pou ou",
+      "e3": "Konjwen sitwayen ameriken te yon sitwayen pou tout 3 an",
+      "e4": "Viv ansanm avèk konjwen sitwayen nan moman depo",
+      "e5": "Prezans fizik omwen 18 nan dènye 36 mwa",
+      "e6": "Pa gen yon sèl vwayaj aletranje pi long pase 6 mwa",
+      "e7": "Bon karaktè moral",
+      "e8": "Pase kondisyon anglè ak sivik"
+    },
+    "duration": "Pèmanan — sitwayènte ameriken pou rès lavi",
+    "currentWait": "8–14 mwa soti depo rive sèremoni sèman",
+    "pathToGreenCard": "Pa aplike — sa a se etap apre green card",
+    "spouseWork": "Yon fwa ou natiralize, ou ka imedyatman patwone lòt manm fanmi kòm sitwayen ameriken",
+    "pros": {
+      "p1": "Elijib 2 an pi bonè pase wout estanda 5 an",
+      "p2": "Tout benefis sitwayènte ameriken",
+      "p3": "Paspò ameriken ak vwayaj san viza",
+      "p4": "Patwone manm fanmi imedyatman"
+    },
+    "cons": {
+      "c1": "Dwe toujou marye epi viv avèk menm konjwen sitwayen",
+      "c2": "Si maryaj fini anvan depo, dwe tann wout 5 an",
+      "c3": "Divòs oswa separasyon ka diskaalifye ou nan wout sa a"
+    },
+    "note": "Ou dwe toujou marye ak menm sitwayen ameriken nan moman ou depoze EPI nan moman entèvyou ou.",
+    "forms": {
+      "f1": {
+        "name": "Form N-400",
+        "purpose": "Aplikasyon pou Natiralizasyon",
+        "who": "Aplikan depoze avèk USCIS"
+      },
+      "f2": {
+        "name": "Akt Maryaj",
+        "purpose": "Prèv maryaj valid avèk sitwayen ameriken",
+        "who": "Aplikan bay"
+      },
+      "f3": {
+        "name": "Prèv Sitwayènte Konjwen",
+        "purpose": "Paspò ameriken oswa akt nesans konjwen sitwayen",
+        "who": "Aplikan bay"
+      }
+    }
+  },
+  "N400_MIL": {
+    "fullName": "Natiralizasyon — Sèvis Militè",
+    "purpose": "Natiralizasyon ekspedye oswa imedya pou manm sèvis aktif ak veteran honorableman liberye",
+    "eligibility": {
+      "e1": "Sèvis aktif oswa honorableman liberye soti fòs ame ameriken",
+      "e2": "1 an sèvis onorèb pandan lapè",
+      "e3": "Elijibilite imedya pandan peryòd ostilite deziyen",
+      "e4": "Bon karaktè moral",
+      "e5": "Pase kondisyon anglè ak sivik (kèk egzanpsyon aplike)"
+    },
+    "duration": "Pèmanan — sitwayènte ameriken pou rès lavi",
+    "currentWait": "Ekspedye — ka trete pi vit pase wout sivil",
+    "pathToGreenCard": "Pa aplike — ka aplike menm san green card nan kèk ka",
+    "spouseWork": "Kòm sitwayen ameriken, ou ka patwone manm fanmi imedya san trant",
+    "pros": {
+      "p1": "Frè depo N-400 konplètman anile ($0)",
+      "p2": "Ka natiralize aletranje nan ambasad ameriken",
+      "p3": "Elijibilite imedya pandan peryòd ostilite",
+      "p4": "Kèk egzanpsyon egzamen anglè/sivik pou manm ki sèvi lontan",
+      "p5": "Sitwayènte postim disponib pou moun ki mouri nan sèvis"
+    },
+    "cons": {
+      "c1": "Dwe gen liberasyon onorèb — liberasyon entizan diskaalifye",
+      "c2": "Nesesite dokimantasyon militè (DD-214)"
+    },
+    "note": "Frè depo $0 pou tout manm aktif ak veteran honorableman liberye. Itilize Form N-426 si w ap depoze pandan w ap sèvi aletranje.",
+    "forms": {
+      "f1": {
+        "name": "Form N-400",
+        "purpose": "Aplikasyon pou Natiralizasyon (frè $0 pou militè)",
+        "who": "Aplikan depoze avèk USCIS"
+      },
+      "f2": {
+        "name": "Form N-426",
+        "purpose": "Demann pou Sètifikasyon Sèvis Militè oswa Naval",
+        "who": "Obligatwa pou sèvis aktif aletranje"
+      },
+      "f3": {
+        "name": "DD-214",
+        "purpose": "Sètifika Liberasyon soti Sèvis Aktif",
+        "who": "Bay pa branch sèvis"
+      }
+    }
+  },
+  "N600": {
+    "fullName": "Sètifika Sitwayènte pou Pitit",
+    "purpose": "Dokimante sitwayènte ameriken pou pitit ki jwenn li otomatikman lè yon paran natiralize",
+    "eligibility": {
+      "e1": "Anba 18 an",
+      "e2": "Rezidan pèmanan (titilè green card)",
+      "e3": "Omwen yon paran se sitwayen ameriken pa nesans oswa natiralizasyon",
+      "e4": "Viv Etazini nan gad legal ak fizik paran sitwayen"
+    },
+    "duration": "Pèmanan — dokimante sitwayènte ki deja egziste",
+    "currentWait": "Varye — sa dokimante sitwayènte ki deja rive",
+    "pathToGreenCard": "Pa aplike — pitit deja sitwayen",
+    "spouseWork": "Pa aplike — dokiman sitwayènte pitit",
+    "pros": {
+      "p1": "Ka deja rive otomatikman — N-600 sèlman prouv li",
+      "p2": "Pitit jwenn paspò ameriken ak tout dwa sitwayen",
+      "p3": "Pwoteje kont depòtasyon kòm adilt",
+      "p4": "Dispans frè militè disponib"
+    },
+    "cons": {
+      "c1": "Frè depo $1,170 (pi wo frè fòmilè sitwayènte)",
+      "c2": "Tretman ka pran 12+ mwa",
+      "c3": "Pa aplike si pitit te fèt apre paran te deja natiralize"
+    },
+    "note": "Si paran ou te natiralize pandan ou te anba 18 an ak yon green card, ou ka DEJA yon sitwayen ameriken — N-600 sèlman dokimante li. Verifye anvan aplike!",
+    "forms": {
+      "f1": {
+        "name": "Form N-600",
+        "purpose": "Aplikasyon pou Sètifika Sitwayènte",
+        "who": "Paran depoze pou pitit (oswa pitit adilt depoze pou kont yo)"
+      },
+      "f2": {
+        "name": "Sètifika Natiralizasyon Paran",
+        "purpose": "Prèv paran se sitwayen ameriken",
+        "who": "Aplikan bay"
+      },
+      "f3": {
+        "name": "Green Card Pitit",
+        "purpose": "Prèv estati LPR nan moman natiralizasyon paran",
+        "who": "Aplikan bay"
+      }
+    }
+  },
+  "ASYLUM": {
+    "fullName": "Azil (Form I-589)",
+    "purpose": "Pwoteksyon pou moun ki deja Etazini ki gen krent pèsekisyon nan peyi orijin yo akoz ras, relijyon, nasyonalite, opinyon politik, oswa apatenans nan yon gwoup sosyal patikilye",
+    "eligibility": {
+      "e1": "Fizikman prezan Etazini",
+      "e2": "Te soufri oswa krent pèsekisyon nan lavni sou yon baz pwoteje",
+      "e3": "Depoze Form I-589 nan 1 ane apre rive (egzepsyon limite)",
+      "e4": "Pèsekisyon dwe pa gouvènman, oswa gwoup gouvènman pa ka/pa vle kontwole",
+      "e5": "Pa anpeche pa istwa kriminèl, pèsekisyon anvan lòt moun, oswa rezdans solid yon lòt kote"
+    },
+    "duration": "Estati azil bay endefiniman — kalifye pou aplike pou green card apre 1 an",
+    "currentWait": "Ka afimatif USCIS: 6 mwa rive 5+ an; tribinal imigrasyon (defansif): souvan 3-7 an",
+    "pathToGreenCard": "Aplike pou green card 1 an apre azil bay (Form I-485)",
+    "spouseWork": "Konjwen ak pitit anba 21 an ka enkli kòm derive si yo Etazini lè depo",
+    "pros": {
+      "p1": "Chemen pou rezidans pèmanan epi finalman sitwayènte",
+      "p2": "Ka aplike pou otorizasyon travay (EAD) apre 150 jou aplikasyon annatant",
+      "p3": "Ka enkli konjwen ak pitit selib anba 21 an",
+      "p4": "Pa ka depòte ale nan peyi pèsekisyon krent pandan ka annatant"
+    },
+    "cons": {
+      "c1": "Frè depo $100 pou Form I-589 (nouvo depi 2025; te gratis anvan)",
+      "c2": "Frè Anyèl Azil (AAF) nesesè pou aplikasyon annatant — si w pa peye, sa rejte aplikasyon (efektif 29 me 2026)",
+      "c3": "Limit 1 ane apre rive estrik pou depoze — egzepsyon yo bay yon fason limite",
+      "c4": "Validite EAD kounye a maksimòm 18 mwa; ekstansyon otomatik elimine depi oktòb 2025",
+      "c5": "Anviwònman politik volatil — pwosedi enspeksyon ranfòse, poz pa peyi, plis detansyon",
+      "c6": "Si refize afimatifman, ka voye nan tribinal imigrasyon pou pwosedi adisyonèl",
+      "c7": "Aplikasyon frivol ka rezilta nan entèdiksyon pèmanan pou nenpòt benefis imigrasyon Etazini"
+    },
+    "note": "⚠️ Politik azil ap chanje rapidman an 2026. Yo rekòmande fòtman konsilte yon avoka imigrasyon oswa reprezantan akredite — anpil òganizasyon èd legal ofri èd gratis.",
+    "forms": {
+      "f1": {
+        "name": "Form I-589",
+        "purpose": "Aplikasyon pou Azil ak pou Withholding of Removal (frè $100)",
+        "who": "Aplikan depoze ak USCIS oswa tribinal imigrasyon"
+      },
+      "f2": {
+        "name": "Form I-765 (c)(8)",
+        "purpose": "Otorizasyon Travay baze sou azil annatant (apre 150 jou)",
+        "who": "Aplikan depoze apre peryòd datant"
+      },
+      "f3": {
+        "name": "Form I-485",
+        "purpose": "Ajisteman pou rezidan pèmanan (1 an apre azil bay)",
+        "who": "Azile depoze apre 1 an"
+      },
+      "f4": {
+        "name": "Form I-730",
+        "purpose": "Petisyon Fanmi Refijye/Azile — pote konjwen/pitit aletranje",
+        "who": "Azile depoze nan 2 an apre azil bay"
+      }
+    }
+  },
+  "REFUGEE": {
+    "fullName": "Reentegrasyon Refijye",
+    "purpose": "Pwoteksyon pou moun ki DEYÒ Etazini ki pa ka retounen lakay akoz pèsekisyon; trete atravè UNHCR ak USRAP",
+    "eligibility": {
+      "e1": "Deyò Etazini",
+      "e2": "Yon enkyetid imanitè espesyal pou Etazini",
+      "e3": "Krent pèsekisyon akoz ras, relijyon, nasyonalite, opinyon politik, oswa gwoup sosyal",
+      "e4": "Jeneralman refere pa UNHCR, anbasad Etazini, oswa ONG deziyen",
+      "e5": "Pa rezide solid nan yon lòt peyi",
+      "e6": "Pase enspeksyon sekirite ak medikal lajè"
+    },
+    "duration": "Estati refijye mennen nan rezidans pèmanan — dwe aplike pou green card 1 an apre rive",
+    "currentWait": "18-24 mwa depi referans rive Etazini; tretman rete dousman",
+    "pathToGreenCard": "Bezwen aplike pou green card apre 1 an Etazini (Form I-485)",
+    "spouseWork": "Otorize pou travay imedyatman lè rive; konjwen ak pitit ka vini kòm derive",
+    "pros": {
+      "p1": "Frè vwayaj ak reentegrasyon kouvri pa gouvènman ameriken ak ajans reentegrasyon",
+      "p2": "Benefis inisyal tankou asistans lojman, klas angle, sipò travay",
+      "p3": "Travay otorize imedyatman lè rive — pa bezwen yon EAD separe",
+      "p4": "Chemen pou rezidans pèmanan ak sitwayènte",
+      "p5": "Manm fanmi ka jwenn atravè estati derive"
+    },
+    "cons": {
+      "c1": "Plafon admisyon refijye Etazini te ba istorikman epi politikman volatil",
+      "c2": "Tretman long — 18-24+ mwa depi referans",
+      "c3": "Kontwòl limite sou ki vil Etazini ou ap reentegre",
+      "c4": "Ou pa ka aplike pou kont ou — dwe refere atravè UNHCR oswa ajans deziyen",
+      "c5": "Poz espesifik pa peyi ak restriksyon pwogram komen nan anviwònman politik aktyèl la"
+    },
+    "note": "⚠️ Pwogram refijye Etazini te restriksyon fòtman depi 2025. Kontakte UNHCR (help.unhcr.org) pou estati admisyon aktyèl — pifò tretman kounye a poze oswa dousman pou anpil peyi.",
+    "forms": {
+      "f1": {
+        "name": "Form I-590",
+        "purpose": "Anrejistreman pou Klasifikasyon kòm Refijye",
+        "who": "Konplete pandan tretman aletranje avèk yon ofisye USCIS"
+      },
+      "f2": {
+        "name": "Form I-485",
+        "purpose": "Ajisteman pou rezidan pèmanan (1 an apre rive)",
+        "who": "Refijye depoze apre 1 an Etazini"
+      },
+      "f3": {
+        "name": "Form I-730",
+        "purpose": "Petisyon Fanmi Refijye/Azile — pou manm fanmi aletranje",
+        "who": "Refijye depoze nan 2 an apre rive"
+      }
+    }
+  }
+},
+    "lifeSetupGuides": {
+      "ssn": {
+        "title": "Nimewo Sekirite Sosyal",
+        "description": "ID esansyèl pou travay ak benefis",
+        "sections": {
+          "s1": {
+            "title": "Ki Moun Ka Aplike",
+            "content": {
+              "c1": "Titilè viza travay avèk otorizasyon anplwa",
+              "c2": "Titilè green card",
+              "c3": "Kèk titilè viza etidyan avèk ofri travay",
+              "c4": "Moun ki jwenn azil ak refijye"
+            }
+          },
+          "s2": {
+            "title": "Kijan pou Aplike",
+            "content": {
+              "c1": "Vizite biwo Sekirite Sosyal lokal ou",
+              "c2": "Pote paspò, viza, I-94, ak otorizasyon travay",
+              "c3": "Ranpli fòmilè aplikasyon SS-5",
+              "c4": "Tretman pran 2-4 semèn",
+              "c5": "Kat rive pa lapòs"
+            }
+          },
+          "s3": {
+            "title": "Dokiman Obligatwa",
+            "content": {
+              "c1": "Paspò valid",
+              "c2": "Dokiman imigrasyon (viza, I-94)",
+              "c3": "Otorizasyon travay (kat EAD oswa viza)",
+              "c4": "Akt nesans si disponib"
+            }
+          }
+        }
+      },
+      "banking": {
+        "title": "Bank San Istwa Kredi",
+        "description": "Ouvri kont san istwa kredi",
+        "sections": {
+          "s1": {
+            "title": "Bank Ki Aksepte Imigran",
+            "content": {
+              "c1": "Chase Bank - Ofri kat sekire",
+              "c2": "Bank of America - Kont SafeBalance",
+              "c3": "Wells Fargo - Opportunity Checking",
+              "c4": "Capital One - Kont chèk san frè",
+              "c5": "Kès popilè lokal yo - Souvan plis fleksib"
+            }
+          },
+          "s2": {
+            "title": "Sa Ou Bezwen",
+            "content": {
+              "c1": "Paspò ak viza",
+              "c2": "Prèv adrès (bail, bil sèvis piblik)",
+              "c3": "Depo inisyal ($25-100)",
+              "c4": "SSN oswa ITIN (kèk bank aksepte paspò sèlman)",
+              "c5": "Lèt anplwa (itil men pa toujou obligatwa)"
+            }
+          },
+          "s3": {
+            "title": "Tip Kont",
+            "content": {
+              "c1": "Kont Chèk - Pou tranzaksyon chak jou",
+              "c2": "Kont Epay - Bati fon ijans",
+              "c3": "Kat Kredi Sekire - Kòmanse bati kredi",
+              "c4": "Mache Lajan - Epay ak enterè pi wo"
+            }
+          }
+        }
+      },
+      "credit": {
+        "title": "Bati Kredi Vit",
+        "description": "Etabli nòt kredi soti zewo",
+        "sections": {
+          "s1": {
+            "title": "Plan Kredi 6 Mwa",
+            "content": {
+              "c1": "Mwa 1: Jwenn kat kredi sekire (depo $200-500)",
+              "c2": "Mwa 2: Konfigire pèman otomatik piti",
+              "c3": "Mwa 3: Kenbe itilizasyon anba 30%",
+              "c4": "Mwa 4: Konsidere vin itilizatè otorize",
+              "c5": "Mwa 5: Aplike pou dezyèm kat sekire",
+              "c6": "Mwa 6: Verifye nòt kredi — ta dwe 650+"
+            }
+          },
+          "s2": {
+            "title": "Pi Bon Kat Sekire",
+            "content": {
+              "c1": "Discover it® Secured - Récompenses cashback",
+              "c2": "Capital One Secured - Depo ba",
+              "c3": "OpenSky® Secured - Pa gen verifye kredi",
+              "c4": "Citi® Secured Mastercard® - Chemen nan kat nonsekire"
+            }
+          },
+          "s3": {
+            "title": "Konsèy pou Bati Kredi",
+            "content": {
+              "c1": "Pa janm rate yon pèman (35% nòt)",
+              "c2": "Kenbe balans ba (30% nòt)",
+              "c3": "Pa fèmen ansyen kont",
+              "c4": "Melanje tip kredi sou tan",
+              "c5": "Verifye rapò kredi gratis chak ane"
+            }
+          }
+        }
+      },
+      "job": {
+        "title": "Premye Rechèch Travay",
+        "description": "Jwenn travay avèk kalifikasyon etranje",
+        "sections": {
+          "s1": {
+            "title": "Otorizasyon Travay",
+            "content": {
+              "c1": "H-1B, L-1, O-1 - Lye ak anplwayè espesifik",
+              "c2": "Kat EAD - Otorizasyon travay lib",
+              "c3": "F-1 OPT - Pou diplome resan",
+              "c4": "Green Card - Travay san restriksyon",
+              "c5": "Verifye restriksyon viza avèk atansyon"
+            }
+          },
+          "s2": {
+            "title": "Platfòm Rechèch Travay",
+            "content": {
+              "c1": "LinkedIn - Rezo pwofesyonèl",
+              "c2": "Indeed - Pi gran konsèy travay",
+              "c3": "Glassdoor - Revizyon konpayi",
+              "c4": "AngelList - Travay startup",
+              "c5": "H1BGrader - Anplwayè ki aksepte H-1B",
+              "c6": "MyVisaJobs - Konpayi ki aksepte imigran"
+            }
+          },
+          "s3": {
+            "title": "Konsèy CV",
+            "content": {
+              "c1": "Itilize fòma ameriken (pa foto, laj, oswa enfò pèsonèl)",
+              "c2": "Mete an valè konpetans transferab",
+              "c3": "Jwenn kalifikasyon evalye si nesesè",
+              "c4": "Enkli estati viza (pa egz., \"Otorize pou travay\")",
+              "c5": "Chiffre reyalizasyon avèk chif",
+              "c6": "Kenbe nan 1-2 paj maksimòm"
+            }
+          }
+        }
+      },
+      "itin": {
+        "title": "Aplikasyon ITIN IRS",
+        "description": "Nimewo Idantifikasyon Kontribyab Endividyèl",
+        "shortDescription": "Si ou pa ka jwenn SSN",
+        "sections": {
+          "s1": {
+            "title": "Kisa yon ITIN ye?",
+            "content": {
+              "c1": "Nimewo tretman taks pou moun ki pa ka jwenn SSN",
+              "c2": "Obligatwa pou depoze taks si ou touche revni",
+              "c3": "PA bay otorizasyon travay",
+              "c4": "Fòma: 9XX-XX-XXXX"
+            }
+          },
+          "s2": {
+            "title": "Kijan pou Aplike",
+            "content": {
+              "c1": "Ranpli Form W-7 avèk IRS",
+              "c2": "Enkli deklarasyon taks federal avèk aplikasyon",
+              "c3": "Bay paspò orijinal oswa kopi sètifye",
+              "c4": "Aplike pa lapòs, an pèsòn, oswa nan Ajan Akseptasyon Sètifye",
+              "c5": "Tretman pran 7-11 semèn"
+            }
+          }
+        }
+      },
+      "dmv": {
+        "title": "Gid Lisans DMV",
+        "description": "Jwenn yon lisans kondi kòm imigran",
+        "shortDescription": "Kondisyon pa eta",
+        "sections": {
+          "s1": {
+            "title": "Kondisyon Jeneral",
+            "content": {
+              "c1": "Estati imigrasyon valid (kondisyon varye pa eta)",
+              "c2": "Prèv idantite (paspò, viza, I-94)",
+              "c3": "Prèv rezidans (bail, bil sèvis piblik)",
+              "c4": "SSN oswa prèv enelijibilite",
+              "c5": "Pase tès ekri, tès vizyon, ak tès kondwi"
+            }
+          },
+          "s2": {
+            "title": "Eta ki Gen Politik Favorab pou Imigran",
+            "content": {
+              "c1": "19 eta + DC pèmèt lisans kèlkeswa estati",
+              "c2": "Kalifòni, New York, Illinois, New Jersey pami yo",
+              "c3": "Kèk eta bay lisans 'estanda' vs 'REAL ID'",
+              "c4": "REAL ID obligatwa pou vòl domestik kòmanse me 2025",
+              "c5": "Verifye sit wèb DMV eta ou pou kondisyon espesifik"
+            }
+          }
+        }
+      },
+      "healthcare": {
+        "title": "Opsyon Swen Sante",
+        "description": "Asirans sante pou imigran",
+        "shortDescription": "Asirans pou imigran",
+        "sections": {
+          "s1": {
+            "title": "Opsyon Asirans",
+            "content": {
+              "c1": "Asirans patwone pa anplwayè (pi komen pou titilè viza travay)",
+              "c2": "Plan Mache ACA (Healthcare.gov) — disponib pou rezidan legal",
+              "c3": "Medicaid — varye pa eta ak estati imigrasyon",
+              "c4": "Plan sante inivèsite — obligatwa pou pifò etidyan F-1",
+              "c5": "Asirans sante pou kout tèm — kouvèti tanporè"
+            }
+          },
+          "s2": {
+            "title": "Nòt Enpòtan",
+            "content": {
+              "c1": "Pifò titilè viza PA elijib pou Medicaid inisyalman",
+              "c2": "Etidyan F-1 tipikman dwe enskri nan plan sante lekòl",
+              "c3": "Titilè H-1B jeneralman jwenn asirans anplwayè",
+              "c4": "Medicaid Ijans disponib kèlkeswa estati",
+              "c5": "Sant sante kominotè ofri frè ki varye selon revni",
+              "c6": "Enskripsyon ouvè Healthcare.gov: 1 nov – 15 jan chak ane"
+            }
+          }
+        }
+      },
+      "tax": {
+        "title": "Deklarasyon Taks pou Imigran",
+        "description": "Obligasyon taks federal ak eta pou imigran",
+        "sections": {
+          "s1": {
+            "title": "Ki Moun Dwe Depoze",
+            "content": {
+              "c1": "Tout rezidan ameriken (titilè green card, prezans sibstansyèl)",
+              "c2": "Titilè H-1B, L-1, O-1 — takse kòm rezidan",
+              "c3": "Etidyan F-1 — jeneralman nonrezidan pou premye 5 an",
+              "c4": "Revni touche Etazini taksab kèlkeswa estati",
+              "c5": "Trete fiskal ka redwi obligasyon pou kèk peyi"
+            }
+          },
+          "s2": {
+            "title": "Fòmilè Kle",
+            "content": {
+              "c1": "Form 1040 — Deklarasyon taks rezidan",
+              "c2": "Form 1040-NR — Deklarasyon taks nonrezidan",
+              "c3": "Form W-2 — Revni salè soti anplwayè",
+              "c4": "Form 8843 — Obligatwa pou moun ki egzante viza F/J",
+              "c5": "ITIN (W-7) — Si ou pa gen SSN"
+            }
+          },
+          "s3": {
+            "title": "Resous Depo Gratis",
+            "content": {
+              "c1": "IRS Free File — irs.gov/freefile (revni anba $84,000)",
+              "c2": "VITA — Preparasyon taks gratis pou revni ba (irs.gov/vita)",
+              "c3": "Sprintax — Deziyen pou deklarasyon taks nonrezidan",
+              "c4": "TurboTax — Pou moun ki depoze kòm rezidan",
+              "c5": "Delè depo: 15 avril chak ane"
+            }
+          }
+        }
+      }
+    },
+    "pathwayDetailScreen": {
+      "errorTitle": "Chemen pa jwenn",
+      "currentViability": "Fezabilite Aktyèl",
+      "immediateRelativeAlert": {
+        "dialogTitle": "Kisa Fanmi Imedya ye?",
+        "dialogBody": "Fanmi Imedya se kategori fanmi PI RAPID paske yo PA gen limit anyèl!\n\nKI MOUN KALIFYE:\n• Konjwen sitwayen ameriken\n• Pitit ki pa marye anba 21 an sitwayen ameriken\n• Paran sitwayen ameriken (si sitwayen gen 21+)\n\nPOUKI SA ESPESYAL:\n• Pa gen trant pou nimewo viza\n• Pa gen cap anyèl\n• Tretman nan 12-24 mwa vs 5-20 an\n\nTout lòt kategori fanmi yo dwe tann ane pou nimewo viza vin disponib.",
+        "gotIt": "Konprann!",
+        "bannerTitle": "Fanmi Imedya = Pa Gen Liy Trant!",
+        "bannerText": "Konjwen, pitit minè, ak paran sitwayen ameriken. Touche pou konnen poukisa sa enpòtan."
+      },
+      "citizenshipAlert": {
+        "dialogTitle": "Poukisa Natiralize?",
+        "dialogBody": "Vin sitwayen ameriken ba ou dwa ak pwoteksyon pi lwen pase yon green card:\n\n🗳️ VOTE nan eleksyon federal, eta, ak lokal\n🛂 PASPÒ AMERIKEN — vwayaj san viza nan 180+ peyi\n👨‍👩‍👧 PATWONE FANMI imedyatman kòm Fanmi Imedya\n🛡️ PA KA DEPÒTE — sekirite pèmanan\n💼 TRAVAY FEDERAL & otorizasyon sekirite\n👶 PITIT anba 18 an ka otomatikman vin sitwayen\n\nPifò titilè green card elijib apre 5 an. Marye ak sitwayen ameriken? Ou ka kalifye apre 3 an sèlman.",
+        "bannerTitle": "Poukisa vin sitwayen ameriken?",
+        "bannerText": "Paspò, dwa vòt, patwonaj fanmi & plis. Touche pou aprann."
+      },
+      "formLinkErrors": {
+        "cantOpenTitle": "Pa Kapab Ouvri Lyen",
+        "cantOpenBody": "Pa kapab ouvri {{formName}}. Tanpri chèche li sou USCIS.gov",
+        "noLinkBody": "Fòmilè sa a bay pa lekòl/anplwayè ou oswa nesesite aksè espesyal.",
+        "ok": "OK"
+      },
+      "overview": "Apèsi",
+      "processingTimes": "Tan tretman",
+      "governmentFees": "Frè gouvènman",
+      "visaCategoriesTitle": {
+        "default": "Kategori Viza Eksplike",
+        "citizenship": "Wout Natiralizasyon"
+      },
+      "ucBadge": "🇺🇸 Sitwayen",
+      "gcBadge": "→ Green Card",
+      "details": {
+        "durationLabel": "Dire:",
+        "currentWaitLabel": {
+          "default": "Trant Aktyèl:",
+          "citizenship": "Tan Tretman:"
+        },
+        "spouseWorkLabel": {
+          "default": "Konjwen Ka Travay:",
+          "citizenship": "Benefis Fanmi:"
+        }
+      },
+      "eligibilityLabel": {
+        "default": "Kondisyon Elijibilite:",
+        "citizenship": "Kondisyon:"
+      },
+      "benefitsLabel": "✅ Benefis",
+      "considerationsLabel": "⚠️ Konsiderasyon",
+      "formsLabel": "Fòmilè Obligatwa:",
+      "greenCardPath": {
+        "title": "🟢 Chemen Rezidans Pèmanan (Green Card)",
+        "h1bIndiaWarning": "⚠️ Nasyonal Zend/Lachin: delè 12+ an pou green card EB-2/EB-3"
+      },
+      "militaryFeeNote": "🎖️ Frè depo: $0 — konplètman anile pou aplikan militè",
+      "buttons": {
+        "checklistDefault": "📋 Wè Lis Dokiman",
+        "checklistCitizenship": "📋 Lis Dokiman N-400",
+        "timelineDefault": "📅 Wè Kalandriye Tretman",
+        "timelineCitizenship": "📅 Kalandriye Natiralizasyon",
+        "uscisDefault": "🔗 Vizite Sant Fòmilè USCIS",
+        "uscisCitizenship": "🔗 Sant Sitwayènte USCIS"
+      }
+    },
+    "guideDetailScreen": {
+      "relatedGuidesTitle": "📚 Gid Ki Asosye",
+      "needHelpTitle": "Bezwen Plis Èd?",
+      "needHelpText": "Konsidere konsiltasyon avèk yon avoka imigrasyon oswa vizite biwo USCIS lokal ou pou gidans pèsonalize.",
+      "helpfulLinks": {
+        "immigrationAdvocates": "Defansè Imigrasyon",
+        "uscisOfficeLocator": "Lokalizatè Biwo USCIS",
+        "legalAidDirectory": "Anyè Èd Legal"
+      },
+      "cantOpenLinkTitle": "Pa Kapab Ouvri Lyen",
+      "cantOpenLinkBody": "Pa kapab ouvri {{name}}. Tanpri chèche sou entènèt."
+    },
+    "lifeSetupScreen": {
+      "title": "Gid Konfigirasyon Lavi",
+      "subtitle": "Etap esansyèl pou nouvo lavi ou nan Amerik",
+      "first30DaysTitle": "📍 Premye 30 Jou Ou",
+      "first30Days": {
+        "step1": "Aplike pou SSN (si elijib)",
+        "step2": "Ouvri kont bank",
+        "step3": "Jwenn kat kredi sekire",
+        "step4": "Konfigire telefòn & sèvis piblik",
+        "step5": "Kòmanse aplikasyon travay"
+      },
+      "additionalResourcesTitle": "📚 Resous Adisyonèl",
+      "avoidScams": {
+        "title": "Evite Eskwok",
+        "body": "Pa janm peye pou ofri travay, aplikasyon SSN se gratis, epi itilize sèlman sit wèb gouvènman ofisyèl."
+      }
+    },
+    "viabilityBadge": {
+      "tapHint": "Touche pou detay",
+      "updated": "Mete ajou: {{date}}"
+    },
+    "embassySelector": {
+      "noData": "Done tan trant randevou ambasad pa disponib pou viza ak peyi sa a.",
+      "title": "Estimasyon Randevou Ambasad",
+      "fastestOption": "Opsyon ki pi rapid",
+      "fastestValue": "{{city}} — ~{{days}} jou",
+      "daysApprox": "~{{days}} jou",
+      "lastUpdated": "Dènye mete ajou: {{date}}",
+      "disclaimer": "Disponibilite randevou ka varye epi li pa garanti planifikasyon entèvyou."
+    },
+    "feeCalculator": {
+      "title": "Frè Gouvènman Estimé",
+      "totalLabel": "Total Frè Estimé",
+      "lastUpdated": "Dènye mete ajou: {{date}}",
+      "feeUpdatedNote": "Mete ajou {{date}} (te ${{previous}})",
+      "disclaimer": "Estimasyon sèlman. Pa enkli frè legal, medikal, oswa vwayaj.",
+      "disclaimerWithPremium": "Estimasyon sèlman. Pa enkli frè legal, medikal, oswa vwayaj. Frè premium processing efikas 1 mas 2026."
+    },
+    "pathwaysData": {
+      "work": {
+        "title": "Imigrasyon Baze sou Travay",
+        "overview": "Imigrasyon baze sou anplwa pèmèt etranje travay Etazini. Pifò kategori nesesite patwonaj anplwayè.",
+        "categories": {
+          "h1b": {
+            "name": "Okipasyon Espesyalize H-1B",
+            "description": "Pou pozisyon ki nesesite konesans espesyalize ak yon diplòm lisans oswa pi wo.",
+            "requirements": {
+              "r1": "Diplòm lisans oswa ekivalan",
+              "r2": "Ofri travay soti anplwayè ameriken",
+              "r3": "Okipasyon espesyalize",
+              "r4": "Anplwayè dwe peye salè dominan"
+            }
+          },
+          "l1": {
+            "name": "Transfè Entèkonpayi L-1",
+            "description": "Pou anplwaye konpayi multinasyonal ki transfere nan yon biwo ameriken.",
+            "requirements": {
+              "r1": "Travay pou konpayi pou 1 an nan dènye 3 an",
+              "r2": "Transfere nan antite ameriken ki kalifye",
+              "r3": "Wòl direktè, manadjè, oswa espesyalize"
+            }
+          },
+          "o1": {
+            "name": "Kapasite Ekstraòdinè O-1",
+            "description": "Pou moun ki gen kapasite ekstraòdinè nan syans, atizana, edikasyon, biznis, oswa atletik.",
+            "requirements": {
+              "r1": "Kapasite ekstraòdinè demontre",
+              "r2": "Rekonesans nasyonal oswa entènasyonal",
+              "r3": "Travay nan domèn espètyiz"
+            }
+          },
+          "eb": {
+            "name": "Green Card Baze sou Anplwa",
+            "description": "Rezidans pèmanan nan kategori baze sou anplwa (EB-1, EB-2, EB-3)."
+          }
+        }
+      },
+      "family": {
+        "title": "Imigrasyon Baze sou Fanmi",
+        "overview": "Sitwayen ameriken ak rezidan pèmanan ka patwone manm fanmi ki elijib. Fanmi imedya pa gen limit anyèl.",
+        "categories": {
+          "immediate": {
+            "name": "Fanmi Imedya",
+            "description": "Konjwen, pitit ki pa marye anba 21 an, ak paran sitwayen ameriken. Pa gen limit anyèl."
+          },
+          "k1": {
+            "name": "Viza Fianse(e) K-1",
+            "description": "Pou fianse(e) sitwayen ameriken.",
+            "requirements": {
+              "r1": "Entansyon marye nan 90 jou",
+              "r2": "Rankontre an pèsòn nan dènye 2 an",
+              "r3": "Legalmanlibpou marye"
+            }
+          },
+          "f1": {
+            "name": "F-1: Pitit Gason/Fi Ki Pa Marye Sitwayen Ameriken",
+            "description": "Pou pitit ki pa marye ki gen 21+ an sitwayen ameriken. Trant aktyèl: 7-8 an."
+          },
+          "f2a": {
+            "name": "F-2A: Konjwen/Pitit Titilè Green Card",
+            "description": "Pou konjwen ak pitit ki pa marye anba 21 an rezidan pèmanan. Trant aktyèl: 2-3 an."
+          },
+          "f2b": {
+            "name": "F-2B: Pitit Adilt Ki Pa Marye Titilè Green Card",
+            "description": "Pou pitit ki pa marye ki gen 21+ an rezidan pèmanan. Trant aktyèl: 6-7 an."
+          },
+          "f3": {
+            "name": "F-3: Pitit Marye Sitwayen Ameriken",
+            "description": "Pou pitit marye sitwayen ameriken. Trant aktyèl: 12-13 an."
+          },
+          "f4": {
+            "name": "F-4: Frè ak Sè Sitwayen Ameriken",
+            "description": "Pou frè/sè sitwayen ameriken (petisyonè dwe gen 21+). Trant aktyèl: 13-24 an."
+          }
+        }
+      },
+      "student": {
+        "title": "Chemen Etidyan",
+        "overview": "Etidyan entènasyonal ka etidye plen tan nan enstitisyon ameriken sètifye SEVP. Etidyan F-1 ka travay nan OPT (12 mwa) ak STEM OPT (24 mwa adisyonèl) apre gradyasyon.",
+        "categories": {
+          "f1_student": {
+            "name": "Etidyan Akademik F-1",
+            "description": "Etid plen tan nan yon inivèsite oswa kolèj ameriken. OPT pèmèt 1-3 an travay apre gradyasyon.",
+            "requirements": {
+              "r1": "Admisyon nan yon lekòl apwouve SEVP",
+              "r2": "Kous etid plen tan",
+              "r3": "Prèv finansyè (~$40,000/an)",
+              "r4": "Entansyon pou kite apre etid"
+            }
+          },
+          "j1": {
+            "name": "Vizitè Echanj J-1",
+            "description": "Pou pwogram echanj (rechèch, ansèyman, au pair). Anpil sijè kondisyon rezidans lakay 2 an."
+          },
+          "m1": {
+            "name": "Etidyan Vokasyonèl M-1",
+            "description": "Pou pwogram vokasyonèl oswa nonakademik. Opsyon travay limite apre konpletasyon."
+          }
+        }
+      },
+      "protection": {
+        "title": "Pwoteksyon Imilanitè",
+        "overview": "Chemen pwoteksyon pou moun ki pa ka retounen lakay yo san danje. Azil dwe depoze nan 1 an apre rive Etazini. Anviwonman politik volatil kounye a.",
+        "categories": {
+          "asylum": {
+            "name": "Azil",
+            "description": "Pou moun ki gen yon krent fondè pèsekisyon. Dwe depoze nan 1 an apre rive."
+          },
+          "refugee": {
+            "name": "Estati Refijye",
+            "description": "Pou moun ki refere pa UNHCR oswa yon ambasad ameriken pandan yo deyò Etazini."
+          }
+        }
+      },
+      "citizenship": {
+        "title": "Chemen Pou Sitwayènte",
+        "overview": "Natiralizasyon ameriken pèmèt rezidan pèmanan legal (titilè green card) vin sitwayen ameriken. Pifò aplikan elijib apre 5 an rezidans kontinyèl. Konjwen sitwayen ameriken ka kalifye apre 3 an.",
+        "categories": {
+          "standard": {
+            "name": "Rezidans Kontinyèl 5 An",
+            "description": "Chemen natiralizasyon estanda pou pifò titilè green card apre 5 an rezidans kontinyèl.",
+            "requirements": {
+              "r1": "Green card pou omwen 5 an",
+              "r2": "Rezidans kontinyèl Etazini pou 5 an",
+              "r3": "Prezans fizik omwen 30 mwa nan 5 an yo",
+              "r4": "Pa gen yon sèl vwayaj aletranje pi long pase 6 mwa",
+              "r5": "18 an oswa plis",
+              "r6": "Bon karaktè moral",
+              "r7": "Kapasite pou li, ekri, ak pale anglè",
+              "r8": "Pase egzamen sivik 100 kesyon"
+            }
+          },
+          "marriage": {
+            "name": "Règ 3 An (Marye ak Sitwayen Ameriken)",
+            "description": "Chemen ekspedye pou titilè green card ki marye epi viv avèk yon sitwayen ameriken. Elijib apre 3 an olye de 5.",
+            "requirements": {
+              "r1": "Green card pou omwen 3 an",
+              "r2": "Kounye a marye epi viv avèk yon sitwayen ameriken",
+              "r3": "Konjwen te yon sitwayen ameriken pou tout 3 an",
+              "r4": "Prezans fizik omwen 18 mwa nan 3 an yo",
+              "r5": "Pa gen yon sèl vwayaj aletranje pi long pase 6 mwa",
+              "r6": "Bon karaktè moral",
+              "r7": "Pase kondisyon anglè ak sivik"
+            }
+          },
+          "military": {
+            "name": "Sèvis Militè",
+            "description": "Natiralizasyon ekspedye oswa imedya pou manm sèvis aktif ak veteran honorableman liberye.",
+            "requirements": {
+              "r1": "Sèvis aktif oswa honorableman liberye soti fòs ame ameriken",
+              "r2": "1 an sèvis onorèb (lapè)",
+              "r3": "Sèvis aktif pandan peryòd ostilite deziyen = elijibilite imedya",
+              "r4": "Bon karaktè moral",
+              "r5": "Pase kondisyon anglè ak sivik"
+            }
+          },
+          "children": {
+            "name": "Sitwayènte pou Pitit",
+            "description": "Pitit anba 18 an avèk green card ka otomatikman jwenn sitwayènte lè yon paran natiralize. N-600 dokimante sitwayènte sa a.",
+            "requirements": {
+              "r1": "Anba 18 an",
+              "r2": "Rezidan pèmanan legal",
+              "r3": "Omwen yon paran se sitwayen ameriken (pa nesans oswa natiralizasyon)",
+              "r4": "Viv Etazini nan gad legal ak fizik paran sitwayen"
+            }
+          }
+        }
+      }
+    },
+    "timelineCalculator": {
+      "fallback": "Kalandriye varye baze sou sikonstans pèsonèl.",
+      "title": "Kalandriye Estimé",
+      "processingTimeLabel": "Tan tretman",
+      "visaWaitLabel": "Trant disponibilite viza",
+      "priorityYears": "{{min}}–{{max}}+ an",
+      "lastUpdated": "Dènye mete ajou: {{date}}",
+      "disclaimer": "Kalandriye yo se estimasyon epi yo ka varye selon peyi, chaj travay, ak konpleksite ka."
+    },
+    "caseTracker": {
+      "header": {
+        "title": "Swivi Ka USCIS",
+        "subtitle": "Swiv estati ofisyèl petisyon USCIS ou yo an tan reyèl."
+      },
+      "input": {
+        "label": "Antre nimewo resi ou",
+        "helper": "13 karaktè: 3 lèt + 10 chif. Jwenn li sou avi I-797 ou soti USCIS.",
+        "submit": "Swiv Ka",
+        "invalidFormat": "Nimewo resi dwe gen 3 lèt swivi pa 10 chif."
+      },
+      "empty": {
+        "title": "Pa gen ka swivi toujou",
+        "body": "Ajoute premye nimewo resi ou anlè a pou kòmanse swivi petisyon USCIS ou yo."
+      },
+      "cases": {
+        "title": "Ka Swivi ({{count}})"
+      },
+      "card": {
+        "lastUpdated": "Mete ajou {{date}}",
+        "showDetails": "Montre detay",
+        "hideDetails": "Kache detay",
+        "description": "Deskripsyon",
+        "submitted": "Soumèt",
+        "history": "Istwa estati",
+        "fetched": "Dènye verifye: {{time}}"
+      },
+      "error": {
+        "title": "Erè · {{code}}",
+        "trace": "ID Tras: {{traceId}}"
+      },
+      "remove": {
+        "title": "Retire ka sa a?",
+        "body": "Sispann swivi {{receiptNumber}}? Ou ka ajoute li ankò nenpòt ki lè.",
+        "cancel": "Anile",
+        "confirm": "Retire"
+      },
+      "dataSource": "Done soti dirèkteman soti API Estati Ka USCIS ofisyèl la. Enfòmasyon an pou rezon swivi sèlman epi li pa konstitye konsèy legal."
+    },
+    "tabNavigator": {
+      "home": "Akèy",
+      "checklist": "Lis Dokiman",
+      "timeline": "Kalandriye",
+      "lifeSetup": "Konfigirasyon Lavi",
+      "resources": "Resous"
+    },
+    "priorityDateTracker": {
+      "noData": "Enfòmasyon priority date pa disponib.",
+      "noBulletin": "Done visa bulletin pa disponib pou kategori sa a.",
+      "noCountryCutoff": "Dat limit espesifik pou peyi pa disponib.",
+      "title": "Disponibilite Viza",
+      "yourPriorityDate": "Priority date ou",
+      "currentCutoff": "Dat limit aktyèl",
+      "current": "Aktyèl",
+      "notCurrent": "Pa aktyèl",
+      "backloggedWarning": "Kategori ou akimile kounye a. Mouvman depan sou limit viza anyèl ak demann.",
+      "bulletinUpdated": "Visa Bulletin: {{date}}",
+      "disclaimer": "Enfòmasyon sa a baze sou Visa Bulletin Depatman Deta Etazini epi li pa garanti disponibilite viza."
+    }
+  }

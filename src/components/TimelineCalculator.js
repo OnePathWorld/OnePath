@@ -2,6 +2,7 @@
 
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 import {
   getProcessingTime,
   formatProcessingTime,
@@ -25,13 +26,12 @@ export default function TimelineCalculator({
   usePremium = false,
   includePriorityWait = true,
 }) {
+  const { t } = useTranslation();
   const data = getProcessingTime(processingKey);
 
   if (!data) {
     return (
-      <Text style={styles.fallback}>
-        Timeline varies based on individual circumstances.
-      </Text>
+      <Text style={styles.fallback}>{t("timelineCalculator.fallback")}</Text>
     );
   }
 
@@ -59,33 +59,41 @@ export default function TimelineCalculator({
     const wait = data.categoryWaits[category];
 
     if (wait) {
-      priorityTimeline = `${wait.minYears}–${wait.maxYears}+ years`;
+      priorityTimeline = t("timelineCalculator.priorityYears", {
+        min: wait.minYears,
+        max: wait.maxYears,
+      });
     }
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Estimated Timeline</Text>
+      <Text style={styles.title}>{t("timelineCalculator.title")}</Text>
 
       <View style={styles.row}>
-        <Text style={styles.label}>Processing time</Text>
+        <Text style={styles.label}>
+          {t("timelineCalculator.processingTimeLabel")}
+        </Text>
         <Text style={styles.value}>{mainTimeline}</Text>
       </View>
 
       {priorityTimeline && (
         <View style={styles.row}>
-          <Text style={styles.label}>Visa availability wait</Text>
+          <Text style={styles.label}>
+            {t("timelineCalculator.visaWaitLabel")}
+          </Text>
           <Text style={styles.value}>{priorityTimeline}</Text>
         </View>
       )}
 
       <Text style={styles.updated}>
-        Last updated: {PROCESSING_TIMES_META.lastUpdated}
+        {t("timelineCalculator.lastUpdated", {
+          date: PROCESSING_TIMES_META.lastUpdated,
+        })}
       </Text>
 
       <Text style={styles.disclaimer}>
-        Timelines are estimates and may vary by country, workload, and case
-        complexity.
+        {t("timelineCalculator.disclaimer")}
       </Text>
     </View>
   );

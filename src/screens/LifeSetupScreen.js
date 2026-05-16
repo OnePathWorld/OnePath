@@ -1,210 +1,62 @@
-import React from 'react';
+// src/screens/LifeSetupScreen.js
+
+import React from "react";
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
+import { getLifeSetupGuide } from "../data/lifeSetupGuides";
+
+const MAIN_GUIDE_IDS = ["ssn", "banking", "credit", "job"];
+const RESOURCE_GUIDE_IDS = ["itin", "dmv", "healthcare"];
 
 const LifeSetupScreen = ({ navigation }) => {
-  const lifeSetupGuides = [
-    {
-      id: 'ssn',
-      title: 'Social Security Number',
-      icon: '🆔',
-      color: '#4CAF50',
-      description: 'Essential ID for work and benefits',
-      guides: [
-        {
-          title: 'Who Can Apply',
-          content: [
-            'Work visa holders with employment authorization',
-            'Green card holders',
-            'Certain student visa holders with job offers',
-            'Asylees and refugees',
-          ],
-        },
-        {
-          title: 'How to Apply',
-          content: [
-            'Visit local Social Security office',
-            'Bring passport, visa, I-94, and work authorization',
-            'Complete SS-5 application form',
-            'Processing takes 2-4 weeks',
-            'Card arrives by mail',
-          ],
-        },
-        {
-          title: 'Required Documents',
-          content: [
-            'Valid passport',
-            'Immigration documents (visa, I-94)',
-            'Work authorization (EAD card or visa)',
-            'Birth certificate if available',
-          ],
-        },
-      ],
-    },
-    {
-      id: 'banking',
-      title: 'Banking Without History',
-      icon: '🏦',
-      color: '#2196F3',
-      description: 'Open accounts without credit history',
-      guides: [
-        {
-          title: 'Immigrant-Friendly Banks',
-          content: [
-            'Chase Bank - Offers secured cards',
-            'Bank of America - SafeBalance accounts',
-            'Wells Fargo - Opportunity Checking',
-            'Capital One - No-fee checking',
-            'Local credit unions - Often more flexible',
-          ],
-        },
-        {
-          title: 'What You Need',
-          content: [
-            'Passport and visa',
-            'Proof of address (lease, utility bill)',
-            'Initial deposit ($25-100)',
-            'SSN or ITIN (some banks accept passport only)',
-            'Employment letter (helpful but not always required)',
-          ],
-        },
-        {
-          title: 'Account Types',
-          content: [
-            'Checking Account - For daily transactions',
-            'Savings Account - Build emergency fund',
-            'Secured Credit Card - Start building credit',
-            'Money Market - Higher interest savings',
-          ],
-        },
-      ],
-    },
-    {
-      id: 'credit',
-      title: 'Building Credit Fast',
-      icon: '💳',
-      color: '#FF9800',
-      description: 'Establish credit score from zero',
-      guides: [
-        {
-          title: '6-Month Credit Plan',
-          content: [
-            'Month 1: Get secured credit card ($200-500 deposit)',
-            'Month 2: Set up automatic small payment',
-            'Month 3: Keep utilization under 30%',
-            'Month 4: Consider becoming authorized user',
-            'Month 5: Apply for second secured card',
-            'Month 6: Check credit score - should be 650+',
-          ],
-        },
-        {
-          title: 'Best Secured Cards',
-          content: [
-            'Discover it® Secured - Cashback rewards',
-            'Capital One Secured - Low deposit',
-            'OpenSky® Secured - No credit check',
-            'Citi® Secured Mastercard® - Path to unsecured',
-          ],
-        },
-        {
-          title: 'Credit Building Tips',
-          content: [
-            'Never miss a payment (35% of score)',
-            'Keep balances low (30% of score)',
-            'Don\'t close old accounts',
-            'Mix credit types over time',
-            'Check free credit report annually',
-          ],
-        },
-      ],
-    },
-    {
-      id: 'job',
-      title: 'First Job Search',
-      icon: '💼',
-      color: '#9C27B0',
-      description: 'Find work with foreign credentials',
-      guides: [
-        {
-          title: 'Work Authorization',
-          content: [
-            'H-1B, L-1, O-1 - Tied to specific employer',
-            'EAD Card - Open work authorization',
-            'F-1 OPT - For recent graduates',
-            'Green Card - Unrestricted work',
-            'Check visa restrictions carefully',
-          ],
-        },
-        {
-          title: 'Job Search Platforms',
-          content: [
-            'LinkedIn - Professional networking',
-            'Indeed - Largest job board',
-            'Glassdoor - Company reviews',
-            'AngelList - Startup jobs',
-            'H1BGrader - H-1B friendly employers',
-            'MyVisaJobs - Immigration-friendly companies',
-          ],
-        },
-        {
-          title: 'Resume Tips',
-          content: [
-            'Use U.S. format (no photo, age, or personal info)',
-            'Highlight transferable skills',
-            'Get credentials evaluated if needed',
-            'Include visa status (e.g., "Authorized to work")',
-            'Quantify achievements with numbers',
-            'Keep to 1-2 pages maximum',
-          ],
-        },
-      ],
-    },
-  ];
+  const { t } = useTranslation();
 
   const handleGuidePress = (guide) => {
-    navigation.navigate('GuideDetail', { guide });
+    navigation.navigate("GuideDetail", { guide });
   };
+
+  // Inflate all guides at render time so language switches re-translate
+  const mainGuides = MAIN_GUIDE_IDS.map((id) => getLifeSetupGuide(id)).filter(
+    Boolean
+  );
+  const resourceGuides = RESOURCE_GUIDE_IDS.map((id) =>
+    getLifeSetupGuide(id)
+  ).filter(Boolean);
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        {/* HEADER */}
         <View style={styles.header}>
-          <Text style={styles.title}>Life Setup Guide</Text>
-          <Text style={styles.subtitle}>Essential steps for your new life in America</Text>
+          <Text style={styles.title}>{t("lifeSetupScreen.title")}</Text>
+          <Text style={styles.subtitle}>{t("lifeSetupScreen.subtitle")}</Text>
         </View>
 
+        {/* FIRST 30 DAYS TIMELINE */}
         <View style={styles.timelineCard}>
-          <Text style={styles.timelineTitle}>📍 Your First 30 Days</Text>
-          <View style={styles.timelineItem}>
-            <Text style={styles.timelineNumber}>1</Text>
-            <Text style={styles.timelineText}>Apply for SSN (if eligible)</Text>
-          </View>
-          <View style={styles.timelineItem}>
-            <Text style={styles.timelineNumber}>2</Text>
-            <Text style={styles.timelineText}>Open bank account</Text>
-          </View>
-          <View style={styles.timelineItem}>
-            <Text style={styles.timelineNumber}>3</Text>
-            <Text style={styles.timelineText}>Get secured credit card</Text>
-          </View>
-          <View style={styles.timelineItem}>
-            <Text style={styles.timelineNumber}>4</Text>
-            <Text style={styles.timelineText}>Set up phone & utilities</Text>
-          </View>
-          <View style={styles.timelineItem}>
-            <Text style={styles.timelineNumber}>5</Text>
-            <Text style={styles.timelineText}>Start job applications</Text>
-          </View>
+          <Text style={styles.timelineTitle}>
+            {t("lifeSetupScreen.first30DaysTitle")}
+          </Text>
+          {[1, 2, 3, 4, 5].map((n) => (
+            <View key={n} style={styles.timelineItem}>
+              <Text style={styles.timelineNumber}>{n}</Text>
+              <Text style={styles.timelineText}>
+                {t(`lifeSetupScreen.first30Days.step${n}`)}
+              </Text>
+            </View>
+          ))}
         </View>
 
+        {/* MAIN GUIDES */}
         <View style={styles.guidesContainer}>
-          {lifeSetupGuides.map((guide) => (
+          {mainGuides.map((guide) => (
             <TouchableOpacity
               key={guide.id}
               style={[styles.guideCard, { borderLeftColor: guide.color }]}
@@ -214,138 +66,56 @@ const LifeSetupScreen = ({ navigation }) => {
                 <Text style={styles.guideIcon}>{guide.icon}</Text>
                 <View style={styles.guideInfo}>
                   <Text style={styles.guideTitle}>{guide.title}</Text>
-                  <Text style={styles.guideDescription}>{guide.description}</Text>
+                  <Text style={styles.guideDescription}>
+                    {guide.description}
+                  </Text>
                 </View>
                 <Text style={styles.arrow}>›</Text>
               </View>
-              
-              <View style={styles.guidePreview}>
-                {guide.guides[0].content.slice(0, 3).map((item, index) => (
-                  <View key={index} style={styles.previewItem}>
-                    <Text style={styles.previewBullet}>•</Text>
-                    <Text style={styles.previewText}>{item}</Text>
-                  </View>
-                ))}
-              </View>
+
+              {/* Preview: first 3 items from first section */}
+              {guide.guides?.[0]?.content && (
+                <View style={styles.guidePreview}>
+                  {guide.guides[0].content.slice(0, 3).map((item, index) => (
+                    <View key={index} style={styles.previewItem}>
+                      <Text style={styles.previewBullet}>•</Text>
+                      <Text style={styles.previewText}>{item}</Text>
+                    </View>
+                  ))}
+                </View>
+              )}
             </TouchableOpacity>
           ))}
         </View>
 
+        {/* ADDITIONAL RESOURCES */}
         <View style={styles.resourcesCard}>
-          <Text style={styles.resourcesTitle}>📚 Additional Resources</Text>
-          <TouchableOpacity
-            style={styles.resourceItem}
-            onPress={() => handleGuidePress({
-              id: "itin",
-              title: "IRS ITIN Application",
-              icon: "📄",
-              color: "#4CAF50",
-              description: "Individual Taxpayer Identification Number",
-              guides: [
-                {
-                  title: "What is an ITIN?",
-                  content: [
-                    "Tax processing number for those who can't get an SSN",
-                    "Required to file taxes if you earn income",
-                    "Does NOT provide work authorization",
-                    "Format: 9XX-XX-XXXX",
-                  ],
-                },
-                {
-                  title: "How to Apply",
-                  content: [
-                    "Complete Form W-7 with IRS",
-                    "Include federal tax return with application",
-                    "Provide original passport or certified copies",
-                    "Apply by mail, in person, or through Certifying Acceptance Agent",
-                    "Processing takes 7-11 weeks",
-                  ],
-                },
-              ],
-            })}
-          >
-            <Text style={styles.resourceName}>IRS ITIN Application</Text>
-            <Text style={styles.resourceDescription}>If you can't get SSN</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.resourceItem}
-            onPress={() => handleGuidePress({
-              id: "dmv",
-              title: "DMV License Guide",
-              icon: "🚗",
-              color: "#2196F3",
-              description: "Getting a driver's license as an immigrant",
-              guides: [
-                {
-                  title: "General Requirements",
-                  content: [
-                    "Valid immigration status (requirements vary by state)",
-                    "Proof of identity (passport, visa, I-94)",
-                    "Proof of residency (lease, utility bill)",
-                    "SSN or proof of ineligibility",
-                    "Pass written test, vision test, and road test",
-                  ],
-                },
-                {
-                  title: "States with Immigrant-Friendly Policies",
-                  content: [
-                    "19 states + DC allow licenses regardless of status",
-                    "California, New York, Illinois, New Jersey among them",
-                    "Some states issue 'standard' vs 'REAL ID' licenses",
-                    "REAL ID required for domestic flights starting May 2025",
-                    "Check your state's DMV website for specific requirements",
-                  ],
-                },
-              ],
-            })}
-          >
-            <Text style={styles.resourceName}>DMV License Guide</Text>
-            <Text style={styles.resourceDescription}>State-by-state requirements</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.resourceItem}
-            onPress={() => handleGuidePress({
-              id: "healthcare",
-              title: "Healthcare Options",
-              icon: "🏥",
-              color: "#FF9800",
-              description: "Health insurance for immigrants",
-              guides: [
-                {
-                  title: "Insurance Options",
-                  content: [
-                    "Employer-sponsored insurance (most common for work visa holders)",
-                    "ACA Marketplace plans (Healthcare.gov) — available to lawful residents",
-                    "Medicaid — varies by state and immigration status",
-                    "University health plans — required for most F-1 students",
-                    "Short-term health insurance — temporary coverage",
-                  ],
-                },
-                {
-                  title: "Important Notes",
-                  content: [
-                    "Most visa holders are NOT eligible for Medicaid initially",
-                    "F-1 students typically must enroll in school health plan",
-                    "H-1B holders usually get employer insurance",
-                    "Emergency Medicaid available regardless of status",
-                    "Community health centers offer sliding-scale fees",
-                  ],
-                },
-              ],
-            })}
-          >
-            <Text style={styles.resourceName}>Healthcare Options</Text>
-            <Text style={styles.resourceDescription}>Insurance for immigrants</Text>
-          </TouchableOpacity>
+          <Text style={styles.resourcesTitle}>
+            {t("lifeSetupScreen.additionalResourcesTitle")}
+          </Text>
+          {resourceGuides.map((guide) => (
+            <TouchableOpacity
+              key={guide.id}
+              style={styles.resourceItem}
+              onPress={() => handleGuidePress(guide)}
+            >
+              <Text style={styles.resourceName}>{guide.title}</Text>
+              <Text style={styles.resourceDescription}>
+                {guide.shortDescription || guide.description}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </View>
 
+        {/* AVOID SCAMS */}
         <View style={styles.warningCard}>
           <Text style={styles.warningIcon}>⚠️</Text>
           <View style={styles.warningContent}>
-            <Text style={styles.warningTitle}>Avoid Scams</Text>
+            <Text style={styles.warningTitle}>
+              {t("lifeSetupScreen.avoidScams.title")}
+            </Text>
             <Text style={styles.warningText}>
-              Never pay for job offers, SSN applications are free, and only use 
-              official government websites.
+              {t("lifeSetupScreen.avoidScams.body")}
             </Text>
           </View>
         </View>
@@ -357,167 +127,173 @@ const LifeSetupScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: "#F8F9FA",
   },
   header: {
     padding: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
   },
   title: {
     fontSize: 28,
-    fontWeight: 'bold',
-    color: '#1A1A1A',
+    fontWeight: "bold",
+    color: "#1A1A1A",
   },
   subtitle: {
     fontSize: 16,
-    color: '#666666',
+    color: "#666666",
     marginTop: 5,
   },
   timelineCard: {
-    backgroundColor: '#E8F4F8',
+    backgroundColor: "#E8F4F8",
     margin: 20,
     padding: 20,
     borderRadius: 12,
   },
   timelineTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#1A1A1A',
-    marginBottom: 20,
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#1A1A1A",
+    marginBottom: 15,
   },
   timelineItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
   },
   timelineNumber: {
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: '#2E86AB',
-    color: '#FFFFFF',
-    textAlign: 'center',
+    backgroundColor: "#2E86AB",
+    color: "#FFFFFF",
+    textAlign: "center",
     lineHeight: 28,
-    fontWeight: 'bold',
-    marginRight: 15,
+    fontSize: 14,
+    fontWeight: "bold",
+    marginRight: 12,
   },
   timelineText: {
     fontSize: 14,
-    color: '#333333',
+    color: "#333333",
     flex: 1,
   },
   guidesContainer: {
     paddingHorizontal: 20,
   },
   guideCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     borderRadius: 12,
-    padding: 20,
+    padding: 16,
     marginBottom: 15,
     borderLeftWidth: 4,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
   },
   guideHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
   },
   guideIcon: {
     fontSize: 32,
-    marginRight: 15,
+    marginRight: 12,
   },
   guideInfo: {
     flex: 1,
   },
   guideTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#1A1A1A',
+    fontWeight: "bold",
+    color: "#1A1A1A",
   },
   guideDescription: {
-    fontSize: 14,
-    color: '#666666',
+    fontSize: 13,
+    color: "#666666",
     marginTop: 2,
   },
   arrow: {
     fontSize: 24,
-    color: '#CCCCCC',
+    color: "#999999",
   },
   guidePreview: {
-    backgroundColor: '#F8F9FA',
-    padding: 12,
-    borderRadius: 8,
+    marginTop: 8,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: "#F0F0F0",
   },
   previewItem: {
-    flexDirection: 'row',
-    marginBottom: 6,
+    flexDirection: "row",
+    marginBottom: 4,
   },
   previewBullet: {
     fontSize: 12,
-    color: '#999999',
+    color: "#2E86AB",
     marginRight: 8,
+    marginTop: 2,
   },
   previewText: {
-    fontSize: 12,
-    color: '#666666',
+    fontSize: 13,
+    color: "#666666",
     flex: 1,
+    lineHeight: 18,
   },
   resourcesCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     margin: 20,
+    marginTop: 0,
     padding: 20,
     borderRadius: 12,
   },
   resourcesTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#1A1A1A',
-    marginBottom: 15,
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#1A1A1A",
+    marginBottom: 12,
   },
   resourceItem: {
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
+    borderBottomColor: "#F0F0F0",
   },
   resourceName: {
     fontSize: 15,
-    fontWeight: '600',
-    color: '#2E86AB',
-    marginBottom: 4,
+    color: "#2E86AB",
+    fontWeight: "600",
   },
   resourceDescription: {
-    fontSize: 13,
-    color: '#666666',
+    fontSize: 12,
+    color: "#666666",
+    marginTop: 2,
   },
   warningCard: {
-    flexDirection: 'row',
-    backgroundColor: '#FFF3E0',
+    flexDirection: "row",
+    backgroundColor: "#FFF3E0",
     margin: 20,
-    padding: 20,
+    marginTop: 0,
+    padding: 16,
     borderRadius: 12,
     marginBottom: 30,
   },
   warningIcon: {
     fontSize: 24,
-    marginRight: 15,
+    marginRight: 12,
   },
   warningContent: {
     flex: 1,
   },
   warningTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333333',
-    marginBottom: 5,
+    fontWeight: "bold",
+    color: "#E65100",
+    marginBottom: 4,
   },
   warningText: {
-    fontSize: 14,
-    color: '#666666',
-    lineHeight: 20,
+    fontSize: 13,
+    color: "#5D4037",
+    lineHeight: 18,
   },
 });
 

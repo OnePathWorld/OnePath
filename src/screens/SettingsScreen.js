@@ -12,10 +12,13 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTranslation } from "react-i18next";
 import analytics from "../utils/analytics";
 import { PROCESSING_TIMES_META } from "../data/processingTimes";
+import { setAppLanguage, getCurrentLanguage } from "../i18n";
 
 const SettingsScreen = ({ navigation }) => {
+  const { t } = useTranslation();
   const [profile, setProfile] = useState(null);
   const [editModal, setEditModal] = useState(null);
 
@@ -34,6 +37,21 @@ const SettingsScreen = ({ navigation }) => {
 
   const updateField = async (field, value) => {
     try {
+      // Special-case language: route through setAppLanguage so i18next
+      // switches the active locale AND mirrors into userProfile_v2.
+      if (field === "language") {
+        await setAppLanguage(value);
+        // setAppLanguage already updates @userProfile_v2.language and
+        // calls i18n.changeLanguage. Reload profile to reflect change.
+        const data = await AsyncStorage.getItem("@userProfile_v2");
+        if (data) setProfile(JSON.parse(data));
+        analytics.identifyUser({ ...(profile || {}), language: value });
+        setEditModal(null);
+        // Don't show the generic "go back to home" alert for language —
+        // the change is immediately visible across the whole app.
+        return;
+      }
+
       const updated = { ...profile, [field]: value };
       setProfile(updated);
       await AsyncStorage.setItem("@userProfile_v2", JSON.stringify(updated));
@@ -44,7 +62,10 @@ const SettingsScreen = ({ navigation }) => {
         if (legacy) {
           const legacyProfile = JSON.parse(legacy);
           legacyProfile[field] = value;
-          await AsyncStorage.setItem("@userProfile", JSON.stringify(legacyProfile));
+          await AsyncStorage.setItem(
+            "@userProfile",
+            JSON.stringify(legacyProfile)
+          );
         }
       }
 
@@ -52,7 +73,10 @@ const SettingsScreen = ({ navigation }) => {
       analytics.identifyUser(updated);
 
       setEditModal(null);
-      Alert.alert("Updated", "Your profile has been updated. Go back to the home screen to see your changes.");
+      Alert.alert(
+        t("settings.updateAlert.title"),
+        t("settings.updateAlert.body")
+      );
     } catch (err) {
       console.error("Failed to update profile:", err);
     }
@@ -60,118 +84,151 @@ const SettingsScreen = ({ navigation }) => {
 
   const resetApp = () => {
     Alert.alert(
-      "Reset App",
-      "This will clear all your data and restart the onboarding process. This cannot be undone.",
+      t("settings.reset.confirmTitle"),
+      t("settings.reset.confirmBody"),
       [
-        { text: "Cancel", style: "cancel" },
+        { text: t("common.cancel"), style: "cancel" },
         {
-          text: "Reset",
+          text: t("settings.reset.confirmAction"),
           style: "destructive",
           onPress: async () => {
             await AsyncStorage.clear();
             analytics.reset();
-            Alert.alert("App Reset", "Please close and reopen the app to start fresh.");
+            Alert.alert(
+              t("settings.reset.doneTitle"),
+              t("settings.reset.doneBody")
+            );
           },
         },
       ]
     );
   };
 
+  // -----------------------------------------------------------------
+  // FIELD_OPTIONS
+  // ---------------------------------------------------------
+  // Built inside the component so t() picks up the active locale.
+  // Keyed by the profile field name (stable English identifier) — this
+  // is the identifier passed to updateField() and is NEVER translated.
+  // The `title` and `options[].label` are user-facing and use t().
+  // -----------------------------------------------------------------
   const FIELD_OPTIONS = {
-    // UPDATED: title and options now match onboarding + includes citizenship
     purpose: {
-      title: "What's your immigration goal?",
+      field: "purpose",
+      title: t("settings.fieldOptions.purpose.title"),
       options: [
-        { value: "work", label: "💼 Work Opportunity" },
-        { value: "family", label: "👨‍👩‍👧‍👦 Family Reunification" },
-        { value: "study", label: "🎓 Education" },
-        { value: "protection", label: "🛡️ Seeking Protection" },
-        { value: "citizenship", label: "🇺🇸 Naturalization & Citizenship" },
+        { value: "work", label: t("settings.fieldOptions.purpose.options.work") },
+        { value: "family", label: t("settings.fieldOptions.purpose.options.family") },
+        { value: "study", label: t("settings.fieldOptions.purpose.options.study") },
+        { value: "protection", label: t("settings.fieldOptions.purpose.options.protection") },
+        { value: "citizenship", label: t("settings.fieldOptions.purpose.options.citizenship") },
       ],
     },
     location: {
-      title: "Where are you currently?",
+      field: "location",
+      title: t("settings.fieldOptions.location.title"),
       options: [
-        { value: "outside_us", label: "🌍 Outside the United States" },
-        { value: "inside_us", label: "🇺🇸 Inside the United States" },
+        { value: "outside_us", label: t("settings.fieldOptions.location.options.outside_us") },
+        { value: "inside_us", label: t("settings.fieldOptions.location.options.inside_us") },
       ],
     },
-    // UPDATED: added GC holder option
     currentVisa: {
-      title: "Current immigration status",
+      field: "currentVisa",
+      title: t("settings.fieldOptions.currentVisa.title"),
       options: [
-        { value: "F1", label: "📚 F-1 Student" },
-        { value: "H1B", label: "💼 H-1B Work Visa" },
-        { value: "L1", label: "🏢 L-1 Transfer" },
-        { value: "B1B2", label: "✈️ B-1/B-2 Visitor" },
-        { value: "J1", label: "🔄 J-1 Exchange" },
-        { value: "OPT", label: "🎓 OPT/STEM OPT" },
-        { value: "EAD", label: "💳 EAD Holder" },
-        { value: "GC_pending", label: "⏳ Green Card Pending" },
-        { value: "GC", label: "🟢 Green Card Holder (LPR)" },
-        { value: "other", label: "📋 Other Status" },
-        { value: "none", label: "❌ Out of Status" },
-        { value: "", label: "⬜ Not applicable" },
+        { value: "F1", label: t("settings.fieldOptions.currentVisa.options.F1") },
+        { value: "H1B", label: t("settings.fieldOptions.currentVisa.options.H1B") },
+        { value: "L1", label: t("settings.fieldOptions.currentVisa.options.L1") },
+        { value: "B1B2", label: t("settings.fieldOptions.currentVisa.options.B1B2") },
+        { value: "J1", label: t("settings.fieldOptions.currentVisa.options.J1") },
+        { value: "OPT", label: t("settings.fieldOptions.currentVisa.options.OPT") },
+        { value: "EAD", label: t("settings.fieldOptions.currentVisa.options.EAD") },
+        { value: "GC_pending", label: t("settings.fieldOptions.currentVisa.options.GC_pending") },
+        { value: "GC", label: t("settings.fieldOptions.currentVisa.options.GC") },
+        { value: "other", label: t("settings.fieldOptions.currentVisa.options.other") },
+        { value: "none", label: t("settings.fieldOptions.currentVisa.options.none") },
+        { value: "", label: t("settings.fieldOptions.currentVisa.options.empty") },
       ],
     },
-    // UPDATED: added Germany
     countryOfCitizenship: {
-      title: "Country of citizenship",
-      options: [
-        { value: "india", label: "🇮🇳 India" },
-        { value: "china", label: "🇨🇳 China" },
-        { value: "mexico", label: "🇲🇽 Mexico" },
-        { value: "philippines", label: "🇵🇭 Philippines" },
-        { value: "canada", label: "🇨🇦 Canada" },
-        { value: "uk", label: "🇬🇧 United Kingdom" },
-        { value: "germany", label: "🇩🇪 Germany" },
-        { value: "brazil", label: "🇧🇷 Brazil" },
-        { value: "nigeria", label: "🇳🇬 Nigeria" },
-        { value: "south_korea", label: "🇰🇷 South Korea" },
-        { value: "japan", label: "🇯🇵 Japan" },
-        { value: "other", label: "🌍 Other" },
-      ],
-    },
+        field: "countryOfCitizenship",
+        title: t("settings.fieldOptions.countryOfCitizenship.title"),
+        options: [
+          { value: "mexico", label: t("settings.fieldOptions.countryOfCitizenship.options.mexico") },
+          { value: "india", label: t("settings.fieldOptions.countryOfCitizenship.options.india") },
+          { value: "china", label: t("settings.fieldOptions.countryOfCitizenship.options.china") },
+          { value: "haiti", label: t("settings.fieldOptions.countryOfCitizenship.options.haiti") },
+          { value: "brazil", label: t("settings.fieldOptions.countryOfCitizenship.options.brazil") }, 
+          { value: "philippines", label: t("settings.fieldOptions.countryOfCitizenship.options.philippines") },
+          { value: "nigeria", label: t("settings.fieldOptions.countryOfCitizenship.options.nigeria") },
+          { value: "canada", label: t("settings.fieldOptions.countryOfCitizenship.options.canada") },
+          { value: "uk", label: t("settings.fieldOptions.countryOfCitizenship.options.uk") },
+          { value: "germany", label: t("settings.fieldOptions.countryOfCitizenship.options.germany") },
+          { value: "south_korea", label: t("settings.fieldOptions.countryOfCitizenship.options.south_korea") },
+          { value: "japan", label: t("settings.fieldOptions.countryOfCitizenship.options.japan") },
+          { value: "other", label: t("settings.fieldOptions.countryOfCitizenship.options.other") },
+        ],
+      },
     urgency: {
-      title: "What's your timeline?",
+      field: "urgency",
+      title: t("settings.fieldOptions.urgency.title"),
       options: [
-        { value: "immediate", label: "🚨 Immediate (< 1 month)" },
-        { value: "soon", label: "📅 Soon (1–6 months)" },
-        { value: "planning", label: "📊 Planning (6+ months)" },
-        { value: "", label: "⬜ Not applicable" },
+        { value: "immediate", label: t("settings.fieldOptions.urgency.options.immediate") },
+        { value: "soon", label: t("settings.fieldOptions.urgency.options.soon") },
+        { value: "planning", label: t("settings.fieldOptions.urgency.options.planning") },
+        { value: "", label: t("settings.fieldOptions.urgency.options.empty") },
       ],
     },
-    // UPDATED: title matches getFieldKey mapping
     expiryTimeline: {
-      title: "Visa expiration date",
+      field: "expiryTimeline",
+      title: t("settings.fieldOptions.expiryTimeline.title"),
       options: [
-        { value: "expired", label: "🔴 Already expired" },
-        { value: "30days", label: "⚠️ Within 30 days" },
-        { value: "90days", label: "📅 Within 90 days" },
-        { value: "6months", label: "📆 Within 6 months" },
-        { value: "year", label: "📍 Within 1 year" },
-        { value: "safe", label: "✅ More than 1 year" },
-        { value: "", label: "⬜ Not applicable" },
+        { value: "expired", label: t("settings.fieldOptions.expiryTimeline.options.expired") },
+        { value: "30days", label: t("settings.fieldOptions.expiryTimeline.options.30days") },
+        { value: "90days", label: t("settings.fieldOptions.expiryTimeline.options.90days") },
+        { value: "6months", label: t("settings.fieldOptions.expiryTimeline.options.6months") },
+        { value: "year", label: t("settings.fieldOptions.expiryTimeline.options.year") },
+        { value: "safe", label: t("settings.fieldOptions.expiryTimeline.options.safe") },
+        { value: "", label: t("settings.fieldOptions.expiryTimeline.options.empty") },
       ],
     },
-    // NEW: green card years held for naturalization eligibility
     gcYearsHeld: {
-      title: "How long have you held your green card?",
+      field: "gcYearsHeld",
+      title: t("settings.fieldOptions.gcYearsHeld.title"),
       options: [
-        { value: "under2", label: "⏳ Less than 2 years" },
-        { value: "2to3", label: "📅 2–3 years" },
-        { value: "3to5", label: "🗓️ 3–5 years" },
-        { value: "over5", label: "✅ 5+ years — Eligible to naturalize" },
-        { value: "military", label: "🎖️ Military service" },
-        { value: "", label: "⬜ Not applicable" },
+        { value: "under2", label: t("settings.fieldOptions.gcYearsHeld.options.under2") },
+        { value: "2to3", label: t("settings.fieldOptions.gcYearsHeld.options.2to3") },
+        { value: "3to5", label: t("settings.fieldOptions.gcYearsHeld.options.3to5") },
+        { value: "over5", label: t("settings.fieldOptions.gcYearsHeld.options.over5") },
+        { value: "military", label: t("settings.fieldOptions.gcYearsHeld.options.military") },
+        { value: "", label: t("settings.fieldOptions.gcYearsHeld.options.empty") },
       ],
     },
+    // NEW: language picker
+    language: {
+        field: "language",
+        title: t("settings.fieldOptions.language.title"),
+        options: [
+          { value: "en", label: t("settings.fieldOptions.language.options.en") },
+          { value: "es", label: t("settings.fieldOptions.language.options.es") },
+          { value: "pt", label: t("settings.fieldOptions.language.options.pt") },
+          { value: "zh", label: t("settings.fieldOptions.language.options.zh") },
+          { value: "ht", label: t("settings.fieldOptions.language.options.ht") },
+        ],
+      },
   };
 
   const getDisplayValue = (field) => {
     if (!profile) return "—";
     const value = profile[field];
-    if (!value) return "Not set";
+    // Language defaults to whatever i18n is currently using if profile.language
+    // hasn't been explicitly set yet — covers the auto-detected case where
+    // a Spanish device user hasn't manually saved a language preference yet.
+    if (field === "language" && !value) {
+      const currentLang = getCurrentLanguage();
+      return t(`settings.fieldOptions.language.options.${currentLang}`);
+    }
+    if (!value) return t("common.notSet");
 
     const fieldConfig = FIELD_OPTIONS[field];
     if (fieldConfig) {
@@ -185,7 +242,9 @@ const SettingsScreen = ({ navigation }) => {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.loading}>
-          <Text style={styles.loadingText}>Loading profile...</Text>
+          <Text style={styles.loadingText}>
+            {t("settings.loadingProfile")}
+          </Text>
         </View>
       </SafeAreaView>
     );
@@ -196,16 +255,18 @@ const SettingsScreen = ({ navigation }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* PROFILE SECTION */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Your Profile</Text>
+          <Text style={styles.sectionTitle}>{t("settings.profile.title")}</Text>
           <Text style={styles.sectionSubtitle}>
-            Tap any field to update it
+            {t("settings.profile.subtitle")}
           </Text>
 
           <TouchableOpacity
             style={styles.fieldRow}
             onPress={() => setEditModal(FIELD_OPTIONS.purpose)}
           >
-            <Text style={styles.fieldLabel}>Goal</Text>
+            <Text style={styles.fieldLabel}>
+              {t("settings.profile.fields.goal")}
+            </Text>
             <Text style={styles.fieldValue}>{getDisplayValue("purpose")}</Text>
             <Text style={styles.fieldArrow}>›</Text>
           </TouchableOpacity>
@@ -214,7 +275,9 @@ const SettingsScreen = ({ navigation }) => {
             style={styles.fieldRow}
             onPress={() => setEditModal(FIELD_OPTIONS.location)}
           >
-            <Text style={styles.fieldLabel}>Location</Text>
+            <Text style={styles.fieldLabel}>
+              {t("settings.profile.fields.location")}
+            </Text>
             <Text style={styles.fieldValue}>{getDisplayValue("location")}</Text>
             <Text style={styles.fieldArrow}>›</Text>
           </TouchableOpacity>
@@ -223,7 +286,9 @@ const SettingsScreen = ({ navigation }) => {
             style={styles.fieldRow}
             onPress={() => setEditModal(FIELD_OPTIONS.countryOfCitizenship)}
           >
-            <Text style={styles.fieldLabel}>Country</Text>
+            <Text style={styles.fieldLabel}>
+              {t("settings.profile.fields.country")}
+            </Text>
             <Text style={styles.fieldValue}>
               {getDisplayValue("countryOfCitizenship")}
             </Text>
@@ -234,20 +299,24 @@ const SettingsScreen = ({ navigation }) => {
             style={styles.fieldRow}
             onPress={() => setEditModal(FIELD_OPTIONS.currentVisa)}
           >
-            <Text style={styles.fieldLabel}>Visa Status</Text>
+            <Text style={styles.fieldLabel}>
+              {t("settings.profile.fields.visaStatus")}
+            </Text>
             <Text style={styles.fieldValue}>
               {getDisplayValue("currentVisa")}
             </Text>
             <Text style={styles.fieldArrow}>›</Text>
           </TouchableOpacity>
 
-          {/* NEW: GC years held — only shown for GC holders */}
+          {/* GC years held — only shown for GC holders */}
           {profile?.currentVisa === "GC" && (
             <TouchableOpacity
               style={styles.fieldRow}
               onPress={() => setEditModal(FIELD_OPTIONS.gcYearsHeld)}
             >
-              <Text style={styles.fieldLabel}>GC Held</Text>
+              <Text style={styles.fieldLabel}>
+                {t("settings.profile.fields.gcHeld")}
+              </Text>
               <Text style={styles.fieldValue}>
                 {getDisplayValue("gcYearsHeld")}
               </Text>
@@ -261,7 +330,9 @@ const SettingsScreen = ({ navigation }) => {
               style={styles.fieldRow}
               onPress={() => setEditModal(FIELD_OPTIONS.urgency)}
             >
-              <Text style={styles.fieldLabel}>Timeline</Text>
+              <Text style={styles.fieldLabel}>
+                {t("settings.profile.fields.timeline")}
+              </Text>
               <Text style={styles.fieldValue}>{getDisplayValue("urgency")}</Text>
               <Text style={styles.fieldArrow}>›</Text>
             </TouchableOpacity>
@@ -273,32 +344,51 @@ const SettingsScreen = ({ navigation }) => {
               style={styles.fieldRow}
               onPress={() => setEditModal(FIELD_OPTIONS.expiryTimeline)}
             >
-              <Text style={styles.fieldLabel}>Visa Expiry</Text>
+              <Text style={styles.fieldLabel}>
+                {t("settings.profile.fields.visaExpiry")}
+              </Text>
               <Text style={styles.fieldValue}>
                 {getDisplayValue("expiryTimeline")}
               </Text>
               <Text style={styles.fieldArrow}>›</Text>
             </TouchableOpacity>
           )}
+
+          {/* NEW: Language picker — always visible */}
+          <TouchableOpacity
+            style={styles.fieldRow}
+            onPress={() => setEditModal(FIELD_OPTIONS.language)}
+          >
+            <Text style={styles.fieldLabel}>
+              {t("settings.profile.fields.language")}
+            </Text>
+            <Text style={styles.fieldValue}>{getDisplayValue("language")}</Text>
+            <Text style={styles.fieldArrow}>›</Text>
+          </TouchableOpacity>
         </View>
+
         {/* ABOUT SECTION */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>About OnePath</Text>
+          <Text style={styles.sectionTitle}>{t("settings.about.title")}</Text>
 
           <View style={styles.aboutRow}>
-            <Text style={styles.aboutLabel}>Version</Text>
+            <Text style={styles.aboutLabel}>{t("settings.about.version")}</Text>
             <Text style={styles.aboutValue}>
-              {Constants.expoConfig?.version || "1.1.0"}
+              {Constants.expoConfig?.version || "1.2.0"}
             </Text>
           </View>
           <View style={styles.aboutRow}>
-            <Text style={styles.aboutLabel}>Data Updated</Text>
-            <Text style={styles.aboutValue}>{PROCESSING_TIMES_META.lastUpdated}</Text>
+            <Text style={styles.aboutLabel}>
+              {t("settings.about.dataUpdated")}
+            </Text>
+            <Text style={styles.aboutValue}>
+              {PROCESSING_TIMES_META.lastUpdated}
+            </Text>
           </View>
           <View style={styles.aboutRow}>
-            <Text style={styles.aboutLabel}>Sources</Text>
+            <Text style={styles.aboutLabel}>{t("settings.about.sources")}</Text>
             <Text style={styles.aboutValue}>
-              USCIS, DOS, DOL, Federal Register
+              {t("settings.about.sourcesValue")}
             </Text>
           </View>
         </View>
@@ -306,24 +396,23 @@ const SettingsScreen = ({ navigation }) => {
         {/* DISCLAIMER */}
         <View style={styles.disclaimerCard}>
           <Text style={styles.disclaimerText}>
-            OnePath provides immigration information for educational purposes
-            only. This app is not a law firm and does not provide legal advice.
-            Consult a licensed immigration attorney for advice specific to your
-            situation.
+            {t("settings.disclaimer")}
           </Text>
         </View>
 
         {/* PRIVACY */}
         <View style={styles.section}>
           <View style={styles.aboutRow}>
-            <Text style={styles.aboutLabel}>🔒 Privacy</Text>
-            <Text style={styles.aboutValue}>All data stays on your device</Text>
+            <Text style={styles.aboutLabel}>{t("settings.privacy.label")}</Text>
+            <Text style={styles.aboutValue}>{t("settings.privacy.value")}</Text>
           </View>
         </View>
 
         {/* RESET */}
         <TouchableOpacity style={styles.resetButton} onPress={resetApp}>
-          <Text style={styles.resetButtonText}>Reset App & Start Over</Text>
+          <Text style={styles.resetButtonText}>
+            {t("settings.reset.button")}
+          </Text>
         </TouchableOpacity>
 
         <View style={{ height: 40 }} />
@@ -349,21 +438,21 @@ const SettingsScreen = ({ navigation }) => {
                   key={opt.value}
                   style={[
                     styles.modalOption,
-                    profile[getFieldKey(editModal)] === opt.value &&
+                    profile[editModal.field] === opt.value &&
                       styles.modalOptionActive,
                   ]}
-                  onPress={() => updateField(getFieldKey(editModal), opt.value)}
+                  onPress={() => updateField(editModal.field, opt.value)}
                 >
                   <Text
                     style={[
                       styles.modalOptionText,
-                      profile[getFieldKey(editModal)] === opt.value &&
+                      profile[editModal.field] === opt.value &&
                         styles.modalOptionTextActive,
                     ]}
                   >
                     {opt.label}
                   </Text>
-                  {profile[getFieldKey(editModal)] === opt.value && (
+                  {profile[editModal.field] === opt.value && (
                     <Text style={styles.checkmark}>✓</Text>
                   )}
                 </TouchableOpacity>
@@ -373,7 +462,9 @@ const SettingsScreen = ({ navigation }) => {
               style={styles.modalCancel}
               onPress={() => setEditModal(null)}
             >
-              <Text style={styles.modalCancelText}>Cancel</Text>
+              <Text style={styles.modalCancelText}>
+                {t("settings.modal.cancel")}
+              </Text>
             </TouchableOpacity>
           </View>
         </TouchableOpacity>
@@ -381,24 +472,6 @@ const SettingsScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-// =========================================================
-// HELPER — reverse-lookup which profile field a modal edits
-// FIXED: titles now match FIELD_OPTIONS titles exactly
-// =========================================================
-function getFieldKey(modalConfig) {
-  if (!modalConfig) return "";
-  const fieldMap = {
-    "What's your immigration goal?": "purpose",
-    "Where are you currently?": "location",
-    "Current immigration status": "currentVisa",
-    "Country of citizenship": "countryOfCitizenship",
-    "What's your timeline?": "urgency",
-    "Visa expiration date": "expiryTimeline",
-    "How long have you held your green card?": "gcYearsHeld",
-  };
-  return fieldMap[modalConfig.title] || "";
-}
 
 export default SettingsScreen;
 
@@ -453,13 +526,20 @@ const styles = StyleSheet.create({
   aboutRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-start",
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: "#F0F0F0",
   },
   aboutLabel: { fontSize: 14, color: "#666" },
-  aboutValue: { fontSize: 14, color: "#333", fontWeight: "500" },
+  aboutValue: {
+    fontSize: 14,
+    color: "#333",
+    fontWeight: "500",
+    flex: 1,
+    textAlign: "right",
+    marginLeft: 12,
+  },
 
   disclaimerCard: {
     backgroundColor: "#FFF8E1",

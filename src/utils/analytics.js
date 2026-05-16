@@ -56,6 +56,13 @@ export const EVENTS = {
   RESOURCES_VIEWED: "Resources Viewed",
   EMBASSY_SELECTOR_USED: "Embassy Selector Used",
 
+  // Case status tracking
+    CASE_TRACKER_VIEWED: "Case Tracker Viewed",
+    CASE_STATUS_ADDED: "Case Status Added",
+    CASE_STATUS_REFRESHED: "Case Status Refreshed",
+    CASE_STATUS_ERROR: "Case Status Error",
+    CASE_STATUS_REMOVED: "Case Status Removed",
+
   // Engagement
   APP_OPENED: "App Opened",
   SESSION_START: "Session Start",

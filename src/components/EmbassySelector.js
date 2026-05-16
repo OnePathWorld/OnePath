@@ -2,10 +2,8 @@
 
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import {
-  EMBASSY_WAITS,
-  EMBASSY_WAITS_META,
-} from "../data/embassyWaits";
+import { useTranslation } from "react-i18next";
+import { EMBASSY_WAITS, EMBASSY_WAITS_META } from "../data/embassyWaits";
 
 /**
  * EmbassySelector
@@ -14,22 +12,22 @@ import {
  * - visaType (string)   -> e.g. "F1", "H1B", "B1B2"
  * - country (string)    -> e.g. "India", "Mexico"
  */
-export default function EmbassySelector({
-  visaType,
-  country,
-}) {
-  const embassies =
-    EMBASSY_WAITS?.[visaType]?.[country] ||
+export default function EmbassySelector({ visaType, country }) {
+  const { t } = useTranslation();
+
+    const normalizedCountry = country
+    ? country.charAt(0).toUpperCase() + country.slice(1)
+    : "";
+
+    const embassies =
+    EMBASSY_WAITS?.[visaType]?.[normalizedCountry] ||
     EMBASSY_WAITS?.[visaType]?.default ||
     [];
 
   if (!embassies.length) {
     return (
       <View style={styles.fallback}>
-        <Text style={styles.fallbackText}>
-          Embassy appointment wait time data is not available for this visa and
-          country.
-        </Text>
+        <Text style={styles.fallbackText}>{t("embassySelector.noData")}</Text>
       </View>
     );
   }
@@ -40,12 +38,17 @@ export default function EmbassySelector({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Embassy Appointment Estimates</Text>
+      <Text style={styles.title}>{t("embassySelector.title")}</Text>
 
       <View style={styles.highlight}>
-        <Text style={styles.highlightLabel}>Fastest option</Text>
+        <Text style={styles.highlightLabel}>
+          {t("embassySelector.fastestOption")}
+        </Text>
         <Text style={styles.highlightValue}>
-          {fastest.city} — ~{fastest.days} days
+          {t("embassySelector.fastestValue", {
+            city: fastest.city,
+            days: fastest.days,
+          })}
         </Text>
       </View>
 
@@ -53,19 +56,20 @@ export default function EmbassySelector({
         {sorted.map((e, idx) => (
           <View key={idx} style={styles.row}>
             <Text style={styles.city}>{e.city}</Text>
-            <Text style={styles.days}>~{e.days} days</Text>
+            <Text style={styles.days}>
+              {t("embassySelector.daysApprox", { days: e.days })}
+            </Text>
           </View>
         ))}
       </View>
 
       <Text style={styles.updated}>
-        Last updated: {EMBASSY_WAITS_META.lastUpdated}
+        {t("embassySelector.lastUpdated", {
+          date: EMBASSY_WAITS_META.lastUpdated,
+        })}
       </Text>
 
-      <Text style={styles.disclaimer}>
-        Appointment availability may vary and does not guarantee interview
-        scheduling.
-      </Text>
+      <Text style={styles.disclaimer}>{t("embassySelector.disclaimer")}</Text>
     </View>
   );
 }

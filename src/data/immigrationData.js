@@ -1,77 +1,142 @@
 // src/data/immigrationData.js
 // PURPOSE: UI structure + pathway schema
 // NO volatile data (fees, times, caps) lives here
+//
+// Updated: April 2026 — converted to translation-key pattern.
+// Pattern: data-only file. All user-facing strings (title, name,
+// description, overview, requirements arrays) are translation keys
+// referenced via i18n.t(). See src/i18n/locales/{en,es,pt,zh}.json
+// under the `pathwaysData.*` namespace.
+//
+// ARCHITECTURE NOTE:
+// We use JS getter properties so existing consumers that read e.g.
+// `pathwaysData.work.title` keep working unchanged — every read of
+// a translatable property goes through i18n.t() at access time, so
+// language switches reflect immediately.
+//
+// Stable identifiers (id, key, icon, processingKey, feeForms, etc.)
+// remain as plain values. Those are not user-facing.
+
+import i18n from "../i18n";
+
+const t = (key) => {
+  const out = i18n.t(key);
+  return out === key ? null : out;
+};
+
+// =========================================================
+// Helper: build a requirements array from N translation keys
+// =========================================================
+function buildRequirements(base, count) {
+  const out = [];
+  for (let i = 1; i <= count; i++) {
+    const v = t(`${base}.requirements.r${i}`);
+    if (v) out.push(v);
+  }
+  return out;
+}
 
 export const PATHWAYS_LAST_REVIEWED = "March 2026";
 
+// =========================================================
+// Pathway shape definitions (stable, non-translated)
+// Counts of requirements per category drive the helper above.
+// =========================================================
+
+const WORK_DEFS = {
+  h1b: { reqCount: 4 },
+  l1: { reqCount: 3 },
+  o1: { reqCount: 3 },
+  eb: { reqCount: 0 },
+};
+
+const FAMILY_DEFS = {
+  immediate: { reqCount: 0 },
+  k1: { reqCount: 3 },
+  f1: { reqCount: 0 },
+  f2a: { reqCount: 0 },
+  f2b: { reqCount: 0 },
+  f3: { reqCount: 0 },
+  f4: { reqCount: 0 },
+};
+
+const STUDENT_DEFS = {
+  f1_student: { reqCount: 4 },
+  j1: { reqCount: 0 },
+  m1: { reqCount: 0 },
+};
+
+const PROTECTION_DEFS = {
+  asylum: { reqCount: 0 },
+  refugee: { reqCount: 0 },
+};
+
+const CITIZENSHIP_DEFS = {
+  standard: { reqCount: 8 },
+  marriage: { reqCount: 7 },
+  military: { reqCount: 5 },
+  children: { reqCount: 4 },
+};
+
+// =========================================================
+// pathwaysData — uses getters for translated fields
+// =========================================================
 export const pathwaysData = {
+  // ---------------------------------------------------------
+  // WORK-BASED
+  // ---------------------------------------------------------
   work: {
     id: "work",
-    title: "Work-Based Immigration",
     icon: "💼",
-    overview:
-      "Employment-based immigration allows foreign nationals to work in the United States. Most categories require employer sponsorship.",
+    get title() { return t("pathwaysData.work.title"); },
+    get overview() { return t("pathwaysData.work.overview"); },
     categories: {
       h1b: {
         key: "H1B",
-        name: "H-1B Specialty Occupation",
-        description:
-          "For positions requiring specialized knowledge and a bachelor's degree or higher.",
+        get name() { return t("pathwaysData.work.categories.h1b.name"); },
+        get description() { return t("pathwaysData.work.categories.h1b.description"); },
         processingKey: "H1B",
         feeForms: ["I129", "H1B_REGISTRATION", "H1B_FRAUD_PREVENTION", "H1B_ACWIA"],
         hasPremiumProcessing: true,
         capSubject: true,
         requiresPrevailingWage: true,
         pathToGreenCard: true,
-        requirements: [
-          "Bachelor's degree or equivalent",
-          "Job offer from U.S. employer",
-          "Specialty occupation",
-          "Employer must pay prevailing wage",
-        ],
+        get requirements() {
+          return buildRequirements("pathwaysData.work.categories.h1b", WORK_DEFS.h1b.reqCount);
+        },
       },
-
       l1: {
         key: "L1",
-        name: "L-1 Intracompany Transfer",
-        description:
-          "For employees of multinational companies transferring to a U.S. office.",
+        get name() { return t("pathwaysData.work.categories.l1.name"); },
+        get description() { return t("pathwaysData.work.categories.l1.description"); },
         processingKey: "L1",
         feeForms: ["I129", "H1B_FRAUD_PREVENTION"],
         hasPremiumProcessing: true,
         capSubject: false,
         requiresPrevailingWage: false,
         pathToGreenCard: true,
-        requirements: [
-          "Worked for company for 1 year in past 3 years",
-          "Transfer to qualifying U.S. entity",
-          "Executive, managerial, or specialized role",
-        ],
+        get requirements() {
+          return buildRequirements("pathwaysData.work.categories.l1", WORK_DEFS.l1.reqCount);
+        },
       },
-
       o1: {
         key: "O1",
-        name: "O-1 Extraordinary Ability",
-        description:
-          "For individuals with extraordinary ability in sciences, arts, education, business, or athletics.",
+        get name() { return t("pathwaysData.work.categories.o1.name"); },
+        get description() { return t("pathwaysData.work.categories.o1.description"); },
         processingKey: "O1",
         feeForms: ["I129"],
         hasPremiumProcessing: true,
         capSubject: false,
         requiresPrevailingWage: false,
         pathToGreenCard: true,
-        requirements: [
-          "Demonstrated extraordinary ability",
-          "National or international recognition",
-          "Work in area of expertise",
-        ],
+        get requirements() {
+          return buildRequirements("pathwaysData.work.categories.o1", WORK_DEFS.o1.reqCount);
+        },
       },
-
       eb: {
         key: "EB",
-        name: "Employment-Based Green Cards",
-        description:
-          "Permanent residence through employment-based categories (EB-1, EB-2, EB-3).",
+        get name() { return t("pathwaysData.work.categories.eb.name"); },
+        get description() { return t("pathwaysData.work.categories.eb.description"); },
         processingKey: "EB",
         feeForms: ["I140", "I485"],
         hasPremiumProcessing: true,
@@ -83,82 +148,70 @@ export const pathwaysData = {
     },
   },
 
+  // ---------------------------------------------------------
+  // FAMILY-BASED
+  // ---------------------------------------------------------
   family: {
     id: "family",
-    title: "Family-Based Immigration",
     icon: "👨‍👩‍👧‍👦",
-    overview:
-      "U.S. citizens and permanent residents can sponsor eligible family members. Immediate relatives have no annual limits.",
+    get title() { return t("pathwaysData.family.title"); },
+    get overview() { return t("pathwaysData.family.overview"); },
     categories: {
       immediate: {
         key: "IR",
-        name: "Immediate Relatives",
-        description:
-          "Spouses, unmarried children under 21, and parents of U.S. citizens. No annual limits.",
+        get name() { return t("pathwaysData.family.categories.immediate.name"); },
+        get description() { return t("pathwaysData.family.categories.immediate.description"); },
         processingKey: "I130_IR",
         feeForms: ["I130", "I485"],
         subjectToVisaBulletin: false,
       },
-
       k1: {
         key: "K1",
-        name: "K-1 Fiancé(e) Visa",
-        description: "For fiancé(e)s of U.S. citizens.",
+        get name() { return t("pathwaysData.family.categories.k1.name"); },
+        get description() { return t("pathwaysData.family.categories.k1.description"); },
         processingKey: "K1",
         feeForms: ["I130", "I485"],
         subjectToVisaBulletin: false,
-        requirements: [
-          "Intent to marry within 90 days",
-          "Met in person within last 2 years",
-          "Legally free to marry",
-        ],
+        get requirements() {
+          return buildRequirements("pathwaysData.family.categories.k1", FAMILY_DEFS.k1.reqCount);
+        },
       },
-
       f1: {
         key: "F1",
-        name: "F-1: Unmarried Sons/Daughters of U.S. Citizens",
-        description:
-          "For unmarried children 21+ of U.S. citizens. Current wait: 7-8 years.",
+        get name() { return t("pathwaysData.family.categories.f1.name"); },
+        get description() { return t("pathwaysData.family.categories.f1.description"); },
         processingKey: "I130_PREF",
         feeForms: ["I130", "I485"],
         subjectToVisaBulletin: true,
       },
-
       f2a: {
         key: "F2A",
-        name: "F-2A: Spouses/Children of Green Card Holders",
-        description:
-          "For spouses and unmarried children under 21 of permanent residents. Current wait: 2-3 years.",
+        get name() { return t("pathwaysData.family.categories.f2a.name"); },
+        get description() { return t("pathwaysData.family.categories.f2a.description"); },
         processingKey: "I130_PREF",
         feeForms: ["I130", "I485"],
         subjectToVisaBulletin: true,
       },
-
       f2b: {
         key: "F2B",
-        name: "F-2B: Unmarried Adult Children of Green Card Holders",
-        description:
-          "For unmarried children 21+ of permanent residents. Current wait: 6-7 years.",
+        get name() { return t("pathwaysData.family.categories.f2b.name"); },
+        get description() { return t("pathwaysData.family.categories.f2b.description"); },
         processingKey: "I130_PREF",
         feeForms: ["I130", "I485"],
         subjectToVisaBulletin: true,
       },
-
       f3: {
         key: "F3",
-        name: "F-3: Married Children of U.S. Citizens",
-        description:
-          "For married children of U.S. citizens. Current wait: 12-13 years.",
+        get name() { return t("pathwaysData.family.categories.f3.name"); },
+        get description() { return t("pathwaysData.family.categories.f3.description"); },
         processingKey: "I130_PREF",
         feeForms: ["I130", "I485"],
         subjectToVisaBulletin: true,
       },
-
       f4: {
         key: "F4",
-        name: "F-4: Siblings of U.S. Citizens",
-        description:
-          "For brothers/sisters of U.S. citizens (petitioner must be 21+). Current wait: 13-24 years.",
+        get name() { return t("pathwaysData.family.categories.f4.name"); },
+        get description() { return t("pathwaysData.family.categories.f4.description"); },
         processingKey: "I130_PREF",
         feeForms: ["I130", "I485"],
         subjectToVisaBulletin: true,
@@ -166,45 +219,39 @@ export const pathwaysData = {
     },
   },
 
+  // ---------------------------------------------------------
+  // STUDENT
+  // ---------------------------------------------------------
   student: {
     id: "student",
-    title: "Student Pathway",
     icon: "🎓",
-    overview:
-      "International students may study full-time at SEVP-certified U.S. institutions. F-1 students can work through OPT (12 months) and STEM OPT (24 additional months) after graduation.",
+    get title() { return t("pathwaysData.student.title"); },
+    get overview() { return t("pathwaysData.student.overview"); },
     categories: {
       f1_student: {
         key: "STUDENT",
-        name: "F-1 Academic Student",
-        description:
-          "Full-time study at a U.S. university or college. OPT allows 1-3 years of work after graduation.",
+        get name() { return t("pathwaysData.student.categories.f1_student.name"); },
+        get description() { return t("pathwaysData.student.categories.f1_student.description"); },
         processingKey: "F1",
         feeForms: ["I765"],
         allowsWork: ["CPT", "OPT", "STEM_OPT"],
         subjectToVisaBulletin: false,
-        requirements: [
-          "SEVP-approved school admission",
-          "Full course of study",
-          "Financial proof (~$40,000/year)",
-          "Intent to depart after study",
-        ],
+        get requirements() {
+          return buildRequirements("pathwaysData.student.categories.f1_student", STUDENT_DEFS.f1_student.reqCount);
+        },
       },
-
       j1: {
         key: "J1",
-        name: "J-1 Exchange Visitor",
-        description:
-          "For exchange programs (research, teaching, au pair). Many subject to 2-year home residency requirement.",
+        get name() { return t("pathwaysData.student.categories.j1.name"); },
+        get description() { return t("pathwaysData.student.categories.j1.description"); },
         processingKey: "J1",
         feeForms: [],
         mayHaveHomeResidencyRequirement: true,
       },
-
       m1: {
         key: "M1",
-        name: "M-1 Vocational Student",
-        description:
-          "For vocational or non-academic programs. Limited work options after completion.",
+        get name() { return t("pathwaysData.student.categories.m1.name"); },
+        get description() { return t("pathwaysData.student.categories.m1.description"); },
         processingKey: "M1",
         feeForms: [],
         allowsWork: ["Limited_Practical_Training"],
@@ -212,28 +259,27 @@ export const pathwaysData = {
     },
   },
 
+  // ---------------------------------------------------------
+  // PROTECTION
+  // ---------------------------------------------------------
   protection: {
     id: "protection",
-    title: "Humanitarian Protection",
     icon: "🛡️",
-    overview:
-      "Protection pathways for individuals unable to return home safely. Asylum must be filed within 1 year of arrival in the U.S. Policy environment is currently volatile.",
+    get title() { return t("pathwaysData.protection.title"); },
+    get overview() { return t("pathwaysData.protection.overview"); },
     categories: {
       asylum: {
         key: "ASYLUM",
-        name: "Asylum",
-        description:
-          "For those with a well-founded fear of persecution. Must file within 1 year of arrival.",
+        get name() { return t("pathwaysData.protection.categories.asylum.name"); },
+        get description() { return t("pathwaysData.protection.categories.asylum.description"); },
         processingKey: "ASYLUM",
         feeForms: ["I765"],
         subjectToVisaBulletin: false,
       },
-
       refugee: {
         key: "REFUGEE",
-        name: "Refugee Status",
-        description:
-          "For individuals referred by UNHCR or a U.S. embassy while outside the United States.",
+        get name() { return t("pathwaysData.protection.categories.refugee.name"); },
+        get description() { return t("pathwaysData.protection.categories.refugee.description"); },
         processingKey: "REFUGEE",
         feeForms: [],
         subjectToVisaBulletin: false,
@@ -241,36 +287,30 @@ export const pathwaysData = {
     },
   },
 
-  // =========================================================
-  // NEW: CITIZENSHIP / NATURALIZATION PATHWAY
-  // =========================================================
+  // ---------------------------------------------------------
+  // CITIZENSHIP / NATURALIZATION
+  // ---------------------------------------------------------
   citizenship: {
     id: "citizenship",
-    title: "Path to Citizenship",
     icon: "🇺🇸",
-    overview:
-      "U.S. naturalization allows lawful permanent residents (green card holders) to become U.S. citizens. Most applicants are eligible after 5 years of continuous residence. Spouses of U.S. citizens may qualify after 3 years.",
+    get title() { return t("pathwaysData.citizenship.title"); },
+    get overview() { return t("pathwaysData.citizenship.overview"); },
     categories: {
-
       standard: {
         key: "N400_5YR",
-        name: "5-Year Continuous Residence",
-        description:
-          "The standard naturalization path for most green card holders after 5 years of continuous residence.",
+        get name() { return t("pathwaysData.citizenship.categories.standard.name"); },
+        get description() { return t("pathwaysData.citizenship.categories.standard.description"); },
         processingKey: "N400",
         feeForms: ["N400"],
         hasPremiumProcessing: false,
         subjectToVisaBulletin: false,
-        requirements: [
-          "Green card held for at least 5 years",
-          "Continuous residence in the U.S. for 5 years",
-          "Physical presence for at least 30 months of the 5 years",
-          "No single trip abroad longer than 6 months",
-          "18 years of age or older",
-          "Good moral character",
-          "Ability to read, write, and speak English",
-          "Pass the 100-question civics test",
-        ],
+        get requirements() {
+          return buildRequirements("pathwaysData.citizenship.categories.standard", CITIZENSHIP_DEFS.standard.reqCount);
+        },
+        // keyFacts kept as literal strings — these are quick-reference
+        // dollar/timing values not surfaced as primary UI text. Most
+        // consumers don't render them. If you need them translated, add
+        // a similar getter pattern.
         keyFacts: {
           waitTime: "8–14 months from filing to oath ceremony",
           fee: "$760 paper / $710 online",
@@ -279,25 +319,17 @@ export const pathwaysData = {
           travelLimit: "No single trip over 6 months",
         },
       },
-
       marriage: {
         key: "N400_3YR",
-        name: "3-Year Rule (Married to U.S. Citizen)",
-        description:
-          "Expedited path for green card holders married to and living with a U.S. citizen. Eligible after 3 years instead of 5.",
+        get name() { return t("pathwaysData.citizenship.categories.marriage.name"); },
+        get description() { return t("pathwaysData.citizenship.categories.marriage.description"); },
         processingKey: "N400",
         feeForms: ["N400"],
         hasPremiumProcessing: false,
         subjectToVisaBulletin: false,
-        requirements: [
-          "Green card held for at least 3 years",
-          "Currently married to and living with a U.S. citizen",
-          "Spouse has been a U.S. citizen for all 3 years",
-          "Physical presence for at least 18 months of the 3 years",
-          "No single trip abroad longer than 6 months",
-          "Good moral character",
-          "Pass English and civics requirements",
-        ],
+        get requirements() {
+          return buildRequirements("pathwaysData.citizenship.categories.marriage", CITIZENSHIP_DEFS.marriage.reqCount);
+        },
         keyFacts: {
           waitTime: "8–14 months from filing to oath ceremony",
           fee: "$760 paper / $710 online",
@@ -306,23 +338,17 @@ export const pathwaysData = {
           note: "Must still be married to same U.S. citizen at time of filing",
         },
       },
-
       military: {
         key: "N400_MIL",
-        name: "Military Service",
-        description:
-          "Expedited or immediate naturalization for active duty service members and honorably discharged veterans.",
+        get name() { return t("pathwaysData.citizenship.categories.military.name"); },
+        get description() { return t("pathwaysData.citizenship.categories.military.description"); },
         processingKey: "N400",
-        feeForms: [], // N-400 filing fee is $0 for military
+        feeForms: [],
         hasPremiumProcessing: false,
         subjectToVisaBulletin: false,
-        requirements: [
-          "Active duty or honorably discharged from U.S. armed forces",
-          "1 year of honorable service (peacetime)",
-          "Active duty during designated hostility period = immediate eligibility",
-          "Good moral character",
-          "Pass English and civics requirements",
-        ],
+        get requirements() {
+          return buildRequirements("pathwaysData.citizenship.categories.military", CITIZENSHIP_DEFS.military.reqCount);
+        },
         keyFacts: {
           waitTime: "Varies — can be expedited during active duty",
           fee: "$0 — filing fee waived for military applicants",
@@ -330,49 +356,41 @@ export const pathwaysData = {
           form: "N-400 or N-426 (for active duty abroad)",
         },
       },
-
       children: {
         key: "N600",
-        name: "Citizenship for Children",
-        description:
-          "Children under 18 with a green card may automatically acquire citizenship when a parent naturalizes. N-600 documents this citizenship.",
+        get name() { return t("pathwaysData.citizenship.categories.children.name"); },
+        get description() { return t("pathwaysData.citizenship.categories.children.description"); },
         processingKey: "N600",
         feeForms: ["N600"],
         hasPremiumProcessing: false,
         subjectToVisaBulletin: false,
-        requirements: [
-          "Under 18 years old",
-          "Lawful permanent resident",
-          "At least one parent is a U.S. citizen (by birth or naturalization)",
-          "Residing in the U.S. in legal and physical custody of citizen parent",
-        ],
+        get requirements() {
+          return buildRequirements("pathwaysData.citizenship.categories.children", CITIZENSHIP_DEFS.children.reqCount);
+        },
         keyFacts: {
           note: "Citizenship may be automatic — N-600 just documents it",
           fee: "$1,170 (N-600 Certificate of Citizenship)",
           militaryFee: "$0 for children of military",
         },
       },
-
     },
   },
 };
 
 // =========================================================
-// COUNTRY BACKLOG MAP
-// Used across app to determine if country has EB/family backlogs
-// Updated to include Germany (no backlog)
+// COUNTRY BACKLOG MAP (unchanged, country names are English/locale-agnostic)
 // =========================================================
 export const BACKLOG_COUNTRIES = {
-  india: { hasBacklog: true, ebWait: "12+ years EB-2/EB-3", familyWait: "5-15 years" },
-  china: { hasBacklog: true, ebWait: "4+ years EB-2", familyWait: "5-12 years" },
-  mexico: { hasBacklog: true, ebWait: "Current for most EB", familyWait: "10-20 years" },
-  philippines: { hasBacklog: true, ebWait: "Current for most EB", familyWait: "10-15 years" },
-  canada: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
-  uk: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
-  brazil: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
-  nigeria: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
-  south_korea: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
-  japan: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
-  // NEW
-  germany: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
-};
+    india: { hasBacklog: true, ebWait: "12+ years EB-2/EB-3", familyWait: "5-15 years" },
+    china: { hasBacklog: true, ebWait: "4+ years EB-2", familyWait: "5-12 years" },
+    mexico: { hasBacklog: true, ebWait: "Current for most EB", familyWait: "10-20 years" },
+    philippines: { hasBacklog: true, ebWait: "Current for most EB", familyWait: "10-15 years" },
+    haiti: { hasBacklog: false, ebWait: "Current", familyWait: "Standard", tpsEligible: true, humanitarianNote: "TPS historically available — check current designation status" },
+    canada: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+    uk: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+    brazil: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+    nigeria: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+    south_korea: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+    japan: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+    germany: { hasBacklog: false, ebWait: "Current", familyWait: "Standard" },
+  };

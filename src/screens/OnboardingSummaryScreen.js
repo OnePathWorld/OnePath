@@ -9,18 +9,39 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CommonActions } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import analytics, { EVENTS } from "../utils/analytics";
+
+// Centralized labels (replaces local helper functions)
+import {
+  getVisaLabel,
+  getWorkAuthLabel,
+  getCountryLabel,
+  getExpiryWarning,
+  getGCYearsLabelDescriptive,
+} from "../utils/labels";
+
+// i18n instance — used inside helper functions that aren't React components
+import i18n from "../i18n";
 
 // Viability data
 import {
   PATHWAY_VIABILITY,
   VIABILITY_LEVELS,
   PATHWAY_TO_VIABILITY_MAP,
+  getViability,
 } from "../data/pathwayViability";
 
 // =========================================================
 // GUIDANCE ENGINE
+// ---------------------------------------------------------
+// All helper functions below use `i18n.t()` directly because they
+// are not React components — they're pure functions called during
+// rendering to produce structured guidance objects.
 // =========================================================
+
+// Local shorthand
+const t = (key, opts) => i18n.t(key, opts);
 
 const getGuidance = (profile) => {
   const {
@@ -32,7 +53,9 @@ const getGuidance = (profile) => {
     countryOfCitizenship,
     expiryTimeline,
     complianceRisk,
-    gcYearsHeld, // NEW
+    gcYearsHeld,
+    outsideUsStage,
+    hasReceiptNumber,
   } = profile;
 
   // Critical alerts based on status
@@ -41,35 +64,215 @@ const getGuidance = (profile) => {
   if (expiryTimeline === "expired") {
     criticalAlerts.push({
       type: "critical",
-      message: "🔴 Your status has expired. Immediate action required!",
-      action: "Consult an immigration attorney TODAY",
+      message: t("onboardingSummary.alerts.expired.message"),
+      action: t("onboardingSummary.alerts.expired.action"),
     });
   } else if (expiryTimeline === "30days") {
     criticalAlerts.push({
       type: "warning",
-      message: "⚠️ Critical deadline approaching within 30 days",
-      action: "File extensions/renewals immediately",
+      message: t("onboardingSummary.alerts.expiry30days.message"),
+      action: t("onboardingSummary.alerts.expiry30days.action"),
     });
   }
 
   if (complianceRisk === "gap" || complianceRisk === "overstay") {
     criticalAlerts.push({
       type: "critical",
-      message: "⚠️ Out-of-status situation detected",
-      action: "Legal consultation strongly recommended",
+      message: t("onboardingSummary.alerts.outOfStatus.message"),
+      action: t("onboardingSummary.alerts.outOfStatus.action"),
     });
   }
 
   if (hasWorkAuth === "no" && purpose === "work") {
     criticalAlerts.push({
       type: "warning",
-      message: "📋 No work authorization — Cannot begin employment",
-      action: "Must obtain proper work visa first",
+      message: t("onboardingSummary.alerts.noWorkAuth.message"),
+      action: t("onboardingSummary.alerts.noWorkAuth.action"),
     });
   }
 
-  const backlogCountries = ["india", "china", "mexico", "philippines"];
+  const backlogCountries = ["india", "china", "mexico", "philippines", "haiti"];
   const hasBacklog = backlogCountries.includes(countryOfCitizenship);
+
+  // Purpose -> pathwaysData key mapping. The onboarding `purpose` enum uses
+  // "study" but pathwaysData (immigrationData.js) keys the pathway as
+  // "student" — same pattern the inside-US `case "study"` branch uses.
+  // Every other purpose maps identity.
+  const purposeToPathwayId = (p) => (p === "study" ? "student" : p);
+
+  // -------------------------------------------------------------
+  // OUTSIDE-US BRANCH (v1.3)
+  // ---------------------------------------------------------
+  // Users outside the US fall into a few distinct buckets that
+  // don't map cleanly onto the inside-US purpose switch:
+  //
+  //   - has a pending USCIS petition → primary action is Case Tracker
+  //   - just exploring / no case yet → fall through to purpose switch
+  //     (which still produces useful pathway guidance)
+  //   - has US visa already (returning) → fall through; expiryTimeline
+  //     was captured during onboarding and the work/family/etc. branch
+  //     handles it correctly
+  //   - former US visa holder → fall through with a returning-traveler
+  //     warning injected into criticalAlerts
+  //
+  // For "petition_*" stages with hasReceiptNumber === "yes", we
+  // short-circuit to a Case-Tracker-first guidance object. The user's
+  // stated `purpose` is preserved as a secondary action so they can
+  // still navigate to the relevant pathway later.
+  // -------------------------------------------------------------
+  const isOutsideUsWithCase =
+    location === "outside_us" &&
+    (outsideUsStage === "petition_filed" ||
+      outsideUsStage === "petition_approved" ||
+      outsideUsStage === "interview_scheduled");
+
+  if (isOutsideUsWithCase && hasReceiptNumber === "yes") {
+    const mappedPathwayId = purpose ? purposeToPathwayId(purpose) : null;
+    return {
+      title: t("onboardingSummary.outsideUs.caseTracker.title"),
+      summary: t(
+        `onboardingSummary.outsideUs.caseTracker.summary.${outsideUsStage}`
+      ),
+      criticalAlerts,
+      pathwayId: mappedPathwayId,
+
+      statusInfo: {
+        stage: t(`onboardingSummary.outsideUs.statusInfo.${outsideUsStage}`),
+        country: countryOfCitizenship
+          ? t("onboardingSummary.statusInfo.country", {
+              country: getCountryLabel(countryOfCitizenship),
+            })
+          : null,
+        backlog: hasBacklog
+          ? t("onboardingSummary.statusInfo.backlogged")
+          : null,
+      },
+
+      primaryAction: {
+        text: t("onboardingSummary.outsideUs.caseTracker.primaryAction"),
+        navigationType: "caseTracker",
+      },
+
+      secondaryAction: purpose
+        ? {
+            text: t(
+              `onboardingSummary.outsideUs.caseTracker.secondaryAction.${purpose}`
+            ),
+            navigationType: "pathway",
+            pathway: {
+              id: mappedPathwayId,
+              title: t(`onboardingSummary.${purpose}.pathway.title`),
+              icon:
+                purpose === "work"
+                  ? "💼"
+                  : purpose === "family"
+                  ? "👨‍👩‍👧‍👦"
+                  : purpose === "study"
+                  ? "🎓"
+                  : "🇺🇸",
+              subtitle: t(`onboardingSummary.${purpose}.pathway.subtitle`),
+              color:
+                purpose === "work"
+                  ? "#4CAF50"
+                  : purpose === "family"
+                  ? "#FF9800"
+                  : purpose === "study"
+                  ? "#9C27B0"
+                  : "#1565C0",
+              description: t(
+                `onboardingSummary.${purpose}.pathway.description`
+              ),
+            },
+          }
+        : null,
+
+      warnings: hasBacklog
+        ? [t("onboardingSummary.outsideUs.warnings.backlog")]
+        : [],
+      recommendations: [
+        t("onboardingSummary.outsideUs.recommendations.checkUscisRegularly"),
+        t("onboardingSummary.outsideUs.recommendations.gatherDocs"),
+        t("onboardingSummary.outsideUs.recommendations.embassyWaits"),
+      ],
+    };
+  }
+
+  // Petition users WITHOUT a receipt number — guide them to find it
+  if (isOutsideUsWithCase && hasReceiptNumber === "no") {
+    const mappedPathwayId = purpose ? purposeToPathwayId(purpose) : null;
+    return {
+      title: t("onboardingSummary.outsideUs.findReceipt.title"),
+      summary: t("onboardingSummary.outsideUs.findReceipt.summary"),
+      criticalAlerts,
+      pathwayId: mappedPathwayId,
+
+      statusInfo: {
+        stage: t(`onboardingSummary.outsideUs.statusInfo.${outsideUsStage}`),
+        country: countryOfCitizenship
+          ? t("onboardingSummary.statusInfo.country", {
+              country: getCountryLabel(countryOfCitizenship),
+            })
+          : null,
+      },
+
+      primaryAction: {
+        text: t("onboardingSummary.outsideUs.findReceipt.primaryAction"),
+        navigationType: "resources",
+      },
+
+      secondaryAction: purpose
+        ? {
+            text: t(
+              `onboardingSummary.outsideUs.caseTracker.secondaryAction.${purpose}`
+            ),
+            navigationType: "pathway",
+            pathway: {
+              id: mappedPathwayId,
+              title: t(`onboardingSummary.${purpose}.pathway.title`),
+              icon:
+                purpose === "work"
+                  ? "💼"
+                  : purpose === "family"
+                  ? "👨‍👩‍👧‍👦"
+                  : purpose === "study"
+                  ? "🎓"
+                  : "🇺🇸",
+              subtitle: t(`onboardingSummary.${purpose}.pathway.subtitle`),
+              color:
+                purpose === "work"
+                  ? "#4CAF50"
+                  : purpose === "family"
+                  ? "#FF9800"
+                  : purpose === "study"
+                  ? "#9C27B0"
+                  : "#1565C0",
+              description: t(
+                `onboardingSummary.${purpose}.pathway.description`
+              ),
+            },
+          }
+        : null,
+
+      warnings: [t("onboardingSummary.outsideUs.findReceipt.tipI797")],
+      recommendations: [
+        t("onboardingSummary.outsideUs.findReceipt.recCheckEmail"),
+        t("onboardingSummary.outsideUs.findReceipt.recCheckSpouse"),
+        t("onboardingSummary.outsideUs.findReceipt.recReturnLater"),
+      ],
+    };
+  }
+
+  // Returning visa holder — inject a heads-up alert before falling through
+  if (
+    location === "outside_us" &&
+    outsideUsStage === "former_visa_holder"
+  ) {
+    criticalAlerts.unshift({
+      type: "warning",
+      message: t("onboardingSummary.alerts.formerVisaHolder.message"),
+      action: t("onboardingSummary.alerts.formerVisaHolder.action"),
+    });
+  }
 
   switch (purpose) {
     case "work": {
@@ -77,14 +280,18 @@ const getGuidance = (profile) => {
       const needsH1B = isOnOPT || currentVisa === "F1";
 
       return {
-        title: "Work-Based Immigration Strategy",
+        title: t("onboardingSummary.work.title"),
         summary: buildWorkSummary(profile),
         criticalAlerts,
         pathwayId: "work",
 
         statusInfo: currentVisa && {
-          current: `Current Status: ${getVisaLabel(currentVisa)}`,
-          workAuth: `Work Authorization: ${getWorkAuthLabel(hasWorkAuth)}`,
+          current: t("onboardingSummary.statusInfo.currentStatus", {
+            visa: getVisaLabel(currentVisa),
+          }),
+          workAuth: t("onboardingSummary.statusInfo.workAuthorization", {
+            auth: getWorkAuthLabel(hasWorkAuth),
+          }),
           timeline: getExpiryWarning(expiryTimeline),
         },
 
@@ -93,16 +300,18 @@ const getGuidance = (profile) => {
           navigationType: "pathway",
           pathway: {
             id: "work",
-            title: "Work-Based Immigration",
+            title: t("onboardingSummary.work.pathway.title"),
             icon: "💼",
-            subtitle: "H-1B, L-1, O-1 Visas",
+            subtitle: t("onboardingSummary.work.pathway.subtitle"),
             color: "#4CAF50",
-            description: "For skilled workers and professionals",
+            description: t("onboardingSummary.work.pathway.description"),
           },
         },
 
         secondaryAction: {
-          text: needsH1B ? "H-1B Lottery Info" : "Document Checklist",
+          text: needsH1B
+            ? t("onboardingSummary.work.secondaryAction.h1bLotteryInfo")
+            : t("onboardingSummary.work.secondaryAction.documentChecklist"),
           navigationType: needsH1B ? "timeline" : "checklist",
           pathwayId: "work",
         },
@@ -114,34 +323,40 @@ const getGuidance = (profile) => {
 
     case "family":
       return {
-        title: "Family-Based Immigration Path",
+        title: t("onboardingSummary.family.title"),
         summary: buildFamilySummary(profile),
         criticalAlerts,
         pathwayId: "family",
 
         statusInfo: currentVisa && {
-          current: `Current Status: ${getVisaLabel(currentVisa)}`,
-          country: `Country: ${getCountryLabel(countryOfCitizenship)}`,
+          current: t("onboardingSummary.statusInfo.currentStatus", {
+            visa: getVisaLabel(currentVisa),
+          }),
+          country: t("onboardingSummary.statusInfo.country", {
+            country: getCountryLabel(countryOfCitizenship),
+          }),
           backlog: hasBacklog
-            ? "⚠️ Subject to country quota backlogs"
-            : "✅ Current priority dates",
+            ? t("onboardingSummary.statusInfo.backlogged")
+            : t("onboardingSummary.statusInfo.backlogClear"),
         },
 
         primaryAction: {
-          text: "View Family Pathways",
+          text: t("onboardingSummary.family.primaryAction.viewFamilyPathways"),
           navigationType: "pathway",
           pathway: {
             id: "family",
-            title: "Family-Based Immigration",
+            title: t("onboardingSummary.family.pathway.title"),
             icon: "👨‍👩‍👧‍👦",
-            subtitle: "Marriage, Parents, Siblings",
+            subtitle: t("onboardingSummary.family.pathway.subtitle"),
             color: "#FF9800",
-            description: "Reunite with family members",
+            description: t("onboardingSummary.family.pathway.description"),
           },
         },
 
         secondaryAction: {
-          text: hasBacklog ? "Check Visa Bulletin" : "Processing Times",
+          text: hasBacklog
+            ? t("onboardingSummary.family.secondaryAction.checkVisaBulletin")
+            : t("onboardingSummary.family.secondaryAction.processingTimes"),
           navigationType: "timeline",
           pathwayId: "family",
         },
@@ -155,33 +370,35 @@ const getGuidance = (profile) => {
         location === "inside_us" && currentVisa === "B1B2";
 
       return {
-        title: "Student Pathway Guide",
+        title: t("onboardingSummary.study.title"),
         summary: buildStudySummary(profile),
         criticalAlerts,
         pathwayId: "student",
 
         statusInfo: currentVisa && {
-          current: `Current Status: ${getVisaLabel(currentVisa)}`,
+          current: t("onboardingSummary.statusInfo.currentStatus", {
+            visa: getVisaLabel(currentVisa),
+          }),
           needsChange: needsStatusChange
-            ? "⚠️ Need change of status from B-1/B-2"
+            ? t("onboardingSummary.statusInfo.needsStatusChange")
             : null,
         },
 
         primaryAction: {
-          text: "Student Visa Options",
+          text: t("onboardingSummary.study.primaryAction.studentVisaOptions"),
           navigationType: "pathway",
           pathway: {
             id: "student",
-            title: "Student Pathway",
+            title: t("onboardingSummary.study.pathway.title"),
             icon: "🎓",
-            subtitle: "F-1, J-1 Visas",
+            subtitle: t("onboardingSummary.study.pathway.subtitle"),
             color: "#9C27B0",
-            description: "Study in the United States",
+            description: t("onboardingSummary.study.pathway.description"),
           },
         },
 
         secondaryAction: {
-          text: "Life Setup Guide",
+          text: t("onboardingSummary.study.secondaryAction.lifeSetupGuide"),
           navigationType: "lifesetup",
         },
 
@@ -194,14 +411,14 @@ const getGuidance = (profile) => {
       const mustFileWithinYear = location === "inside_us";
 
       return {
-        title: "Protection & Humanitarian Relief",
+        title: t("onboardingSummary.protection.title"),
         summary: buildProtectionSummary(profile),
         criticalAlerts: [
           ...criticalAlerts,
           mustFileWithinYear && {
             type: "critical",
-            message: "⏰ Asylum must be filed within 1 year of arrival",
-            action: "Consult attorney immediately",
+            message: t("onboardingSummary.alerts.asylumDeadline.message"),
+            action: t("onboardingSummary.alerts.asylumDeadline.action"),
           },
         ].filter(Boolean),
         pathwayId: "protection",
@@ -209,48 +426,60 @@ const getGuidance = (profile) => {
         primaryAction: {
           text:
             urgency === "immediate"
-              ? "🆘 Emergency Resources"
-              : "Protection Options",
+              ? t("onboardingSummary.protection.primaryAction.emergencyResources")
+              : t("onboardingSummary.protection.primaryAction.protectionOptions"),
           navigationType: "resources",
         },
 
         secondaryAction: {
-          text: "Legal Aid Resources",
+          text: t("onboardingSummary.protection.secondaryAction.legalAidResources"),
           navigationType: "resources",
         },
 
         resources: [
-          { name: "USCIS", phone: "1-800-375-5283" },
-          { name: "Legal Aid", url: "immigrationadvocates.org" },
-          { name: "UNHCR", url: "help.unhcr.org" },
+          {
+            name: t("onboardingSummary.protection.resources.uscis"),
+            phone: t("onboardingSummary.protection.resources.uscisPhone"),
+          },
+          {
+            name: t("onboardingSummary.protection.resources.legalAid"),
+            url: t("onboardingSummary.protection.resources.legalAidUrl"),
+          },
+          {
+            name: t("onboardingSummary.protection.resources.unhcr"),
+            url: t("onboardingSummary.protection.resources.unhcrUrl"),
+          },
         ],
 
         warnings: [
-          "⚠️ Protection cases require immediate legal assistance",
-          "⚠️ Asylum policy environment is currently volatile — seek up-to-date legal counsel",
+          t("onboardingSummary.protection.warnings.immediateLegal"),
+          t("onboardingSummary.protection.warnings.asylumVolatile"),
         ],
       };
     }
 
-    // =========================================================
-    // NEW: CITIZENSHIP / NATURALIZATION CASE
-    // =========================================================
     case "citizenship": {
       const eligibilityAlert = buildCitizenshipEligibilityAlert(gcYearsHeld);
       if (eligibilityAlert) criticalAlerts.unshift(eligibilityAlert);
 
       return {
-        title: "Your Path to U.S. Citizenship",
+        title: t("onboardingSummary.citizenship.title"),
         summary: buildCitizenshipSummary(profile),
         criticalAlerts,
         pathwayId: "citizenship",
 
         statusInfo: {
-          current: `Current Status: ${getVisaLabel(currentVisa || "GC")}`,
+          current: t("onboardingSummary.statusInfo.currentStatus", {
+            visa: getVisaLabel(currentVisa || "GC"),
+          }),
           gcTime: gcYearsHeld
-            ? `Green Card Held: ${getGCYearsLabel(gcYearsHeld)}`
+            ? t("onboardingSummary.statusInfo.greenCardHeld", {
+                years: getGCYearsLabelDescriptive(gcYearsHeld),
+              })
             : null,
-          country: `Country of Birth: ${getCountryLabel(countryOfCitizenship)}`,
+          country: t("onboardingSummary.statusInfo.countryOfBirth", {
+            country: getCountryLabel(countryOfCitizenship),
+          }),
         },
 
         primaryAction: {
@@ -258,16 +487,16 @@ const getGuidance = (profile) => {
           navigationType: "pathway",
           pathway: {
             id: "citizenship",
-            title: "Path to Citizenship",
+            title: t("onboardingSummary.citizenship.pathway.title"),
             icon: "🇺🇸",
-            subtitle: "Naturalization & N-400",
+            subtitle: t("onboardingSummary.citizenship.pathway.subtitle"),
             color: "#1565C0",
-            description: "Become a U.S. citizen",
+            description: t("onboardingSummary.citizenship.pathway.description"),
           },
         },
 
         secondaryAction: {
-          text: "N-400 Document Checklist",
+          text: t("onboardingSummary.citizenship.secondaryAction.n400Checklist"),
           navigationType: "checklist",
           pathwayId: "citizenship",
         },
@@ -279,13 +508,12 @@ const getGuidance = (profile) => {
 
     default:
       return {
-        title: "Your Immigration Journey",
-        summary:
-          "Let's explore your options based on your current situation.",
+        title: t("onboardingSummary.default.title"),
+        summary: t("onboardingSummary.default.summary"),
         criticalAlerts,
         pathwayId: null,
         primaryAction: {
-          text: "Explore All Pathways",
+          text: t("onboardingSummary.default.primaryAction"),
           navigationType: "home",
         },
       };
@@ -300,109 +528,69 @@ function buildCitizenshipEligibilityAlert(gcYearsHeld) {
   if (gcYearsHeld === "under2") {
     return {
       type: "warning",
-      message: "⏳ Not yet eligible to file for naturalization",
-      action: "You'll need at least 3 years (married to U.S. citizen) or 5 years (standard) of green card residency",
+      message: t("onboardingSummary.alerts.citizenshipUnder2.message"),
+      action: t("onboardingSummary.alerts.citizenshipUnder2.action"),
     };
   }
   if (gcYearsHeld === "2to3") {
     return {
       type: "warning",
-      message: "📅 Approaching eligibility — check your specific route",
-      action: "If married to a U.S. citizen, you may be eligible now. Otherwise wait until 5-year mark.",
+      message: t("onboardingSummary.alerts.citizenship2to3.message"),
+      action: t("onboardingSummary.alerts.citizenship2to3.action"),
     };
   }
   if (gcYearsHeld === "over5") {
     return {
       type: null,
-      message: "✅ You are eligible to file Form N-400 now",
-      action: "You can apply immediately — start gathering your documents",
+      message: t("onboardingSummary.alerts.citizenshipOver5.message"),
+      action: t("onboardingSummary.alerts.citizenshipOver5.action"),
     };
   }
   return null;
 }
 
 function buildCitizenshipSummary(profile) {
-  const { gcYearsHeld, complianceRisk } = profile;
+  const { gcYearsHeld } = profile;
 
   if (gcYearsHeld === "military") {
-    return (
-      "Military service members and veterans may be eligible for expedited naturalization. " +
-      "Active duty during a designated hostility period allows immediate eligibility. " +
-      "The N-400 filing fee is waived for military applicants."
-    );
+    return t("onboardingSummary.citizenship.summary.military");
   }
-
   if (gcYearsHeld === "over5") {
-    return (
-      "You meet the 5-year continuous residence requirement and can file Form N-400 now. " +
-      "You'll need to pass an English language test and a civics exam (100 questions). " +
-      "Processing typically takes 8–14 months from filing to oath ceremony."
-    );
+    return t("onboardingSummary.citizenship.summary.over5");
   }
-
   if (gcYearsHeld === "3to5") {
-    return (
-      "If you are married to and living with a U.S. citizen, you may qualify under the 3-year rule. " +
-      "This requires 18 months of physical presence and continuous residence during those 3 years. " +
-      "Otherwise, you'll need to wait until the 5-year mark."
-    );
+    return t("onboardingSummary.citizenship.summary.3to5");
   }
-
   if (gcYearsHeld === "2to3") {
-    return (
-      "You're getting close to eligibility. The standard route requires 5 years as a green card holder, " +
-      "but if you're married to a U.S. citizen, you may qualify after just 3 years. " +
-      "Use this time to prepare your documents and study for the civics test."
-    );
+    return t("onboardingSummary.citizenship.summary.2to3");
   }
-
   if (gcYearsHeld === "under2") {
-    return (
-      "You're not yet eligible to naturalize, but now is a great time to prepare. " +
-      "Track your travel history, maintain your green card in good standing, " +
-      "and start studying for the 100-question civics exam."
-    );
+    return t("onboardingSummary.citizenship.summary.under2");
   }
-
-  return (
-    "Naturalization is the process of becoming a U.S. citizen. Most green card holders " +
-    "are eligible after 5 years of continuous residence. If you're married to a U.S. citizen, " +
-    "you may qualify after just 3 years."
-  );
+  return t("onboardingSummary.citizenship.summary.default");
 }
 
 function buildCitizenshipWarnings(profile) {
   const warnings = [];
-  const { gcYearsHeld, complianceRisk, countryOfCitizenship } = profile;
+  const { gcYearsHeld, complianceRisk } = profile;
 
   if (
     complianceRisk === "gap" ||
     complianceRisk === "overstay" ||
     complianceRisk === "unauthorized_work"
   ) {
-    warnings.push(
-      "⚠️ Prior immigration violations may affect good moral character requirement — consult an attorney"
-    );
+    warnings.push(t("onboardingSummary.citizenship.warnings.priorViolations"));
   }
 
   if (complianceRisk === "denied") {
-    warnings.push(
-      "⚠️ Previous application denial could impact naturalization — review circumstances carefully"
-    );
+    warnings.push(t("onboardingSummary.citizenship.warnings.priorDenial"));
   }
 
-  warnings.push(
-    "✈️ Extended trips abroad (6+ months) can break continuous residence — track your travel carefully"
-  );
-
-  warnings.push(
-    "📋 You must maintain good moral character for the full 5-year (or 3-year) period before filing"
-  );
+  warnings.push(t("onboardingSummary.citizenship.warnings.extendedTrips"));
+  warnings.push(t("onboardingSummary.citizenship.warnings.goodMoralCharacter"));
 
   if (gcYearsHeld === "3to5") {
-    warnings.push(
-      "💍 3-year rule requires you to still be married to and living with the U.S. citizen spouse at time of filing"
-    );
+    warnings.push(t("onboardingSummary.citizenship.warnings.threeYearMarriage"));
   }
 
   return warnings;
@@ -413,65 +601,57 @@ function buildCitizenshipRecommendations(profile) {
   const { gcYearsHeld } = profile;
 
   if (gcYearsHeld === "over5" || gcYearsHeld === "3to5") {
-    recs.push("📄 File Form N-400 — $760 paper / $710 online (military: free)");
-    recs.push("📚 Study the 100 civics questions at uscis.gov/citizenship/tessprep");
-    recs.push("🗂️ Gather tax returns, travel records, and green card copies");
+    recs.push(t("onboardingSummary.citizenship.recommendations.fileN400"));
+    recs.push(t("onboardingSummary.citizenship.recommendations.studyCivics"));
+    recs.push(t("onboardingSummary.citizenship.recommendations.gatherDocs"));
   } else {
-    recs.push("📚 Start studying the 100 civics questions now — get a head start");
-    recs.push("✈️ Track all international trips carefully (dates in/out of U.S.)");
-    recs.push("📋 Keep tax filings current — required for naturalization");
+    recs.push(t("onboardingSummary.citizenship.recommendations.startStudying"));
+    recs.push(t("onboardingSummary.citizenship.recommendations.trackTrips"));
+    recs.push(t("onboardingSummary.citizenship.recommendations.keepTaxes"));
   }
 
-  recs.push("💳 Renew your green card if it expires before you're eligible to naturalize");
-  recs.push("👨‍⚖️ Consult an immigration attorney if you have any criminal history or prior violations");
+  recs.push(t("onboardingSummary.citizenship.recommendations.renewGc"));
+  recs.push(t("onboardingSummary.citizenship.recommendations.consultAttorney"));
 
   return recs;
 }
 
 function getNaturalizationPrimaryAction(gcYearsHeld) {
-  if (gcYearsHeld === "over5") return "Start N-400 Application";
-  if (gcYearsHeld === "3to5") return "Check 3-Year Eligibility";
-  if (gcYearsHeld === "military") return "Military Naturalization Info";
-  return "Naturalization Timeline & Requirements";
-}
-
-function getGCYearsLabel(gcYearsHeld) {
-  const labels = {
-    under2: "Less than 2 years",
-    "2to3": "2–3 years",
-    "3to5": "3–5 years",
-    over5: "5+ years ✅",
-    military: "Military service 🎖️",
-  };
-  return labels[gcYearsHeld] || gcYearsHeld;
+  if (gcYearsHeld === "over5")
+    return t("onboardingSummary.citizenship.primaryAction.startN400");
+  if (gcYearsHeld === "3to5")
+    return t("onboardingSummary.citizenship.primaryAction.check3Year");
+  if (gcYearsHeld === "military")
+    return t("onboardingSummary.citizenship.primaryAction.militaryInfo");
+  return t("onboardingSummary.citizenship.primaryAction.timelineRequirements");
 }
 
 // =========================================================
-// EXISTING HELPER FUNCTIONS — unchanged
+// WORK / FAMILY / STUDY / PROTECTION HELPERS
 // =========================================================
 
 function buildWorkSummary(profile) {
   const { currentVisa, hasWorkAuth, countryOfCitizenship, urgency } = profile;
 
   if (currentVisa === "OPT") {
-    return (
-      "You're on OPT — time to find an H-1B sponsor. The FY2027 lottery registration ran March 4–19, 2026. " +
-      "Note: USCIS now uses a wage-weighted selection process that favors higher-paid positions. " +
-      (countryOfCitizenship === "india"
-        ? "India has significant EB-2/EB-3 backlogs (12+ years)."
-        : "Start preparing your petition early.")
-    );
+    return countryOfCitizenship === "india"
+      ? t("onboardingSummary.work.summary.opt_india")
+      : t("onboardingSummary.work.summary.opt_other");
+  }
+
+  if (countryOfCitizenship === "haiti" && currentVisa === "EAD") {
+    return t("onboardingSummary.work.summary.haiti_tps");
   }
 
   if (hasWorkAuth === "yes_restricted") {
-    return "Your work authorization is tied to a specific employer. Changing jobs requires a new petition.";
+    return t("onboardingSummary.work.summary.restricted");
   }
 
   if (urgency === "immediate" && !hasWorkAuth) {
-    return "⚠️ Without work authorization, you cannot begin employment. Premium processing (now $2,965) can expedite some visas to 15 days.";
+    return t("onboardingSummary.work.summary.urgentNoAuth");
   }
 
-  return "Employment-based immigration requires employer sponsorship. Start by finding an employer willing to sponsor your visa.";
+  return t("onboardingSummary.work.summary.default");
 }
 
 function buildWorkWarnings(profile) {
@@ -481,29 +661,25 @@ function buildWorkWarnings(profile) {
     profile.countryOfCitizenship === "india" ||
     profile.countryOfCitizenship === "china"
   ) {
-    warnings.push(
-      "📊 EB-2/EB-3 green cards have 12+ year waits for your country"
-    );
+    warnings.push(t("onboardingSummary.work.warnings.backlog"));
   }
 
   if (profile.currentVisa === "B1B2") {
-    warnings.push("⚠️ Cannot work on B-1/B-2 status — visa change required");
+    warnings.push(t("onboardingSummary.work.warnings.cantWorkOnB1B2"));
   }
 
   if (
     profile.expiryTimeline === "30days" ||
     profile.expiryTimeline === "expired"
   ) {
-    warnings.push("🔴 Urgent: Address expiring/expired status immediately");
+    warnings.push(t("onboardingSummary.work.warnings.urgentExpiry"));
   }
 
   if (profile.currentVisa === "OPT") {
-    warnings.push("⏰ OPT has 90-day unemployment limit — track carefully");
+    warnings.push(t("onboardingSummary.work.warnings.optUnemployment"));
   }
 
-  warnings.push(
-    "📋 EAD validity reduced to 18 months (from 5 years) for adjustment-of-status applicants as of Dec 2025"
-  );
+  warnings.push(t("onboardingSummary.work.warnings.eadValidity"));
 
   return warnings;
 }
@@ -512,19 +688,19 @@ function buildWorkRecommendations(profile) {
   const recs = [];
 
   if (profile.currentVisa === "F1" || profile.currentVisa === "OPT") {
-    recs.push("✅ Apply for H-1B lottery (March annually — now wage-weighted)");
-    recs.push("✅ Consider Day-1 CPT programs as backup");
+    recs.push(t("onboardingSummary.work.recommendations.h1bLottery"));
+    recs.push(t("onboardingSummary.work.recommendations.dayOneCpt"));
   }
 
   if (profile.hasWorkAuth === "no") {
-    recs.push("📋 Cannot work without authorization — apply first");
+    recs.push(t("onboardingSummary.work.recommendations.cantWorkApplyFirst"));
   }
 
   if (profile.countryOfCitizenship === "canada") {
-    recs.push("🍁 Consider TN visa — faster than H-1B for Canadians");
+    recs.push(t("onboardingSummary.work.recommendations.tnVisa"));
   }
 
-  recs.push("💡 L-1 and O-1 visas are not cap-subject — explore if eligible");
+  recs.push(t("onboardingSummary.work.recommendations.nonCapVisas"));
 
   return recs;
 }
@@ -534,30 +710,30 @@ function buildFamilySummary(profile) {
 
   if (
     countryOfCitizenship === "mexico" ||
-    countryOfCitizenship === "philippines"
+    countryOfCitizenship === "philippines" ||
+     countryOfCitizenship === "haiti"
   ) {
-    return "⚠️ Your country has significant family preference backlogs. Immediate relatives (spouse/parents of USC) have no quota limits, but other categories can take 10-20 years.";
+    return t("onboardingSummary.family.summary.backloggedCountry");
   }
 
   if (location === "inside_us" && currentVisa) {
-    return "You may be able to adjust status without leaving the U.S. if you maintain legal status and a visa becomes available.";
+    return t("onboardingSummary.family.summary.insideUsWithVisa");
   }
 
-  return "Family sponsorship is a stable path but can take several years depending on your relationship and country of birth.";
+  return t("onboardingSummary.family.summary.default");
 }
 
 function buildFamilyWarnings(profile) {
   const warnings = [];
-  const backlogCountries = {
-    india: "5-15 years",
-    china: "5-12 years",
-    mexico: "10-20 years",
-    philippines: "10-15 years",
-  };
+  // Wait ranges are looked up by country code, then translated separately
+  const backlogCountries = ["india", "china", "mexico", "philippines"];
 
-  if (backlogCountries[profile.countryOfCitizenship]) {
+  if (backlogCountries.includes(profile.countryOfCitizenship)) {
+    const range = t(
+      `onboardingSummary.family.waitRanges.${profile.countryOfCitizenship}`
+    );
     warnings.push(
-      `⏰ Expected wait: ${backlogCountries[profile.countryOfCitizenship]} for family preferences`
+      t("onboardingSummary.family.warnings.expectedWait", { range })
     );
   }
 
@@ -565,21 +741,19 @@ function buildFamilyWarnings(profile) {
     profile.complianceRisk !== "none" &&
     profile.complianceRisk !== "prefer_not"
   ) {
-    warnings.push("⚠️ Previous immigration issues may affect eligibility");
+    warnings.push(t("onboardingSummary.family.warnings.priorIssues"));
   }
 
-  warnings.push(
-    "📋 Presidential Proclamations have impacted visa issuance rates for certain nationalities — retrogression possible in FY2026"
-  );
+  warnings.push(t("onboardingSummary.family.warnings.proclamations"));
 
   return warnings;
 }
 
 function buildFamilyRecommendations() {
   return [
-    "📄 File I-130 as soon as possible to establish priority date",
-    "💼 Consider employment-based options in parallel",
-    "📋 Maintain legal status while waiting",
+    t("onboardingSummary.family.recommendations.fileI130"),
+    t("onboardingSummary.family.recommendations.considerEmployment"),
+    t("onboardingSummary.family.recommendations.maintainStatus"),
   ];
 }
 
@@ -587,22 +761,22 @@ function buildStudySummary(profile) {
   const { currentVisa, location } = profile;
 
   if (currentVisa === "B1B2" && location === "inside_us") {
-    return "You'll need to change status from B-1/B-2 to F-1. Apply to a SEVP-certified school first, then file I-539 for change of status.";
+    return t("onboardingSummary.study.summary.changeFromB1B2");
   }
 
   if (currentVisa === "F1") {
-    return "You're already on F-1. Consider OPT after graduation (apply 90 days before), and explore H-1B options with potential employers. STEM OPT adds 24 months.";
+    return t("onboardingSummary.study.summary.alreadyOnF1");
   }
 
-  return "F-1 student visa allows study and limited work (CPT/OPT). After graduation, you can use OPT for practical training and bridge to H-1B.";
+  return t("onboardingSummary.study.summary.default");
 }
 
 function buildStudyWarnings(profile) {
   const warnings = [];
 
   if (profile.currentVisa === "B1B2") {
-    warnings.push("📚 Must maintain status until F-1 approved");
-    warnings.push("⏰ Cannot start school until status change approved");
+    warnings.push(t("onboardingSummary.study.warnings.maintainUntilF1"));
+    warnings.push(t("onboardingSummary.study.warnings.cantStartUntilApproved"));
   }
 
   return warnings;
@@ -610,92 +784,34 @@ function buildStudyWarnings(profile) {
 
 function buildStudyRecommendations() {
   return [
-    "🎓 Apply to SEVP-certified schools only",
-    "💰 Show proof of financial support",
-    "📋 Maintain full-time enrollment",
-    "💼 Use CPT/OPT for work experience",
-    "🔬 Choose a STEM major for 36 months total OPT",
+    t("onboardingSummary.study.recommendations.sevpSchools"),
+    t("onboardingSummary.study.recommendations.financialProof"),
+    t("onboardingSummary.study.recommendations.fullTimeEnrollment"),
+    t("onboardingSummary.study.recommendations.cptOpt"),
+    t("onboardingSummary.study.recommendations.stemMajor"),
   ];
 }
 
 function buildProtectionSummary(profile) {
   if (profile.location === "inside_us") {
-    return (
-      "Asylum must be filed within 1 year of arrival. You can apply for work authorization 150 days after filing. " +
-      "Note: EAD validity for asylum applicants is now 18 months max, and auto-extensions have been eliminated. " +
-      "The process is complex — legal representation strongly recommended."
-    );
+    return t("onboardingSummary.protection.summary.insideUs");
   }
-  return (
-    "Various protection programs exist including refugee resettlement and humanitarian parole. " +
-    "Contact UNHCR or a resettlement agency."
-  );
+  return t("onboardingSummary.protection.summary.outsideUs");
 }
 
 // =========================================================
 // UTILITY FUNCTIONS
 // =========================================================
 
-function getVisaLabel(visa) {
-  const labels = {
-    F1: "F-1 Student",
-    H1B: "H-1B Work",
-    L1: "L-1 Transfer",
-    B1B2: "B-1/B-2 Visitor",
-    J1: "J-1 Exchange",
-    OPT: "OPT Work Permit",
-    EAD: "EAD Holder",
-    GC_pending: "Green Card Pending",
-    GC: "🟢 Green Card Holder (LPR)", // NEW
-    none: "Out of Status",
-  };
-  return labels[visa] || visa;
-}
-
-function getWorkAuthLabel(workAuth) {
-  const labels = {
-    yes_unrestricted: "✅ Unrestricted",
-    yes_restricted: "⚠️ Employer-specific",
-    yes_ead: "EAD Card",
-    pending: "Pending",
-    no: "❌ None",
-  };
-  return labels[workAuth] || workAuth;
-}
-
-function getCountryLabel(country) {
-  const labels = {
-    india: "🇮🇳 India",
-    china: "🇨🇳 China",
-    mexico: "🇲🇽 Mexico",
-    philippines: "🇵🇭 Philippines",
-    canada: "🇨🇦 Canada",
-    uk: "🇬🇧 UK",
-    brazil: "🇧🇷 Brazil",
-    nigeria: "🇳🇬 Nigeria",
-    south_korea: "🇰🇷 South Korea",
-    japan: "🇯🇵 Japan",
-  };
-  return labels[country] || "Other";
-}
-
-function getExpiryWarning(expiry) {
-  const warnings = {
-    expired: "🔴 EXPIRED — Immediate action required!",
-    "30days": "⚠️ Expires within 30 days",
-    "90days": "📅 Expires within 90 days",
-    "6months": "📆 Expires within 6 months",
-  };
-  return warnings[expiry] || null;
-}
-
 function getWorkPrimaryAction(profile) {
-  if (profile.expiryTimeline === "expired") return "🆘 Address Expired Status";
-  if (profile.currentVisa === "OPT") return "Find H-1B Sponsor";
-  if (profile.hasWorkAuth === "no") return "Get Work Authorization";
-  return "Explore Work Visas";
+  if (profile.expiryTimeline === "expired")
+    return t("onboardingSummary.work.primaryAction.expiredStatus");
+  if (profile.currentVisa === "OPT")
+    return t("onboardingSummary.work.primaryAction.findH1bSponsor");
+  if (profile.hasWorkAuth === "no")
+    return t("onboardingSummary.work.primaryAction.getWorkAuth");
+  return t("onboardingSummary.work.primaryAction.exploreWorkVisas");
 }
-
 
 // =========================================================
 // URGENT FORM RECOMMENDATION
@@ -703,99 +819,61 @@ function getWorkPrimaryAction(profile) {
 // visa type + expiry timeline combo
 // =========================================================
 function buildUrgentFormRecommendation(profile) {
-    const { currentVisa, expiryTimeline, hasWorkAuth } = profile;
-  
-    // Only show for urgent situations
-    if (!expiryTimeline || expiryTimeline === "safe" || expiryTimeline === "year") {
-      return null;
-    }
-  
-    const isUrgent = expiryTimeline === "expired" || expiryTimeline === "30days";
-    const isSoon = expiryTimeline === "90days" || expiryTimeline === "6months";
-  
-    const formMap = {
-      H1B: {
-        form: "Form I-129 Extension",
-        purpose: "Extend your H-1B status",
-        fee: "$1,015 + $2,965 premium (15 days)",
-        deadline: isUrgent ? "File TODAY — employer must act immediately" : "File at least 6 months before expiry",
-        tip: "Premium processing gets 15-day decision. Your employer files, not you.",
-        color: "#D32F2F",
-      },
-      F1: {
-        form: "Contact Your DSO Immediately",
-        purpose: "Program extension or OPT application",
-        fee: "Free (DSO action) / I-765 OPT: $470 online",
-        deadline: isUrgent ? "Contact DSO today — grace period is only 60 days after program end" : "Plan OPT 90 days before graduation",
-        tip: "Your Designated School Official (DSO) must extend your I-20 before you can file anything.",
-        color: "#9C27B0",
-      },
-      OPT: {
-        form: "Form I-765 STEM Extension",
-        purpose: "Extend OPT by 24 months (STEM graduates)",
-        fee: "$470 online / $520 paper",
-        deadline: isUrgent ? "File immediately — apply up to 90 days before EAD expires" : "Apply now — USCIS processing takes 3-5 months",
-        tip: "Must have STEM degree and E-Verify employer. File before current EAD expires or you lose work auth.",
-        color: "#FF9800",
-      },
-      L1: {
-        form: "Form I-129 Extension",
-        purpose: "Extend your L-1 status",
-        fee: "$1,015 + optional $2,965 premium",
-        deadline: isUrgent ? "File immediately — employer must sponsor" : "File 6 months before expiry",
-        tip: "L-1A max 7 years total, L-1B max 5 years. Premium gets 15-day decision.",
-        color: "#1565C0",
-      },
-      J1: {
-        form: "DS-2019 Program Extension",
-        purpose: "Extend your J-1 exchange visitor program",
-        fee: "Free (sponsor action required)",
-        deadline: isUrgent ? "Contact your program sponsor immediately" : "Contact sponsor 3 months before end date",
-        tip: "Only your program sponsor can extend the DS-2019. You cannot file this yourself.",
-        color: "#388E3C",
-      },
-      B1B2: {
-        form: "Form I-539",
-        purpose: "Extend your B-1/B-2 visitor stay",
-        fee: "$370 online / $420 paper",
-        deadline: isUrgent ? "File immediately — overstay has serious consequences" : "File at least 45 days before I-94 expires",
-        tip: "Must file BEFORE your I-94 expires. Overstaying even one day can affect future visa applications.",
-        color: "#D32F2F",
-      },
-      EAD: {
-        form: "Form I-765 Renewal",
-        purpose: "Renew your Employment Authorization Document",
-        fee: "$470 online / $520 paper",
-        deadline: isUrgent ? "File immediately — EAD validity now 18 months max" : "File 6 months before expiry — processing takes 3-5 months",
-        tip: "Auto-extensions eliminated as of Oct 2025. File early — a gap in EAD means you cannot work legally.",
-        color: "#D32F2F",
-      },
-      GC_pending: {
-        form: "Form I-765 / I-131 Renewal",
-        purpose: "Renew your EAD/Advance Parole combo card",
-        fee: "$260 (with pending I-485 filed after Apr 2024)",
-        deadline: isUrgent ? "File immediately — do not let combo card expire" : "File 6 months before expiry",
-        tip: "Traveling without valid Advance Parole while I-485 is pending can abandon your green card application.",
-        color: "#FF9800",
-      },
-    };
-  
-    const rec = formMap[currentVisa];
-    if (!rec) return null;
-  
-    return {
-      ...rec,
-      isUrgent,
-      isSoon,
-    };
+  const { currentVisa, expiryTimeline } = profile;
+
+  // Only show for urgent situations
+  if (
+    !expiryTimeline ||
+    expiryTimeline === "safe" ||
+    expiryTimeline === "year"
+  ) {
+    return null;
   }
 
+  const isUrgent = expiryTimeline === "expired" || expiryTimeline === "30days";
+  const isSoon = expiryTimeline === "90days" || expiryTimeline === "6months";
+
+  // Map visa type to its color (kept here, not in JSON, since this is style)
+  const colorMap = {
+    H1B: "#D32F2F",
+    F1: "#9C27B0",
+    OPT: "#FF9800",
+    L1: "#1565C0",
+    J1: "#388E3C",
+    B1B2: "#D32F2F",
+    EAD: "#D32F2F",
+    GC_pending: "#FF9800",
+  };
+
+  // Look up base translation key for this visa
+  const baseKey = `onboardingSummary.urgentForm.forms.${currentVisa}`;
+
+  // Verify this visa has a form recommendation
+  // (i18n.t returns the key if missing — we check existence via the .form sub-key)
+  const formNameKey = `${baseKey}.form`;
+  const formName = t(formNameKey);
+  if (formName === formNameKey) return null;
+
+  return {
+    form: formName,
+    purpose: t(`${baseKey}.purpose`),
+    fee: t(`${baseKey}.fee`),
+    deadline: isUrgent
+      ? t(`${baseKey}.deadlineUrgent`)
+      : t(`${baseKey}.deadlineSoon`),
+    tip: t(`${baseKey}.tip`),
+    color: colorMap[currentVisa] || "#D32F2F",
+    isUrgent,
+    isSoon,
+  };
+}
 
 // =========================================================
 // COMPONENT
 // =========================================================
 
 const OnboardingSummaryScreen = ({ route, navigation }) => {
+  const { t: tHook } = useTranslation();
   const { userProfile } = route.params || {};
   const guidance = getGuidance(userProfile || {});
 
@@ -830,27 +908,29 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
     }
 
     // Analytics
+    analytics.screen("OnboardingSummary", { pathway: guidance.pathwayId });
 
-        analytics.screen("OnboardingSummary", { pathway: guidance.pathwayId });
-
-        // NEW: fire citizenship eligibility event
-        if (userProfile?.purpose === "citizenship" || userProfile?.currentVisa === "GC") {
-        analytics.track(EVENTS.CITIZENSHIP_ELIGIBILITY_VIEWED, {
-            gc_years_held: userProfile?.gcYearsHeld || "unknown",
-            eligible:
-            userProfile?.gcYearsHeld === "over5" ||
-            userProfile?.gcYearsHeld === "3to5" ||
-            userProfile?.gcYearsHeld === "military",
-            route:
-            userProfile?.gcYearsHeld === "military"
-                ? "military"
-                : userProfile?.gcYearsHeld === "3to5"
-                ? "3yr_marriage"
-                : userProfile?.gcYearsHeld === "over5"
-                ? "5yr_standard"
-                : "not_yet_eligible",
-        });
-        }
+    // Citizenship eligibility event
+    if (
+      userProfile?.purpose === "citizenship" ||
+      userProfile?.currentVisa === "GC"
+    ) {
+      analytics.track(EVENTS.CITIZENSHIP_ELIGIBILITY_VIEWED, {
+        gc_years_held: userProfile?.gcYearsHeld || "unknown",
+        eligible:
+          userProfile?.gcYearsHeld === "over5" ||
+          userProfile?.gcYearsHeld === "3to5" ||
+          userProfile?.gcYearsHeld === "military",
+        route:
+          userProfile?.gcYearsHeld === "military"
+            ? "military"
+            : userProfile?.gcYearsHeld === "3to5"
+            ? "3yr_marriage"
+            : userProfile?.gcYearsHeld === "over5"
+            ? "5yr_standard"
+            : "not_yet_eligible",
+      });
+    }
   }, []);
 
   const initializePathwayProgress = async (pathwayId) => {
@@ -910,6 +990,13 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
           routes: [{ name: "MainApp" }, { name: "LifeSetup" }],
         })
       );
+    } else if (action.navigationType === "caseTracker") {
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 1,
+          routes: [{ name: "MainApp" }, { name: "CaseStatusTracker" }],
+        })
+      );
     } else {
       navigation.dispatch(
         CommonActions.reset({
@@ -963,11 +1050,13 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
           {/* VIABILITY BADGES */}
           {viabilityKeys.length > 0 && (
             <View style={styles.viabilityContainer}>
-              <Text style={styles.viabilityTitle}>Current Viability</Text>
+              <Text style={styles.viabilityTitle}>
+                {tHook("onboardingSummary.currentViability")}
+              </Text>
               {viabilityKeys.map((key) => {
-                const assessment = PATHWAY_VIABILITY[key];
+                const assessment = getViability(key);
                 if (!assessment) return null;
-                const level = VIABILITY_LEVELS[assessment.viability];
+                const level = assessment.level;
 
                 return (
                   <View
@@ -990,7 +1079,7 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
                           { color: level?.color || "#999" },
                         ]}
                       >
-                        {level?.label || "Unknown"}
+                        {level?.label || tHook("common.unknown")}
                       </Text>
                     </View>
                     <Text style={styles.viabilityReason}>
@@ -1002,37 +1091,49 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
             </View>
           )}
 
-{/* URGENT FORM CARD — shown when expiry is critical */}
-{(() => {
+          {/* URGENT FORM CARD — shown when expiry is critical */}
+          {(() => {
             const urgentForm = buildUrgentFormRecommendation(userProfile || {});
             if (!urgentForm) return null;
             return (
-              <View style={[
-                styles.urgentFormCard,
-                { borderLeftColor: urgentForm.color }
-              ]}>
+              <View
+                style={[
+                  styles.urgentFormCard,
+                  { borderLeftColor: urgentForm.color },
+                ]}
+              >
                 <View style={styles.urgentFormHeader}>
                   <Text style={styles.urgentFormIcon}>
                     {urgentForm.isUrgent ? "🚨" : "📋"}
                   </Text>
                   <View style={styles.urgentFormTitleBlock}>
                     <Text style={styles.urgentFormLabel}>
-                      {urgentForm.isUrgent ? "FILE NOW" : "ACTION NEEDED"}
+                      {urgentForm.isUrgent
+                        ? tHook("onboardingSummary.urgentForm.labelUrgent")
+                        : tHook("onboardingSummary.urgentForm.labelAction")}
                     </Text>
                     <Text style={styles.urgentFormName}>{urgentForm.form}</Text>
                   </View>
                 </View>
-                <Text style={styles.urgentFormPurpose}>{urgentForm.purpose}</Text>
+                <Text style={styles.urgentFormPurpose}>
+                  {urgentForm.purpose}
+                </Text>
                 <View style={styles.urgentFormRow}>
-                  <Text style={styles.urgentFormKey}>Fee:</Text>
+                  <Text style={styles.urgentFormKey}>
+                    {tHook("onboardingSummary.urgentForm.feeKey")}
+                  </Text>
                   <Text style={styles.urgentFormValue}>{urgentForm.fee}</Text>
                 </View>
                 <View style={styles.urgentFormRow}>
-                  <Text style={styles.urgentFormKey}>Deadline:</Text>
-                  <Text style={[
-                    styles.urgentFormValue,
-                    urgentForm.isUrgent && styles.urgentFormValueRed
-                  ]}>
+                  <Text style={styles.urgentFormKey}>
+                    {tHook("onboardingSummary.urgentForm.deadlineKey")}
+                  </Text>
+                  <Text
+                    style={[
+                      styles.urgentFormValue,
+                      urgentForm.isUrgent && styles.urgentFormValueRed,
+                    ]}
+                  >
                     {urgentForm.deadline}
                   </Text>
                 </View>
@@ -1047,7 +1148,6 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
 
           {/* WARNINGS */}
           {guidance.warnings?.length > 0 && (
-
             <View style={styles.warningBox}>
               {guidance.warnings.map((warning, idx) => (
                 <Text key={idx} style={styles.warning}>
@@ -1060,7 +1160,9 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
           {/* RECOMMENDATIONS */}
           {guidance.recommendations?.length > 0 && (
             <View style={styles.recsBox}>
-              <Text style={styles.recsTitle}>Recommended Actions</Text>
+              <Text style={styles.recsTitle}>
+                {tHook("onboardingSummary.recommendedActions")}
+              </Text>
               {guidance.recommendations.map((rec, idx) => (
                 <Text key={idx} style={styles.recItem}>
                   {rec}
@@ -1073,16 +1175,16 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
           <TouchableOpacity
             style={styles.primaryButton}
             onPress={() => {
-                // NEW: track N-400 intent for citizenship pathway
-                if (guidance.pathwayId === "citizenship") {
+              // Track N-400 intent for citizenship pathway
+              if (guidance.pathwayId === "citizenship") {
                 analytics.track(EVENTS.N400_INTENT_SIGNALED, {
-                    cta_text: guidance.primaryAction.text,
-                    gc_years_held: userProfile?.gcYearsHeld || "unknown",
+                  cta_text: guidance.primaryAction.text,
+                  gc_years_held: userProfile?.gcYearsHeld || "unknown",
                 });
-                }
-                handleNavigation(guidance.primaryAction);
+              }
+              handleNavigation(guidance.primaryAction);
             }}
-            >
+          >
             <Text style={styles.primaryButtonText}>
               {guidance.primaryAction.text}
             </Text>
@@ -1091,16 +1193,16 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
           {/* SECONDARY ACTION */}
           {guidance.secondaryAction && (
             <TouchableOpacity
-            style={styles.secondaryButton}
-            onPress={() => {
-                // NEW: track checklist open for citizenship pathway
+              style={styles.secondaryButton}
+              onPress={() => {
+                // Track checklist open for citizenship pathway
                 if (guidance.pathwayId === "citizenship") {
-                analytics.track(EVENTS.CITIZENSHIP_CHECKLIST_OPENED, {
+                  analytics.track(EVENTS.CITIZENSHIP_CHECKLIST_OPENED, {
                     source: "onboarding_summary",
-                });
+                  });
                 }
                 handleNavigation(guidance.secondaryAction);
-            }}
+              }}
             >
               <Text style={styles.secondaryButtonText}>
                 {guidance.secondaryAction.text}
@@ -1111,7 +1213,9 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
           {/* RESOURCES — for protection seekers */}
           {guidance.resources && (
             <View style={styles.resourceBox}>
-              <Text style={styles.resourceTitle}>🆘 Immediate Help</Text>
+              <Text style={styles.resourceTitle}>
+                {tHook("onboardingSummary.immediateHelp")}
+              </Text>
               {guidance.resources.map((resource, idx) => (
                 <View key={idx} style={styles.resourceItem}>
                   <Text style={styles.resourceName}>{resource.name}</Text>
@@ -1128,12 +1232,62 @@ const OnboardingSummaryScreen = ({ route, navigation }) => {
             </View>
           )}
 
+          {/* CASE TRACKER SUGGESTION — for users likely to have or want a pending USCIS case */}
+          {/* Suppressed when the primary action already routes to Case Tracker (avoids duplicate CTAs) */}
+          {(() => {
+            const visaSuggestsCase = [
+              "F1", "H1B", "L1", "J1", "OPT", "EAD", "GC_pending", "GC", "other"
+            ].includes(userProfile?.currentVisa);
+
+            // Outside-US users who already saw a Case Tracker primary action don't need a duplicate
+            const primaryAlreadyCaseTracker =
+              guidance.primaryAction?.navigationType === "caseTracker";
+
+            // Outside-US users on no_case/exploring/has_us_visa stages may want to add a future case
+            const outsideUsMayWantTracker =
+              userProfile?.location === "outside_us" &&
+              ["no_case", "exploring", "has_us_visa", "former_visa_holder"].includes(
+                userProfile?.outsideUsStage
+              );
+
+            const shouldShow =
+              !primaryAlreadyCaseTracker &&
+              (visaSuggestsCase || outsideUsMayWantTracker);
+
+            if (!shouldShow) return null;
+
+            return (
+              <TouchableOpacity
+                style={styles.caseTrackerSuggestion}
+                onPress={() => {
+                  analytics.track("Case Tracker Viewed", {
+                    source: "onboarding_summary",
+                  });
+                  handleNavigation({ navigationType: "caseTracker" });
+                }}
+              >
+                <Text style={styles.caseTrackerIcon}>📬</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.caseTrackerTitle}>
+                    {tHook("onboardingSummary.caseTrackerSuggestion.title")}
+                  </Text>
+                  <Text style={styles.caseTrackerBody}>
+                    {tHook("onboardingSummary.caseTrackerSuggestion.body")}
+                  </Text>
+                </View>
+                <Text style={styles.caseTrackerArrow}>→</Text>
+              </TouchableOpacity>
+            );
+          })()}
+
           {/* SKIP TO HOME */}
           <TouchableOpacity
             style={styles.skipButton}
             onPress={() => handleNavigation({ navigationType: "home" })}
           >
-            <Text style={styles.skipText}>Explore All Options</Text>
+            <Text style={styles.skipText}>
+              {tHook("onboardingSummary.exploreAllOptions")}
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -1172,7 +1326,12 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: "#FF9800",
   },
-  alertMessage: { fontSize: 14, fontWeight: "600", color: "#333", marginBottom: 4 },
+  alertMessage: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#333",
+    marginBottom: 4,
+  },
   alertAction: { fontSize: 13, color: "#666" },
 
   // STATUS
@@ -1210,7 +1369,11 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   viabilityItem: { padding: 12, borderRadius: 10, marginBottom: 8 },
-  viabilityHeader: { flexDirection: "row", alignItems: "center", marginBottom: 4 },
+  viabilityHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 4,
+  },
   viabilityDot: { width: 8, height: 8, borderRadius: 4, marginRight: 8 },
   viabilityLabel: {
     fontSize: 12,
@@ -1218,7 +1381,12 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 0.3,
   },
-  viabilityReason: { fontSize: 13, color: "#444", lineHeight: 18, marginLeft: 16 },
+  viabilityReason: {
+    fontSize: 13,
+    color: "#444",
+    lineHeight: 18,
+    marginLeft: 16,
+  },
 
   // WARNINGS
   warningBox: {
@@ -1236,7 +1404,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 20,
   },
-  recsTitle: { fontSize: 15, fontWeight: "600", color: "#2E86AB", marginBottom: 8 },
+  recsTitle: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: "#2E86AB",
+    marginBottom: 8,
+  },
   recItem: { fontSize: 14, color: "#333", lineHeight: 20, marginBottom: 4 },
 
   // RESOURCES
@@ -1246,7 +1419,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 20,
   },
-  resourceTitle: { fontSize: 16, fontWeight: "600", color: "#C62828", marginBottom: 8 },
+  resourceTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#C62828",
+    marginBottom: 8,
+  },
   resourceItem: { marginBottom: 8 },
   resourceName: { fontSize: 14, fontWeight: "500", color: "#333" },
   resourceContact: { fontSize: 13, color: "#666" },
@@ -1278,7 +1456,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
   },
-skipButton: { paddingVertical: 12 },
+  skipButton: { paddingVertical: 12 },
   skipText: { color: "#999", fontSize: 14, textAlign: "center" },
 
   // URGENT FORM CARD
@@ -1350,4 +1528,35 @@ skipButton: { paddingVertical: 12 },
     color: "#555",
     lineHeight: 17,
   },
+
+  caseTrackerSuggestion: {
+    backgroundColor: "#E3F2FD",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 14,
+    borderRadius: 12,
+    marginTop: 12,
+    marginBottom: 8,
+  },
+  caseTrackerIcon: {
+    fontSize: 28,
+    marginRight: 12,
+  },
+  caseTrackerTitle: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#2E86AB",
+    marginBottom: 2,
+  },
+  caseTrackerBody: {
+    fontSize: 12,
+    color: "#5A9FBF",
+    lineHeight: 16,
+  },
+  caseTrackerArrow: {
+    fontSize: 20,
+    color: "#2E86AB",
+    marginLeft: 8,
+  },
+
 });
