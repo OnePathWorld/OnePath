@@ -54,6 +54,11 @@ async function getAccessToken() {
 // =========================================================
 // Case statuses don't change every minute. Cache responses
 // for 30 minutes to be respectful of USCIS rate limits.
+//
+// The cache is bypassed when the client sends ?refresh=true
+// (user explicitly tapped refresh / pulled to refresh). In
+// that case we always call USCIS so the user gets the latest
+// status, then write the fresh response back into the cache.
 
 const statusCache = new Map();
 const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
@@ -109,6 +114,10 @@ app.get("/health", (req, res) => {
 app.get("/case-status/:receiptNumber", async (req, res) => {
   const { receiptNumber } = req.params;
 
+  // ?refresh=true → user explicitly asked for fresh data, so
+  // bypass the cache and call USCIS directly.
+  const forceRefresh = req.query.refresh === "true";
+
   // Basic validation — USCIS receipt numbers are 3 letters + 10 digits
   const receiptPattern = /^[A-Z]{3}\d{10}$/;
   if (!receiptPattern.test(receiptNumber)) {
@@ -123,15 +132,21 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
     );
   }
 
-  // Check cache first
-  const cached = getCachedStatus(receiptNumber);
-  if (cached) {
-    console.log(`[Cache Hit] ${receiptNumber}`);
-    return res.json({ ...cached, cached: true });
+  // Check cache first — UNLESS this is a forced refresh.
+  if (!forceRefresh) {
+    const cached = getCachedStatus(receiptNumber);
+    if (cached) {
+      console.log(`[Cache Hit] ${receiptNumber}`);
+      return res.json({ ...cached, cached: true });
+    }
   }
 
   try {
     const token = await getAccessToken();
+
+    if (forceRefresh) {
+      console.log(`[Force Refresh] ${receiptNumber} — bypassing cache`);
+    }
 
     const response = await fetch(
       `${process.env.USCIS_API_BASE_URL}/${receiptNumber}`,
@@ -170,7 +185,8 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
 
     const data = await response.json();
 
-    // Cache the successful response
+    // Cache the successful response (also refreshes the TTL on a
+    // forced refresh, so the next normal lookup gets the new value).
     setCachedStatus(receiptNumber, data);
     console.log(
       `[USCIS] ${receiptNumber}: ${
