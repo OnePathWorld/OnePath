@@ -121,6 +121,16 @@ function maskReceipt(r) {
 // the sandbox environment.
 const SANDBOX_PATTERN = /^[A-Z]{3}9999\d{6}$/;
 
+// Reviewer-provided demo numbers that must always reach USCIS, even
+// though they don't match the 9999 sandbox pattern. IOE1122334455 is
+// the reviewer's intended ERROR-STATE test (criterion #6): USCIS
+// returns a genuine 404 "not recognized", and the app must display
+// that error cleanly. It MUST NOT be gated, or the reviewer would see
+// "coming soon" instead of the real USCIS error they're verifying.
+const DEMO_ALLOWLIST = new Set([
+  "IOE1122334455",
+]);
+
 // Retry sandbox spike-arrest 429s server-side so they never reach
 // the app's error banner during the demo. The USCIS sandbox enforces
 // an Apigee spike-arrest policy (~5 req/s, burst 1); a fast
@@ -172,11 +182,15 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
     );
   }
 
-  // Beta gate — only sandbox numbers reach USCIS. Every real receipt
-  // gets a friendly message and never touches the cache or USCIS quota.
-  // Returned as 403 so the (unchanged) shipped app falls through to its
-  // generic error renderer and displays this message verbatim.
-  if (!SANDBOX_PATTERN.test(receiptNumber)) {
+  // Beta gate — only sandbox numbers (and explicitly allowlisted demo
+  // numbers) reach USCIS. Every real receipt gets a friendly message
+  // and never touches the cache or USCIS quota. Returned as 403 so the
+  // (unchanged) shipped app falls through to its generic error renderer
+  // and displays this message verbatim.
+  if (
+    !SANDBOX_PATTERN.test(receiptNumber) &&
+    !DEMO_ALLOWLIST.has(receiptNumber)
+  ) {
     console.log(`[Gate] ${maskReceipt(receiptNumber)} — gated (feature not live)`);
     return res.status(403).json(
       buildLocalError({
