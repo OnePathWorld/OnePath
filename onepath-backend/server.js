@@ -102,6 +102,46 @@ function buildLocalError({ code, message, category, status }) {
 }
 
 // =========================================================
+// Receipt helpers — masking, sandbox gate, 429-safe fetch
+// =========================================================
+
+// Mask receipt numbers in logs — they're real people's case IDs.
+// EAC9999103403 -> EAC*******403 (prefix + last 3 stay, enough to
+// tell sandbox numbers apart in the demo).
+function maskReceipt(r) {
+  if (!r || r.length < 6) return "***";
+  return r.slice(0, 3) + "*".repeat(r.length - 6) + r.slice(-3);
+}
+
+// Sandbox seeds all carry 9999 in the fiscal-year slot — a value
+// USCIS reserves for test data. Real receipts (MSC2590583310) never
+// have it, so this cleanly separates "demo" from "real". Used as a
+// beta gate so the publicly-reachable tracker doesn't hand real
+// users a confusing "not recognized" result while we're still on
+// the sandbox environment.
+const SANDBOX_PATTERN = /^[A-Z]{3}9999\d{6}$/;
+
+// Retry sandbox spike-arrest 429s server-side so they never reach
+// the app's error banner during the demo. The USCIS sandbox enforces
+// an Apigee spike-arrest policy (~5 req/s, burst 1); a fast
+// pull-to-refresh loop can trip it. Spacing one retry ~300-600ms
+// later turns a 429 into a 200 the user never sees fail.
+async function fetchUSCISWithRetry(receiptNumber, token, attempt = 0) {
+  const response = await fetch(
+    `${process.env.USCIS_API_BASE_URL}/${receiptNumber}`,
+    {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}`, demo_id: "3811" },
+    }
+  );
+  if (response.status === 429 && attempt < 2) {
+    await new Promise((r) => setTimeout(r, 300 * (attempt + 1))); // 300ms, 600ms
+    return fetchUSCISWithRetry(receiptNumber, token, attempt + 1);
+  }
+  return response;
+}
+
+// =========================================================
 // Routes
 // =========================================================
 
@@ -132,11 +172,28 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
     );
   }
 
+  // Beta gate — only sandbox numbers reach USCIS. Every real receipt
+  // gets a friendly message and never touches the cache or USCIS quota.
+  // Returned as 403 so the (unchanged) shipped app falls through to its
+  // generic error renderer and displays this message verbatim.
+  if (!SANDBOX_PATTERN.test(receiptNumber)) {
+    console.log(`[Gate] ${maskReceipt(receiptNumber)} — gated (feature not live)`);
+    return res.status(403).json(
+      buildLocalError({
+        code: "COMING_SOON",
+        message:
+          "Case tracking is in final testing and will be available very soon. Thanks for your patience!",
+        category: "FEATURE_GATE",
+        status: 403,
+      })
+    );
+  }
+
   // Check cache first — UNLESS this is a forced refresh.
   if (!forceRefresh) {
     const cached = getCachedStatus(receiptNumber);
     if (cached) {
-      console.log(`[Cache Hit] ${receiptNumber}`);
+      console.log(`[Cache Hit] ${maskReceipt(receiptNumber)}`);
       return res.json({ ...cached, cached: true });
     }
   }
@@ -145,18 +202,10 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
     const token = await getAccessToken();
 
     if (forceRefresh) {
-      console.log(`[Force Refresh] ${receiptNumber} — bypassing cache`);
+      console.log(`[Force Refresh] ${maskReceipt(receiptNumber)} — bypassing cache`);
     }
 
-    const response = await fetch(
-      `${process.env.USCIS_API_BASE_URL}/${receiptNumber}`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}`, 
-                 "demo_id": "3811",
-                 },
-      }
-    );
+    const response = await fetchUSCISWithRetry(receiptNumber, token);
 
     // Pass USCIS responses through as-is — preserves RFC-9457 error shape
     // for the demo (criterion #6: error.message must be displayable).
@@ -177,7 +226,7 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
         });
       }
       console.error(
-        `[USCIS Error] ${receiptNumber}: ${response.status}`,
+        `[USCIS Error] ${maskReceipt(receiptNumber)}: ${response.status}`,
         JSON.stringify(body)
       );
       return res.status(response.status).json(body);
@@ -189,14 +238,14 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
     // forced refresh, so the next normal lookup gets the new value).
     setCachedStatus(receiptNumber, data);
     console.log(
-      `[USCIS] ${receiptNumber}: ${
+      `[USCIS] ${maskReceipt(receiptNumber)}: ${
         data.case_status?.current_case_status_text_en || "OK"
       }`
     );
 
     res.json(data);
   } catch (error) {
-    console.error(`[Server Error] ${receiptNumber}:`, error.message);
+    console.error(`[Server Error] ${maskReceipt(receiptNumber)}:`, error.message);
     res.status(500).json(
       buildLocalError({
         code: "INTERNAL_ERROR",
