@@ -7,6 +7,24 @@ app.use(cors());
 app.use(express.json());
 
 // =========================================================
+// DEMO BUILD — gate REMOVED
+// ---------------------------------------------------------
+// This is the demo-day version of server.js. The beta gate
+// (SANDBOX_PATTERN / DEMO_ALLOWLIST / 403 "coming soon") has
+// been removed, so EVERY validly-formatted receipt number is
+// proxied straight to USCIS — sandbox numbers return data,
+// any other number returns whatever USCIS has (data or a real
+// 404). No number can ever return "coming soon".
+//
+// KEPT from the gated build (both help the demo, neither gates
+// anything): the 429 spike-arrest retry, and receipt-number log
+// masking.
+//
+// After the demo, swap back to the gated server.js to protect
+// the publicly-reachable tracker again.
+// =========================================================
+
+// =========================================================
 // OAuth Token Cache
 // =========================================================
 // USCIS tokens expire after a set time. We cache the token
@@ -102,7 +120,7 @@ function buildLocalError({ code, message, category, status }) {
 }
 
 // =========================================================
-// Receipt helpers — masking, sandbox gate, 429-safe fetch
+// Receipt helpers — masking + 429-safe fetch  (gate removed)
 // =========================================================
 
 // Mask receipt numbers in logs — they're real people's case IDs.
@@ -112,24 +130,6 @@ function maskReceipt(r) {
   if (!r || r.length < 6) return "***";
   return r.slice(0, 3) + "*".repeat(r.length - 6) + r.slice(-3);
 }
-
-// Sandbox seeds all carry 9999 in the fiscal-year slot — a value
-// USCIS reserves for test data. Real receipts (MSC2590583310) never
-// have it, so this cleanly separates "demo" from "real". Used as a
-// beta gate so the publicly-reachable tracker doesn't hand real
-// users a confusing "not recognized" result while we're still on
-// the sandbox environment.
-const SANDBOX_PATTERN = /^[A-Z]{3}9999\d{6}$/;
-
-// Reviewer-provided demo numbers that must always reach USCIS, even
-// though they don't match the 9999 sandbox pattern. IOE1122334455 is
-// the reviewer's intended ERROR-STATE test (criterion #6): USCIS
-// returns a genuine 404 "not recognized", and the app must display
-// that error cleanly. It MUST NOT be gated, or the reviewer would see
-// "coming soon" instead of the real USCIS error they're verifying.
-const DEMO_ALLOWLIST = new Set([
-  "IOE1122334455",
-]);
 
 // Retry sandbox spike-arrest 429s server-side so they never reach
 // the app's error banner during the demo. The USCIS sandbox enforces
@@ -182,26 +182,8 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
     );
   }
 
-  // Beta gate — only sandbox numbers (and explicitly allowlisted demo
-  // numbers) reach USCIS. Every real receipt gets a friendly message
-  // and never touches the cache or USCIS quota. Returned as 403 so the
-  // (unchanged) shipped app falls through to its generic error renderer
-  // and displays this message verbatim.
-  if (
-    !SANDBOX_PATTERN.test(receiptNumber) &&
-    !DEMO_ALLOWLIST.has(receiptNumber)
-  ) {
-    console.log(`[Gate] ${maskReceipt(receiptNumber)} — gated (feature not live)`);
-    return res.status(403).json(
-      buildLocalError({
-        code: "COMING_SOON",
-        message:
-          "Case tracking is in final testing and will be available very soon. Thanks for your patience!",
-        category: "FEATURE_GATE",
-        status: 403,
-      })
-    );
-  }
+  // ---- NO GATE IN THIS BUILD ----
+  // Every validly-formatted number proceeds to USCIS below.
 
   // Check cache first — UNLESS this is a forced refresh.
   if (!forceRefresh) {
@@ -277,7 +259,7 @@ app.get("/case-status/:receiptNumber", async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`\n  OnePath Backend running on port ${PORT}`);
+  console.log(`\n  OnePath Backend running on port ${PORT}  [DEMO BUILD — gate removed]`);
   console.log(`  Health: http://localhost:${PORT}/health`);
   console.log(`  Case:   http://localhost:${PORT}/case-status/EAC9999103403`);
   console.log(`  USCIS:  ${process.env.USCIS_API_BASE_URL}\n`);
