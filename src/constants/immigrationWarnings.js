@@ -1,17 +1,23 @@
 // src/constants/immigrationWarnings.js
-// Updated: March 2026
+// Updated: June 2026
 //
 // Pattern: data-only file. All user-facing strings are translation keys
-// referenced via i18n.t(messageKey). See src/i18n/locales/{en,es,pt,zh}.json
+// referenced via i18n.t(messageKey). See src/i18n/locales/{en,es,pt,zh,ht}.json
 // under the `warnings.*` namespace for the actual text.
 //
 // To update a warning's wording: edit the JSON locale files.
-// To add a new warning: add an entry here AND add the key to all 4 JSON files.
+// To add a new warning: add an entry here AND add the key to all 5 JSON files.
 //
 // Render sites should use getWarningMessage(warning) to get the translated
 // text — they should NOT read warning.messageKey directly.
+//
+// Matching: a warning shows when its `appliesTo` includes the user's visaType
+// (or "ALL"), AND any `country` (exact snake_case match) is satisfied, AND any
+// `countryFilter(country)` predicate returns true. `country` here is the
+// snake_case value from profile.countryOfCitizenship (e.g. "india", "jamaica").
 
 import i18n from "../i18n";
+import { isDvEligible } from "../data/pathwayViability";
 
 export const IMMIGRATION_WARNINGS = {
   // =========================================================
@@ -69,7 +75,8 @@ export const IMMIGRATION_WARNINGS = {
     id: "india_eb",
     severity: "warning",
     appliesTo: ["EB2", "EB3"],
-    country: "India",
+    country: "india", // FIX: was "India" (capitalized) — never matched the
+    // snake_case profile.countryOfCitizenship, so this warning was dead code.
     messageKey: "warnings.indiaEbBacklog",
   },
 
@@ -77,7 +84,7 @@ export const IMMIGRATION_WARNINGS = {
     id: "china_eb",
     severity: "info",
     appliesTo: ["EB2", "EB3"],
-    country: "China",
+    country: "china", // FIX: was "China" (capitalized) — see note above.
     messageKey: "warnings.chinaEbBacklog",
   },
 
@@ -126,6 +133,29 @@ export const IMMIGRATION_WARNINGS = {
   },
 
   // =========================================================
+  // DIVERSITY VISA (DV) WARNINGS
+  // Surfaced for prospective immigrants (visaType falls back to purpose
+  // "work"/"family" when there's no current visa) and only for DV-eligible
+  // countries via countryFilter. Also matches an explicit "DV" visaType so
+  // these can surface on a DV pathway detail view.
+  // =========================================================
+  DV_SCAM: {
+    id: "dv_scam",
+    severity: "alert",
+    appliesTo: ["work", "family", "DV"],
+    countryFilter: isDvEligible,
+    messageKey: "warnings.dvScam",
+  },
+
+  DV_PAUSED: {
+    id: "dv_paused",
+    severity: "warning",
+    appliesTo: ["work", "family", "DV"],
+    countryFilter: isDvEligible,
+    messageKey: "warnings.dvPaused",
+  },
+
+  // =========================================================
   // GENERAL
   // =========================================================
   PROCESSING_TIMES_DISCLAIMER: {
@@ -138,15 +168,22 @@ export const IMMIGRATION_WARNINGS = {
 
 /**
  * Helper: Get all warnings that apply to a given pathway/visa type and country.
- * Behavior unchanged from the previous version — still returns the same warning
- * objects, just with `messageKey` instead of inline `message`.
+ *
+ * A warning matches when:
+ *   - appliesTo includes visaType (or "ALL"), AND
+ *   - it has no `country`, or `country` equals the given country, AND
+ *   - it has no `countryFilter`, or `countryFilter(country)` is true.
+ *
+ * `countryFilter` is backward-compatible: existing warnings without it are
+ * unaffected.
  */
 export function getWarningsFor(visaType, country = null) {
   return Object.values(IMMIGRATION_WARNINGS).filter((w) => {
     const typeMatch =
       w.appliesTo.includes(visaType) || w.appliesTo.includes("ALL");
     const countryMatch = !w.country || w.country === country;
-    return typeMatch && countryMatch;
+    const filterMatch = !w.countryFilter || w.countryFilter(country);
+    return typeMatch && countryMatch && filterMatch;
   });
 }
 

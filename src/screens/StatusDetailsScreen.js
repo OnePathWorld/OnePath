@@ -18,7 +18,7 @@ import {
 } from "../constants/immigrationWarnings";
 import {
   getViability,
-  PATHWAY_TO_VIABILITY_MAP,
+  getViabilityKeys,
 } from "../data/pathwayViability";
 import {
   getVisaLabel,
@@ -27,6 +27,8 @@ import {
   getExpiryLabel,
 } from "../utils/labels";
 import analytics, { EVENTS } from "../utils/analytics";
+import { assessPathway } from "../data/travelProclamation";
+import { getCountryTips } from "../data/countrySpecificTips";
 
 const StatusDetailsScreen = ({ route, navigation }) => {
   const { t } = useTranslation();
@@ -44,14 +46,15 @@ const StatusDetailsScreen = ({ route, navigation }) => {
   // -------------------------
   const visaType = profile?.currentVisa || profile?.purpose || "";
   const country = profile?.countryOfCitizenship || null;
+  const countryTips = country
+    ? getCountryTips(country, profile).filter((tip) => !tip.isProclamation)
+    : [];
   const immigrationWarnings = getWarningsFor(visaType, country);
 
-  // Viability for user's pathway
+  // Viability for user's pathway (country-filtered: drops DV where ineligible)
   const pathwayId = profile?.purpose || null;
-  const viabilityKeys = pathwayId
-    ? PATHWAY_TO_VIABILITY_MAP[pathwayId] || []
-    : [];
-
+  const viabilityKeys = getViabilityKeys(pathwayId, country);
+  
   analytics.screen("StatusDetails", {
     visaType: profile?.currentVisa,
     healthStatus: healthScore?.status,
@@ -218,6 +221,10 @@ const StatusDetailsScreen = ({ route, navigation }) => {
               if (!assessment) return null;
               const level = assessment.level;
 
+            const gate = country
+                ? assessPathway({ countryValue: country, pathwayKey: key })
+                : null;
+
               return (
                 <View
                   key={key}
@@ -245,11 +252,42 @@ const StatusDetailsScreen = ({ route, navigation }) => {
                   <Text style={styles.viabilityReason}>
                     {assessment.shortReason}
                   </Text>
+
+                               {/* ── add this ── travel-proclamation gate notice */}
+                  {gate && gate.severity !== "none" && (
+                    <View
+                      style={[
+                        styles.proclamationNotice,
+                        { backgroundColor: gate.level.bgColor, borderColor: gate.level.color },
+                      ]}
+                    >
+                      <Text style={[styles.proclamationLabel, { color: gate.level.color }]}>
+                        {gate.blocked ? "⛔ " : "⚠️ "}{gate.level.label}
+                      </Text>
+                      <Text style={styles.proclamationReason}>{gate.reason}</Text>
+                    </View>
+                  )}
                 </View>
               );
             })}
           </View>
         )}
+
+        {/* COUNTRY GUIDANCE */}
+        {countryTips.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>
+              {t("statusDetailsScreen.sections.countryGuidance")}
+            </Text>
+            {countryTips.map((tip) => (
+              <View key={tip.id} style={styles.tipCard}>
+                <Text style={styles.tipTitle}>{tip.title}</Text>
+                <Text style={styles.tipBody}>{tip.body}</Text>
+              </View>
+            ))}
+          </View>
+        )}
+
 
         {/* CURRENT STATUS */}
         <View style={styles.section}>
@@ -796,4 +834,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   tertiaryButtonText: { color: "#666", fontSize: 14 },
+  proclamationNotice: {
+    marginTop: 10,
+    padding: 10,
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  proclamationLabel: {
+    fontSize: 13,
+    fontWeight: "700",
+    marginBottom: 4,
+  },
+  proclamationReason: {
+    fontSize: 13,
+    color: "#333",
+    lineHeight: 18,
+  },
+  tipCard: { backgroundColor: "#F5F7FA", borderRadius: 8, padding: 12, marginBottom: 8 },
+  tipTitle: { fontSize: 14, fontWeight: "700", color: "#1A1A1A", marginBottom: 4 },
+  tipBody: { fontSize: 13, color: "#333", lineHeight: 18 },
+
 });

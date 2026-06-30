@@ -9,6 +9,15 @@
 //
 // Backend contract:
 //   GET https://onepath-production.up.railway.app/case-status/:receiptNumber
+//   GET https://onepath-production.up.railway.app/case-status/:receiptNumber?refresh=true
+//
+// The optional ?refresh=true query param tells the backend to
+// BYPASS its 30-minute response cache and make a fresh call to
+// USCIS. Used when the user explicitly taps the refresh button —
+// they are asking "has anything changed?", which can only be
+// answered by going to USCIS directly. Normal lookups (initial
+// add, screen mounts) omit the param and use the cache, which
+// protects the USCIS API from duplicate incidental traffic.
 //
 // Success (200) → raw USCIS response body, e.g.:
 //   {
@@ -73,6 +82,12 @@ export function normalizeReceiptNumber(input) {
 /**
  * Fetch case status from the backend.
  *
+ * @param {string} receiptNumber - USCIS receipt number
+ * @param {object} [options]
+ * @param {boolean} [options.forceRefresh=false] - When true, appends
+ *        ?refresh=true so the Railway backend bypasses its cache and
+ *        makes a fresh call to USCIS. Use for user-initiated refresh.
+ *
  * Returns:
  *   { ok: true,  data: <USCIS response>, cached: boolean }
  *   { ok: false, error: { code, message, category, status, traceId } }
@@ -80,7 +95,7 @@ export function normalizeReceiptNumber(input) {
  * NEVER throws — all error paths resolve to { ok: false }.
  * The caller can render error.message directly (criterion #6).
  */
-export async function fetchCaseStatus(receiptNumber) {
+export async function fetchCaseStatus(receiptNumber, { forceRefresh = false } = {}) {
   const normalized = normalizeReceiptNumber(receiptNumber);
 
   // Pre-flight validation — saves a network round-trip on
@@ -99,18 +114,21 @@ export async function fetchCaseStatus(receiptNumber) {
     };
   }
 
+  // Build the request URL. When forceRefresh is set, add ?refresh=true
+  // so the backend skips its cache and calls USCIS fresh.
+  const url = forceRefresh
+    ? `${API_BASE_URL}/case-status/${normalized}?refresh=true`
+    : `${API_BASE_URL}/case-status/${normalized}`;
+
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
   try {
-    const response = await fetch(
-      `${API_BASE_URL}/case-status/${normalized}`,
-      {
-        method: "GET",
-        headers: { Accept: "application/json" },
-        signal: controller.signal,
-      }
-    );
+    const response = await fetch(url, {
+      method: "GET",
+      headers: { Accept: "application/json" },
+      signal: controller.signal,
+    });
 
     clearTimeout(timeoutId);
 

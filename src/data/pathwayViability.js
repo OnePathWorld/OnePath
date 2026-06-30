@@ -82,6 +82,13 @@ export const PATHWAY_VIABILITY = {
     updatedDate: "March 2026",
   },
 
+  H2B: {
+    viability: "CONDITIONAL",
+    i18nBaseKey: "pathwayViability.pathways.H2B",
+    detailsCount: 5,
+    updatedDate: "June 2026",
+  },
+
   // ---------------------------------------------------------
   // FAMILY-BASED
   // ---------------------------------------------------------
@@ -138,6 +145,23 @@ export const PATHWAY_VIABILITY = {
     detailsCount: 4,
     updatedDate: "March 2026",
   },
+  // ---------------------------------------------------------
+  // LOTTERY / OTHER
+  // ---------------------------------------------------------
+  DV: {
+    viability: "LOWER",
+    i18nBaseKey: "pathwayViability.pathways.DV",
+    detailsCount: 5,
+    updatedDate: "June 2026",
+  },
+
+  E2: {
+    viability: "CONDITIONAL",
+    i18nBaseKey: "pathwayViability.pathways.E2",
+    detailsCount: 5,
+    updatedDate: "June 2026",
+  },
+
 };
 
 /**
@@ -206,11 +230,50 @@ export function getViabilityMeta() {
  * Unchanged from previous version.
  */
 export const PATHWAY_TO_VIABILITY_MAP = {
-  work: ["H1B", "L1", "O1"],
+  work: ["H1B", "L1", "O1", "H2B", "E2", "DV"],
   family: ["IMMEDIATE_RELATIVE", "FAMILY_PREFERENCE"],
   student: ["F1_STUDENT"],
   protection: ["ASYLUM"],
 };
+
+// Countries excluded from the DV lottery (by country of birth) for the current
+// cycle. REVERIFY against the official DV instructions annually — this list
+// changes every year. Source: DV-2027 instructions.
+export const DV_EXCLUDED_COUNTRIES = [
+  "bangladesh", "brazil", "canada", "china", "colombia", "cuba",
+  "dominican_republic", "el_salvador", "haiti", "honduras", "india",
+  "jamaica", "mexico", "nigeria", "pakistan", "philippines",
+  "south_korea", "venezuela", "vietnam",
+];
+
+export function isDvEligible(country) {
+  return !!country && !DV_EXCLUDED_COUNTRIES.includes(country);
+}
+
+// E-2 treaty-investor countries (app country values). E-2 is available ONLY to
+// nationals of countries that maintain an E-2 treaty with the U.S. This list is
+// seeded with the Caribbean treaty countries relevant to this feature. EXTEND it
+// with the full official Treaty Countries list (travel.state.gov) before relying
+// on E-2 for non-Caribbean nationals. Anything not listed is treated ineligible.
+export const E2_TREATY_COUNTRIES = [
+  "grenada", "jamaica", "trinidad_tobago", "suriname",
+  // TODO: add the remaining official E-2 treaty countries (argentina, japan,
+  // germany, mexico, etc.) mapped to their COUNTRY_SEARCH_LIST values.
+];
+
+export function isE2Eligible(country) {
+  return !!country && E2_TREATY_COUNTRIES.includes(country);
+}
+
+// Purpose → viability keys, filtered by country (drops DV where ineligible).
+export function getViabilityKeys(pathwayId, country) {
+  const keys = PATHWAY_TO_VIABILITY_MAP[pathwayId] || [];
+  return keys.filter((k) => {
+    if (k === "DV") return isDvEligible(country);
+    if (k === "E2") return isE2Eligible(country);
+    return true;
+  });
+}
 
 export default {
   VIABILITY_META,

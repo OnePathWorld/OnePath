@@ -23,6 +23,17 @@
 //                                   error.message verbatim
 //                                   from the API response
 //
+// Refresh behavior (re-demo fix):
+//   Both the per-card ↻ button AND pull-to-refresh are
+//   "user explicitly asked for fresh data" actions, so both
+//   call fetchCaseStatus with { forceRefresh: true }, which
+//   appends ?refresh=true and makes the Railway backend
+//   BYPASS its 30-minute cache and call USCIS fresh. A short
+//   cooldown after each refresh prevents spam-tapping; during
+//   the cooldown the ↻ button is greyed out and disabled.
+//   Normal lookups (initial add, screen mounts) still use the
+//   cache to protect the USCIS API from duplicate traffic.
+//
 // Architecture: this screen is intentionally self-contained.
 // It manages its own list of tracked cases via caseStorage,
 // so it can be reached from HomeScreen, OnboardingSummary,
@@ -63,6 +74,12 @@ import {
 } from "../utils/caseStorage";
 import analytics, { EVENTS } from "../utils/analytics";
 
+// How long the refresh action stays on cooldown after a tap,
+// for both the per-card ↻ button and pull-to-refresh. Long
+// enough to stop spam, short enough that a user who genuinely
+// wants another check isn't kept waiting.
+const REFRESH_COOLDOWN_MS = 10000;
+
 const CaseStatusTrackerScreen = ({ navigation }) => {
   const { t } = useTranslation();
 
@@ -75,6 +92,12 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
   const [submitting, setSubmitting] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [refreshingId, setRefreshingId] = useState(null);
+
+  // Cooldown tracking:
+  //   cooldownIds  — per-card cooldown, keyed by receipt number
+  //   pullCooldown — global cooldown for pull-to-refresh-all
+  const [cooldownIds, setCooldownIds] = useState({});
+  const [pullCooldown, setPullCooldown] = useState(false);
 
   // ===========================================================
   // Load tracked cases on focus (re-runs if user navigates back)
@@ -106,7 +129,22 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
   const inputIsPartial = input.length > 0 && !inputIsValid;
 
   // ===========================================================
+  // Start a per-card cooldown after a refresh completes
+  // ===========================================================
+  const startCardCooldown = (receiptNumber) => {
+    setCooldownIds((prev) => ({ ...prev, [receiptNumber]: true }));
+    setTimeout(() => {
+      setCooldownIds((prev) => {
+        const next = { ...prev };
+        delete next[receiptNumber];
+        return next;
+      });
+    }, REFRESH_COOLDOWN_MS);
+  };
+
+  // ===========================================================
   // Add a new case + immediately fetch its status
+  // (uses the cache — this is a normal lookup, not a refresh)
   // ===========================================================
   const handleAddCase = async () => {
     const normalized = normalizeReceiptNumber(input);
@@ -123,7 +161,7 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
     //    the network call fails.
     await addTrackedCase(normalized);
 
-    // 2. Fetch from USCIS via Railway proxy.
+    // 2. Fetch from USCIS via Railway proxy (cache allowed).
     const result = await fetchCaseStatus(normalized);
 
     if (result.ok) {
@@ -150,27 +188,49 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
   };
 
   // ===========================================================
-  // Refresh a single case (tap the card's refresh button)
+  // Refresh a single case (tap the card's ↻ button)
+  // FORCE REFRESH — bypasses the Railway cache, hits USCIS.
   // ===========================================================
   const handleRefreshCase = async (receiptNumber) => {
+    // Guard: ignore taps while this card is on cooldown.
+    if (cooldownIds[receiptNumber]) return;
+
     setRefreshingId(receiptNumber);
-    const result = await fetchCaseStatus(receiptNumber);
+
+    // forceRefresh: true → ?refresh=true → backend skips cache.
+    const result = await fetchCaseStatus(receiptNumber, { forceRefresh: true });
+
     if (result.ok) {
       await updateCaseSnapshot(receiptNumber, getCaseSnapshot(result.data));
     } else {
       await recordCaseError(receiptNumber, result.error);
     }
+
     await loadCases();
     setRefreshingId(null);
+
+    // Begin the greyed-out cooldown window for this card.
+    startCardCooldown(receiptNumber);
   };
 
   // ===========================================================
   // Pull-to-refresh: refresh all cases sequentially
+  // FORCE REFRESH — same intent as the ↻ button, applied to
+  // every tracked case. Has its own global cooldown so it
+  // can't be repeatedly pulled.
   // ===========================================================
   const handleRefreshAll = async () => {
+    // Guard: ignore pull-to-refresh while on cooldown.
+    if (pullCooldown) {
+      setRefreshing(false);
+      return;
+    }
+
     setRefreshing(true);
     for (const c of cases) {
-      const result = await fetchCaseStatus(c.receiptNumber);
+      const result = await fetchCaseStatus(c.receiptNumber, {
+        forceRefresh: true,
+      });
       if (result.ok) {
         await updateCaseSnapshot(
           c.receiptNumber,
@@ -182,6 +242,10 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
     }
     await loadCases();
     setRefreshing(false);
+
+    // Begin the global pull-to-refresh cooldown.
+    setPullCooldown(true);
+    setTimeout(() => setPullCooldown(false), REFRESH_COOLDOWN_MS);
   };
 
   // ===========================================================
@@ -322,6 +386,7 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
                   key={c.receiptNumber}
                   caseEntry={c}
                   refreshing={refreshingId === c.receiptNumber}
+                  cooling={Boolean(cooldownIds[c.receiptNumber])}
                   onRefresh={() => handleRefreshCase(c.receiptNumber)}
                   onRemove={() => handleRemoveCase(c.receiptNumber)}
                   t={t}
@@ -349,12 +414,25 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
 // =========================================================
 // CaseCard — a single tracked case
 // =========================================================
-const CaseCard = ({ caseEntry, refreshing, onRefresh, onRemove, t }) => {
+const CaseCard = ({
+  caseEntry,
+  refreshing,
+  cooling,
+  onRefresh,
+  onRemove,
+  t,
+}) => {
   const { receiptNumber, snapshot, lastError, lastFetchedAt } = caseEntry;
   const [expanded, setExpanded] = useState(false);
 
   const hasSnapshot = Boolean(snapshot);
   const hasError = Boolean(lastError);
+
+  // The ↻ button is unavailable while a refresh is in flight
+  // OR during the post-refresh cooldown. While cooling it shows
+  // a greyed-out style so it's clearly "just did that" rather
+  // than broken.
+  const refreshDisabled = refreshing || cooling;
 
   return (
     <View style={[styles.caseCard, hasError && styles.caseCardError]}>
@@ -368,14 +446,21 @@ const CaseCard = ({ caseEntry, refreshing, onRefresh, onRemove, t }) => {
         </View>
 
         <TouchableOpacity
-          style={styles.refreshButton}
+          style={[styles.refreshButton, cooling && styles.refreshButtonCooling]}
           onPress={onRefresh}
-          disabled={refreshing}
+          disabled={refreshDisabled}
         >
           {refreshing ? (
             <ActivityIndicator size="small" color="#2E86AB" />
           ) : (
-            <Text style={styles.refreshIcon}>↻</Text>
+            <Text
+              style={[
+                styles.refreshIcon,
+                cooling && styles.refreshIconCooling,
+              ]}
+            >
+              ↻
+            </Text>
           )}
         </TouchableOpacity>
 
@@ -506,6 +591,7 @@ export default CaseStatusTrackerScreen;
 //   - Text secondary  #666 / #999
 //   - Error           #F44336 / #FFEBEE
 //   - Success         #4CAF50
+//   - Disabled        #ECEFF1 / #B0BEC5
 // =========================================================
 const styles = StyleSheet.create({
   container: {
@@ -687,10 +773,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginLeft: 8,
   },
+  // Greyed-out look while the refresh is on cooldown.
+  refreshButtonCooling: {
+    backgroundColor: "#ECEFF1",
+  },
   refreshIcon: {
     fontSize: 18,
     color: "#2E86AB",
     fontWeight: "700",
+  },
+  refreshIconCooling: {
+    color: "#B0BEC5",
   },
   removeButton: {
     width: 36,

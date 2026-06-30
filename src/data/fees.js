@@ -1,10 +1,19 @@
 // src/data/fees.js
-// Verified USCIS fees — March 2026
+// Verified USCIS fees — June 2026
 // Premium processing fees updated effective March 1, 2026
-// Base filing fees unchanged from April 2024 fee rule
+// Base filing fees from April 2024 fee rule
+// June 2026 reconciliation pass: added 2025 reconciliation-law (OBBBA, Public
+//   Law 119-21) changes — DV $1 registration, $250 visa integrity fee (not yet
+//   collected), asylum application fee ($0 -> $100 + $100/yr pending), TPS fees.
+//
+// NOTE: strings here are inline English (this file is NOT i18n-driven, unlike
+//   the other data files). If/when fees are localized, that's a separate effort.
+// NOTE: consular MRV / reciprocity amounts (e.g. E-2, H-2B visa-stamp fees) are
+//   intentionally NOT hardcoded — verify against the State Dept reciprocity
+//   tables, since published figures conflict.
 
-export const FEES_LAST_UPDATED = "March 20, 2026";
-export const FEES_DATA_VERSION = "2026-03-20";
+export const FEES_LAST_UPDATED = "June 22, 2026";
+export const FEES_DATA_VERSION = "2026-06-22";
 
 export const FEES = {
   I130: {
@@ -57,7 +66,7 @@ export const FEES = {
     category: "work_authorization",
     description: "Request permission to work in the U.S.",
     tooltip:
-      "Some applicants qualify for reduced or $0 fees. EAD validity now 18 months max for AOS/asylum/refugee categories (effective Dec 5, 2025).",
+      "Some applicants qualify for reduced or $0 fees. EAD validity now 18 months max for AOS/asylum/refugee categories (effective Dec 5, 2025). TPS-based EADs are now 1-year max — see I821.",
     feesUSD: {
       paper: 520,
       online: 470,
@@ -72,7 +81,7 @@ export const FEES = {
     category: "travel",
     description: "Advance parole or re-entry permit",
     tooltip:
-      "Leaving the U.S. without an approved travel document may cancel certain applications.",
+      "Leaving the U.S. without an approved travel document may cancel certain applications. The $1,000 figure below reflects the parole/port fee added by the 2025 reconciliation law.",
     feesUSD: {
       advanceParole: { paper: 630, online: 580 },
       refugeeTravel: {
@@ -129,10 +138,71 @@ export const FEES = {
     category: "protection",
     description: "Asylum and withholding of removal application",
     tooltip:
-      "Must be filed within 1 year of arrival in the U.S. No filing fee required.",
+      "Must be filed within 1 year of arrival. The 2025 reconciliation law added a $100 application fee (previously free), plus $100 for each year the application remains pending.",
     feesUSD: {
-      standard: 0,
+      standard: 100, // was 0 (free) before the 2025 reconciliation law
+      annualPendingFee: 100,
     },
+    effectiveDate: "2025-07-22",
+    source: "Public Law 119-21 (OBBBA)",
+  },
+
+  // =========================================================
+  // TEMPORARY PROTECTED STATUS (TPS) — added June 2026
+  // =========================================================
+  I821: {
+    form: "I-821",
+    name: "Temporary Protected Status (TPS)",
+    category: "protection",
+    description: "Apply for or re-register for Temporary Protected Status",
+    tooltip:
+      "Application fee raised to $500 under the 2025 reconciliation law. A TPS-based work permit (I-765) costs $550 initial / $275 renewal, and TPS EADs are now limited to 1-year validity. New initial registration is unavailable where a designation has been terminated (e.g. Haiti, pending litigation).",
+    feesUSD: {
+      application: 500,
+      eadInitial: 550,
+      eadRenewal: 275,
+    },
+    effectiveDate: "2025 (OBBBA)",
+    source: "Public Law 119-21",
+  },
+
+  // =========================================================
+  // DIVERSITY VISA (DV) — added June 2026
+  // =========================================================
+  DV_REGISTRATION: {
+    form: "E-DV Entry",
+    name: "Diversity Visa Lottery Registration",
+    category: "diversity_visa",
+    description: "Official annual entry fee for the Diversity Visa (green card) lottery",
+    tooltip:
+      "The ONLY official cost to enter is $1, paid at the government site (dvprogram.state.gov). Anyone charging more, or promising to improve your odds, is running a scam.",
+    feesUSD: {
+      standard: 1,
+    },
+    effectiveDate: "DV-2027",
+    source: "U.S. Department of State",
+  },
+
+  // =========================================================
+  // VISA INTEGRITY FEE (OBBBA) — added June 2026
+  // Enacted but NOT yet being collected as of mid-2026.
+  // =========================================================
+  VISA_INTEGRITY_FEE: {
+    form: "Visa Integrity Fee",
+    name: "Visa Integrity and Security Fee",
+    category: "consular",
+    description:
+      "Surcharge on most nonimmigrant visas issued at a U.S. consulate (applies to E-2, H-2B, and other nonimmigrant categories).",
+    tooltip:
+      "Created by the 2025 reconciliation law. Minimum $250, paid at visa issuance on top of the MRV fee; each applicant including dependents pays separately. As of mid-2026 it is enacted but NOT yet being collected and has no firm start date — treat as an upcoming cost, not a current charge.",
+    feesUSD: {
+      standard: 250,
+    },
+    collectionStarted: false, // <-- gate UI on this; do not present as a live charge
+    appliesTo: "nonimmigrant",
+    exemptions: "Immigrant visa applicants, Visa Waiver/ESTA travelers, most Canadians, diplomatic visas",
+    effectiveDate: "pending (enacted 2025-07-04)",
+    source: "Public Law 119-21 (One Big Beautiful Bill Act)",
   },
 
   // =========================================================
@@ -280,7 +350,10 @@ export function getFee(formKey, pathArray) {
 }
 
 /**
- * Calculate total H-1B employer cost
+ * Calculate total H-1B employer cost.
+ * NOTE: the $250 visa integrity fee is intentionally NOT included — it is
+ * individual-paid at the consulate, applies only to consular issuance, and is
+ * not yet being collected as of mid-2026.
  */
 export function calculateH1BTotalCost(options = {}) {
   const {

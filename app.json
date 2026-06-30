@@ -1,46 +1,48 @@
 {
-    "expo": {
-      "name": "OnePath",
-      "slug": "onepath",
-      "version": "1.2.0",
-      "orientation": "portrait",
-      "userInterfaceStyle": "light",
-      "icon": "./assets/icon.png",
-      "splash": {
-        "image": "./assets/splash.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#DBB7FF"
-      },
-      "updates": {
-        "fallbackToCacheTimeout": 0
-      },
-      "assetBundlePatterns": [
-        "**/*"
-      ],
-      "ios": {
-        "supportsTablet": false,
-        "bundleIdentifier": "com.trillology.onepath",
-        "infoPlist": {
-          "ITSAppUsesNonExemptEncryption": false
-        }
-      },
-      "android": {
-        "package": "com.trillology.onepath",
-        "adaptiveIcon": {
-          "foregroundImage": "./assets/adaptive-icon.png",
-          "backgroundColor": "#FFFFFF"
-        }
-      },
-      "web": {
-        "favicon": "./assets/favicon.png"
-      },
-      "extra": {
-        "dataVersion": "2026-06-08",
-        "lastDataUpdate": "May 08, 2026",
-        "eas": {
-          "projectId": "437d4c55-509c-4809-b8a1-62250d7a0633"
-        }
+  "expo": {
+    "name": "OnePath",
+    "slug": "onepath",
+    "version": "1.2.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#DBB7FF"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.trillology.onepath",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
       }
-    }
+    },
+    "android": {
+      "package": "com.trillology.onepath",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "dataVersion": "2026-06-08",
+      "lastDataUpdate": "May 08, 2026",
+      "eas": {
+        "projectId": "437d4c55-509c-4809-b8a1-62250d7a0633"
+      }
+    },
+    "plugins": [
+      "expo-localization"
+    ]
   }
-  
+}

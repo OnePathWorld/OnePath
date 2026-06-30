@@ -563,7 +563,9 @@
       "cantWorkOnB1B2": "⚠️ Cannot work on B-1/B-2 status — visa change required",
       "urgentExpiry": "🔴 Urgent: Address expiring/expired status immediately",
       "optUnemployment": "⏰ OPT has 90-day unemployment limit — track carefully",
-      "eadValidity": "📋 EAD validity reduced to 18 months (from 5 years) for adjustment-of-status applicants as of Dec 2025"
+      "eadValidity": "📋 EAD validity reduced to 18 months (from 5 years) for adjustment-of-status applicants as of Dec 2025",
+      "dvScam": "DV Lottery scam alert: the only official entry costs $1 at the government site. Anyone charging more, promising to boost your odds, or emailing to 'confirm you won' is running a scam.",
+      "dvPaused": "DV visa issuance is currently paused pending a federal review. Entry may still open, but issuance timing is uncertain — verify at travel.state.gov before relying on it."
     },
     "recommendations": {
       "h1bLottery": "✅ Apply for H-1B lottery (March annually — now wage-weighted)",
@@ -952,6 +954,42 @@
             "d4": "Presidential Proclamations have impacted processing for certain nationalities."
           },
           "recommendation": "If abroad with a qualifying petition approved, this is a well-documented and trackable path."
+        },
+        "DV": {
+          "shortReason": "Costs $1 to enter, but odds are very low and issuance is currently paused.",
+          "details": {
+            "d1": "The official registration fee is $1. Anyone charging more is a scam — there are no paid shortcuts or ways to improve your odds.",
+            "d2": "Visa issuance is currently paused pending a federal review of screening procedures. Verify current status at travel.state.gov.",
+            "d3": "High-immigration countries are excluded each year — including Jamaica, Haiti, Cuba, and the Dominican Republic. The list changes annually.",
+            "d4": "Selection does not guarantee a green card — selectees still compete for a limited number of visas before the cycle closes.",
+            "d5": "Eligibility is by country of birth, not citizenship; a spouse's birth country may also qualify you."
+          },
+          "recommendation": "Worth entering if you're from an eligible country — it's $1 — but treat it as a long shot, not a primary plan. Never pay a third party to enter for you."
+        },
+
+        "E2": {
+          "shortReason": "Stable and renewable, but requires treaty nationality and a substantial investment.",
+          "details": {
+            "d1": "Only nationals of E-2 treaty countries qualify. In the Caribbean: Grenada, Jamaica, Trinidad & Tobago, and Suriname.",
+            "d2": "You must invest a substantial amount of your own capital in a real, operating U.S. business and be able to develop and direct it.",
+            "d3": "Renewable in 2-year increments with no limit — but it never leads directly to a green card.",
+            "d4": "Your spouse can apply for work authorization; children under 21 can study.",
+            "d5": "Citizenship obtained through an investment (CBI) program requires 3 years of residence there first (AMIGOS Act, 2022), and CBI programs face increased U.S. scrutiny."
+          },
+          "recommendation": "Worth exploring if you're a treaty-country national with capital to invest in a U.S. business. Use an immigration attorney to structure the investment correctly."
+        },
+
+
+        "H2B": {
+          "shortReason": "Real seasonal route, but employer-driven and heavily oversubscribed.",
+          "details": {
+            "d1": "You cannot self-petition — a U.S. employer must sponsor you for a specific seasonal or temporary job.",
+            "d2": "The statutory cap is 66,000 per year, split between the two halves, and demand routinely exceeds it within weeks.",
+            "d3": "For FY2026, up to 64,716 supplemental visas were added on top of the cap — but this extra authority is approved year-by-year and isn't guaranteed to continue.",
+            "d4": "Returning workers (those who held H-2B status in recent years) get priority in most supplemental allocations.",
+            "d5": "There is no direct path to a green card, and family on H-4 cannot work."
+          },
+          "recommendation": "Strong option if you can line up a seasonal U.S. employer willing to sponsor — especially as a returning worker. Apply early; allocations fill fast."
         }
       },
       "modal": {
@@ -1331,6 +1369,7 @@
         "Attention": "ATTENTION",
         "Good": "GOOD",
         "Unknown": "UNKNOWN"
+        
       },
       "sections": {
         "criticalAlerts": "🚨 Critical Alerts",
@@ -1377,7 +1416,8 @@
         "export": "Export",
         "comingSoonTitle": "Coming Soon",
         "comingSoonBody": "PDF export feature coming in next update"
-      }
+      },
+      "countryGuidance": "Guidance for your country"
     },
     "policyTrackerScreen": {
       "nextImportantDate": "Next Important Date",
@@ -2253,7 +2293,130 @@
         "name": "Form DS-160",
         "purpose": "Visa application for consular processing",
         "who": "Employee completes online"
+      },
+
+      "H2B": {
+      "fullName": "H-2B Seasonal Worker Visa",
+      "purpose": "Temporary nonagricultural work (hospitality, landscaping, seafood, construction, etc.) for a U.S. employer with a seasonal or peak-load need.",
+      "note": "Employer-sponsored only — you cannot apply on your own. A new $250 visa integrity fee is being phased in on top of existing visa fees.",
+      "duration": "The period of the employer's temporary need, generally up to 1 year; extendable to a 3-year maximum.",
+      "pathToGreenCard": "No direct path — H-2B is strictly temporary.",
+      "spouseWork": "Spouse and children under 21 can get H-4 status but cannot work.",
+      "eligibility": {
+        "e1": "A U.S. employer files the petition for you after obtaining a temporary labor certification from the Department of Labor.",
+        "e2": "Your country must be on the annually published H-2B eligible-countries list (most are, including all Caribbean nations).",
+        "e3": "The job must be genuinely temporary — seasonal, peak-load, intermittent, or one-time."
+      },
+      "pros": {
+        "p1": "Does not require a college degree or extraordinary ability.",
+        "p2": "Returning workers get priority access to most supplemental visas.",
+        "p3": "Renewable up to a 3-year maximum."
+      },
+      "cons": {
+        "c1": "You cannot self-petition — you need an employer to sponsor you.",
+        "c2": "Heavily oversubscribed; allocations often fill within weeks.",
+        "c3": "No direct path to a green card.",
+        "c4": "Family on H-4 cannot work."
+      },
+      "forms": {
+        "f1": {
+          "name": "Form I-129 (Petition for a Nonimmigrant Worker)",
+          "purpose": "Filed by the U.S. employer to request H-2B classification for you.",
+          "who": "The sponsoring U.S. employer."
+        },
+        "f2": {
+          "name": "Form ETA-9142B (Temporary Labor Certification)",
+          "purpose": "The employer's DOL labor certification, required before the I-129.",
+          "who": "The sponsoring U.S. employer, filed with the Department of Labor."
+        },
+        "f3": {
+          "name": "Form DS-160 (Nonimmigrant Visa Application)",
+          "purpose": "Your visa application at a U.S. consulate after the petition is approved.",
+          "who": "The worker, if applying from abroad."
+        }
       }
+    },
+
+      "DV": {
+      "fullName": "Diversity Visa (Green Card Lottery)",
+      "purpose": "A randomly selected immigrant visa for nationals of countries with historically low immigration to the U.S.",
+      "note": "Issuance is currently paused pending a federal review. The official registration fee is $1 — anyone charging more is a scam.",
+      "duration": "Permanent residence (green card) if selected and approved",
+      "pathToGreenCard": "The DV is itself a green card — selectees who complete processing become permanent residents.",
+      "eligibility": {
+        "e1": "Born in an eligible country (high-immigration countries are excluded each year).",
+        "e2": "Have at least a high school education OR two years of qualifying work experience.",
+        "e3": "Eligibility is based on country of birth, not current citizenship."
+      },
+      "pros": {
+        "p1": "Leads directly to a green card — no employer or family sponsor required.",
+        "p2": "Costs only $1 to register.",
+        "p3": "Spouse and unmarried children under 21 can be included."
+      },
+      "cons": {
+        "c1": "Odds are very low — millions enter for a limited number of visas.",
+        "c2": "Issuance is currently paused pending federal review.",
+        "c3": "Many countries are excluded, and the list changes every year.",
+        "c4": "Strict deadlines — selectees who miss processing windows lose the chance."
+      },
+      "forms": {
+        "f1": {
+          "name": "Electronic Diversity Visa Entry (E-DV)",
+          "purpose": "The official annual lottery registration.",
+          "who": "Submitted by the applicant at the official government site only.",
+          "link": "https://dvprogram.state.gov"
+        },
+        "f2": {
+          "name": "Form DS-260 (Immigrant Visa Application)",
+          "purpose": "Filed by selectees to apply for the immigrant visa.",
+          "who": "Applicants selected in the lottery."
+        }
+      }
+    },
+    
+    "E2": {
+      "fullName": "E-2 Treaty Investor Visa",
+      "purpose": "Lets nationals of treaty countries live in the U.S. to develop and direct a business in which they have invested a substantial amount of capital.",
+      "note": "Requires treaty nationality. A new $250 visa integrity fee is being phased in on top of the existing visa fee.",
+      "duration": "Up to 2 years per period, renewable indefinitely while the business operates.",
+      "pathToGreenCard": "No direct path — E-2 is a nonimmigrant status, even though it can be renewed indefinitely.",
+      "spouseWork": "Spouse can apply for work authorization; children under 21 can attend school but cannot work.",
+      "eligibility": {
+        "e1": "You are a national of a country that maintains an E-2 treaty with the U.S. (in the Caribbean: Grenada, Jamaica, Trinidad & Tobago, Suriname).",
+        "e2": "You have invested, or are actively investing, a substantial amount of your own capital in a bona fide U.S. enterprise.",
+        "e3": "The business is real and operating — not passive or speculative — and you will develop and direct it.",
+        "e4": "Citizenship acquired through an investment (CBI) program requires 3 years of residence in that country first (AMIGOS Act, 2022)."
+      },
+      "pros": {
+        "p1": "Renewable indefinitely as long as the business operates.",
+        "p2": "Spouse can obtain work authorization.",
+        "p3": "No fixed minimum investment, and no annual cap or lottery."
+      },
+      "cons": {
+        "c1": "Limited to treaty-country nationals.",
+        "c2": "Requires a substantial, at-risk investment of your own funds.",
+        "c3": "No direct path to a green card.",
+        "c4": "CBI-acquired citizenship requires 3 years' residence first, and CBI programs face rising U.S. scrutiny."
+      },
+      "forms": {
+        "f1": {
+          "name": "Form DS-160 (Nonimmigrant Visa Application)",
+          "purpose": "The visa application filed at a U.S. consulate (applicants abroad).",
+          "who": "The investor."
+        },
+        "f2": {
+          "name": "Form DS-156E (Treaty Trader/Investor Application)",
+          "purpose": "Supplemental form documenting the treaty business and investment.",
+          "who": "The investor (consular processing)."
+        },
+        "f3": {
+          "name": "Form I-129 (Petition for a Nonimmigrant Worker)",
+          "purpose": "Used to change to or extend E-2 status from within the U.S.",
+          "who": "Applicants already in the U.S."
+        }
+      }
+    }
+
     }
   },
   "L1": {
@@ -3281,6 +3444,33 @@
         }
       }
     },
+
+  "travelProclamation": {
+  "disclaimer": "Entry restrictions change frequently and are subject to litigation. Verify current status at travel.state.gov before relying on this.",
+  "levels": {
+    "FULL_BAN": {
+      "label": "Entry currently suspended",
+      "description": "Both immigrant and nonimmigrant visa issuance is suspended for nationals of this country, with limited exceptions (e.g. current green-card holders, existing valid visas)."
+    },
+    "PARTIAL_BAN": {
+      "label": "Entry partially restricted",
+      "description": "Immigrant visas and B/F/M/J visas are suspended for nationals of this country. Some other categories may still be possible — confirm your situation."
+    },
+    "NONE": {
+      "label": "No current entry restriction",
+      "description": "This country is not currently named in the entry proclamation. Status can change — verify before relying on it."
+    }
+  },
+  "reasons": {
+    "fullBan": "This pathway requires a visa issued abroad, which is currently suspended for your country of citizenship. Exceptions are limited — speak with an attorney.",
+    "fullBanHumanitarian": "This is a U.S.-based protection, so the entry suspension may not block it directly — but it does affect relatives abroad and re-entry. Confirm with an attorney.",
+    "partialBanImmigrant": "Immigrant visas are currently suspended for your country of citizenship, which blocks this green-card pathway through a consulate. Limited exceptions apply.",
+    "partialBanHumanitarian": "This is a U.S.-based protection. The partial entry restriction affects relatives abroad and re-entry rather than this filing directly.",
+    "partialBanCaution": "Your country faces partial entry restrictions. This pathway is not categorically blocked, but processing may be affected — verify before proceeding.",
+    "immigrantVisaPause": "Immigrant visa issuance for your country is currently paused. This green-card pathway may be delayed — verify current status.",
+    "adjudicationHold": "Applications from your country may be subject to a processing hold. Expect possible delays and verify current status."
+  }
+},
     "pathwayDetailScreen": {
       "errorTitle": "Pathway not found",
       "currentViability": "Current Viability",
@@ -3634,5 +3824,56 @@
       "backloggedWarning": "Your category is currently backlogged. Movement depends on annual visa limits and demand.",
       "bulletinUpdated": "Visa Bulletin: {{date}}",
       "disclaimer": "This information is based on the U.S. Department of State Visa Bulletin and does not guarantee visa availability."
+    },
+    "countryTips": {
+  "disclaimer": "General information, not legal advice. Rules change often — verify your situation with a licensed immigration attorney.",
+  "proclamationGenericTitle": "Entry restrictions may apply",
+  "proclamationGenericBody": "Your country of citizenship is currently subject to a visa processing pause or hold. Verify current status at travel.state.gov before relying on a pathway.",
+  "cuba": {
+    "caa": {
+      "title": "Cuban Adjustment Act",
+      "body": "If you are Cuban and already in the U.S., after one year and one day of physical presence you may be able to apply for a green card under the Cuban Adjustment Act. This route is the subject of ongoing policy debate — confirm it still applies before relying on it."
     }
+  },
+  "haiti": {
+    "tps": {
+      "title": "Temporary Protected Status (TPS)",
+      "body": "Haiti TPS currently remains valid for existing holders under a court order, but the designation was terminated and the case is before the Supreme Court, with a decision expected around mid-2026. New initial registration is not being accepted. Application and work-permit fees now apply. Verify current status before acting."
+    }
+  },
+  "jamaica": {
+    "e2": {
+      "title": "E-2 Treaty Investor option",
+      "body": "Jamaica holds an E-2 treaty with the U.S., so a substantial business investment can support an E-2 visa. There is no direct green-card path from E-2."
+    }
+  },
+  "trinidad": {
+    "dv": {
+      "title": "Diversity Visa eligible",
+      "body": "Trinidad & Tobago is eligible for the DV Lottery for the current cycle. The official registration fee is $1 — anyone charging more is a scam."
+    },
+    "e2": {
+      "title": "E-2 Treaty Investor option",
+      "body": "Trinidad & Tobago holds an E-2 treaty, so a substantial business investment can support an E-2 visa. There is no direct green-card path from E-2."
+    }
+  },
+  "dominicanRepublic": {
+    "family": {
+      "title": "Family-based is the main route",
+      "body": "For most people from the Dominican Republic, a petition from a U.S. citizen or permanent-resident relative is the primary path. The Dominican Republic is not eligible for the DV Lottery."
+    }
+  },
+  "grenada": {
+    "e2cbi": {
+      "title": "E-2 Treaty Investor option",
+      "body": "Grenada holds an E-2 treaty. Citizenship obtained through Grenada's investment program requires three years of residence in Grenada before applying for E-2 (AMIGOS Act, 2022). Investment-based citizenship programs are under increased U.S. scrutiny, so treaty access through them carries policy risk."
+    }
+  },
+  "territory": {
+    "title": "U.S. territory — you may already be a citizen",
+    "body": "People born in this U.S. territory are U.S. citizens at birth and generally do not need an immigration pathway. You can live and work anywhere in the U.S."
   }
+}
+
+  }
+  
