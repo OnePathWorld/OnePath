@@ -27,6 +27,10 @@ import {
   getExpiryLabel,
 } from "../utils/labels";
 import analytics, { EVENTS } from "../utils/analytics";
+import {
+  getProfileNextAction,
+  NEXT_ACTION_VISUALS,
+} from "../utils/profileNextAction";
 import { assessPathway } from "../data/travelProclamation";
 import { getCountryTips } from "../data/countrySpecificTips";
 
@@ -60,28 +64,31 @@ const StatusDetailsScreen = ({ route, navigation }) => {
     healthStatus: healthScore?.status,
   });
 
-  const getStatusColor = () => {
-    if (!healthScore) return "#2E86AB";
-    if (healthScore.status === "Critical") return "#F44336";
-    if (healthScore.status === "Attention") return "#FF9800";
-    return "#4CAF50";
-  };
+  // Header action: prefer a concrete dated warning (a hard deadline) if one
+  // exists; otherwise derive a tailored action from the profile. The numeric
+  // health score is no longer shown — the header now leads with what to DO.
+  // Color + emoji follow the action's urgency, so an "apply for citizenship"
+  // (prepare) never gets painted like an emergency and an imminent expiry does.
+  const nextAction = (() => {
+    if (warnings.length > 0) {
+      const urgent = warnings.reduce((a, b) =>
+        (a.daysUntil ?? Infinity) <= (b.daysUntil ?? Infinity) ? a : b
+      );
+      return {
+        text: urgent.message,
+        urgency: urgent.severity === "critical" ? "action" : "prepare",
+      };
+    }
+    const a = getProfileNextAction(profile);
+    return { text: t(a.templateKey, a.fallback), urgency: a.urgency };
+  })();
 
-  const getStatusEmoji = () => {
-    if (!healthScore) return "📊";
-    if (healthScore.status === "Critical") return "🚨";
-    if (healthScore.status === "Attention") return "⚠️";
-    return "✅";
-  };
+  const actionVisuals =
+    NEXT_ACTION_VISUALS[nextAction.urgency] || NEXT_ACTION_VISUALS.monitor;
 
-  // Translate the status string from healthScore (raw enum: "Critical", "Attention", "Good")
-  const getStatusLabel = () => {
-    const raw = healthScore?.status || "Unknown";
-    const key = `statusDetailsScreen.status.${raw}`;
-    const translated = t(key);
-    // Fallback to uppercase raw if key missing
-    return translated === key ? raw.toUpperCase() : translated;
-  };
+  const getStatusColor = () => actionVisuals.color;
+  const getStatusEmoji = () => actionVisuals.emoji;
+  const getNextAction = () => nextAction.text;
 
   // Inside-US / Outside-US display
   const getLocationLabel = () => {
@@ -123,15 +130,7 @@ const StatusDetailsScreen = ({ route, navigation }) => {
           <Text style={styles.headerTitle}>
             {t("statusDetailsScreen.headerTitle")}
           </Text>
-          <View style={styles.scoreContainer}>
-            <Text style={styles.scoreNumber}>{healthScore?.score || 0}</Text>
-            <Text style={styles.scoreLabel}>/100</Text>
-          </View>
-          <Text style={styles.scoreStatus}>
-            {t("statusDetailsScreen.statusLabel", {
-              status: getStatusLabel(),
-            })}
-          </Text>
+          <Text style={styles.nextActionText}>{getNextAction()}</Text>
         </View>
 
         {/* CRITICAL ALERTS */}
@@ -603,14 +602,13 @@ const styles = StyleSheet.create({
     color: "#FFF",
     marginBottom: 20,
   },
-  scoreContainer: { flexDirection: "row", alignItems: "flex-end" },
-  scoreNumber: { fontSize: 48, fontWeight: "bold", color: "#FFF" },
-  scoreLabel: { fontSize: 24, color: "#FFF", marginBottom: 6, opacity: 0.9 },
-  scoreStatus: {
-    fontSize: 16,
+  nextActionText: {
+    fontSize: 17,
     color: "#FFF",
-    marginTop: 10,
-    fontWeight: "500",
+    marginTop: 8,
+    fontWeight: "600",
+    textAlign: "center",
+    lineHeight: 23,
   },
 
   // Sections

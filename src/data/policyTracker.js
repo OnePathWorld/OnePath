@@ -1,21 +1,29 @@
 // src/data/policyTracker.js
-// Updated: April 2026 — converted to translation-key pattern.
+// Updated: July 13, 2026
 //
 // Pattern: data file with one class. All user-facing strings are translation
-// keys referenced via i18n.t(). See src/i18n/locales/{en,es,pt,zh}.json under
+// keys referenced via i18n.t(). See src/i18n/locales/{en,es,pt,zh,ht}.json under
 // the `policyTracker.*` namespace for the actual text.
 //
 // Render sites should call:
 //   - getActivePolicies() → translated policies grouped by severity
 //   - getCourtCases() → translated court cases
-//   - getUpcomingChanges() → translated upcoming changes
+//   - getUpcomingChanges() → translated upcoming changes (PAST DATES FILTERED OUT)
 //   - getEmbassyAlerts() → translated embassy alerts
 // or use the analyzer (policyImpactAnalyzer.analyzeUserImpact()) which
 // returns translated objects.
 //
-// Dates, severities, IDs, and impact codes (HIGH/MODERATE/LOW/CRITICAL)
-// are part of the translation strings themselves so they can be localized
-// where appropriate (e.g. ALTO/MODERADO in Spanish).
+// Severities, IDs, and impact codes are data; user-facing prose is a key.
+//
+// ⚠️ DATE DISCIPLINE (learned the hard way — see the TPS entry):
+//   1. Never assert a date we can't verify. `expectedDate: null` is honest;
+//      a stale date makes the app look abandoned and can mislead.
+//   2. Never encode a volatile date at all. Where a government date is moving
+//      week to week (TPS EAD expirations), the copy points users to the
+//      official page instead of naming a day that will be wrong by release.
+//   3. Litigation status IS data. A figure can be numerically correct and still
+//      dangerously misleading if we present a contested policy as settled.
+//      That's why the $100K H-1B fee now has a court case attached.
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import i18n from "../i18n";
@@ -23,7 +31,7 @@ import i18n from "../i18n";
 export const POLICY_TRACKER_META = {
   lastChecked: new Date().toISOString(),
   version: "2.0",
-  lastUpdated: "April 3, 2026",
+  lastUpdated: "July 13, 2026",
   sources: [
     "Federal Register",
     "USCIS Policy Manual",
@@ -86,9 +94,47 @@ const POLICY_DEFINITIONS = {
       source: "DHS Interim Final Rule",
       publishedDate: "2025-10-30",
     },
+    {
+      id: "tps-terminations-scotus",
+      type: "court_decision",
+      severity: "critical",
+      i18nBaseKey: "policyTracker.policies.tpsTerminationsScotus",
+      actionsCount: 3,
+      impactStatuses: ["EAD"],
+      effectiveDate: "2026-06-25",
+      affectedVisas: ["TPS", "PAROLE", "EAD"],
+      affectedCountries: ["all"],
+      source: "Mullin v. Doe, 609 U.S. ___ (2026)",
+      publishedDate: "2026-06-25",
+    },
   ],
 
   warning: [
+    {
+      // PENDING — not yet law. OIRA cleared the final rule June 17, 2026
+      // ("consistent with change"); it has NOT published in the Federal Register
+      // and takes effect 60 days AFTER it does. Until then the current
+      // duration-of-status framework stands and the 60-day F-1 grace period is
+      // unchanged (see sevisData.js DURATION_OF_STATUS_RULE).
+      //
+      // Included as a WARNING, not critical, precisely because nothing has
+      // changed yet — the copy must say "coming, not here." Several secondary
+      // outlets are already reporting the proposed terms as if they were law;
+      // the app must not. When it publishes, re-verify the final text (OIRA
+      // cleared it "with change," so terms may differ from the NPRM) and
+      // escalate to critical.
+      id: "duration-of-status-rule-pending",
+      type: "pending_rule",
+      severity: "warning",
+      i18nBaseKey: "policyTracker.policies.durationOfStatusPending",
+      actionsCount: 3,
+      impactStatuses: ["F1", "OPT", "J1"],
+      effectiveDate: null, // not yet published — do NOT invent one
+      affectedVisas: ["F1", "OPT", "J1"],
+      affectedCountries: ["all"],
+      source: "DHS/ICE, RIN 1653-AA95; NPRM 90 FR 42070 (Aug. 28, 2025)",
+      publishedDate: "2026-06-17", // OIRA review completed
+    },
     {
       id: "h1b-weighted-lottery-fy2027",
       type: "process_change",
@@ -188,11 +234,39 @@ const POLICY_DEFINITIONS = {
 
 const COURT_CASE_DEFINITIONS = [
   {
+    // THE case that matters right now. The app quotes a $100,000 fee as settled
+    // law, but a federal court vacated it and the appeal is live — a user could
+    // reasonably abandon an H-1B plan over a fee that may not survive.
+    // Numerically the fee is CORRECT TODAY (it is collectible under the
+    // administrative stay), which is exactly why the posture must be shown:
+    // "correct but misleading" is still misleading.
+    //
+    // Timeline: Proclamation 10973 (Sep 19, 2025, eff. Sep 21) → D.D.C. UPHELD
+    // it (Dec 2025) → D. Mass. VACATED it as an unlawful tax + APA violation,
+    // nationwide (Jun 8, 2026, State of California v. Mullin) → Judge Sorokin
+    // denied a full stay but granted an ADMINISTRATIVE stay (Jun 12), so USCIS
+    // may collect again → Government appealed to the 1st Circuit (Jun 11) and
+    // moved to stay for the duration (Jun 18). Parallel suits pending in
+    // N.D. Cal. and before the D.C. Circuit.
+    //
+    // expectedDate: null — the 1st Circuit has not set one. Do not invent it.
+    id: "h1b-100k-fee-litigation",
+    i18nBaseKey: "policyTracker.courtCases.h1b100kFeeLitigation",
+    contingencyActionsCount: 3,
+    status: "on_appeal",
+    expectedDate: null,
+    affectedVisas: ["H1B"],
+  },
+  {
+    // expectedDate was "2026-06-01" — six weeks in the past while still marked
+    // `pending`, so the app was telling users a decision was "expected" on a day
+    // that had already gone by. No verified new date exists, so we assert none
+    // rather than invent one; getCourtCaseImpact() handles null.
     id: "weighted-lottery-challenge",
     i18nBaseKey: "policyTracker.courtCases.weightedLotteryChallenge",
     contingencyActionsCount: 2,
     status: "pending",
-    expectedDate: "2026-06-01",
+    expectedDate: null,
     affectedVisas: ["H1B"],
   },
 ];
@@ -365,7 +439,34 @@ export function getCourtCases() {
   return COURT_CASE_DEFINITIONS.map(inflateCourtCase);
 }
 
+/**
+ * Upcoming changes, PAST DATES FILTERED OUT.
+ *
+ * PolicyTrackerScreen renders this list unfiltered, so before this guard the
+ * "Upcoming Changes" section was showing events that had already happened —
+ * e.g. "H-1B filing window opens — April 1, 2026" was still listed as upcoming
+ * in July. Four of the six definitions are now in the past. Rather than delete
+ * them (they'll recur next cycle with new dates), filter at read time.
+ *
+ * Sorted soonest-first so the next real deadline leads.
+ */
 export function getUpcomingChanges() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // include an event happening today
+
+  return UPCOMING_CHANGE_DEFINITIONS.filter((def) => {
+    const d = new Date(def.date);
+    return !Number.isNaN(d.getTime()) && d >= today;
+  })
+    .sort((a, b) => new Date(a.date) - new Date(b.date))
+    .map(inflateUpcomingChange);
+}
+
+/**
+ * Every upcoming change, including past ones. Kept for any caller that needs
+ * the full historical set; not used by the screen.
+ */
+export function getAllUpcomingChanges() {
   return UPCOMING_CHANGE_DEFINITIONS.map(inflateUpcomingChange);
 }
 
@@ -532,6 +633,14 @@ export class PolicyImpactAnalyzer {
   }
 
   getCourtCaseImpact(courtCase, profile) {
+    // expectedDate is deliberately null when we can't verify one (see
+    // COURT_CASE_DEFINITIONS). Without this guard the template would render
+    // "Decision expected null" — worse than saying nothing.
+    if (!courtCase.expectedDate) {
+      return t("policyTracker.analyzer.courtCaseImpactNoDate", {
+        probability: courtCase.probability,
+      });
+    }
     return t("policyTracker.analyzer.courtCaseImpact", {
       probability: courtCase.probability,
       date: courtCase.expectedDate,

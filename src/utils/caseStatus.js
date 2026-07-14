@@ -2,11 +2,7 @@
 // =========================================================
 // USCIS Case Status API Client
 // ---------------------------------------------------------
-// Talks to the OnePath Railway backend, which proxies to the
-// official USCIS Case Status API. The backend holds OAuth
-// client credentials server-side (USCIS demo criterion #3) —
-// the React Native client only ever sees the proxied response.
-//
+// 
 // Backend contract:
 //   GET https://onepath-production.up.railway.app/case-status/:receiptNumber
 //   GET https://onepath-production.up.railway.app/case-status/:receiptNumber?refresh=true
@@ -49,9 +45,7 @@
 
 const API_BASE_URL = "https://onepath-production.up.railway.app";
 
-// Timeout for slow USCIS responses — the demo reviewer will be
-// watching this; 15s gives us plenty of headroom without making
-// the user think the app froze.
+
 const REQUEST_TIMEOUT_MS = 15000;
 
 /**

@@ -12,8 +12,8 @@
 //   intentionally NOT hardcoded — verify against the State Dept reciprocity
 //   tables, since published figures conflict.
 
-export const FEES_LAST_UPDATED = "June 22, 2026";
-export const FEES_DATA_VERSION = "2026-06-22";
+export const FEES_LAST_UPDATED = "July 13, 2026";
+export const FEES_DATA_VERSION = "2026-07-13";
 
 export const FEES = {
   I130: {
@@ -155,9 +155,8 @@ export const FEES = {
     name: "Temporary Protected Status (TPS)",
     category: "protection",
     description: "Apply for or re-register for Temporary Protected Status",
-    tooltip:
-      "Application fee raised to $500 under the 2025 reconciliation law. A TPS-based work permit (I-765) costs $550 initial / $275 renewal, and TPS EADs are now limited to 1-year validity. New initial registration is unavailable where a designation has been terminated (e.g. Haiti, pending litigation).",
-    feesUSD: {
+   tooltip:
+      "Application fee $500 under the 2025 reconciliation law; a TPS-based work permit (I-765) costs $550 initial / $275 renewal. IMPORTANT: On June 25, 2026 the Supreme Court (Mullin v. Doe) held that courts cannot review TPS terminations. Terminated designations — including Haiti and Syria — are moving forward, and TPS work permits are ending on dates that are changing week to week. New initial registration is not accepted for terminated designations. Check the official USCIS TPS page for the country and speak with an immigration attorney.",feesUSD: {
       application: 500,
       eadInitial: 550,
       eadRenewal: 275,

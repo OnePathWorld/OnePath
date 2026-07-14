@@ -63,6 +63,12 @@ export const EVENTS = {
     CASE_STATUS_ERROR: "Case Status Error",
     CASE_STATUS_REMOVED: "Case Status Removed",
 
+  // Track-before-onboard funnel
+  TRACK_FIRST_SELECTED: "Track First Selected",
+  TRACK_FIRST_ENTERED_APP: "Track First Entered App",
+  PROFILE_INVITE_SHOWN: "Profile Invite Shown",
+  PROFILE_INVITE_TAPPED: "Profile Invite Tapped",
+
   // Engagement
   APP_OPENED: "App Opened",
   SESSION_START: "Session Start",

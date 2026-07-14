@@ -14,184 +14,25 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTranslation } from "react-i18next";
 import analytics, { EVENTS } from "../utils/analytics";
+import {
+  buildPrimaryCountryOptions,
+  filterCountrySearch,
+} from "../data/countries";
+import {
+  WORK_AUTH_BY_VISA,
+  redactAnswer,
+  pruneOrphanedAnswers,
+  applyProfileInference,
+} from "../utils/onboardingLogic";
 
-// -----------------------------------------------------------------
-// COUNTRY SEARCH LIST
-// ---------------------------------------------------------
-// Used when the user selects "Other" on countryOfCitizenship.
-// Covers ~150 countries not in the top-12 pinned list.
-// Values are stored in AsyncStorage and used by analytics —
-// keep them stable across releases.
-// -----------------------------------------------------------------
-const COUNTRY_SEARCH_LIST = [
-  { value: "afghanistan",        label: "🇦🇫 Afghanistan" },
-  { value: "albania",            label: "🇦🇱 Albania" },
-  { value: "algeria",            label: "🇩🇿 Algeria" },
-  { value: "angola",             label: "🇦🇴 Angola" },
-  { value: "antigua_barbuda",    label: "🇦🇬 Antigua & Barbuda" },
-  { value: "argentina",          label: "🇦🇷 Argentina" },
-  { value: "armenia",            label: "🇦🇲 Armenia" },
-  { value: "australia",          label: "🇦🇺 Australia" },
-  { value: "austria",            label: "🇦🇹 Austria" },
-  { value: "azerbaijan",         label: "🇦🇿 Azerbaijan" },
-  { value: "bahamas",            label: "🇧🇸 Bahamas" },
-  { value: "bahrain",            label: "🇧🇭 Bahrain" },
-  { value: "bangladesh",         label: "🇧🇩 Bangladesh" },
-  { value: "barbados",           label: "🇧🇧 Barbados" },
-  { value: "belarus",            label: "🇧🇾 Belarus" },
-  { value: "belgium",            label: "🇧🇪 Belgium" },
-  { value: "belize",             label: "🇧🇿 Belize" },
-  { value: "benin",              label: "🇧🇯 Benin" },
-  { value: "bolivia",            label: "🇧🇴 Bolivia" },
-  { value: "bosnia",             label: "🇧🇦 Bosnia & Herzegovina" },
-  { value: "botswana",           label: "🇧🇼 Botswana" },
-  { value: "bulgaria",           label: "🇧🇬 Bulgaria" },
-  { value: "burkina_faso",       label: "🇧🇫 Burkina Faso" },
-  { value: "burundi",            label: "🇧🇮 Burundi" },
-  { value: "cambodia",           label: "🇰🇭 Cambodia" },
-  { value: "cameroon",           label: "🇨🇲 Cameroon" },
-  { value: "cape_verde",         label: "🇨🇻 Cape Verde" },
-  { value: "cayman_islands",     label: "🇰🇾 Cayman Islands" },
-  { value: "chad",               label: "🇹🇩 Chad" },
-  { value: "chile",              label: "🇨🇱 Chile" },
-  { value: "colombia",           label: "🇨🇴 Colombia" },
-  { value: "comoros",            label: "🇰🇲 Comoros" },
-  { value: "congo",              label: "🇨🇬 Congo" },
-  { value: "costa_rica",         label: "🇨🇷 Costa Rica" },
-  { value: "croatia",            label: "🇭🇷 Croatia" },
-  { value: "cuba",               label: "🇨🇺 Cuba" },
-  { value: "curacao",            label: "🇨🇼 Curaçao" },
-  { value: "cyprus",             label: "🇨🇾 Cyprus" },
-  { value: "czech_republic",     label: "🇨🇿 Czech Republic" },
-  { value: "denmark",            label: "🇩🇰 Denmark" },
-  { value: "djibouti",           label: "🇩🇯 Djibouti" },
-  { value: "dominica",           label: "🇩🇲 Dominica" },
-  { value: "dominican_republic", label: "🇩🇴 Dominican Republic" },
-  { value: "dr_congo",           label: "🇨🇩 DR Congo" },
-  { value: "ecuador",            label: "🇪🇨 Ecuador" },
-  { value: "egypt",              label: "🇪🇬 Egypt" },
-  { value: "el_salvador",        label: "🇸🇻 El Salvador" },
-  { value: "eritrea",            label: "🇪🇷 Eritrea" },
-  { value: "estonia",            label: "🇪🇪 Estonia" },
-  { value: "ethiopia",           label: "🇪🇹 Ethiopia" },
-  { value: "fiji",               label: "🇫🇯 Fiji" },
-  { value: "finland",            label: "🇫🇮 Finland" },
-  { value: "france",             label: "🇫🇷 France" },
-  { value: "gabon",              label: "🇬🇦 Gabon" },
-  { value: "gambia",             label: "🇬🇲 Gambia" },
-  { value: "georgia",            label: "🇬🇪 Georgia" },
-  { value: "ghana",              label: "🇬🇭 Ghana" },
-  { value: "greece",             label: "🇬🇷 Greece" },
-  { value: "grenada",            label: "🇬🇩 Grenada" },
-  { value: "guadeloupe",         label: "🇬🇵 Guadeloupe" },
-  { value: "guatemala",          label: "🇬🇹 Guatemala" },
-  { value: "guinea",             label: "🇬🇳 Guinea" },
-  { value: "guyana",             label: "🇬🇾 Guyana" },
-  { value: "honduras",           label: "🇭🇳 Honduras" },
-  { value: "hungary",            label: "🇭🇺 Hungary" },
-  { value: "iceland",            label: "🇮🇸 Iceland" },
-  { value: "indonesia",          label: "🇮🇩 Indonesia" },
-  { value: "iran",               label: "🇮🇷 Iran" },
-  { value: "iraq",               label: "🇮🇶 Iraq" },
-  { value: "ireland",            label: "🇮🇪 Ireland" },
-  { value: "israel",             label: "🇮🇱 Israel" },
-  { value: "italy",              label: "🇮🇹 Italy" },
-  { value: "ivory_coast",        label: "🇨🇮 Ivory Coast" },
-  { value: "jamaica",            label: "🇯🇲 Jamaica" },
-  { value: "jordan",             label: "🇯🇴 Jordan" },
-  { value: "kazakhstan",         label: "🇰🇿 Kazakhstan" },
-  { value: "kenya",              label: "🇰🇪 Kenya" },
-  { value: "kosovo",             label: "🇽🇰 Kosovo" },
-  { value: "kuwait",             label: "🇰🇼 Kuwait" },
-  { value: "kyrgyzstan",         label: "🇰🇬 Kyrgyzstan" },
-  { value: "laos",               label: "🇱🇦 Laos" },
-  { value: "latvia",             label: "🇱🇻 Latvia" },
-  { value: "lebanon",            label: "🇱🇧 Lebanon" },
-  { value: "liberia",            label: "🇱🇷 Liberia" },
-  { value: "libya",              label: "🇱🇾 Libya" },
-  { value: "lithuania",          label: "🇱🇹 Lithuania" },
-  { value: "luxembourg",         label: "🇱🇺 Luxembourg" },
-  { value: "madagascar",         label: "🇲🇬 Madagascar" },
-  { value: "malawi",             label: "🇲🇼 Malawi" },
-  { value: "malaysia",           label: "🇲🇾 Malaysia" },
-  { value: "mali",               label: "🇲🇱 Mali" },
-  { value: "martinique",         label: "🇲🇶 Martinique" },
-  { value: "mauritania",         label: "🇲🇷 Mauritania" },
-  { value: "mauritius",          label: "🇲🇺 Mauritius" },
-  { value: "moldova",            label: "🇲🇩 Moldova" },
-  { value: "mongolia",           label: "🇲🇳 Mongolia" },
-  { value: "montenegro",         label: "🇲🇪 Montenegro" },
-  { value: "montserrat",         label: "🇲🇸 Montserrat" },
-  { value: "morocco",            label: "🇲🇦 Morocco" },
-  { value: "mozambique",         label: "🇲🇿 Mozambique" },
-  { value: "myanmar",            label: "🇲🇲 Myanmar" },
-  { value: "namibia",            label: "🇳🇦 Namibia" },
-  { value: "nepal",              label: "🇳🇵 Nepal" },
-  { value: "netherlands",        label: "🇳🇱 Netherlands" },
-  { value: "new_zealand",        label: "🇳🇿 New Zealand" },
-  { value: "nicaragua",          label: "🇳🇮 Nicaragua" },
-  { value: "niger",              label: "🇳🇪 Niger" },
-  { value: "north_korea",        label: "🇰🇵 North Korea" },
-  { value: "north_macedonia",    label: "🇲🇰 North Macedonia" },
-  { value: "norway",             label: "🇳🇴 Norway" },
-  { value: "oman",               label: "🇴🇲 Oman" },
-  { value: "pakistan",           label: "🇵🇰 Pakistan" },
-  { value: "palestine",          label: "🇵🇸 Palestine" },
-  { value: "panama",             label: "🇵🇦 Panama" },
-  { value: "papua_new_guinea",   label: "🇵🇬 Papua New Guinea" },
-  { value: "paraguay",           label: "🇵🇾 Paraguay" },
-  { value: "peru",               label: "🇵🇪 Peru" },
-  { value: "poland",             label: "🇵🇱 Poland" },
-  { value: "portugal",           label: "🇵🇹 Portugal" },
-  { value: "puerto_rico",        label: "🇵🇷 Puerto Rico (US Territory)" },
-  { value: "qatar",              label: "🇶🇦 Qatar" },
-  { value: "romania",            label: "🇷🇴 Romania" },
-  { value: "russia",             label: "🇷🇺 Russia" },
-  { value: "rwanda",             label: "🇷🇼 Rwanda" },
-  { value: "saint_kitts_nevis",  label: "🇰🇳 Saint Kitts & Nevis" },
-  { value: "saint_lucia",        label: "🇱🇨 Saint Lucia" },
-  { value: "saint_vincent",      label: "🇻🇨 Saint Vincent & the Grenadines" },
-  { value: "saudi_arabia",       label: "🇸🇦 Saudi Arabia" },
-  { value: "senegal",            label: "🇸🇳 Senegal" },
-  { value: "serbia",             label: "🇷🇸 Serbia" },
-  { value: "sierra_leone",       label: "🇸🇱 Sierra Leone" },
-  { value: "singapore",          label: "🇸🇬 Singapore" },
-  { value: "sint_maarten",       label: "🇸🇽 Sint Maarten" },
-  { value: "slovakia",           label: "🇸🇰 Slovakia" },
-  { value: "slovenia",           label: "🇸🇮 Slovenia" },
-  { value: "somalia",            label: "🇸🇴 Somalia" },
-  { value: "south_africa",       label: "🇿🇦 South Africa" },
-  { value: "south_sudan",        label: "🇸🇸 South Sudan" },
-  { value: "spain",              label: "🇪🇸 Spain" },
-  { value: "sri_lanka",          label: "🇱🇰 Sri Lanka" },
-  { value: "sudan",              label: "🇸🇩 Sudan" },
-  { value: "suriname",           label: "🇸🇷 Suriname" },
-  { value: "sweden",             label: "🇸🇪 Sweden" },
-  { value: "switzerland",        label: "🇨🇭 Switzerland" },
-  { value: "syria",              label: "🇸🇾 Syria" },
-  { value: "taiwan",             label: "🇹🇼 Taiwan" },
-  { value: "tajikistan",         label: "🇹🇯 Tajikistan" },
-  { value: "tanzania",           label: "🇹🇿 Tanzania" },
-  { value: "thailand",           label: "🇹🇭 Thailand" },
-  { value: "timor_leste",        label: "🇹🇱 Timor-Leste" },
-  { value: "togo",               label: "🇹🇬 Togo" },
-  { value: "trinidad_tobago",    label: "🇹🇹 Trinidad & Tobago" },
-  { value: "tunisia",            label: "🇹🇳 Tunisia" },
-  { value: "turkey",             label: "🇹🇷 Turkey" },
-  { value: "turkmenistan",       label: "🇹🇲 Turkmenistan" },
-  { value: "turks_caicos",       label: "🇹🇨 Turks & Caicos" },
-  { value: "uganda",             label: "🇺🇬 Uganda" },
-  { value: "ukraine",            label: "🇺🇦 Ukraine" },
-  { value: "united_arab_emirates", label: "🇦🇪 United Arab Emirates" },
-  { value: "uruguay",            label: "🇺🇾 Uruguay" },
-  { value: "us_virgin_islands",  label: "🇻🇮 US Virgin Islands (US Territory)" },
-  { value: "uzbekistan",         label: "🇺🇿 Uzbekistan" },
-  { value: "venezuela",          label: "🇻🇪 Venezuela" },
-  { value: "vietnam",            label: "🇻🇳 Vietnam" },
-  { value: "yemen",              label: "🇾🇪 Yemen" },
-  { value: "zambia",             label: "🇿🇲 Zambia" },
-  { value: "zimbabwe",           label: "🇿🇼 Zimbabwe" },
-];
+// NOTE: COUNTRY_SEARCH_LIST and the pinned quick-pick list now live in
+// src/data/countries.js (shared with SettingsScreen). The inline array that
+// used to be here was removed in the shared-list refactor.
+
+// The pure onboarding helpers — WORK_AUTH_BY_VISA / URGENCY_BY_EXPIRY inference,
+// redactAnswer (§10), pruneOrphanedAnswers (§11), and applyProfileInference (§7)
+// — now live in src/utils/onboardingLogic.js so they can be unit-tested without
+// dragging React Native into the test. Imported above.
 
 const OnboardingScreen = ({ navigation, onDone }) => {
   const { t } = useTranslation();
@@ -376,7 +217,19 @@ const OnboardingScreen = ({ navigation, onDone }) => {
       id: "urgency",
       title: t("onboarding.urgency.title"),
       subtitle: t("onboarding.urgency.subtitle"),
-      showIf: (profile) => profile.currentVisa !== "GC",
+      // Protection seekers only. Everyone else inside-US non-GC answers
+      // expiryTimeline, from which urgency is inferred at completion (see
+      // URGENCY_BY_EXPIRY), so the standalone question is skipped for them.
+      // Protection users are the one inside-US group with no expiryTimeline
+      // (it's gated out for purpose === "protection"), so we keep asking them
+      // directly to avoid losing the signal. Outside-US never reaches this
+      // (currentVisa is unset there); its one soft consumer, policyTracker's
+      // "imminent effect" line, degrades safely to "" and it stays editable
+      // in Settings.
+      showIf: (profile) =>
+        profile.location === "inside_us" &&
+        profile.currentVisa !== "GC" &&
+        profile.purpose === "protection",
       options: [
         { value: "immediate", label: t("onboarding.urgency.options.immediate") },
         { value: "soon",      label: t("onboarding.urgency.options.soon") },
@@ -389,7 +242,10 @@ const OnboardingScreen = ({ navigation, onDone }) => {
       title: t("onboarding.hasWorkAuth.title"),
       subtitle: t("onboarding.hasWorkAuth.subtitle"),
       showIf: (profile) =>
-        profile.location === "inside_us" && profile.currentVisa !== "GC",
+        profile.location === "inside_us" &&
+        profile.currentVisa !== "GC" &&
+        // ambiguous visas only — unambiguous ones are inferred at completion
+        WORK_AUTH_BY_VISA[profile.currentVisa] === undefined,
       options: [
         { value: "yes_unrestricted", label: t("onboarding.hasWorkAuth.options.yes_unrestricted") },
         { value: "yes_restricted",   label: t("onboarding.hasWorkAuth.options.yes_restricted") },
@@ -403,21 +259,13 @@ const OnboardingScreen = ({ navigation, onDone }) => {
       id: "countryOfCitizenship",
       title: t("onboarding.countryOfCitizenship.title"),
       subtitle: t("onboarding.countryOfCitizenship.subtitle"),
-      options: [
-        { value: "mexico",      label: t("onboarding.countryOfCitizenship.options.mexico") },
-        { value: "india",       label: t("onboarding.countryOfCitizenship.options.india") },
-        { value: "china",       label: t("onboarding.countryOfCitizenship.options.china") },
-        { value: "haiti",       label: t("onboarding.countryOfCitizenship.options.haiti") },
-        { value: "philippines", label: t("onboarding.countryOfCitizenship.options.philippines") },
-        { value: "brazil",      label: t("onboarding.countryOfCitizenship.options.brazil") },
-        { value: "nigeria",     label: t("onboarding.countryOfCitizenship.options.nigeria") },
-        { value: "canada",      label: t("onboarding.countryOfCitizenship.options.canada") },
-        { value: "uk",          label: t("onboarding.countryOfCitizenship.options.uk") },
-        { value: "germany",     label: t("onboarding.countryOfCitizenship.options.germany") },
-        { value: "south_korea", label: t("onboarding.countryOfCitizenship.options.south_korea") },
-        { value: "japan",       label: t("onboarding.countryOfCitizenship.options.japan") },
-        { value: "other",       label: t("onboarding.countryOfCitizenship.options.other") },
-      ],
+      // Pinned quick-pick list sourced from the shared module so it can never
+      // drift from SettingsScreen again. Labels resolved under this screen's
+      // i18n namespace; "other" is appended by the builder.
+      options: buildPrimaryCountryOptions(
+        t,
+        "onboarding.countryOfCitizenship.options"
+      ),
       hasTextInput: true,
       textInputPlaceholder: t("onboarding.countryOfCitizenship.searchPlaceholder"),
       textInputShowIf: "other",
@@ -502,8 +350,16 @@ const OnboardingScreen = ({ navigation, onDone }) => {
     // Block any tap during the auto-advance window
     if (isAdvancing) return;
 
-    // Update profile state
-    setUserProfile((prev) => ({ ...prev, [question.id]: value }));
+    // Update profile state. Prune immediately so that changing a gating answer
+    // on back-navigation clears now-unreachable dependents right away (not just
+    // at completion) — otherwise a stale gate (e.g. a leftover currentVisa="GC"
+    // after switching to outside-US) would keep suppressing downstream questions
+    // like purpose, so the user never gets re-asked them. The current question
+    // stays visible (its own value doesn't change its showIf), so it's untouched;
+    // for non-gating answers this is a no-op.
+    setUserProfile((prev) =>
+      pruneOrphanedAnswers({ ...prev, [question.id]: value }, questions)
+    );
 
     // Ensure an Animated.Value exists for this option
     if (!scaleAnims[value]) {
@@ -538,7 +394,7 @@ const OnboardingScreen = ({ navigation, onDone }) => {
         analytics.track(EVENTS.ONBOARDING_STEP, {
           step: currentStep,
           questionId: question.id,
-          answer: value,
+          answer: redactAnswer(question.id, value),
         });
         setCurrentStep((s) => s + 1);
         // isAdvancing resets via the useEffect that watches currentStep
@@ -584,7 +440,7 @@ const OnboardingScreen = ({ navigation, onDone }) => {
         analytics.track(EVENTS.ONBOARDING_STEP, {
           step: currentStep,
           questionId: question.id,
-          answer: country.value,
+          answer: redactAnswer(question.id, country.value),
         });
         setCurrentStep((s) => s + 1);
       }, 400);
@@ -598,7 +454,10 @@ const OnboardingScreen = ({ navigation, onDone }) => {
     analytics.track(EVENTS.ONBOARDING_STEP, {
       step: currentStep,
       questionId: question.id,
-      answer: question.type === "info" ? "start" : userProfile[question.id],
+      answer:
+        question.type === "info"
+          ? "start"
+          : redactAnswer(question.id, userProfile[question.id]),
     });
 
     if (currentStep < visibleQuestions.length - 1) {
@@ -615,23 +474,41 @@ const OnboardingScreen = ({ navigation, onDone }) => {
     }
   };
 
-  const completeOnboarding = async () => {
+  // `overrides` is merged over the current profile before saving. It exists so a
+  // last-step "Not sure" (handleNotSure) can clear that final field at save time
+  // — completeOnboarding reads profile state via closure, so a setUserProfile
+  // call in the same tick wouldn't be visible here yet. Every other caller passes
+  // nothing, so effectiveProfile === userProfile and behavior is unchanged.
+  const completeOnboarding = async (overrides = {}) => {
     if (saving) return;
     setSaving(true);
 
     try {
       await AsyncStorage.setItem("@hasLaunched", "true");
 
+      const effectiveProfile = { ...userProfile, ...overrides };
+
+      // Drop answers stranded by a back-nav gating change (see pruneOrphanedAnswers)
+      // BEFORE inferring, so a stale expiryTimeline/visa can't seed a wrong value.
+      const cleanedProfile = pruneOrphanedAnswers(effectiveProfile, questions);
+
+      // Fill values for questions skipped by inference (work-auth from the visa;
+      // urgency from expiry, only when urgency is empty). Extracted to
+      // onboardingLogic.applyProfileInference; see its comments for the rules.
+      const profileToSave = applyProfileInference(cleanedProfile);
+
       await AsyncStorage.setItem(
         "@userProfile_v2",
-        JSON.stringify(userProfile)
+        JSON.stringify(profileToSave)
       );
 
+      // Mirror from profileToSave (not the raw userProfile) so the legacy
+      // store carries the same inferred urgency as @userProfile_v2.
       const legacyProfile = {
-        location: userProfile.location,
-        purpose: userProfile.purpose,
-        urgency: userProfile.urgency,
-        language: userProfile.language,
+        location: profileToSave.location,
+        purpose: profileToSave.purpose,
+        urgency: profileToSave.urgency,
+        language: profileToSave.language,
       };
       await AsyncStorage.setItem(
         "@userProfile",
@@ -640,21 +517,21 @@ const OnboardingScreen = ({ navigation, onDone }) => {
 
       // Track completion and identify user
       analytics.track(EVENTS.ONBOARDING_COMPLETED, {
-        purpose: userProfile.purpose,
-        country: userProfile.countryOfCitizenship,
-        countrySpecified: userProfile.countrySpecified || "",
-        visa: userProfile.currentVisa,
-        location: userProfile.location,
-        gcYearsHeld: userProfile.gcYearsHeld || "",
-        outsideUsStage: userProfile.outsideUsStage || "",
-        hasReceiptNumber: userProfile.hasReceiptNumber || "",
+        purpose: profileToSave.purpose,
+        country: profileToSave.countryOfCitizenship,
+        countrySpecified: profileToSave.countrySpecified || "",
+        visa: profileToSave.currentVisa,
+        location: profileToSave.location,
+        gcYearsHeld: profileToSave.gcYearsHeld || "",
+        outsideUsStage: profileToSave.outsideUsStage || "",
+        hasReceiptNumber: profileToSave.hasReceiptNumber || "",
       });
-      analytics.identifyUser(userProfile);
+      analytics.identifyUser(profileToSave);
 
       if (typeof onDone === "function") onDone();
 
       navigation.replace("OnboardingSummary", {
-        userProfile,
+        userProfile: profileToSave,
       });
     } catch (err) {
       console.error("Onboarding save failed:", err);
@@ -663,13 +540,69 @@ const OnboardingScreen = ({ navigation, onDone }) => {
     }
   };
 
-  const handleSkip = () => {
-    if (isAdvancing) return;
+  const handleSkip = async () => {
+    if (isAdvancing || saving) return;
     analytics.track(EVENTS.ONBOARDING_SKIPPED, {
       skippedAtStep: currentStep,
       questionId: question.id,
     });
-    completeOnboarding();
+
+    // "Skip for now" means later, not done. Unlike completeOnboarding() — which
+    // sets @hasLaunched and thereby de-registers the Onboarding routes — skip
+    // enters the app via @hasEnteredApp only, exactly like the track-first path.
+    // That keeps @hasLaunched false, so the Onboarding routes stay registered and
+    // the existing Home/Settings "complete your profile" invites can bring the
+    // user back in. No profile is written, matching the profile-absent state those
+    // surfaces were hardened for in §8. reset() (not navigate) makes MainApp the
+    // root, discarding the onboarding stack — and sidesteps OnboardingSummary,
+    // which the normal completion path still routes through.
+    try {
+      await AsyncStorage.setItem("@hasEnteredApp", "true");
+    } catch (err) {
+      console.error("Skip-for-now failed to persist entry flag:", err);
+    }
+
+    if (typeof onDone === "function") onDone();
+    navigation.reset({ index: 0, routes: [{ name: "MainApp" }] });
+  };
+
+  // Per-question "I'm not sure". Unlike handleSkip (which ends onboarding
+  // entirely), this advances to the NEXT question so no single question is a
+  // dead end. It records NO answer on purpose: the field is cleared to "".
+  //   - The §7 completion-time inference guards fill work-auth/urgency only when
+  //     their field is empty, and every downstream consumer was audited to
+  //     degrade cleanly on "", so an unknown answer never becomes a wrong one.
+  //   - Clearing (rather than leaving a prior tap) keeps "not sure" honest if the
+  //     user had already selected something, e.g. on the last step where
+  //     selecting doesn't auto-advance.
+  // On the last step we hand the cleared value to completeOnboarding as an
+  // override, because its profile read is a closure that wouldn't see the
+  // setUserProfile above in the same tick. Not shown for `location` (the first
+  // inside/outside-US fork, which every user knows and which would collapse both
+  // downstream branches at once) or `info` steps (rendered on the other branch).
+  const handleNotSure = () => {
+    if (isAdvancing || saving) return;
+
+    setUserProfile((prev) => {
+      const next = { ...prev, [question.id]: "" };
+      // country stores a display label alongside the enum — clear it too
+      if (question.id === "countryOfCitizenship") next.countrySpecified = "";
+      return next;
+    });
+
+    analytics.track(EVENTS.ONBOARDING_STEP, {
+      step: currentStep,
+      questionId: question.id,
+      answer: "not_sure",
+    });
+
+    if (currentStep < visibleQuestions.length - 1) {
+      setCurrentStep((s) => s + 1);
+    } else {
+      const override = { [question.id]: "" };
+      if (question.id === "countryOfCitizenship") override.countrySpecified = "";
+      completeOnboarding(override);
+    }
   };
 
   // -----------------------------------------------------------------
@@ -762,13 +695,19 @@ const OnboardingScreen = ({ navigation, onDone }) => {
   return (
     <SafeAreaView style={styles.safe} edges={["top"]}>
       <View style={styles.container}>
-        {/* SKIP */}
+        {/* SKIP FOR NOW — whole-flow escape hatch: ends onboarding and goes
+            straight to the summary. Distinct from the per-question "I'm not
+            sure" affordance below, which skips a single question. New key with
+            an English defaultValue so it renders before the locale pass; the
+            old `onboarding.skip` key is now unused and can be dropped then. */}
         <TouchableOpacity
           style={styles.skipButton}
           onPress={handleSkip}
           disabled={saving || isAdvancing}
         >
-          <Text style={styles.skipButtonText}>{t("onboarding.skip")}</Text>
+          <Text style={styles.skipButtonText}>
+            {t("onboarding.skipForNow", "Skip for now")}
+          </Text>
         </TouchableOpacity>
 
         {/* PROGRESS */}
@@ -808,6 +747,30 @@ const OnboardingScreen = ({ navigation, onDone }) => {
                   {t("onboarding.getStarted")}
                 </Text>
               </TouchableOpacity>
+
+              {/* Track-first entry: a one-tap path to the case tracker for
+                  users who already have a receipt number and want an answer
+                  before filling out a profile. The CaseStatusTracker route is
+                  already registered for pre-onboard users; { preOnboard: true }
+                  tells that screen to set @hasEnteredApp on first add and to
+                  offer a "continue to app" action. Copy uses a defaultValue so
+                  it renders before the locale keys are added. */}
+              <TouchableOpacity
+                style={styles.trackInsteadButton}
+                onPress={() => {
+                  analytics.track(EVENTS.TRACK_FIRST_SELECTED);
+                  navigation.navigate("CaseStatusTracker", {
+                    preOnboard: true,
+                  });
+                }}
+              >
+                <Text style={styles.trackInsteadText}>
+                  {t(
+                    "onboarding.welcome.trackInstead",
+                    "I already have a case number — just track it"
+                  )}
+                </Text>
+              </TouchableOpacity>
             </View>
           ) : (
             <View style={styles.questionContainer}>
@@ -835,16 +798,7 @@ const OnboardingScreen = ({ navigation, onDone }) => {
                       value={countrySearch}
                       onChangeText={(text) => {
                         setCountrySearch(text);
-                        const q = text.toLowerCase().trim();
-                        if (q.length === 0) {
-                          setCountrySearchResults([]);
-                          return;
-                        }
-                        setCountrySearchResults(
-                          COUNTRY_SEARCH_LIST.filter((c) =>
-                            c.label.toLowerCase().includes(q)
-                          ).slice(0, 6)
-                        );
+                        setCountrySearchResults(filterCountrySearch(text));
                       }}
                       autoCapitalize="words"
                       autoCorrect={false}
@@ -899,6 +853,24 @@ const OnboardingScreen = ({ navigation, onDone }) => {
                   </Text>
                 </TouchableOpacity>
               </View>
+
+              {/* NOT SURE — per-question skip. Subordinate to the primary Next
+                  CTA (no fill, muted), advances one question without recording
+                  an answer. Hidden on `location`: it's the first inside/outside
+                  fork, something every user knows, and an empty value there
+                  collapses both downstream branches at once. Copy uses a
+                  defaultValue so English renders before the locale pass. */}
+              {question.id !== "location" && (
+                <TouchableOpacity
+                  style={styles.notSureButton}
+                  onPress={handleNotSure}
+                  disabled={isAdvancing || saving}
+                >
+                  <Text style={styles.notSureText}>
+                    {t("onboarding.notSure", "I'm not sure — skip this question")}
+                  </Text>
+                </TouchableOpacity>
+              )}
             </View>
           )}
         </ScrollView>
@@ -1042,6 +1014,34 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   disabledButton: { backgroundColor: "#CCC" },
+
+  // Secondary, deliberately subordinate to primaryButton: no fill, muted
+  // color, so track-first reads as an alternative rather than a competing CTA.
+  trackInsteadButton: {
+    marginTop: 16,
+    paddingHorizontal: 24,
+    paddingVertical: 10,
+  },
+  trackInsteadText: {
+    color: "#2E86AB",
+    fontSize: 15,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+
+  // Per-question "I'm not sure": deliberately quiet — no fill, muted grey,
+  // centered under the nav row — so it reads as an unobtrusive escape from a
+  // single question, never competing with the primary Next button.
+  notSureButton: {
+    marginTop: 14,
+    paddingVertical: 8,
+    alignItems: "center",
+  },
+  notSureText: {
+    color: "#999",
+    fontSize: 14,
+    fontWeight: "500",
+  },
 
   disclaimerContainer: {
     paddingHorizontal: 24,

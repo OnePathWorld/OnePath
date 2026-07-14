@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Alert,
   Modal,
+  TextInput,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -16,11 +17,38 @@ import { useTranslation } from "react-i18next";
 import analytics from "../utils/analytics";
 import { PROCESSING_TIMES_META } from "../data/processingTimes";
 import { setAppLanguage, getCurrentLanguage } from "../i18n";
+import {
+  buildPrimaryCountryOptions,
+  filterCountrySearch,
+  getCountryLabel,
+} from "../data/countries";
+
+// i18n prefix for the pinned country quick-pick labels in this screen.
+const COUNTRY_KEY_PREFIX = "settings.fieldOptions.countryOfCitizenship.options";
 
 const SettingsScreen = ({ navigation }) => {
   const { t } = useTranslation();
   const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [editModal, setEditModal] = useState(null);
+
+  // Country search state — only active while editing countryOfCitizenship and
+  // the user has tapped "Other" to reveal the full searchable list.
+  const [countrySearch, setCountrySearch] = useState("");
+  const [countrySearchResults, setCountrySearchResults] = useState([]);
+  const [countryOtherSelected, setCountryOtherSelected] = useState(false);
+
+  // Reset transient country-search UI. Called when opening or closing the modal.
+  const resetCountrySearch = () => {
+    setCountrySearch("");
+    setCountrySearchResults([]);
+    setCountryOtherSelected(false);
+  };
+
+  const closeModal = () => {
+    setEditModal(null);
+    resetCountrySearch();
+  };
 
   useEffect(() => {
     loadProfile();
@@ -32,6 +60,8 @@ const SettingsScreen = ({ navigation }) => {
       if (data) setProfile(JSON.parse(data));
     } catch (err) {
       console.error("Failed to load profile:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,6 +109,30 @@ const SettingsScreen = ({ navigation }) => {
       );
     } catch (err) {
       console.error("Failed to update profile:", err);
+    }
+  };
+
+  // Commit a country chosen from the search list. Writes BOTH the stable
+  // value (used by analytics + country-keyed data like countrySpecificTips)
+  // and the captured label (countrySpecified), mirroring OnboardingScreen so
+  // the two entry points store the profile identically.
+  const updateCountryFromSearch = async (country) => {
+    try {
+      const updated = {
+        ...profile,
+        countryOfCitizenship: country.value,
+        countrySpecified: country.label,
+      };
+      setProfile(updated);
+      await AsyncStorage.setItem("@userProfile_v2", JSON.stringify(updated));
+      analytics.identifyUser(updated);
+      closeModal();
+      Alert.alert(
+        t("settings.updateAlert.title"),
+        t("settings.updateAlert.body")
+      );
+    } catch (err) {
+      console.error("Failed to update country:", err);
     }
   };
 
@@ -153,21 +207,10 @@ const SettingsScreen = ({ navigation }) => {
     countryOfCitizenship: {
         field: "countryOfCitizenship",
         title: t("settings.fieldOptions.countryOfCitizenship.title"),
-        options: [
-          { value: "mexico", label: t("settings.fieldOptions.countryOfCitizenship.options.mexico") },
-          { value: "india", label: t("settings.fieldOptions.countryOfCitizenship.options.india") },
-          { value: "china", label: t("settings.fieldOptions.countryOfCitizenship.options.china") },
-          { value: "haiti", label: t("settings.fieldOptions.countryOfCitizenship.options.haiti") },
-          { value: "brazil", label: t("settings.fieldOptions.countryOfCitizenship.options.brazil") }, 
-          { value: "philippines", label: t("settings.fieldOptions.countryOfCitizenship.options.philippines") },
-          { value: "nigeria", label: t("settings.fieldOptions.countryOfCitizenship.options.nigeria") },
-          { value: "canada", label: t("settings.fieldOptions.countryOfCitizenship.options.canada") },
-          { value: "uk", label: t("settings.fieldOptions.countryOfCitizenship.options.uk") },
-          { value: "germany", label: t("settings.fieldOptions.countryOfCitizenship.options.germany") },
-          { value: "south_korea", label: t("settings.fieldOptions.countryOfCitizenship.options.south_korea") },
-          { value: "japan", label: t("settings.fieldOptions.countryOfCitizenship.options.japan") },
-          { value: "other", label: t("settings.fieldOptions.countryOfCitizenship.options.other") },
-        ],
+        // Pinned quick-pick list from the shared module (same order as
+        // Onboarding). The full searchable list is reachable via the "Other"
+        // option, which reveals a search box in the edit modal below.
+        options: buildPrimaryCountryOptions(t, COUNTRY_KEY_PREFIX),
       },
     urgency: {
       field: "urgency",
@@ -230,6 +273,20 @@ const SettingsScreen = ({ navigation }) => {
     }
     if (!value) return t("common.notSet");
 
+    // Country needs special resolution: a stored value may be a pinned
+    // quick-pick (translated), a full-list country like "jamaica" (flag +
+    // English label), or — for older profiles — an unknown value. The shared
+    // helper handles all three, using countrySpecified when present. Without
+    // this, non-pinned countries fell through to the raw lowercase value.
+    if (field === "countryOfCitizenship") {
+      return getCountryLabel(
+        value,
+        t,
+        COUNTRY_KEY_PREFIX,
+        profile.countrySpecified
+      );
+    }
+
     const fieldConfig = FIELD_OPTIONS[field];
     if (fieldConfig) {
       const match = fieldConfig.options.find((o) => o.value === value);
@@ -238,13 +295,46 @@ const SettingsScreen = ({ navigation }) => {
     return value;
   };
 
-  if (!profile) {
+  if (loading) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.loading}>
           <Text style={styles.loadingText}>
             {t("settings.loadingProfile")}
           </Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  // Loaded, but no profile exists — e.g. a track-before-onboard user who
+  // entered the app via the case tracker without completing onboarding. Show a
+  // real empty state that invites profile completion instead of the perpetual
+  // "loading" text. We deliberately do NOT render the editable field rows for
+  // this state: editing one field with no base profile would spread into a
+  // one-key fragment. The CTA routes into onboarding (its routes are still
+  // registered while onboarding is incomplete).
+  if (!profile) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.emptyState}>
+          <Text style={styles.emptyTitle}>
+            {t("settings.emptyState.title", "Set up your profile")}
+          </Text>
+          <Text style={styles.emptyBody}>
+            {t(
+              "settings.emptyState.body",
+              "Answer a few quick questions to unlock guidance tailored to your situation — your pathways, timelines, and what to watch for."
+            )}
+          </Text>
+          <TouchableOpacity
+            style={styles.emptyCta}
+            onPress={() => navigation.navigate("Onboarding")}
+          >
+            <Text style={styles.emptyCtaText}>
+              {t("settings.emptyState.cta", "Get started")}
+            </Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     );
@@ -284,7 +374,10 @@ const SettingsScreen = ({ navigation }) => {
 
           <TouchableOpacity
             style={styles.fieldRow}
-            onPress={() => setEditModal(FIELD_OPTIONS.countryOfCitizenship)}
+            onPress={() => {
+              resetCountrySearch();
+              setEditModal(FIELD_OPTIONS.countryOfCitizenship);
+            }}
           >
             <Text style={styles.fieldLabel}>
               {t("settings.profile.fields.country")}
@@ -423,50 +516,111 @@ const SettingsScreen = ({ navigation }) => {
         visible={!!editModal}
         transparent
         animationType="slide"
-        onRequestClose={() => setEditModal(null)}
+        onRequestClose={closeModal}
       >
         <TouchableOpacity
           style={styles.modalOverlay}
           activeOpacity={1}
-          onPress={() => setEditModal(null)}
+          onPress={closeModal}
         >
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>{editModal?.title}</Text>
-            <ScrollView style={styles.modalScroll}>
-              {editModal?.options.map((opt) => (
-                <TouchableOpacity
-                  key={opt.value}
-                  style={[
-                    styles.modalOption,
-                    profile[editModal.field] === opt.value &&
-                      styles.modalOptionActive,
-                  ]}
-                  onPress={() => updateField(editModal.field, opt.value)}
-                >
-                  <Text
-                    style={[
-                      styles.modalOptionText,
-                      profile[editModal.field] === opt.value &&
-                        styles.modalOptionTextActive,
-                    ]}
-                  >
-                    {opt.label}
-                  </Text>
-                  {profile[editModal.field] === opt.value && (
-                    <Text style={styles.checkmark}>✓</Text>
+          {/* Stop taps inside the sheet from bubbling up to the overlay's
+              close handler (important now that the sheet contains a TextInput). */}
+          <TouchableOpacity activeOpacity={1} onPress={() => {}}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>{editModal?.title}</Text>
+              <ScrollView
+                style={styles.modalScroll}
+                keyboardShouldPersistTaps="handled"
+              >
+                {editModal?.options.map((opt) => {
+                  const isCountry =
+                    editModal.field === "countryOfCitizenship";
+                  const isOtherCountry = isCountry && opt.value === "other";
+                  // "Other" highlights while the user is in search mode; all
+                  // other rows highlight on an exact stored-value match.
+                  const isActive = isOtherCountry
+                    ? countryOtherSelected
+                    : profile[editModal.field] === opt.value;
+
+                  return (
+                    <TouchableOpacity
+                      key={opt.value}
+                      style={[
+                        styles.modalOption,
+                        isActive && styles.modalOptionActive,
+                      ]}
+                      onPress={() => {
+                        // Tapping "Other" for the country field reveals the
+                        // search box instead of committing "other" + closing.
+                        // Committing "other" was the old bug — it clobbered
+                        // real values like "jamaica" and disabled country tips.
+                        if (isOtherCountry) {
+                          setCountryOtherSelected(true);
+                          return;
+                        }
+                        updateField(editModal.field, opt.value);
+                      }}
+                    >
+                      <Text
+                        style={[
+                          styles.modalOptionText,
+                          isActive && styles.modalOptionTextActive,
+                        ]}
+                      >
+                        {opt.label}
+                      </Text>
+                      {isActive && <Text style={styles.checkmark}>✓</Text>}
+                    </TouchableOpacity>
+                  );
+                })}
+
+                {/* COUNTRY SEARCH — shown after the user taps "Other".
+                    Same searchable list and behaviour as OnboardingScreen. */}
+                {editModal?.field === "countryOfCitizenship" &&
+                  countryOtherSelected && (
+                    <View>
+                      <TextInput
+                        style={styles.textInput}
+                        placeholder={t(
+                          "onboarding.countryOfCitizenship.searchPlaceholder"
+                        )}
+                        value={countrySearch}
+                        onChangeText={(text) => {
+                          setCountrySearch(text);
+                          setCountrySearchResults(filterCountrySearch(text));
+                        }}
+                        autoCapitalize="words"
+                        autoCorrect={false}
+                      />
+
+                      {countrySearch.length > 0 &&
+                        countrySearchResults.length === 0 && (
+                          <Text style={styles.countrySearchEmpty}>
+                            {t("onboarding.countryOfCitizenship.noResults")}
+                          </Text>
+                        )}
+
+                      {countrySearchResults.map((c) => (
+                        <TouchableOpacity
+                          key={c.value}
+                          style={styles.countrySearchResult}
+                          onPress={() => updateCountryFromSearch(c)}
+                        >
+                          <Text style={styles.countrySearchResultText}>
+                            {c.label}
+                          </Text>
+                        </TouchableOpacity>
+                      ))}
+                    </View>
                   )}
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
-            <TouchableOpacity
-              style={styles.modalCancel}
-              onPress={() => setEditModal(null)}
-            >
-              <Text style={styles.modalCancelText}>
-                {t("settings.modal.cancel")}
-              </Text>
-            </TouchableOpacity>
-          </View>
+              </ScrollView>
+              <TouchableOpacity style={styles.modalCancel} onPress={closeModal}>
+                <Text style={styles.modalCancelText}>
+                  {t("settings.modal.cancel")}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
         </TouchableOpacity>
       </Modal>
     </SafeAreaView>
@@ -479,6 +633,39 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F8F9FA" },
   loading: { flex: 1, alignItems: "center", justifyContent: "center" },
   loadingText: { fontSize: 16, color: "#666" },
+
+  // Empty state shown when no profile exists (track-before-onboard users).
+  emptyState: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 32,
+  },
+  emptyTitle: {
+    fontSize: 22,
+    fontWeight: "700",
+    color: "#1A1A2E",
+    textAlign: "center",
+    marginBottom: 12,
+  },
+  emptyBody: {
+    fontSize: 15,
+    color: "#666",
+    textAlign: "center",
+    lineHeight: 22,
+    marginBottom: 28,
+  },
+  emptyCta: {
+    backgroundColor: "#2E86AB",
+    paddingHorizontal: 40,
+    paddingVertical: 14,
+    borderRadius: 25,
+  },
+  emptyCtaText: {
+    color: "#FFF",
+    fontSize: 16,
+    fontWeight: "700",
+  },
 
   section: {
     backgroundColor: "#FFF",
@@ -627,5 +814,36 @@ const styles = StyleSheet.create({
   modalCancelText: {
     fontSize: 16,
     color: "#666",
+  },
+
+  // Country search (modal) — mirrors OnboardingScreen styling.
+  textInput: {
+    backgroundColor: "#F5F5F5",
+    padding: 16,
+    borderRadius: 12,
+    fontSize: 16,
+    marginTop: 8,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: "#DDD",
+  },
+  countrySearchResult: {
+    backgroundColor: "#F0F8FF",
+    padding: 14,
+    borderRadius: 10,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: "#D0E8F5",
+  },
+  countrySearchResultText: {
+    fontSize: 15,
+    color: "#1A1A1A",
+  },
+  countrySearchEmpty: {
+    fontSize: 13,
+    color: "#999",
+    textAlign: "center",
+    marginTop: 4,
+    marginBottom: 8,
   },
 });

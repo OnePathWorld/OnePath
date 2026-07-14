@@ -16,6 +16,7 @@ import { PROCESSING_TIMES_META } from "../data/processingTimes";
 import {
   checkCriticalDates,
   calculateHealthScore,
+  getUserProfile,
 } from "../data/userProfile";
 import { checkPolicyUpdates } from "../data/policyTracker";
 import {
@@ -34,6 +35,13 @@ import {
 
 // Analytics
 import analytics, { EVENTS } from "../utils/analytics";
+import { getTrackedCases } from "../utils/caseStorage";
+import { classifyCaseStatus } from "../utils/caseGuidance";
+import { blendCaseWithProfile } from "../utils/caseProfileBlend";
+import {
+  getProfileNextAction,
+  NEXT_ACTION_VISUALS,
+} from "../utils/profileNextAction";
 import { useFocusEffect } from "@react-navigation/native";
 
 /**
@@ -57,7 +65,21 @@ const getPathwaySummaryViability = (pathwayId) => {
     }
     return best ? getLevel(best) : null;
   };
-   
+
+/**
+ * Case-alert tone by urgency.
+ *
+ * The dashboard alert now ALWAYS renders for the top tracked case — a tracked
+ * case is the reason the user came back, so urgency drives color/icon/copy
+ * rather than presence. A routine "received" case reads calm (green), an
+ * upcoming interview reads as preparation (blue), and only an RFE/denial reads
+ * as an alarm (red).
+ */
+const CASE_ALERT_VISUALS = {
+  action: { bg: "#FFEBEE", icon: "🚨", key: "home.alerts.case.action" },
+  prepare: { bg: "#E3F2FD", icon: "📋", key: "home.alerts.case.prepare" },
+  monitor: { bg: "#E8F5E9", icon: "✅", key: "home.alerts.case.monitor" },
+};
 
 const HomeScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -66,12 +88,23 @@ const HomeScreen = ({ navigation }) => {
   const [criticalWarnings, setCriticalWarnings] = useState([]);
   const [healthScore, setHealthScore] = useState(null);
   const [policyAlerts, setPolicyAlerts] = useState(0);
+  const [caseAlert, setCaseAlert] = useState(null);
   const [checkedItems, setCheckedItems] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     analytics.track(EVENTS.SESSION_START);
   }, []);
+
+  // Fire the profile-invite impression once, when a no-profile
+  // (track-before-onboard) user lands on Home after load completes. Guarded on
+  // `loaded` so it never fires during the initial null-profile load window.
+  useEffect(() => {
+    if (loaded && !userProfile) {
+      analytics.track(EVENTS.PROFILE_INVITE_SHOWN);
+    }
+  }, [loaded, userProfile]);
 
   useFocusEffect(
     useCallback(() => {
@@ -120,6 +153,93 @@ const HomeScreen = ({ navigation }) => {
     } catch (err) {
       console.error("Failed to load progress:", err);
     }
+
+    // Case-status seam. Reduces all tracked cases to at most ONE dashboard
+    // alert: the highest-urgency case, most-recently-updated as the tiebreak.
+    //
+    // This previously filtered to `action` urgency ONLY, which meant the
+    // dashboard said NOTHING for the most common case state by far — a normal
+    // pending case sits in received/under_review (urgency `monitor`) for
+    // months. A user who added their case and returned to a silent dashboard
+    // had no reason to come back, the exact opposite of the retention hook the
+    // tracker is meant to be. The top case now always surfaces; urgency drives
+    // TONE (color/icon/copy via CASE_ALERT_VISUALS), not presence.
+    //
+    // Ownership (isSelf) deliberately does NOT filter here: a case tracked for
+    // a spouse or child still matters to the user, and the alert itself is
+    // case-only — it says nothing about them. isSelf gates only the
+    // personalized blend line below, which would be wrong on someone else's
+    // case. Own try/catch so a case-load failure can never blank the rest of
+    // the dashboard.
+    try {
+      const parseTime = (d) => {
+        const ms = d ? Date.parse(d) : NaN;
+        return Number.isNaN(ms) ? 0 : ms;
+      };
+      const URGENCY_RANK = { action: 0, prepare: 1, monitor: 2 };
+      const rankOf = (u) => (u in URGENCY_RANK ? URGENCY_RANK[u] : 2);
+
+      const tracked = (await getTrackedCases()) || [];
+      const ranked = tracked
+        .filter((c) => c && c.snapshot)
+        .map((c) => ({ entry: c, interp: classifyCaseStatus(c.snapshot) }))
+        .sort((a, b) => {
+          const ua = rankOf(a.interp.urgency);
+          const ub = rankOf(b.interp.urgency);
+          if (ua !== ub) return ua - ub;
+          return (
+            parseTime(b.entry.snapshot.modifiedDate) -
+            parseTime(a.entry.snapshot.modifiedDate)
+          );
+        });
+
+      if (ranked.length > 0) {
+        const top = ranked[0];
+
+        // Profile blending is quarantined to the dashboard AND gated on
+        // explicit ownership. Only a case the user confirmed is their own
+        // (isSelf === true) is personalized; legacy/unknown/someone-else's
+        // cases still show the alert, just without a note about the wrong
+        // person. Best-effort: a blend failure must never break the alert.
+        let blendKey = null;
+        let blendValues = {};
+        if (top.entry.isSelf === true) {
+          try {
+            const profile = await getUserProfile();
+            const blend = blendCaseWithProfile(
+              top.interp.category,
+              profile,
+              top.entry.snapshot?.formNumber
+            );
+            if (blend) {
+              blendKey = blend.templateKey;
+              blendValues = blend.values;
+            }
+          } catch (e) {
+            console.warn("case blend skipped:", e.message);
+          }
+        }
+
+        setCaseAlert({
+          type: "case",
+          receiptNumber: top.entry.receiptNumber,
+          label: top.entry.nickname || top.entry.receiptNumber,
+          category: top.interp.category,
+          urgency: top.interp.urgency || "monitor",
+          blendKey,
+          blendValues,
+        });
+      } else {
+        setCaseAlert(null);
+      }
+    } catch (err) {
+      console.error("Failed to load case alert:", err);
+    }
+
+    // Signals load completion so the no-profile invite can distinguish
+    // "still loading" from "genuinely has no profile" and never flashes
+    // mid-load for an onboarded user.
+    setLoaded(true);
   };
 
   const getGreeting = () => {
@@ -129,44 +249,73 @@ const HomeScreen = ({ navigation }) => {
     return t("home.greeting.evening");
   };
 
-  const getStatusColor = () => {
-    if (!healthScore) return "#2E86AB";
-    if (healthScore.status === "Critical") return "#F44336";
-    if (healthScore.status === "Attention") return "#FF9800";
-    return "#4CAF50";
-  };
+  // The dashboard card now leads with a tailored next action derived from the
+  // profile (see profileNextAction), replacing the numeric score AND the vague
+  // Good/Attention/Critical grade — the latter keyed on a health score that,
+  // absent collected expiry dates, was almost always "Good" regardless. Color +
+  // emoji follow the action's urgency so a positive step (e.g. "you may be
+  // eligible for citizenship") never reads like an emergency.
+  const nextAction = getProfileNextAction(userProfile || {});
+  const actionVisuals =
+    NEXT_ACTION_VISUALS[nextAction.urgency] || NEXT_ACTION_VISUALS.monitor;
 
-  const getStatusEmoji = () => {
-    if (!healthScore) return "📊";
-    if (healthScore.status === "Critical") return "🚨";
-    if (healthScore.status === "Attention") return "⚠️";
-    return "✅";
-  };
+  const getStatusColor = () => actionVisuals.color;
 
-  // Translate the english status string returned by calculateHealthScore.
-  // healthScore.status comes from data layer as "Critical" | "Attention" | "Good".
-  // We map to translation keys here so non-English users see their language.
-  const getStatusText = () => {
-    if (!healthScore) return t("home.status.loading");
-    const map = {
-      Critical: t("home.status.critical"),
-      Attention: t("home.status.attention"),
-      Good: t("home.status.good"),
-    };
-    return map[healthScore.status] || healthScore.status;
-  };
+  const getStatusEmoji = () => actionVisuals.emoji;
 
-  const getMostUrgent = () => {
-    if (criticalWarnings.some((w) => w.severity === "critical")) {
-      return criticalWarnings.find((w) => w.severity === "critical");
-    }
-    if (policyAlerts > 0) {
-      return { type: "policy", count: policyAlerts };
-    }
-    return null;
-  };
+  const getStatusHeadline = () => t(nextAction.templateKey, nextAction.fallback);
 
-  const urgentItem = getMostUrgent();
+  // =========================================================
+  // DASHBOARD SIGNALS — presence decoupled from urgency
+  // ---------------------------------------------------------
+  // These used to funnel through a single getMostUrgent() reducer that returned
+  // exactly ONE item. That was correct while the case alert was `action`-only,
+  // and therefore genuinely an urgency signal. It no longer is: the case line
+  // now always renders for a tracked case, and its urgency drives TONE, not
+  // presence. A `monitor` case explicitly says "nothing to do right now" — so
+  // letting it win a most-urgent contest would suppress real information (a
+  // policy change) behind an explicit non-event. That's a signal inversion.
+  //
+  // So the reducer is gone. Each signal is independent and renders in its own
+  // slot, in descending severity: critical date warning → case → policy.
+  // Nothing suppresses anything, and the case line — the reason a user comes
+  // back at all — is reliably present whenever they have a case tracked.
+  // =========================================================
+  const criticalWarning =
+    criticalWarnings.find((w) => w.severity === "critical") || null;
+
+  const hasPolicyAlert = policyAlerts > 0;
+
+  // The GC naturalization nudge is filler: it earns its place only when the
+  // card has nothing else to say.
+  const hasAnySignal = Boolean(criticalWarning || caseAlert || hasPolicyAlert);
+
+  // One renderer, two mount points (profiled card + no-profile block). The JSX
+  // was duplicated; a single source keeps the two from drifting.
+  const renderCaseAlert = () => {
+    if (!caseAlert) return null;
+    const cv =
+      CASE_ALERT_VISUALS[caseAlert.urgency] || CASE_ALERT_VISUALS.monitor;
+    return (
+      <TouchableOpacity
+        style={[styles.urgentAlert, { backgroundColor: cv.bg }]}
+        onPress={() => navigation.navigate("CaseStatusTracker")}
+      >
+        <Text style={styles.urgentIcon}>{cv.icon}</Text>
+        <View style={styles.urgentTextWrap}>
+          <Text style={styles.urgentTextMain}>
+            {t(cv.key, { case: caseAlert.label })}
+          </Text>
+          {caseAlert.blendKey && (
+            <Text style={styles.urgentBlendText}>
+              {t("caseGuidance.blend.label")}:{" "}
+              {t(caseAlert.blendKey, caseAlert.blendValues)}
+            </Text>
+          )}
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   // =========================================================
   // PATHWAYS — citizenship highlighted only for GC holders,
@@ -231,50 +380,42 @@ const HomeScreen = ({ navigation }) => {
             }}
           >
             <View style={styles.statusHeader}>
-              <View>
+              <View style={styles.statusHeaderText}>
                 <Text style={styles.statusTitle}>{t("home.status.title")}</Text>
                 <Text
                   style={[styles.statusScore, { color: getStatusColor() }]}
                 >
-                  {getStatusEmoji()} {getStatusText()}
-                </Text>
-              </View>
-              <View
-                style={[
-                  styles.scoreBubble,
-                  { backgroundColor: getStatusColor() },
-                ]}
-              >
-                <Text style={styles.scoreText}>
-                  {healthScore?.score || "-"}
+                  {getStatusEmoji()} {getStatusHeadline()}
                 </Text>
               </View>
             </View>
 
-            {urgentItem && (
+            {/* 1. Critical date warning — the most severe signal, so it leads.
+                   (Only `critical` severity ever reaches here, which is why the
+                   icon is unconditional; the old ⚠️ branch was unreachable.) */}
+            {criticalWarning && (
               <View style={styles.urgentAlert}>
-                {urgentItem.type === "policy" ? (
-                  <>
-                    <Text style={styles.urgentIcon}>📢</Text>
-                    <Text style={styles.urgentText}>
-                      {t("home.alerts.policyChanges", { count: urgentItem.count })}
-                    </Text>
-                  </>
-                ) : (
-                  <>
-                    <Text style={styles.urgentIcon}>
-                      {urgentItem.severity === "critical" ? "🚨" : "⚠️"}
-                    </Text>
-                    <Text style={styles.urgentText}>
-                      {urgentItem.message}
-                    </Text>
-                  </>
-                )}
+                <Text style={styles.urgentIcon}>🚨</Text>
+                <Text style={styles.urgentText}>{criticalWarning.message}</Text>
               </View>
             )}
 
-            {/* GC holder naturalization nudge */}
-            {isGCHolder && !urgentItem && (
+            {/* 2. Case line — always present when a case is tracked. Urgency
+                   tints it; it is never suppressed by another signal. */}
+            {renderCaseAlert()}
+
+            {/* 3. Policy alerts — no longer hidden behind a calm case line. */}
+            {hasPolicyAlert && (
+              <View style={styles.urgentAlert}>
+                <Text style={styles.urgentIcon}>📢</Text>
+                <Text style={styles.urgentText}>
+                  {t("home.alerts.policyChanges", { count: policyAlerts })}
+                </Text>
+              </View>
+            )}
+
+            {/* GC holder naturalization nudge — filler, only when nothing else */}
+            {isGCHolder && !hasAnySignal && (
               <TouchableOpacity
                 style={styles.citizenshipNudge}
                 onPress={() => {
@@ -342,6 +483,41 @@ const HomeScreen = ({ navigation }) => {
               )}
             </View>
           </TouchableOpacity>
+        )}
+
+        {/* NO-PROFILE STATE (track-before-onboard)
+            A user who entered via the case tracker has no profile, so the
+            profile-gated primary card above is hidden — which would also hide
+            their case alert. Re-surface the case here (it's why they came),
+            then offer a calm, non-alarming invite to complete the profile.
+            Gated on `loaded` so it never flashes during the initial load. */}
+        {loaded && !userProfile && (
+          <View style={styles.noProfileSection}>
+            {renderCaseAlert()}
+
+            <View style={styles.inviteCard}>
+              <Text style={styles.inviteTitle}>
+                {t("home.profileInvite.title", "Get guidance tailored to you")}
+              </Text>
+              <Text style={styles.inviteBody}>
+                {t(
+                  "home.profileInvite.body",
+                  "Tell us about your situation to see your pathways, timelines, and what to watch for."
+                )}
+              </Text>
+              <TouchableOpacity
+                style={styles.inviteButton}
+                onPress={() => {
+                  analytics.track(EVENTS.PROFILE_INVITE_TAPPED);
+                  navigation.navigate("Onboarding");
+                }}
+              >
+                <Text style={styles.inviteButtonText}>
+                  {t("home.profileInvite.cta", "Complete your profile")}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         )}
 
         {/* CONTROL CENTER */}
@@ -593,14 +769,7 @@ const styles = StyleSheet.create({
   },
   statusTitle: { fontSize: 14, color: "#999", marginBottom: 4 },
   statusScore: { fontSize: 18, fontWeight: "600" },
-  scoreBubble: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  scoreText: { color: "#FFF", fontSize: 22, fontWeight: "bold" },
+  statusHeaderText: { flex: 1 },
   urgentAlert: {
     flexDirection: "row",
     alignItems: "center",
@@ -619,11 +788,49 @@ const styles = StyleSheet.create({
   },
   urgentIcon: { fontSize: 20, marginRight: 10 },
   urgentText: { flex: 1, fontSize: 14, color: "#333", fontWeight: "500" },
+  // Wrap so the personalized blend line can sit under the main case line
+  // inside the same tappable alert. urgentTextMain mirrors urgentText but
+  // without flex (the wrap owns the flex now).
+  urgentTextWrap: { flex: 1 },
+  urgentTextMain: { fontSize: 14, color: "#333", fontWeight: "500" },
+  urgentBlendText: { marginTop: 4, fontSize: 13, lineHeight: 18, color: "#5D4037" },
   quickStats: { flexDirection: "row", justifyContent: "space-around" },
   statItem: { alignItems: "center" },
   statLabel: { fontSize: 11, color: "#999", marginBottom: 2 },
   statValue: { fontSize: 14, fontWeight: "600", color: "#333" },
   expiredText: { color: "#F44336" },
+
+  // No-profile (track-before-onboard) block: re-surfaced case alert reuses
+  // urgentAlert above; the invite is a calm, distinct card (not an alert tint).
+  noProfileSection: { marginHorizontal: 20, marginBottom: 20 },
+  inviteCard: {
+    backgroundColor: "#EDF6FB",
+    borderRadius: 12,
+    padding: 18,
+  },
+  inviteTitle: {
+    fontSize: 17,
+    fontWeight: "700",
+    color: "#1A1A2E",
+    marginBottom: 6,
+  },
+  inviteBody: {
+    fontSize: 14,
+    color: "#555",
+    lineHeight: 20,
+    marginBottom: 14,
+  },
+  inviteButton: {
+    backgroundColor: "#2E86AB",
+    paddingVertical: 12,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  inviteButtonText: {
+    color: "#FFF",
+    fontSize: 15,
+    fontWeight: "700",
+  },
 
   controlCenter: { marginHorizontal: 20, marginBottom: 20 },
   sectionTitle: {

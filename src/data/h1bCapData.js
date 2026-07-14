@@ -1,11 +1,16 @@
 // src/data/h1bCapData.js
-// Updated: March 19, 2026 — Verified against USCIS.gov
+// Updated: July 13, 2026 — Verified against USCIS.gov
+//
+// FY2027 cap season is OVER. The filing window closed June 30, 2026. Strings in
+// this file must read in the past tense — a user opening the app today is
+// outside the season entirely, and the next thing that concerns them is the
+// FY2028 registration period (~March 2027).
 
 export const H1B_CAP_META = {
-    lastUpdated: "April 3, 2026",
+    lastUpdated: "July 13, 2026",
     source: "USCIS.gov H-1B Specialty Occupations & H-1B Cap Season",
     criticalUpdate:
-  "FY2027 lottery selections announced March 27-31. Filing window open April 1 – June 30. Estimated 34-42% selection rate. Wage-weighted system favored Level III-IV positions.",
+  "FY2027 cap season is closed. The filing window for selected registrations ran April 1 – June 30, 2026 and has ended; approved petitions carry an employment start date of Oct. 1, 2026 or later. USCIS may run a second selection round if enough petitions were not filed to meet the 85,000 cap — none has been announced. FY2028 registration is expected around March 2027.",
   };
   
   /**
@@ -16,12 +21,12 @@ export const H1B_CAP_META = {
     regularCap: {
         limit: 65000,
         status: "SELECTION_COMPLETE",
-        note: "FY2027 initial selection complete. Filing window: April 1 – June 30, 2026.",
+        note: "FY2027 initial selection complete. The filing window ran April 1 – June 30, 2026 and is now closed.",
       },
       mastersCap: {
         limit: 20000,
         status: "SELECTION_COMPLETE",
-        note: "Selection notifications sent March 27-31, 2026. Second round possible if cap not met.",
+        note: "Selection notifications sent March 27-31, 2026. A second round remains possible if the cap was not met by petitions actually filed; none announced as of July 2026.",
       },
     currentRegistration: {
       fiscalYear: "2027",
@@ -161,7 +166,10 @@ export const H1B_CAP_META = {
     FY2026: {
       registrations: "~339,000 unique beneficiaries",
       uniqueEmployers: "~57,600",
-      selected: "TBD",
+      // Sources agree on the ~35% rate but conflict on the headcount (~118,660
+      // vs ~120,141) because they count beneficiaries vs eligible registrations.
+      // Rate only until verified against the USCIS FY2026 cap-season page.
+      selected: "~35% selection rate (final count not independently verified)",
       selectionMethod: "Beneficiary-centric (random)",
       note: "Significant decrease from FY2025 due to anti-fraud measures",
     },
@@ -186,7 +194,7 @@ export const H1B_CAP_META = {
     },
     FY2027: {
       selectionMethod: "Wage-weighted (first year)",
-      note: "Odds will vary based on wage level offered. Higher wages = higher odds.",
+      note: "Initial selection completed March 31, 2026 — the first cap season run under the wage-weighted rule. Registrations at higher OEWS wage levels received more entries. USCIS has not published final FY2027 selection statistics.",
     },
     trends: {
       directionNote: "Demand consistently exceeds supply. Weighted lottery shifts advantage to higher-paid positions.",
@@ -388,7 +396,8 @@ export const H1B_CAP_META = {
     }
     return {
       phase: "OFF_SEASON",
-      message: "FY2027 registration and filing windows have closed.",
+      message:
+        "FY2027 registration and filing windows have closed. FY2028 registration is expected around March 2027.",
     };
   }
   

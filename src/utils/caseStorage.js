@@ -12,6 +12,7 @@
 //     "MSC2190000000": {
 //       receiptNumber: "MSC2190000000",
 //       nickname: "My I-485",     // optional, user-set
+//       isSelf: true,             // optional ownership flag (see below)
 //       addedAt: 1730000000000,
 //       lastFetchedAt: 1730000000000,
 //       snapshot: { ...getCaseSnapshot output... } | null,
@@ -77,7 +78,7 @@ export async function getTrackedCase(receiptNumber) {
  * a no-op (returns the existing entry) — caller can decide
  * whether to refresh.
  */
-export async function addTrackedCase(receiptNumber, { nickname } = {}) {
+export async function addTrackedCase(receiptNumber, { nickname, isSelf } = {}) {
   const map = await readAll();
 
   if (map[receiptNumber]) {
@@ -87,6 +88,13 @@ export async function addTrackedCase(receiptNumber, { nickname } = {}) {
   const entry = {
     receiptNumber,
     nickname: nickname || "",
+    // Ownership signal for dashboard personalization. Tri-state on purpose:
+    //   true  = user confirmed this is their OWN case
+    //   false = explicitly someone else's (e.g. a spouse's)
+    //   null  = not asked yet / legacy entry
+    // The dashboard blend fires ONLY on an explicit `true`, so null/false
+    // both fall through to the safe, case-only guidance.
+    isSelf: typeof isSelf === "boolean" ? isSelf : null,
     addedAt: Date.now(),
     lastFetchedAt: null,
     snapshot: null,
@@ -154,6 +162,23 @@ export async function setCaseNickname(receiptNumber, nickname) {
   const map = await readAll();
   if (!map[receiptNumber]) return null;
   map[receiptNumber] = { ...map[receiptNumber], nickname: nickname || "" };
+  await writeAll(map);
+  return map[receiptNumber];
+}
+
+/**
+ * Set (or update) whether a tracked case is the user's own.
+ * Drives dashboard profile-blending, which only ever personalizes
+ * a case when isSelf === true. Pass a boolean; anything else stores
+ * null ("not asked"), which the blend gate treats as "don't blend".
+ */
+export async function setCaseSelf(receiptNumber, isSelf) {
+  const map = await readAll();
+  if (!map[receiptNumber]) return null;
+  map[receiptNumber] = {
+    ...map[receiptNumber],
+    isSelf: typeof isSelf === "boolean" ? isSelf : null,
+  };
   await writeAll(map);
   return map[receiptNumber];
 }

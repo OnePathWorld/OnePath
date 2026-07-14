@@ -54,6 +54,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import { useFocusEffect } from "@react-navigation/native";
@@ -65,6 +66,7 @@ import {
   getCaseSnapshot,
   formatCaseDate,
 } from "../utils/caseStatus";
+import { classifyCaseStatus } from "../utils/caseGuidance";
 import {
   getTrackedCases,
   addTrackedCase,
@@ -80,7 +82,20 @@ import analytics, { EVENTS } from "../utils/analytics";
 // wants another check isn't kept waiting.
 const REFRESH_COOLDOWN_MS = 10000;
 
-const CaseStatusTrackerScreen = ({ navigation }) => {
+// Urgency -> background tint for the plain-English guidance block.
+// Reuses tints already used elsewhere in the app (HomeScreen).
+const URGENCY_TINT = {
+  action: "#FFEBEE", // error-red wash
+  prepare: "#FFF3E0", // amber wash
+  monitor: "#E8F4F8", // calm blue wash
+};
+
+const CaseStatusTrackerScreen = ({ navigation, route }) => {
+  // Track-before-onboard mode: set by OnboardingScreen's "just track it"
+  // affordance via navigate("CaseStatusTracker", { preOnboard: true }). When
+  // true, this screen sets the @hasEnteredApp launch flag on the first add and
+  // offers a "continue to app" action. Absent/false = normal in-app usage.
+  const preOnboard = route?.params?.preOnboard === true;
   const { t } = useTranslation();
 
   // ===========================================================
@@ -90,6 +105,10 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
   const [input, setInput] = useState("");
   const [inputError, setInputError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  // Ownership of the case being added. null = not chosen (optional).
+  // Only an explicit `true` unlocks dashboard personalization; the
+  // question is skippable so it never blocks adding a case.
+  const [isSelf, setIsSelf] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
   const [refreshingId, setRefreshingId] = useState(null);
 
@@ -158,8 +177,20 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
     setInputError(null);
 
     // 1. Persist the case so it shows up in the list even if
-    //    the network call fails.
-    await addTrackedCase(normalized);
+    //    the network call fails. Ownership (isSelf) is captured here
+    //    so the dashboard can personalize the user's own cases only.
+    await addTrackedCase(normalized, { isSelf });
+
+    // Track-before-onboard commitment: the case is now persisted (regardless
+    // of whether the USCIS fetch below succeeds), so the user has received
+    // value via the track-first path. On the FIRST add (cases list still empty
+    // in state), record the launch flag App.js reads on startup — so they land
+    // in the app on return — and fire the funnel event exactly once. The write
+    // is idempotent; the cases.length gate keeps the event from repeating.
+    if (preOnboard && cases.length === 0) {
+      await AsyncStorage.setItem("@hasEnteredApp", "true");
+      analytics.track(EVENTS.TRACK_FIRST_ENTERED_APP);
+    }
 
     // 2. Fetch from USCIS via Railway proxy (cache allowed).
     const result = await fetchCaseStatus(normalized);
@@ -174,6 +205,7 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
       });
 
       setInput("");
+      setIsSelf(null);
     } else {
       await recordCaseError(normalized, result.error);
 
@@ -344,6 +376,52 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
               <Text style={styles.inputErrorText}>{inputError}</Text>
             )}
 
+            {/* Ownership — optional. Only an explicit "my case" unlocks
+                personalized dashboard guidance; skipping is fine. */}
+            <Text style={styles.ownershipQuestion}>
+              {t("caseTracker.ownership.question")}
+            </Text>
+            <View style={styles.ownershipRow}>
+              <TouchableOpacity
+                style={[
+                  styles.ownershipChip,
+                  isSelf === true && styles.ownershipChipActive,
+                ]}
+                onPress={() => setIsSelf((v) => (v === true ? null : true))}
+                disabled={submitting}
+              >
+                <Text
+                  style={[
+                    styles.ownershipChipText,
+                    isSelf === true && styles.ownershipChipTextActive,
+                  ]}
+                >
+                  🙋 {t("caseTracker.ownership.mine")}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[
+                  styles.ownershipChip,
+                  isSelf === false && styles.ownershipChipActive,
+                ]}
+                onPress={() => setIsSelf((v) => (v === false ? null : false))}
+                disabled={submitting}
+              >
+                <Text
+                  style={[
+                    styles.ownershipChipText,
+                    isSelf === false && styles.ownershipChipTextActive,
+                  ]}
+                >
+                  👤 {t("caseTracker.ownership.other")}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.ownershipHelper}>
+              {t("caseTracker.ownership.helper")}
+            </Text>
+
             <TouchableOpacity
               style={[
                 styles.submitButton,
@@ -395,6 +473,26 @@ const CaseStatusTrackerScreen = ({ navigation }) => {
             </View>
           )}
 
+          {/* Track-before-onboard: once the user has a tracked case, offer a
+              clear way into the full app. reset() (not navigate) discards the
+              onboarding -> tracker stack so MainApp becomes the root. Shown
+              only in pre-onboard mode; normal in-app usage never sees it. */}
+          {preOnboard && cases.length > 0 && (
+            <TouchableOpacity
+              style={styles.continueButton}
+              onPress={() =>
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: "MainApp" }],
+                })
+              }
+            >
+              <Text style={styles.continueButtonText}>
+                {t("caseTracker.preOnboard.continueToApp", "Continue to the app →")}
+              </Text>
+            </TouchableOpacity>
+          )}
+
           {/* ======================================================
               DATA SOURCE FOOTER — proves to the reviewer (and
               to users) where the data comes from. Important for
@@ -427,6 +525,10 @@ const CaseCard = ({
 
   const hasSnapshot = Boolean(snapshot);
   const hasError = Boolean(lastError);
+
+  // Plain-English interpretation of THIS case's status. Case-only
+  // (no profile), pure and read-only; null when there is no snapshot.
+  const interpretation = hasSnapshot ? classifyCaseStatus(snapshot) : null;
 
   // The ↻ button is unavailable while a refresh is in flight
   // OR during the post-refresh cooldown. While cooling it shows
@@ -480,6 +582,25 @@ const CaseCard = ({
               })}
             </Text>
           ) : null}
+        </View>
+      )}
+
+      {/* Plain-English guidance — what this status usually means.
+          Case-only (no profile). Shown directly under the official
+          status and visible by default (not behind the details toggle). */}
+      {hasSnapshot && interpretation && (
+        <View
+          style={[
+            styles.guidanceBlock,
+            { backgroundColor: URGENCY_TINT[interpretation.urgency] },
+          ]}
+        >
+          <Text style={styles.guidanceLabel}>
+            {t("caseGuidance.card.meaningLabel")}
+          </Text>
+          <Text style={styles.guidanceText}>
+            {t(interpretation.templateKey)}
+          </Text>
         </View>
       )}
 
@@ -686,6 +807,47 @@ const styles = StyleSheet.create({
     marginTop: 6,
     fontWeight: "500",
   },
+  // -------- Ownership chooser (optional) --------
+  ownershipQuestion: {
+    fontSize: 13,
+    color: "#333",
+    fontWeight: "600",
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  ownershipRow: {
+    flexDirection: "row",
+    gap: 8,
+  },
+  ownershipChip: {
+    flex: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 8,
+    borderRadius: 10,
+    borderWidth: 1.5,
+    borderColor: "#D0D7DE",
+    backgroundColor: "#FFF",
+    alignItems: "center",
+  },
+  ownershipChipActive: {
+    borderColor: "#2E86AB",
+    backgroundColor: "#E8F4F8",
+  },
+  ownershipChipText: {
+    fontSize: 13,
+    color: "#555",
+    fontWeight: "500",
+  },
+  ownershipChipTextActive: {
+    color: "#1B5E7A",
+    fontWeight: "700",
+  },
+  ownershipHelper: {
+    fontSize: 11,
+    color: "#888",
+    marginTop: 6,
+    lineHeight: 15,
+  },
   submitButton: {
     backgroundColor: "#2E86AB",
     paddingVertical: 14,
@@ -700,6 +862,24 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 15,
     fontWeight: "600",
+    letterSpacing: 0.3,
+  },
+
+  // Track-before-onboard "continue to app" CTA — a filled primary action,
+  // set apart from the cases list with extra top margin so it reads as the
+  // next step rather than part of the list.
+  continueButton: {
+    backgroundColor: "#2E86AB",
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 4,
+  },
+  continueButtonText: {
+    color: "#FFF",
+    fontSize: 16,
+    fontWeight: "700",
     letterSpacing: 0.3,
   },
 
@@ -871,6 +1051,25 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   descriptionText: {
+    fontSize: 13,
+    color: "#333",
+    lineHeight: 19,
+  },
+
+  guidanceBlock: {
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 8,
+  },
+  guidanceLabel: {
+    fontSize: 11,
+    fontWeight: "700",
+    color: "#666",
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+    marginBottom: 4,
+  },
+  guidanceText: {
     fontSize: 13,
     color: "#333",
     lineHeight: 19,

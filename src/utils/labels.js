@@ -22,6 +22,7 @@
 // =========================================================
 
 import i18n from "../i18n";
+import { getSearchCountryLabel } from "../data/countries";
 
 // =========================================================
 // VISA STATUS — DESCRIPTIVE
@@ -90,18 +91,33 @@ export function getWorkAuthLabel(auth) {
 
 // =========================================================
 // COUNTRY OF CITIZENSHIP
-// "🇮🇳 India", "🇲🇽 México" (translated), "🌍 Other"
+// "🇮🇳 India", "🇲🇽 México" (translated), "🇯🇲 Jamaica", "🌍 Other"
 // Used by: StatusDetails, OnboardingSummary
+//
+// Resolution order:
+//   1. labels.country.<value>  → the 12 pinned countries, translated per locale
+//   2. shared COUNTRY_SEARCH_LIST → flag + English name for the ~167 other
+//      countries (e.g. "jamaica" → "🇯🇲 Jamaica"). This is what stops
+//      non-pinned countries — including the Caribbean countries that back
+//      countrySpecificTips — from rendering as "Other" on the tips screen.
+//   3. labels.country.other    → final fallback for truly unknown values
 // =========================================================
 export function getCountryLabel(country) {
   if (!country) return i18n.t("labels.country.other");
   const key = `labels.country.${country}`;
   const translated = i18n.t(key);
-  // Unknown country code → fall back to the "other" label,
-  // matching the legacy behavior in OnboardingSummary's
-  // getCountryLabel which returned "Other" for any unmapped
-  // country.
-  return translated === key ? i18n.t("labels.country.other") : translated;
+  if (translated !== key) return translated;
+
+  // Not in the pinned/translated set — try the shared full-country list so
+  // values like "jamaica" / "cuba" / "trinidad_tobago" show their real name
+  // (flag + English) instead of collapsing to "Other".
+  const searchLabel = getSearchCountryLabel(country);
+  if (searchLabel) return searchLabel;
+
+  // Unknown country code → fall back to the "other" label, matching the
+  // legacy behavior in OnboardingSummary's getCountryLabel which returned
+  // "Other" for any unmapped country.
+  return i18n.t("labels.country.other");
 }
 
 // =========================================================

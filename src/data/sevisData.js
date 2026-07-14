@@ -1,7 +1,32 @@
+// src/data/sevisData.js
+// Updated: July 13, 2026 — verified against ICE.gov/SEVIS, fmjfee.com, USCIS.
+//
+// ⚠️ WATCH ITEM — "Duration of Status" (D/S) final rule is IMMINENT but NOT YET
+//    IN EFFECT. Timeline: NPRM published Aug 28, 2025 (90 FR 42070, RIN 1653-AA95)
+//    → final rule sent to OMB May 5, 2026 → OIRA completed review June 17, 2026
+//    ("consistent with change") → NOT yet published in the Federal Register.
+//    It takes effect 60 DAYS AFTER publication.
+//
+//    Until then the CURRENT D/S framework stands, and every grace period and
+//    admission rule in this file remains correct as written. Several secondary
+//    sources are already reporting the proposed terms (4-year fixed admission,
+//    a 30-day F-1 grace period) as if they were law. THEY ARE NOT. Do not
+//    shorten any value in this file on the strength of those reports — telling
+//    a student they have 30 days when they in fact have 60 would push them to
+//    leave the country a month early. See DURATION_OF_STATUS_RULE below.
+//
+//    When the rule publishes, the changes land here AND in processingTimes.js,
+//    immigrationWarnings.js, and policyTracker.js. Re-verify the final text —
+//    OIRA cleared it "with change," so the final terms may differ from the NPRM.
+
 export const SEVIS_META = {
-    lastUpdated: "December 13, 2024",
-    source: "ICE.gov/SEVIS and StudyInTheStates.dhs.gov",
+    lastUpdated: "July 13, 2026",
+    source: "ICE.gov/SEVIS, fmjfee.com, StudyInTheStates.dhs.gov, USCIS.gov",
     disclaimer: "SEVIS fees are separate from visa application fees and school tuition.",
+    // I-901 amounts were set by a final rule effective June 24, 2019 and are
+    // UNCHANGED as of July 2026 (verified). Always reconfirm at fmjfee.com —
+    // it is the only official payment site (scam sites are common).
+    feesVerified: "July 13, 2026",
   };
   
   /**
@@ -74,8 +99,17 @@ export const SEVIS_META = {
       unemploymentLimit: 90, // total days allowed
     },
     PROCESSING: {
-      normalProcessing: "4.5 months",
-      premiumAvailable: false,
+      // Was "4.5 months" / premiumAvailable: false — both wrong, and the second
+      // directly contradicted fees.js (I907_I765) and processingTimes.js, which
+      // have correctly listed OPT premium processing all along. USCIS phased in
+      // premium processing for F-1 OPT categories (c)(3)(A), (c)(3)(B) and
+      // (c)(3)(C) starting March 6, 2023; it has been available ever since.
+      normalProcessing: "2-3 months (online) / 3-5 months (paper)",
+      premiumAvailable: true,
+      premiumFee: 1780, // I-907, effective March 1, 2026 (was $1,685)
+      premiumTimeframe: "30 business days",
+      premiumNote:
+        "Premium covers the decision only. Card production and USPS delivery typically add 2-4 more weeks.",
       tip: "Apply as early as possible (90 days before graduation)",
     },
   };
@@ -128,7 +162,53 @@ export const SEVIS_META = {
   };
   
   /**
+   * ⚠️ PENDING RULE — Duration of Status (D/S) → fixed period of admission
+   *
+   * NOT IN EFFECT as of July 13, 2026. Recorded here so the app can warn users
+   * that a major change is coming, WITHOUT asserting terms that aren't law yet.
+   *
+   * Same discipline as the TPS entry (see policyTracker): where a government
+   * change is imminent but unsettled, ship the SHAPE of the truth — "this is
+   * changing, watch the official page, talk to your DSO" — not a number that
+   * will be wrong either way.
+   */
+  export const DURATION_OF_STATUS_RULE = {
+    inEffect: false, // <-- gate ALL UI on this. Do not present terms as current.
+    status: "Final rule cleared OMB review June 17, 2026; awaiting Federal Register publication.",
+    effectiveWhen: "60 days after publication in the Federal Register (not yet published).",
+    rin: "1653-AA95",
+    nprm: "90 FR 42070 (Aug. 28, 2025)",
+    source: "DHS/ICE; OIRA review record",
+
+    // What CURRENTLY applies (unchanged, still correct):
+    currentFramework:
+      "F-1 and J-1 nonimmigrants are admitted for 'duration of status' (D/S) — they may remain as long as they comply with their status. The grace periods in SEVIS_TIMELINES below still apply.",
+
+    // What the PROPOSED rule would change. NOT LAW. Terms may change — OIRA
+    // cleared the final rule "consistent with change," so the published text
+    // may differ from the NPRM. Do not quote these as facts.
+    proposedChanges: [
+      "Fixed admission period tied to the I-20 / DS-2019 program end date, capped at 4 years",
+      "Form I-539 extension of stay (with fee) required to stay beyond the fixed period",
+      "Shorter grace periods (reported; the exact F-1 figure is not settled — see gracePeriodCaution)",
+      "New limits on changing academic program or education level",
+      "Unlawful presence would begin accruing automatically once the fixed period expires",
+    ],
+
+    gracePeriodCaution:
+      "Secondary sources conflict on whether the F-1 post-completion grace period drops from 60 days to 30. Some report a cut to 30; the transition provisions describe 60 (F) / 30 (J). Until the Federal Register text publishes, THE CURRENT 60-DAY F-1 GRACE PERIOD APPLIES. Do not shorten it in the UI, and do not advise anyone to act as if it were 30.",
+
+    userGuidance:
+      "A significant change to how long F and J visa holders may stay is expected soon. It is not in effect yet, and nothing you need to do has changed today. Watch the official ICE/SEVP announcements and talk to your DSO or a qualified immigration attorney before making plans around your program end date.",
+  };
+
+  /**
    * Important SEVIS Timelines
+   *
+   * ⚠️ These reflect the CURRENT D/S framework and are correct as of July 2026.
+   *    The pending rule above (DURATION_OF_STATUS_RULE) may change several of
+   *    them — most notably F1_completion — but IT IS NOT IN EFFECT. Do not
+   *    shorten any value here until the final rule publishes and is verified.
    */
   export const SEVIS_TIMELINES = {
     INITIAL_ENTRY: {
@@ -222,6 +302,7 @@ export const SEVIS_META = {
     STEM_OPT,
     CPT_REQUIREMENTS,
     SEVIS_TIMELINES,
+    DURATION_OF_STATUS_RULE,
     ADDRESS_REPORTING,
     SEVIS_VIOLATIONS,
     SEVIS_META,

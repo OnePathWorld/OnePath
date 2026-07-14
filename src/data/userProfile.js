@@ -25,8 +25,6 @@ export const DEFAULT_USER_PROFILE = {
     visaExpiry: "",
     i94Number: "",
     i94Expiry: "",
-    hasWorkAuth: false,
-    workAuthType: "",
     eadExpiry: "",
     greenCardPending: false,
     priorityDate: "",
@@ -48,11 +46,10 @@ export const DEFAULT_USER_PROFILE = {
     hasBeenOutOfStatus: false,
   },
   riskFactors: {
+    // countryBacklog is the only live risk factor (read by calculateHealthScore
+    // and caseProfileBlend). capSubject/travelPlanned/employerDependent/ageingOut
+    // were computed but read nowhere — removed after a full reference trace (2026-07).
     countryBacklog: false,
-    capSubject: false,
-    travelPlanned: false,
-    employerDependent: false,
-    ageingOut: false,
   },
   documentStatus: {
     hasValidPassport: false,
@@ -116,10 +113,6 @@ function normalizeProfile(raw) {
     currentStatus: {
       ...DEFAULT_USER_PROFILE.currentStatus,
       visaType: raw.currentVisa || "",
-      hasWorkAuth: raw.hasWorkAuth === "yes_unrestricted" ||
-                   raw.hasWorkAuth === "yes_restricted" ||
-                   raw.hasWorkAuth === "yes_ead",
-      workAuthType: raw.hasWorkAuth === "yes_ead" ? "EAD" : raw.currentVisa || "",
       greenCardPending: raw.currentVisa === "GC_pending",
     },
     criticalDates: {
@@ -137,8 +130,6 @@ function normalizeProfile(raw) {
     riskFactors: {
       ...DEFAULT_USER_PROFILE.riskFactors,
       countryBacklog: backlogCountries.includes(raw.countryOfCitizenship),
-      capSubject: raw.currentVisa === "H1B" || raw.purpose === "work",
-      employerDependent: raw.hasWorkAuth === "yes_restricted",
     },
     documentStatus: {
       ...DEFAULT_USER_PROFILE.documentStatus,
@@ -153,6 +144,18 @@ function normalizeProfile(raw) {
  */
 class UserProfileManager {
   constructor() {
+    // ── @userProfile_v2 SHAPE CONTRACT ───────────────────────────────────
+    // On disk this key holds the FLAT onboarding shape (top-level enum keys:
+    // location, purpose, currentVisa, countryOfCitizenship, expiryTimeline,
+    // urgency, complianceRisk, gcYearsHeld, …). It is WRITTEN flat by
+    // OnboardingScreen, SettingsScreen, StatusDetailsScreen and index.js, and
+    // READ raw-as-flat by HomeScreen, SettingsScreen, StatusDetailsScreen,
+    // ChecklistScreen and policyTracker. Only this manager's read path
+    // (get()/getUserProfile() → normalizeProfile) adapts it to the nested shape
+    // its own consumers expect. This manager's WRITE path (save/updateSection/
+    // initialize/migrate) instead emits NESTED — see the guard in save(). Those
+    // writers are unreferenced today (verified 2026-07), so the shapes never
+    // collide. Keep it that way, or migrate the raw flat readers first.
     this.storageKey = "@userProfile_v2";
     this.legacyKey = "@userProfile";
   }
@@ -183,6 +186,21 @@ class UserProfileManager {
   }
 
   async save(profile) {
+    // TRIPWIRE (see the shape contract on storageKey above). save() writes the
+    // NESTED shape to @userProfile_v2, but several screens read that key raw as
+    // FLAT. This method — and updateSection()/initialize()/migrateLegacyProfile(),
+    // which all funnel through it — is currently called nowhere, so no nested
+    // shape is ever persisted. If you wire it up, those raw readers will silently
+    // get `undefined` for every enum field. Migrate them to getUserProfile()
+    // first. Dev-only warning so the moment of adoption is loud, not silent.
+    if (typeof __DEV__ !== "undefined" && __DEV__) {
+      console.warn(
+        "[userProfile] save() persists the NESTED @userProfile_v2 shape, but " +
+          "HomeScreen/SettingsScreen/StatusDetailsScreen/ChecklistScreen/policyTracker " +
+          "read that key raw as FLAT. Migrate those readers to getUserProfile() " +
+          "before relying on save(). See the shape-contract note in userProfile.js."
+      );
+    }
     try {
       const normalized = normalizeProfile(profile);
       normalized.lastUpdated = new Date().toISOString();

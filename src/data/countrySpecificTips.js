@@ -24,7 +24,7 @@ import {
 } from "./travelProclamation";
 
 export const COUNTRY_TIPS_META = {
-  lastUpdated: "June 2026",
+  lastUpdated: "July 2026",
   disclaimerKey: "countryTips.disclaimer",
 };
 
@@ -36,6 +36,17 @@ export const COUNTRY_TIPS_META = {
 // ---------------------------------------------------------------------------
 export const COUNTRY_TIPS = {
   cuba: [
+    {
+      // Always-on baseline so the Country Guidance box never collapses for
+      // Cuba (whose proclamation badge is stripped by StatusDetailsScreen and
+      // whose CAA tip is inside_us-only). Kept general — ban mechanics live in
+      // the pathway/viability section, not here.
+      id: "cuba_general",
+      severity: "warning",
+      titleKey: "countryTips.cuba.general.title",
+      bodyKey: "countryTips.cuba.general.body",
+      lastVerified: "July 2026",
+    },
     {
       id: "cuba_caa",
       severity: "info",
@@ -49,16 +60,30 @@ export const COUNTRY_TIPS = {
 
   haiti: [
     {
-      id: "haiti_tps",
+      id: "haiti_general",
       severity: "warning",
+      titleKey: "countryTips.haiti.general.title",
+      bodyKey: "countryTips.haiti.general.body",
+      lastVerified: "July 2026",
+    },
+{
+      id: "haiti_tps",
+      severity: "alert",
       titleKey: "countryTips.haiti.tps.title",
       bodyKey: "countryTips.haiti.tps.body",
-      lastVerified: "June 2026",
+      lastVerified: "July 2026",
       showIf: (p) => p.location === "inside_us",
     },
   ],
 
   jamaica: [
+    {
+      id: "jamaica_general",
+      severity: "info",
+      titleKey: "countryTips.jamaica.general.title",
+      bodyKey: "countryTips.jamaica.general.body",
+      lastVerified: "July 2026",
+    },
     {
       id: "jamaica_e2",
       severity: "info",
@@ -99,6 +124,13 @@ export const COUNTRY_TIPS = {
   ],
 
   grenada: [
+    {
+      id: "grenada_general",
+      severity: "info",
+      titleKey: "countryTips.grenada.general.title",
+      bodyKey: "countryTips.grenada.general.body",
+      lastVerified: "July 2026",
+    },
     {
       id: "grenada_e2_cbi",
       severity: "info",
@@ -193,4 +225,4 @@ export function getCountryTipsMeta() {
     lastUpdated: COUNTRY_TIPS_META.lastUpdated,
     disclaimer: i18n.t(COUNTRY_TIPS_META.disclaimerKey),
   };
-} 
+}
