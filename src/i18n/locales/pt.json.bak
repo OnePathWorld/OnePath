@@ -1,5 +1,5 @@
 {
-  "profileNextAction": {
+    "profileNextAction": {
     "expiryImmediate": "Seu status pode estar prestes a expirar: considere solicitar uma extensão ou mudança de status o quanto antes.",
     "complianceAttorney": "Seu histórico de status pode afetar suas opções: um advogado de imigração qualificado pode orientar sobre os próximos passos.",
     "protection": "Casos de proteção são urgentes: considere conversar com um advogado de imigração ou um representante credenciado.",
@@ -13,7 +13,8 @@
     "allClear": "Nada precisa da sua atenção no momento."
   },
   "_translation_notes": "Brazilian Portuguese (pt-BR). DRAFT — REQUIRES NATIVE SPEAKER REVIEW BEFORE PRODUCTION. USCIS does not publish official Portuguese terminology. Immigration terms follow common usage among Brazilian immigration attorneys in the US.",
-  "caseGuidance": {
+
+  "caseGuidance":   {
     "card": {
       "meaningLabel": "O que isso costuma significar"
     },
@@ -32,25 +33,26 @@
       "unknown": "O OnePath encontrou o status deste caso, mas ele ainda não corresponde a uma categoria de orientação comum. Leia com atenção o status oficial do USCIS mostrado acima e fique atento a quaisquer avisos oficiais. O status mostrado é sempre a fonte oficial."
     },
     "blend": {
-      "label": "Para a sua situação",
-      "approved_i140_backlog": "Sua petição de Green Card por trabalho (I-140) parece aprovada — isso garante seu lugar na fila, mas não é o Green Card em si. Como seu país tem fila de espera de vistos, ainda pode haver espera antes de você poder apresentar o pedido de Green Card. Verifique o Visa Bulletin de acordo com sua priority date.",
-      "approved_i140": "Sua petição de Green Card por trabalho (I-140) parece aprovada. Isso garante seu lugar na fila — não é o Green Card em si. O próximo passo costuma ser o pedido de Green Card (I-485) ou o processamento consular, dependendo da sua priority date.",
-      "approved_i130": "Sua petição familiar (I-130) parece aprovada. É um passo em direção ao Green Card, não o Green Card em si — o que vem a seguir depende da sua categoria e da sua priority date.",
-      "approved_adjustment": "Se este for o seu caso de ajuste de status (I-485), uma aprovação pode significar a residência permanente legal — um Green Card. O aviso oficial, e o cartão que chega depois, confirmam isso.",
-      "approved_naturalization": "Seu caso de naturalização (N-400) parece aprovado. O passo final costuma ser a cerimônia de juramento — fique atento a um aviso com a data, o horário e o local.",
-      "approved_remove_conditions": "Sua petição para remover as condições da residência (I-751) parece aprovada — isso normalmente leva a um Green Card de 10 anos. Fique atento ao novo cartão pelo correio.",
-      "approved_ead": "Seu pedido de autorização de trabalho (I-765) parece aprovado. Verifique o aviso oficial ou o cartão EAD para ver as datas de validade exatas antes de contar com ele.",
-      "approved_advance_parole": "Seu pedido de documento de viagem (Advance Parole, I-131) parece aprovado. Confirme as datas de validade antes de qualquer viagem internacional.",
-      "approved_employer_petition": "A petição do seu empregador (I-129) parece aprovada. Se você estiver fora dos EUA, ainda pode precisar de um visto antes de viajar; se estiver nos EUA, pode estender ou mudar seu status. O aviso oficial explica qual se aplica.",
-      "approved_extend_change": "Seu pedido para estender ou mudar de status (I-539) parece aprovado. Verifique o aviso oficial para ver seu novo status e as datas.",
-      "docprod_greencard": "Parece que seu Green Card está sendo produzido. Mantenha seu endereço de correspondência no USCIS atualizado para que ele chegue até você.",
-      "docprod_ead": "Parece que seu cartão de autorização de trabalho (EAD) está sendo produzido. Mantenha seu endereço atualizado no USCIS e verifique as datas de validade do cartão quando ele chegar.",
-      "denied_adjustment": "Uma negação do seu caso de ajuste (I-485) também pode afetar uma autorização de trabalho ou documento de viagem vinculado a ele. Leia com atenção o motivo, as opções e os prazos do aviso oficial.",
-      "denied_ead": "Uma negação do seu pedido de autorização de trabalho (I-765) pode afetar sua capacidade de trabalhar. Leia o aviso oficial para ver o motivo e quaisquer opções ou prazos.",
-      "denied_employer_petition": "Esta petição do empregador (I-129) parece negada, o que pode afetar o status que depende dela. O aviso oficial explica as opções e os prazos.",
-      "denied_naturalization": "Uma negação de naturalização não remove o seu Green Card. O aviso oficial explica o motivo, se você pode solicitar novamente ou recorrer, e qualquer prazo."
-    }
+  "label": "Para a sua situação",
+  "approved_i140_backlog": "Sua petição de Green Card por trabalho (I-140) parece aprovada — isso garante seu lugar na fila, mas não é o Green Card em si. Como seu país tem fila de espera de vistos, ainda pode haver espera antes de você poder apresentar o pedido de Green Card. Verifique o Visa Bulletin de acordo com sua priority date.",
+  "approved_i140": "Sua petição de Green Card por trabalho (I-140) parece aprovada. Isso garante seu lugar na fila — não é o Green Card em si. O próximo passo costuma ser o pedido de Green Card (I-485) ou o processamento consular, dependendo da sua priority date.",
+  "approved_i130": "Sua petição familiar (I-130) parece aprovada. É um passo em direção ao Green Card, não o Green Card em si — o que vem a seguir depende da sua categoria e da sua priority date.",
+  "approved_adjustment": "Se este for o seu caso de ajuste de status (I-485), uma aprovação pode significar a residência permanente legal — um Green Card. O aviso oficial, e o cartão que chega depois, confirmam isso.",
+  "approved_naturalization": "Seu caso de naturalização (N-400) parece aprovado. O passo final costuma ser a cerimônia de juramento — fique atento a um aviso com a data, o horário e o local.",
+  "approved_remove_conditions": "Sua petição para remover as condições da residência (I-751) parece aprovada — isso normalmente leva a um Green Card de 10 anos. Fique atento ao novo cartão pelo correio.",
+  "approved_ead": "Seu pedido de autorização de trabalho (I-765) parece aprovado. Verifique o aviso oficial ou o cartão EAD para ver as datas de validade exatas antes de contar com ele.",
+  "approved_advance_parole": "Seu pedido de documento de viagem (Advance Parole, I-131) parece aprovado. Confirme as datas de validade antes de qualquer viagem internacional.",
+  "approved_employer_petition": "A petição do seu empregador (I-129) parece aprovada. Se você estiver fora dos EUA, ainda pode precisar de um visto antes de viajar; se estiver nos EUA, pode estender ou mudar seu status. O aviso oficial explica qual se aplica.",
+  "approved_extend_change": "Seu pedido para estender ou mudar de status (I-539) parece aprovado. Verifique o aviso oficial para ver seu novo status e as datas.",
+  "docprod_greencard": "Parece que seu Green Card está sendo produzido. Mantenha seu endereço de correspondência no USCIS atualizado para que ele chegue até você.",
+  "docprod_ead": "Parece que seu cartão de autorização de trabalho (EAD) está sendo produzido. Mantenha seu endereço atualizado no USCIS e verifique as datas de validade do cartão quando ele chegar.",
+  "denied_adjustment": "Uma negação do seu caso de ajuste (I-485) também pode afetar uma autorização de trabalho ou documento de viagem vinculado a ele. Leia com atenção o motivo, as opções e os prazos do aviso oficial.",
+  "denied_ead": "Uma negação do seu pedido de autorização de trabalho (I-765) pode afetar sua capacidade de trabalhar. Leia o aviso oficial para ver o motivo e quaisquer opções ou prazos.",
+  "denied_employer_petition": "Esta petição do empregador (I-129) parece negada, o que pode afetar o status que depende dela. O aviso oficial explica as opções e os prazos.",
+  "denied_naturalization": "Uma negação de naturalização não remove o seu Green Card. O aviso oficial explica o motivo, se você pode solicitar novamente ou recorrer, e qualquer prazo."
+}
   },
+
   "labels": {
     "visa": {
       "F1": "Estudante F-1",
@@ -165,7 +167,7 @@
     "unknown": "Desconhecido",
     "dataUpdated": "Dados atualizados: {{date}}"
   },
-  "home": {
+"home": {
     "greeting": {
       "morning": "Bom Dia",
       "afternoon": "Boa Tarde",
@@ -184,10 +186,10 @@
       "citizenshipNudge": "Pronto para explorar a cidadania? Veja suas opções de naturalização.",
       "caseActionNeeded": "Um caso que você acompanha pode precisar de atenção: {{case}}. Toque para revisar.",
       "case": {
-        "action": "{{case}} precisa da sua atenção. Toque para revisar.",
-        "prepare": "{{case}} tem uma etapa chegando. Toque para ver detalhes.",
-        "monitor": "{{case}} está em andamento — nada a fazer no momento."
-      }
+      "action": "{{case}} precisa da sua atenção. Toque para revisar.",
+      "prepare": "{{case}} tem uma etapa chegando. Toque para ver detalhes.",
+      "monitor": "{{case}} está em andamento — nada a fazer no momento."
+    }
     },
     "stats": {
       "visaExpiration": "Vencimento do Visto",
@@ -237,7 +239,7 @@
     "skipForNow": "Pular por agora",
     "notSure": "Não tenho certeza — pular esta pergunta",
     "privacyDisclaimer": "🔒 Não coletamos nem compartilhamos dados pessoais. Suas respostas permanecem no seu dispositivo e são usadas apenas para personalizar sua experiência e fornecer alertas de segurança.",
-    "welcome": {
+        "welcome": {
       "title": "Bem-vindo à Sua Jornada de Imigração",
       "subtitle": "Vamos te ajudar a navegar pelo processo de imigração dos EUA passo a passo",
       "trackInstead": "Já tenho um número de caso — só quero acompanhá-lo"
@@ -540,7 +542,7 @@
       "title": "Atualizado",
       "body": "Seu perfil foi atualizado. Volte para a tela inicial para ver as alterações."
     },
-    "languagePicker": {
+        "languagePicker": {
       "currentLanguage": "Idioma",
       "changeLanguage": "Mudar Idioma",
       "autoDetected": "Detectado automaticamente do dispositivo"
@@ -608,8 +610,7 @@
         "restricted": "Sua autorização de trabalho está vinculada a um empregador específico. Mudar de emprego requer uma nova petição.",
         "urgentNoAuth": "⚠️ Sem autorização de trabalho, você não pode iniciar emprego. O processamento premium (agora $2,965) pode acelerar alguns vistos para 15 dias.",
         "default": "A imigração por trabalho requer patrocínio do empregador. Comece encontrando um empregador disposto a patrocinar seu visto.",
-        "haiti_tps": "Sua autorização de trabalho pode ser baseada no TPS do Haiti, que está terminando. A Suprema Corte decidiu em 25 de junho de 2026 que os tribunais não podem revisar a decisão, e o USCIS está prorrogando as autorizações apenas por períodos curtos — a data de validade muda de semana para semana. Consulte a página oficial do USCIS sobre o TPS do Haiti para ver a data atual e fale imediatamente com um advogado de imigração ou representante credenciado sobre outras opções."
-      },
+        "haiti_tps": "Sua autorização de trabalho pode ser baseada no TPS do Haiti, que está terminando. A Suprema Corte decidiu em 25 de junho de 2026 que os tribunais não podem revisar a decisão, e o USCIS está prorrogando as autorizações apenas por períodos curtos — a data de validade muda de semana para semana. Consulte a página oficial do USCIS sobre o TPS do Haiti para ver a data atual e fale imediatamente com um advogado de imigração ou representante credenciado sobre outras opções."    },
       "primaryAction": {
         "expiredStatus": "🆘 Resolver Status Vencido",
         "findH1bSponsor": "Encontrar Patrocinador H-1B",
@@ -1137,37 +1138,8 @@
       "uscisContactCenter": "Centro de Contato do USCIS"
     }
   },
-
-"policyTracker": {
+  "policyTracker": {
     "policies": {
-      "durationOfStatusPending": {
-        "title": "Em breve: um período de permanência fixo para F-1 e J-1 (ainda não em vigor)",
-        "summary": "Uma nova regra substituiria a 'duração do status' por uma data final fixa no seu I-94. Ela passou pela revisão, mas ainda não é lei — nada mudou para você hoje.",
-        "details": "Por décadas, os titulares de visto F-1 e J-1 têm sido admitidos por 'duração do status' — podem permanecer enquanto cumprirem as condições do seu status. O DHS finalizou uma regra que substituiria isso por uma data final fixa e exigiria um pedido formal de prorrogação para ficar mais tempo. A regra passou pela revisão da Casa Branca em 17 de junho de 2026, mas não foi publicada no Registro Federal, e entraria em vigor 60 dias após a publicação. Até lá, as regras atuais — incluindo seu período de carência atual — continuam valendo. Algumas notícias descrevem os termos propostos como se já fossem lei. Não são, e os termos finais ainda podem mudar.",
-        "actions": {
-          "a1": "Nada mudou hoje. Seu status atual e seu período de carência continuam valendo.",
-          "a2": "Converse com seu DSO ou patrocinador do programa antes de fazer planos em torno da data de término do seu programa.",
-          "a3": "Acompanhe os anúncios oficiais do ICE e do SEVP sobre a regra final — não confie em resumos de notícias."
-        },
-        "impactByStatus": {
-          "F1": "Isso afetaria você. Nada mudou ainda — fale com seu DSO antes de agir com base no que ler sobre o assunto.",
-          "OPT": "Isso afetaria você e pode mudar como prorrogar sua permanência durante o OPT. Nada mudou ainda.",
-          "J1": "Isso afetaria você. Nada mudou ainda — fale com o patrocinador do seu programa."
-        }
-      },
-      "tpsTerminationsScotus": {
-        "title": "Suprema Corte: encerramentos do TPS não podem ser contestados na justiça",
-        "summary": "A Suprema Corte decidiu que os tribunais federais não podem revisar as decisões do DHS de encerrar o TPS. Os encerramentos para Haiti e Síria seguem em frente, e outros países são afetados.",
-        "details": "Em 25 de junho de 2026, em Mullin v. Doe, a Suprema Corte decidiu que os tribunais federais não podem revisar a decisão do Secretário de Segurança Interna de encerrar a designação de TPS de um país. Os encerramentos para Haiti e Síria seguem em frente. O USCIS está prorrogando as autorizações de trabalho apenas por períodos curtos, portanto as datas de validade mudam de semana para semana. As designações que continuam ativas também estão mais vulneráveis, porque a via legal para contestar um encerramento está agora em grande parte fechada.",
-        "actions": {
-          "a1": "Consulte a página oficial do USCIS sobre o TPS do seu país para ver a data atual de validade da sua autorização de trabalho — ela pode ter mudado desde a última vez que você verificou.",
-          "a2": "Fale agora com um advogado de imigração ou representante credenciado sobre outras opções de status.",
-          "a3": "Não confie em uma data de validade que você viu antes nem na data impressa no seu cartão."
-        },
-        "impactByStatus": {
-          "EAD": "Se sua autorização de trabalho é baseada no TPS, ela pode terminar antes da data impressa nela. Verifique a data atual com o USCIS e busque orientação jurídica imediatamente."
-        }
-      },
       "h1b100kFee": {
         "title": "Taxa H-1B de $100,000 — Processamento Consular",
         "summary": "Pagamento adicional de $100,000 exigido para certas petições H-1B aprovadas para processamento consular.",
@@ -1182,7 +1154,20 @@
           "OPT": "MODERADO — Titulares de OPT elegíveis para cap-gap podem peticionar mudança de status",
           "H1B": "ALTO — Transferências que exigem processamento consular acionam a taxa",
           "B1B2": "ALTO — Deve usar processamento consular, a taxa se aplica"
+        },
+        "tpsTerminationsScotus": {
+        "title": "Suprema Corte: encerramentos do TPS não podem ser contestados na justiça",
+        "summary": "A Suprema Corte decidiu que os tribunais federais não podem revisar as decisões do DHS de encerrar o TPS. Os encerramentos para Haiti e Síria seguem em frente, e outros países são afetados.",
+        "details": "Em 25 de junho de 2026, em Mullin v. Doe, a Suprema Corte decidiu que os tribunais federais não podem revisar a decisão do Secretário de Segurança Interna de encerrar a designação de TPS de um país. Os encerramentos para Haiti e Síria seguem em frente. O USCIS está prorrogando as autorizações de trabalho apenas por períodos curtos, portanto as datas de validade mudam de semana para semana. As designações que continuam ativas também estão mais vulneráveis, porque a via legal para contestar um encerramento está agora em grande parte fechada.",
+        "actions": {
+          "a1": "Consulte a página oficial do USCIS sobre o TPS do seu país para ver a data atual de validade da sua autorização de trabalho — ela pode ter mudado desde a última vez que você verificou.",
+          "a2": "Fale agora com um advogado de imigração ou representante credenciado sobre outras opções de status.",
+          "a3": "Não confie em uma data de validade que você viu antes nem na data impressa no seu cartão."
+        },
+        "impactByStatus": {
+          "EAD": "Se sua autorização de trabalho é baseada no TPS, ela pode terminar antes da data impressa nela. Verifique a data atual com o USCIS e busque orientação jurídica imediatamente."
         }
+      }
       },
       "eadValidity18Months": {
         "title": "Validade do EAD Reduzida para 18 Meses",
@@ -1282,16 +1267,6 @@
       }
     },
     "courtCases": {
-      "h1b100kFeeLitigation": {
-        "case": "Ações judiciais contra a taxa H-1B de $100,000",
-        "impact": "Um tribunal federal declarou a taxa ilegal, mas ela está sendo cobrada novamente enquanto o governo recorre. O resultado não está definido.",
-        "probability": "Resultado incerto — tribunais federais chegaram a conclusões opostas",
-        "contingencyActions": {
-          "a1": "Inclua a taxa no seu orçamento. Ela está sendo cobrada atualmente nas petições que exigem processamento consular.",
-          "a2": "Verifique se uma mudança de status dentro dos EUA se aplica a você — em geral a taxa não atinge quem já está aqui e é elegível para mudar de status.",
-          "a3": "Não faça planos que dependam do fim da taxa. Acompanhe as atualizações antes de decidir."
-        }
-      },
       "weightedLotteryChallenge": {
         "case": "Múltiplas contestações à seleção H-1B ponderada por salário",
         "impact": "Pode atrasar ou modificar o sistema de loteria ponderada por salário",
@@ -1363,8 +1338,7 @@
       "optToH1bImpact": "Afeta diretamente sua transição de OPT para H-1B",
       "indiaSpecific": "Impacta especificamente nacionais indianos",
       "genericImpact": "Pode afetar sua jornada de imigração",
-      "courtCaseImpact": "{{probability}} — Decisão esperada {{date}}",
-      "courtCaseImpactNoDate": "{{probability}} — não se sabe quando será decidido; acompanhe as atualizações antes de contar com um resultado"
+      "courtCaseImpact": "{{probability}} — Decisão esperada {{date}}"
     }
   },
   "resourcesScreen": {
@@ -3792,7 +3766,7 @@
     "lastUpdated": "Última atualização: {{date}}",
     "disclaimer": "Os cronogramas são estimativas e podem variar conforme o país, carga de trabalho e complexidade do caso."
   },
-  "caseTracker": {
+"caseTracker": {
     "header": {
       "title": "Rastreador de Casos USCIS",
       "subtitle": "Acompanhe o status oficial das suas petições USCIS em tempo real."
@@ -3897,7 +3871,7 @@
       }
     },
     "haiti": {
-      "tps": {
+    "tps": {
         "title": "Status de Proteção Temporária (TPS) — Em encerramento",
         "body": "Em 25 de junho de 2026, a Suprema Corte decidiu que os tribunais não podem revisar a decisão de encerrar o TPS. A designação do Haiti está encerrada e as autorizações de trabalho baseadas no TPS estão terminando. O USCIS está prorrogando a data de validade apenas por períodos curtos, portanto ela muda de semana para semana — não confie em uma data que você viu antes nem na data impressa no seu cartão. Consulte a página oficial do USCIS sobre o TPS do Haiti para ver a data atual e fale imediatamente com um advogado de imigração ou representante credenciado sobre outras opções. O registro inicial de TPS não está sendo aceito."
       }

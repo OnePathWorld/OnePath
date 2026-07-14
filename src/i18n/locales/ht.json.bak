@@ -1,5 +1,6 @@
 {
-  "profileNextAction": {
+
+    "profileNextAction": {
     "expiryImmediate": "Estati ou ka prèt pou fini byento — gade pou yon ekstansyon oswa yon chanjman estati touswit.",
     "complianceAttorney": "Istwa estati ou ka afekte opsyon ou yo — yon avoka imigrasyon ki kalifye ka konseye ou sou pwochen etap yo.",
     "protection": "Ka pwoteksyon yo enpòtan pou tan — konsidere pale ak yon avoka imigrasyon oswa yon reprezantan ki akredite.",
@@ -13,7 +14,7 @@
     "allClear": "Pa gen anyen ki bezwen atansyon ou kounye a."
   },
   "_translation_notes": "Haitian Creole (ht / Kreyòl ayisyen). DRAFT — REQUIRES NATIVE SPEAKER REVIEW BEFORE PRODUCTION. Immigration terminology (visa types, form numbers, agency names, legal terms) intentionally kept in English per project convention — these are official identifiers that Haitian immigrants already use in English. USCIS does not publish official Haitian Creole terminology. Register: informal, conversational Kreyòl (Standard Haitian Creole based on Port-au-Prince usage). Diacritics (è, ò, etc.) are meaningful in Kreyòl and must be preserved. Terms kept in English: all visa codes (H-1B, F-1, L-1, OPT, EAD, etc.), form numbers (I-129, N-400, DS-160, etc.), agency acronyms (USCIS, DOS, DOL, NVC, EOIR, SEVIS, etc.), 'green card', 'priority date', 'adjustment of status', 'premium processing', 'lottery', 'prevailing wage', dollar amounts, dates.",
-  "caseGuidance": {
+  "caseGuidance":   {
     "card": {
       "meaningLabel": "Sa sa vle di anjeneral"
     },
@@ -32,24 +33,24 @@
       "unknown": "OnePath jwenn estati ka sa a, men li poko matche ak yon kategori konsèy ki komen. Li estati ofisyèl USCIS ki parèt anwo a byen epi rete veye nenpòt avi ofisyèl. Estati ki parèt la se toujou sous otorite a."
     },
     "blend": {
-      "label": "Pou sitiyasyon ou",
-      "approved_i140_backlog": "Petisyon Green Card pa travay ou (I-140) sanble apwouve — sa asire plas ou nan liy lan, men se pa Green Card la menm. Paske peyi w gen backlog viza, ka gen yon atant toujou anvan ou ka depoze aplikasyon Green Card la. Gade Visa Bulletin an dapre priority date ou.",
-      "approved_i140": "Petisyon Green Card pa travay ou (I-140) sanble apwouve. Sa asire plas ou nan liy lan — se pa Green Card la menm. Pwochen etap la se anjeneral aplikasyon Green Card la (I-485) oswa pwosesis konsilè, dapre priority date ou.",
-      "approved_i130": "Petisyon fanmi ou (I-130) sanble apwouve. Se yon etap nan direksyon Green Card la, se pa Green Card la menm — sa k ap vini apre depann de kategori ou ak priority date ou.",
-      "approved_adjustment": "Si sa a se ka ajisteman estati ou (I-485), yon apwobasyon ka vle di rezidans pèmanan legal — yon Green Card. Avi ofisyèl la, ak kat ki vini apre a, konfime sa.",
-      "approved_naturalization": "Ka natiralizasyon ou (N-400) sanble apwouve. Etap final la se anjeneral seremoni sèman an — rete veye yon avi ki gen dat, lè, ak kote.",
-      "approved_remove_conditions": "Petisyon ou pou retire kondisyon sou rezidans (I-751) sanble apwouve — sa anjeneral mennen nan yon Green Card 10 an. Rete veye nouvo kat la nan lapòs.",
-      "approved_ead": "Aplikasyon pèmi travay ou (I-765, EAD) sanble apwouve. Tcheke avi ofisyèl la oswa kat EAD la pou dat validite egzak yo anvan ou konte sou li.",
-      "approved_advance_parole": "Aplikasyon dokiman vwayaj ou (Advance Parole, I-131) sanble apwouve. Konfime dat validite yo anvan nenpòt vwayaj entènasyonal.",
-      "approved_employer_petition": "Petisyon anplwayè ou (I-129) sanble apwouve. Si w andeyò Etazini, ou ka bezwen yon viza toujou anvan w vwayaje; si w nan Etazini, li ka pwolonje oswa chanje estati w. Avi ofisyèl la eksplike kilès ki aplike.",
-      "approved_extend_change": "Demann ou pou pwolonje oswa chanje estati (I-539) sanble apwouve. Tcheke avi ofisyèl la pou nouvo estati w ak dat yo.",
-      "docprod_greencard": "Green Card ou sanble ap pwodwi. Kenbe adrès postal ou ak USCIS ajou pou li ka rive jwenn ou.",
-      "docprod_ead": "Kat pèmi travay ou (EAD) sanble ap pwodwi. Kenbe adrès ou ak USCIS ajou, epi tcheke dat validite kat la lè li rive.",
-      "denied_adjustment": "Yon refi nan ka ajisteman ou (I-485) ka afekte tou yon pèmi travay oswa dokiman vwayaj ki lye ak li. Li rezon an, opsyon yo, ak dat limit yo nan avi ofisyèl la ak atansyon.",
-      "denied_ead": "Yon refi nan aplikasyon pèmi travay ou (I-765) ka afekte kapasite w pou travay. Li avi ofisyèl la pou rezon an ak nenpòt opsyon oswa dat limit.",
-      "denied_employer_petition": "Petisyon anplwayè sa a (I-129) sanble refize, sa ka afekte estati ki depann de li. Avi ofisyèl la eksplike opsyon yo ak dat limit yo.",
-      "denied_naturalization": "Yon refi natiralizasyon pa retire Green Card ou. Avi ofisyèl la eksplike rezon an, si ou ka aplike ankò oswa fè apèl, ak nenpòt dat limit."
-    }
+  "label": "Pou sitiyasyon ou",
+  "approved_i140_backlog": "Petisyon Green Card pa travay ou (I-140) sanble apwouve — sa asire plas ou nan liy lan, men se pa Green Card la menm. Paske peyi w gen backlog viza, ka gen yon atant toujou anvan ou ka depoze aplikasyon Green Card la. Gade Visa Bulletin an dapre priority date ou.",
+  "approved_i140": "Petisyon Green Card pa travay ou (I-140) sanble apwouve. Sa asire plas ou nan liy lan — se pa Green Card la menm. Pwochen etap la se anjeneral aplikasyon Green Card la (I-485) oswa pwosesis konsilè, dapre priority date ou.",
+  "approved_i130": "Petisyon fanmi ou (I-130) sanble apwouve. Se yon etap nan direksyon Green Card la, se pa Green Card la menm — sa k ap vini apre depann de kategori ou ak priority date ou.",
+  "approved_adjustment": "Si sa a se ka ajisteman estati ou (I-485), yon apwobasyon ka vle di rezidans pèmanan legal — yon Green Card. Avi ofisyèl la, ak kat ki vini apre a, konfime sa.",
+  "approved_naturalization": "Ka natiralizasyon ou (N-400) sanble apwouve. Etap final la se anjeneral seremoni sèman an — rete veye yon avi ki gen dat, lè, ak kote.",
+  "approved_remove_conditions": "Petisyon ou pou retire kondisyon sou rezidans (I-751) sanble apwouve — sa anjeneral mennen nan yon Green Card 10 an. Rete veye nouvo kat la nan lapòs.",
+  "approved_ead": "Aplikasyon pèmi travay ou (I-765, EAD) sanble apwouve. Tcheke avi ofisyèl la oswa kat EAD la pou dat validite egzak yo anvan ou konte sou li.",
+  "approved_advance_parole": "Aplikasyon dokiman vwayaj ou (Advance Parole, I-131) sanble apwouve. Konfime dat validite yo anvan nenpòt vwayaj entènasyonal.",
+  "approved_employer_petition": "Petisyon anplwayè ou (I-129) sanble apwouve. Si w andeyò Etazini, ou ka bezwen yon viza toujou anvan w vwayaje; si w nan Etazini, li ka pwolonje oswa chanje estati w. Avi ofisyèl la eksplike kilès ki aplike.",
+  "approved_extend_change": "Demann ou pou pwolonje oswa chanje estati (I-539) sanble apwouve. Tcheke avi ofisyèl la pou nouvo estati w ak dat yo.",
+  "docprod_greencard": "Green Card ou sanble ap pwodwi. Kenbe adrès postal ou ak USCIS ajou pou li ka rive jwenn ou.",
+  "docprod_ead": "Kat pèmi travay ou (EAD) sanble ap pwodwi. Kenbe adrès ou ak USCIS ajou, epi tcheke dat validite kat la lè li rive.",
+  "denied_adjustment": "Yon refi nan ka ajisteman ou (I-485) ka afekte tou yon pèmi travay oswa dokiman vwayaj ki lye ak li. Li rezon an, opsyon yo, ak dat limit yo nan avi ofisyèl la ak atansyon.",
+  "denied_ead": "Yon refi nan aplikasyon pèmi travay ou (I-765) ka afekte kapasite w pou travay. Li avi ofisyèl la pou rezon an ak nenpòt opsyon oswa dat limit.",
+  "denied_employer_petition": "Petisyon anplwayè sa a (I-129) sanble refize, sa ka afekte estati ki depann de li. Avi ofisyèl la eksplike opsyon yo ak dat limit yo.",
+  "denied_naturalization": "Yon refi natiralizasyon pa retire Green Card ou. Avi ofisyèl la eksplike rezon an, si ou ka aplike ankò oswa fè apèl, ak nenpòt dat limit."
+}
   },
   "labels": {
     "visa": {
@@ -183,11 +184,12 @@
       "policyChanges_other": "{{count}} chanjman politik afekte ou",
       "citizenshipNudge": "Prè pou eksplore sitwayènte? Gade opsyon natiralizasyon ou yo.",
       "caseActionNeeded": "Yon ka w ap swiv ka bezwen atansyon: {{case}}. Peze pou revize.",
+
       "case": {
-        "action": "{{case}} bezwen atansyon ou. Peze pou gade.",
-        "prepare": "{{case}} gen yon etap k ap vini. Peze pou plis detay.",
-        "monitor": "{{case}} ap mache byen — pa gen anyen pou fè kounye a."
-      }
+      "action": "{{case}} bezwen atansyon ou. Peze pou gade.",
+      "prepare": "{{case}} gen yon etap k ap vini. Peze pou plis detay.",
+      "monitor": "{{case}} ap mache byen — pa gen anyen pou fè kounye a."
+    }
     },
     "stats": {
       "visaExpiration": "Eksprasyon Viza",
@@ -608,8 +610,7 @@
         "restricted": "Otorizasyon travay ou lye ak yon anplwayè espesifik. Chanje travay nesesite yon nouvo petisyon.",
         "urgentNoAuth": "⚠️ San otorizasyon travay, ou pa ka kòmanse travay. Premium processing (kounye a $2,965) ka ekspedye kèk viza nan 15 jou.",
         "default": "Imigrasyon baze sou anplwa nesesite patwonaj anplwayè. Kòmanse jwenn yon anplwayè ki vle patwone viza ou.",
-        "haiti_tps": "Pèmi travay ou a ka baze sou TPS Ayiti, ki ap fini. Tribinal Siprèm nan deside nan dat 25 jen 2026 ke tribinal yo pa gen dwa revize desizyon an, epi USCIS ap pwolonje pèmi travay TPS yo sèlman pou kout peryòd — dat ekspirasyon an ap chanje chak semèn. Gade paj ofisyèl USCIS pou TPS Ayiti a pou dat aktyèl la, epi pale ak yon avoka imigrasyon oswa yon reprezantan ki akredite touswit sou lòt opsyon."
-      },
+        "haiti_tps": "Pèmi travay ou a ka baze sou TPS Ayiti, ki ap fini. Tribinal Siprèm nan deside nan dat 25 jen 2026 ke tribinal yo pa gen dwa revize desizyon an, epi USCIS ap pwolonje pèmi travay TPS yo sèlman pou kout peryòd — dat ekspirasyon an ap chanje chak semèn. Gade paj ofisyèl USCIS pou TPS Ayiti a pou dat aktyèl la, epi pale ak yon avoka imigrasyon oswa yon reprezantan ki akredite touswit sou lòt opsyon."  },
       "primaryAction": {
         "expiredStatus": "🆘 Regle Estati Ekspire",
         "findH1bSponsor": "Jwenn Patwon H-1B",
@@ -1137,36 +1138,8 @@
       "uscisContactCenter": "Sant Kontak USCIS"
     }
   },
-"policyTracker": {
+  "policyTracker": {
     "policies": {
-      "durationOfStatusPending": {
-        "title": "K ap vini: yon peryòd sejou fiks pou F-1 ak J-1 (li poko an vigè)",
-        "summary": "Yon nouvo règ ta ranplase 'dire estati a' ak yon dat fen fiks sou I-94 ou a. Li pase revizyon an, men li poko lwa — anyen pa chanje pou ou jodi a.",
-        "details": "Pandan plizyè deseni, moun ki gen viza F-1 ak J-1 te antre sou 'dire estati a' — ou ka rete toutotan ou respekte kondisyon estati ou. DHS fini yon règ ki ta ranplase sa ak yon dat fen fiks epi ki ta mande yon demann fòmèl pou pwolonje si ou vle rete pi lontan. Règ la pase revizyon Mezon Blanch lan nan dat 17 jen 2026, men li poko pibliye nan Rejis Federal la, epi li t ap antre an vigè 60 jou apre piblikasyon an. Jiskaske sa rive, règ aktyèl yo — enkli peryòd gras ou genyen kounye a — toujou aplike. Kèk nouvèl prezante kondisyon yo pwopoze yo tankou si yo te deja lwa. Yo pa lwa, epi kondisyon final yo ka toujou chanje.",
-        "actions": {
-          "a1": "Anyen pa chanje jodi a. Estati ou ak peryòd gras ou toujou aplike.",
-          "a2": "Pale ak DSO ou oswa moun ki patwone pwogram ou an anvan ou fè plan sou dat pwogram ou an fini.",
-          "a3": "Gade anons ofisyèl ICE ak SEVP sou règ final la — pa konte sou rezime nouvèl yo."
-        },
-        "impactByStatus": {
-          "F1": "Sa t ap afekte ou. Anyen poko chanje — pale ak DSO ou anvan ou aji sou sa ou li sou sijè a.",
-          "OPT": "Sa t ap afekte ou, epi li ka chanje jan ou pwolonje sejou ou pandan OPT. Anyen poko chanje.",
-          "J1": "Sa t ap afekte ou. Anyen poko chanje — pale ak moun ki patwone pwogram ou an."
-        }
-      },
-      "tpsTerminationsScotus": {
-        "title": "Tribinal Siprèm: yo pa ka konteste fen TPS nan tribinal",
-        "summary": "Tribinal Siprèm nan deside tribinal federal yo pa gen dwa revize desizyon DHS pou fini ak TPS. Fen TPS pou Ayiti ak Siri ap kontinye, epi lòt peyi afekte tou.",
-        "details": "Nan dat 25 jen 2026, nan ka Mullin v. Doe, Tribinal Siprèm nan deside tribinal federal yo pa gen dwa revize desizyon Sekretè Sekirite Enteryè a pou fini ak deziyasyon TPS yon peyi. Fen TPS pou Ayiti ak Siri ap kontinye. USCIS ap pwolonje pèmi travay TPS yo sèlman pou kout peryòd, kidonk dat ekspirasyon yo ap chanje chak semèn. Deziyasyon ki toujou aktif yo pi frajil tou, paske chemen legal pou konteste yon fen deziyasyon fèmen anpil kounye a.",
-        "actions": {
-          "a1": "Gade paj ofisyèl USCIS pou TPS peyi ou a pou dat ekspirasyon aktyèl pèmi travay ou a — li ka chanje depi dènye fwa ou te gade a.",
-          "a2": "Pale kounye a ak yon avoka imigrasyon oswa yon reprezantan ki akredite sou lòt opsyon estati.",
-          "a3": "Pa konte sou yon dat ekspirasyon ou te wè anvan, ni sou dat ki enprime sou kat ou a."
-        },
-        "impactByStatus": {
-          "EAD": "Si pèmi travay ou a baze sou TPS, li ka fini anvan dat ki enprime sou li a. Verifye dat aktyèl la ak USCIS epi chèche konsèy legal touswit."
-        }
-      },
       "h1b100kFee": {
         "title": "Frè H-1B $100,000 — Tretman Konsila",
         "summary": "Pèman $100,000 adisyonèl obligatwa pou kèk petisyon H-1B apwouve pou tretman konsila.",
@@ -1181,7 +1154,20 @@
           "OPT": "MODERE — Titilè OPT elijib cap-gap ka depoze chanjman estati",
           "H1B": "WO — Transfè ki nesesite tretman konsila deklanche frè a",
           "B1B2": "WO — Dwe itilize tretman konsila, frè aplike"
+        },
+        "tpsTerminationsScotus": {
+        "title": "Tribinal Siprèm: yo pa ka konteste fen TPS nan tribinal",
+        "summary": "Tribinal Siprèm nan deside tribinal federal yo pa gen dwa revize desizyon DHS pou fini ak TPS. Fen TPS pou Ayiti ak Siri ap kontinye, epi lòt peyi afekte tou.",
+        "details": "Nan dat 25 jen 2026, nan ka Mullin v. Doe, Tribinal Siprèm nan deside tribinal federal yo pa gen dwa revize desizyon Sekretè Sekirite Enteryè a pou fini ak deziyasyon TPS yon peyi. Fen TPS pou Ayiti ak Siri ap kontinye. USCIS ap pwolonje pèmi travay TPS yo sèlman pou kout peryòd, kidonk dat ekspirasyon yo ap chanje chak semèn. Deziyasyon ki toujou aktif yo pi frajil tou, paske chemen legal pou konteste yon fen deziyasyon fèmen anpil kounye a.",
+        "actions": {
+          "a1": "Gade paj ofisyèl USCIS pou TPS peyi ou a pou dat ekspirasyon aktyèl pèmi travay ou a — li ka chanje depi dènye fwa ou te gade a.",
+          "a2": "Pale kounye a ak yon avoka imigrasyon oswa yon reprezantan ki akredite sou lòt opsyon estati.",
+          "a3": "Pa konte sou yon dat ekspirasyon ou te wè anvan, ni sou dat ki enprime sou kat ou a."
+        },
+        "impactByStatus": {
+          "EAD": "Si pèmi travay ou a baze sou TPS, li ka fini anvan dat ki enprime sou li a. Verifye dat aktyèl la ak USCIS epi chèche konsèy legal touswit."
         }
+      }
       },
       "eadValidity18Months": {
         "title": "Validite EAD Redwi a 18 Mwa",
@@ -1280,17 +1266,7 @@
         "details": "Kategori SR sijè a menm dat pou depo ak dat aksyon final kòm lòt kategori EB-4."
       }
     },
-"courtCases": {
-      "h1b100kFeeLitigation": {
-        "case": "Pwosè kont frè $100,000 pou H-1B la",
-        "impact": "Yon tribinal federal deside frè a pa legal, men y ap kolekte l ankò pandan gouvènman an ap fè apèl. Rezilta a poko fikse.",
-        "probability": "Rezilta a pa sèten — tribinal federal yo rive sou konklizyon ki opoze",
-        "contingencyActions": {
-          "a1": "Mete frè a nan bidjè ou. Kounye a y ap kolekte l pou demann ki mande pwosesis konsilè.",
-          "a2": "Tcheke si yon chanjman estati anndan Etazini aplike pou ou — anjeneral frè a pa touche moun ki deja isit la epi ki kalifye pou chanje estati.",
-          "a3": "Pa fè plan ki depann sou frè a disparèt. Gade nouvèl yo anvan ou deside."
-        }
-      },
+    "courtCases": {
       "weightedLotteryChallenge": {
         "case": "Plizyè defi kont seleksyon H-1B baze sou salè",
         "impact": "Ka retade oswa modifye sistèm lottery baze sou salè a",
@@ -1362,8 +1338,7 @@
       "optToH1bImpact": "Afekte dirèkteman tranzisyon ou soti OPT rive H-1B",
       "indiaSpecific": "Afekte espesifikman nasyonal Endyen",
       "genericImpact": "Ka afekte vwayaj imigrasyon ou",
-      "courtCaseImpact": "{{probability}} — Desizyon prevwa {{date}}",
-      "courtCaseImpactNoDate": "{{probability}} — nou pa konnen ki lè y ap deside; gade nouvèl yo anvan ou konte sou yon rezilta"
+      "courtCaseImpact": "{{probability}} — Desizyon prevwa {{date}}"
     }
   },
   "resourcesScreen": {
@@ -3829,11 +3804,12 @@
       "confirm": "Retire"
     },
     "ownership": {
-      "question": "Ka sa a se pou ki moun?",
-      "mine": "Se pa m",
-      "other": "Se pou yon lòt moun",
-      "helper": "Opsyonèl — pèmèt tablo w la adapte konsèy yo pou pwòp ka pa w."
+    "question": "Ka sa a se pou ki moun?",
+    "mine": "Se pa m",
+    "other": "Se pou yon lòt moun",
+    "helper": "Opsyonèl — pèmèt tablo w la adapte konsèy yo pou pwòp ka pa w."
     },
+
     "preOnboard": {
       "continueToApp": "Kontinye nan aplikasyon an →"
     },

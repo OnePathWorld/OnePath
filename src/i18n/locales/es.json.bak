@@ -1107,36 +1107,8 @@
       "uscisContactCenter": "Centro de Contacto de USCIS"
     }
   },
-"policyTracker": {
+  "policyTracker": {
     "policies": {
-      "durationOfStatusPending": {
-        "title": "Próximamente: un período de estadía fijo para F-1 y J-1 (aún no vigente)",
-        "summary": "Una nueva regla reemplazaría la 'duración del estatus' por una fecha fija de vencimiento en su I-94. Ya pasó la revisión, pero todavía no es ley: hoy nada ha cambiado para usted.",
-        "details": "Durante décadas, los titulares de visas F-1 y J-1 han sido admitidos por 'duración del estatus': pueden permanecer mientras cumplan las condiciones de su estatus. El DHS finalizó una regla que reemplazaría esto por una fecha de vencimiento fija y exigiría una solicitud formal de extensión para quedarse más tiempo. La regla pasó la revisión de la Casa Blanca el 17 de junio de 2026, pero no se ha publicado en el Registro Federal, y entraría en vigor 60 días después de su publicación. Hasta entonces, siguen aplicando las reglas actuales, incluido su período de gracia actual. Algunas noticias describen los términos propuestos como si ya fueran ley. No lo son, y los términos finales todavía pueden cambiar.",
-        "actions": {
-          "a1": "Hoy nada ha cambiado. Su estatus actual y su período de gracia siguen vigentes.",
-          "a2": "Hable con su DSO o el patrocinador de su programa antes de hacer planes en torno a la fecha de finalización de su programa.",
-          "a3": "Siga los anuncios oficiales de ICE y SEVP sobre la regla final; no se guíe por resúmenes de noticias."
-        },
-        "impactByStatus": {
-          "F1": "Esto le afectaría. Todavía no ha cambiado nada: consulte con su DSO antes de actuar según lo que lea al respecto.",
-          "OPT": "Esto le afectaría y podría cambiar la forma de extender su estadía durante el OPT. Todavía no ha cambiado nada.",
-          "J1": "Esto le afectaría. Todavía no ha cambiado nada: consulte con el patrocinador de su programa."
-        }
-      },
-      "tpsTerminationsScotus": {
-        "title": "Corte Suprema: las terminaciones del TPS no se pueden impugnar en los tribunales",
-        "summary": "La Corte Suprema resolvió que los tribunales federales no pueden revisar las decisiones del DHS de terminar el TPS. Las terminaciones para Haití y Siria siguen adelante, y otros países se ven afectados.",
-        "details": "El 25 de junio de 2026, en Mullin v. Doe, la Corte Suprema resolvió que los tribunales federales no pueden revisar la decisión del Secretario de Seguridad Nacional de terminar la designación de TPS de un país. Las terminaciones para Haití y Siria siguen adelante. USCIS solo está extendiendo los permisos de trabajo por períodos cortos, por lo que las fechas de vencimiento cambian de semana en semana. Las designaciones que siguen vigentes también son más vulnerables, porque la vía legal para impugnar una terminación está ahora en gran medida cerrada.",
-        "actions": {
-          "a1": "Consulte la página oficial de USCIS sobre el TPS de su país para ver la fecha actual de vencimiento de su permiso de trabajo: puede haber cambiado desde la última vez que la revisó.",
-          "a2": "Hable ahora con un abogado de inmigración o un representante acreditado sobre otras opciones de estatus.",
-          "a3": "No se guíe por una fecha de vencimiento que vio antes ni por la fecha impresa en su tarjeta."
-        },
-        "impactByStatus": {
-          "EAD": "Si su permiso de trabajo se basa en el TPS, puede vencer antes de la fecha impresa en él. Verifique la fecha actual con USCIS y busque asesoría legal de inmediato."
-        }
-      },
       "h1b100kFee": {
         "title": "Tarifa H-1B de $100,000 — Procesamiento Consular",
         "summary": "Pago adicional de $100,000 requerido para ciertas peticiones H-1B aprobadas para procesamiento consular.",
@@ -1151,7 +1123,20 @@
           "OPT": "MODERADO — Los titulares de OPT elegibles para cap-gap pueden presentar cambio de estatus",
           "H1B": "ALTO — Las transferencias que requieren procesamiento consular activan la tarifa",
           "B1B2": "ALTO — Debe usar procesamiento consular, la tarifa aplica"
+        },
+        "tpsTerminationsScotus": {
+        "title": "Corte Suprema: las terminaciones del TPS no se pueden impugnar en los tribunales",
+        "summary": "La Corte Suprema resolvió que los tribunales federales no pueden revisar las decisiones del DHS de terminar el TPS. Las terminaciones para Haití y Siria siguen adelante, y otros países se ven afectados.",
+        "details": "El 25 de junio de 2026, en Mullin v. Doe, la Corte Suprema resolvió que los tribunales federales no pueden revisar la decisión del Secretario de Seguridad Nacional de terminar la designación de TPS de un país. Las terminaciones para Haití y Siria siguen adelante. USCIS solo está extendiendo los permisos de trabajo por períodos cortos, por lo que las fechas de vencimiento cambian de semana en semana. Las designaciones que siguen vigentes también son más vulnerables, porque la vía legal para impugnar una terminación está ahora en gran medida cerrada.",
+        "actions": {
+          "a1": "Consulte la página oficial de USCIS sobre el TPS de su país para ver la fecha actual de vencimiento de su permiso de trabajo: puede haber cambiado desde la última vez que la revisó.",
+          "a2": "Hable ahora con un abogado de inmigración o un representante acreditado sobre otras opciones de estatus.",
+          "a3": "No se guíe por una fecha de vencimiento que vio antes ni por la fecha impresa en su tarjeta."
+        },
+        "impactByStatus": {
+          "EAD": "Si su permiso de trabajo se basa en el TPS, puede vencer antes de la fecha impresa en él. Verifique la fecha actual con USCIS y busque asesoría legal de inmediato."
         }
+      }
       },
       "eadValidity18Months": {
         "title": "Validez del EAD Reducida a 18 Meses",
@@ -1250,18 +1235,7 @@
         "details": "La categoría SR está sujeta a las mismas fechas para presentar y fechas de acción final que otras categorías EB-4."
       }
     },
-
-"courtCases": {
-      "h1b100kFeeLitigation": {
-        "case": "Demandas contra la tarifa H-1B de $100,000",
-        "impact": "Un tribunal federal declaró ilegal la tarifa, pero se está cobrando de nuevo mientras el gobierno apela. El resultado no está resuelto.",
-        "probability": "Resultado incierto: tribunales federales han llegado a conclusiones opuestas",
-        "contingencyActions": {
-          "a1": "Presupueste la tarifa. Actualmente se cobra en las peticiones que requieren procesamiento consular.",
-          "a2": "Verifique si le aplica un cambio de estatus dentro de EE. UU.: por lo general, la tarifa no alcanza a quienes ya están aquí y son elegibles para cambiar de estatus.",
-          "a3": "No haga planes que dependan de que la tarifa desaparezca. Consulte las actualizaciones antes de decidir."
-        }
-      },
+    "courtCases": {
       "weightedLotteryChallenge": {
         "case": "Múltiples impugnaciones a la selección H-1B ponderada por salario",
         "impact": "Podría retrasar o modificar el sistema de lotería ponderada por salario",
@@ -1333,9 +1307,7 @@
       "optToH1bImpact": "Afecta directamente tu transición de OPT a H-1B",
       "indiaSpecific": "Impacta específicamente a nacionales indios",
       "genericImpact": "Puede afectar tu camino migratorio",
-      "courtCaseImpact": "{{probability}} — Decisión esperada {{date}}",
-      "courtCaseImpactNoDate": "{{probability}} — no se sabe cuándo se decidirá; consulte las actualizaciones antes de contar con un resultado"
-      
+      "courtCaseImpact": "{{probability}} — Decisión esperada {{date}}"
     }
   },
   "resourcesScreen": {
