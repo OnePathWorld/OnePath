@@ -1,15 +1,62 @@
 // src/data/prevailingWages.js
-// Updated: March 20, 2026
-// Sources: DOL FLAG system (March 5, 2026), BLS OEWS May 2024 estimates,
-//          OFLC July 2025–June 2026 wage year data
+// Updated: July 13, 2026
+// Sources: DOL FLAG (flag.dol.gov/processingtimes, as of June 30, 2026),
+//          BLS OEWS, OFLC wage-year releases
+//
+// 🔴 THE WAGE TABLE BELOW IS FROM AN EXPIRED WAGE YEAR. READ THIS FIRST.
+//
+// On June 29, 2026 OFLC released updated OEWS prevailing wage data for
+// WAGE YEAR 2026-27, effective JULY 1, 2026 through June 30, 2027. The National
+// Prevailing Wage Center is issuing determinations off that new data NOW.
+//
+// Every figure in PREVAILING_WAGES is from the PRIOR wage year (July 2025 –
+// June 2026, BLS May 2024 estimates). It is superseded.
+//
+// The numbers were NOT regenerated, deliberately. The WY2026-27 tables are
+// occupation × MSA × level and must come from DOL directly (flag.dol.gov
+// wage-search / wage-data downloads). Estimating them would be WORSE than
+// leaving them stale: a wrong prevailing wage can lead an employer to underpay
+// (an LCA/PERM violation), and under the FY2027 wage-weighted lottery a wrong
+// LEVEL assessment directly changes a beneficiary's selection odds. A number
+// invented to look current is more dangerous than one honestly marked stale.
+//
+// WHAT TO DO: gate every wage-facing surface on WAGE_DATA_STATUS.isStale and
+// route users to the official calculator. Refresh from flag.dol.gov, then set
+// isStale: false and update dataWageYear.
+//
+// ⚠️ DUPLICATION: WAGE_DETERMINATION_PROCESSING below restates DOL queue data
+// that also lives in processingTimes.js. Two sources of truth for the same
+// facts — they had already drifted (this file was 4 months staler). Both are
+// synced as of 2026-07-13. Prefer processingTimes.js as authoritative; collapse
+// this block into it when convenient.
+
+/**
+ * Wage-data freshness gate. UI MUST respect isStale.
+ */
+export const WAGE_DATA_STATUS = {
+  isStale: true, // <-- flip to false ONLY after refreshing from flag.dol.gov
+  currentWageYear: "July 2026 – June 2027",
+  dataWageYear: "July 2025 – June 2026",
+  newDataEffective: "July 1, 2026",
+  newDataReleased: "June 29, 2026",
+  officialCalculator: "https://flag.dol.gov/wage-data/wage-search",
+  userWarning:
+    "These wage figures are from the previous wage year and are no longer the ones the Department of Labor uses. New prevailing wage data took effect July 1, 2026. Check the official DOL wage search for the current figure before relying on it.",
+  // O*NET 30.3 merged Job Zones 1 and 2 into a combined "Job Zone 1-2". OFLC
+  // keeps the prior-year Job Zone for occupations that were in Zone 1 or 2 in
+  // WY2025-26, and applies Job Zone 2 to Zone 1-2 occupations that were Zone 3.
+  jobZoneNote:
+    "O*NET 30.3 consolidated Job Zones 1 and 2. OFLC preserves the WY2025-26 Job Zone where one existed.",
+};
 
 export const PREVAILING_WAGES_META = {
-    lastUpdated: "March 20, 2026",
+    lastUpdated: "July 13, 2026",
     source: "Department of Labor FLC Data Center / BLS OEWS",
-    wageYear: "July 2025 – June 2026",
+    wageYear: "July 2025 – June 2026 (EXPIRED — see WAGE_DATA_STATUS)",
     wageDataBasis: "BLS May 2024 Occupational Employment and Wage Statistics",
+    dataIsCurrent: false,
     note:
-      "Wages vary by location and SOC code. Examples shown for major metro areas. New OEWS data is released around July 1 each year. Under the FY2027 H-1B wage-weighted lottery, higher wage levels have significantly better selection odds.",
+      "⚠️ The wage figures in this file are from an EXPIRED wage year. New OEWS data took effect July 1, 2026 (wage year July 2026 – June 2027). Verify any figure at flag.dol.gov before relying on it. Under the FY2027 H-1B wage-weighted lottery, higher wage levels have significantly better selection odds — so an out-of-date level assessment can mislead.",
   };
   
   /**
@@ -162,63 +209,83 @@ export const PREVAILING_WAGES_META = {
   
   /**
    * DOL Processing times for wage determinations and PERM
-   * Updated: March 5, 2026 (DOL FLAG system)
+   * Updated: July 13, 2026 — flag.dol.gov/processingtimes (data as of June 30, 2026)
+   *
+   * ⚠️ DUPLICATE SOURCE OF TRUTH. These same facts live in processingTimes.js
+   * (DOL_PWD / DOL_PERM / EB.perm). They had already drifted — this copy was
+   * four months staler and still said PERM was at Oct 2024 filings when DOL had
+   * moved to June 2025. Both are now synced. processingTimes.js is authoritative;
+   * fold this block into it when convenient rather than maintaining two.
    */
   export const WAGE_DETERMINATION_PROCESSING = {
     PWD: {
       OEWS: {
-        processing: "December 2025 filings",
+        processing: "April 2026 filings",
         estimatedWait: "~3 months",
-        note: "Improved from ~6 months. Processing PERM and H-1B OEWS requests filed Dec 2025.",
+        note: "NPWC issuing OEWS-based PWDs for H-1B and PERM requests filed April 2026 (as of June 30, 2026).",
       },
       nonOEWS: {
-        processing: "December 2025 filings",
-        estimatedWait: "~3 months",
+        processing: "March 2026 filings",
+        estimatedWait: "~4 months",
         note: "Non-OEWS includes private wage surveys and CBAs.",
       },
       redetermination: {
-        processing: "October 2025 filings",
+        processing: "February 2026 filings",
         estimatedWait: "~5 months",
+        note: "Reconsideration appeals filed February 2026 and earlier under review.",
       },
-      lastUpdated: "March 5, 2026",
-      source: "DOL FLAG system",
+      lastUpdated: "June 30, 2026",
+      source: "DOL FLAG system (flag.dol.gov/processingtimes)",
     },
     PERM: {
       analystReview: {
-        processing: "October 2024 filings",
-        estimatedWait: "~17 months (503 days average)",
-        note: "DOL adjudicating PERM applications filed Oct 2024 or earlier.",
+        processing: "June 2025 filings",
+        // Was "~17 months (503 days average)". DOL's queue advanced ~8 months
+        // (Oct 2024 -> June 2025) and PERM has IMPROVED. Sources now disagree on
+        // the average (~403 days vs ~17 months), so state a range, not a number.
+        estimatedWait: "~13-17 months (sources vary; treat as a range)",
+        note: "DOL adjudicating PERM applications filed June 2025 or earlier (as of June 30, 2026).",
       },
       auditReview: {
-        processing: "June 2025 filings",
-        estimatedWait: "~9 months",
-        note: "Audited cases filed Jun 2025 or earlier under review.",
+        processing: "Audited cases sit in a separate, slower queue",
+        estimatedWait: "Varies — substantially longer than analyst review",
+        note: "Verify the current audit queue at flag.dol.gov.",
       },
       reconsideration: {
-        processing: "September 2025 filings",
-        estimatedWait: "~6 months",
+        processing: "February 2026 filings",
+        estimatedWait: "~5 months",
       },
-      lastUpdated: "March 5, 2026",
-      governmentShutdownNote:
-        "DOL was closed Oct 1–30, 2025 due to federal government shutdown. Accumulated backlogs are still being worked through.",
+      lastUpdated: "June 30, 2026",
+      note:
+        "End-to-end standard PERM (PWD + recruitment + ETA-9089) is running ~18-22 months, improved from 22-26 months earlier in 2026.",
     },
     // Legacy format for backward compatibility
     H1B: {
       OEWS: "~3 months",
-      nonOEWS: "~3 months",
-      currentlyProcessing: "December 2025",
+      nonOEWS: "~4 months",
+      currentlyProcessing: "April 2026",
     },
-    lastUpdated: "March 2026",
+    lastUpdated: "July 13, 2026",
   };
   
   /**
    * Total green card timeline estimates (PWD + PERM + I-140 + I-485)
+   *
+   * ⚠️ Third copy of the India priority-date claim (see also processingTimes.js
+   * getGreenCardTimeline and visaBulletin.js). Keep them in step.
+   *
+   * "Unavailable" is NOT a long wait — it is a different thing. Per the July
+   * 2026 Visa Bulletin, India EB-2 and India EB-5 Unreserved are "U" for the
+   * remainder of FY2026: the pro-rated annual limit was reached, so NO visas
+   * are issued in those categories this fiscal year regardless of priority
+   * date. A "12+ years" figure implies a moving queue. EB-2 India is not moving.
+   * DOS expects advancement in October (FY2027) — an expectation, not a date.
    */
   export const GREEN_CARD_TIMELINE_ESTIMATES = {
     nonBacklogCountry: {
       pwd: "3 months",
       recruitment: "2-3 months",
-      perm: "17 months",
+      perm: "13-17 months", // was "17 months" — DOL queue moved; PERM improved
       i140: "6-12 months (or 15 days premium)",
       i485: "10-12 months",
       total: "~3-4 years",
@@ -226,25 +293,37 @@ export const PREVAILING_WAGES_META = {
     india: {
       pwd: "3 months",
       recruitment: "2-3 months",
-      perm: "17 months",
+      perm: "13-17 months",
       i140: "6-12 months",
-      priorityDateWait: "12+ years (EB-2) / 12+ years (EB-3)",
+      eb2Unavailable: true, // gate the UI on this — do not render a year figure
+      priorityDateWait:
+        "EB-2: Unavailable — no visas issued for the remainder of FY2026 (may advance in October). EB-3: 12+ years.",
       i485: "10-12 months",
-      total: "15+ years",
+      total: "EB-2 cannot complete this fiscal year; EB-3 15+ years",
     },
     china: {
       pwd: "3 months",
       recruitment: "2-3 months",
-      perm: "17 months",
+      perm: "13-17 months",
       i140: "6-12 months",
+      eb2Unavailable: false,
       priorityDateWait: "4+ years (EB-2) / 5+ years (EB-3)",
       i485: "10-12 months",
       total: "7+ years",
+      note: "DOS has warned China EB-2 may retrogress or become Unavailable in coming months.",
     },
   };
   
   /**
    * Helper: Check if salary meets prevailing wage for a given level
+   *
+   * ⚠️ Returns `stale: true` while WAGE_DATA_STATUS.isStale is set (it is —
+   * the wage year rolled over July 1, 2026). Callers MUST surface `warning`
+   * alongside any figure. Consumed by ResourcesScreen's wage checker.
+   *
+   * The result is still returned rather than nulled, because a stale figure
+   * with an honest warning is more useful than nothing — but it must never be
+   * presented as the operative prevailing wage.
    */
   export function meetsWageRequirement(
     offeredSalary,
@@ -261,6 +340,11 @@ export const PREVAILING_WAGES_META = {
       difference: offeredSalary - wageData.annual,
       level: WAGE_LEVELS[level].name,
       lotteryContext: WAGE_LEVELS[level].lotteryOdds,
+      // Freshness contract — do not drop these on the floor.
+      stale: WAGE_DATA_STATUS.isStale,
+      wageYear: PREVAILING_WAGES_META.wageYear,
+      warning: WAGE_DATA_STATUS.isStale ? WAGE_DATA_STATUS.userWarning : null,
+      officialSource: WAGE_DATA_STATUS.officialCalculator,
     };
   }
   
@@ -336,6 +420,7 @@ export const PREVAILING_WAGES_META = {
   export default {
     WAGE_LEVELS,
     PREVAILING_WAGES,
+    WAGE_DATA_STATUS,
     WAGE_DETERMINATION_PROCESSING,
     GREEN_CARD_TIMELINE_ESTIMATES,
     PREVAILING_WAGES_META,

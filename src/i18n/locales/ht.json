@@ -1392,12 +1392,13 @@
     },
     "h1bCostDialog": {
       "title": "💰 Kalkitatè Depans H-1B",
-      "body": "Depans Total Estimé: ${{total}}\n\nDetailye:\n• Enskripsyon: ${{registration}}\n• Depo: ${{filing}}\n• Prevansyon Fwòd: ${{fraudPrevention}}\n• Konpetitivite: ${{competitiveness}}\n• Frè Prezidansyèl: ${{presidentialFee}}\n• Premium Processing: ${{premium}}\n\n⚠️ Frè prezidansyèl aplike apre 21 sep 2025"
-    },
+      "body": "Kou total estime: ${{total}}\n\nDetay:\n• Enskripsyon: ${{registration}}\n• Depo demann: ${{filing}}\n• Prevansyon fwod: ${{fraudPrevention}}\n• Konpetitivite: ${{competitiveness}}\n• Frè prezidansyèl: ${{presidentialFee}}\n• Pwosesis premium: ${{premium}}\n\n⚠️ Egzanp sa a sipoze PWOSESIS KONSILÈ, se sa ki deklanche frè $100,000 la. Yon chanjman estati anndan Etazini anjeneral pa deklanche l — pifò ka F-1 pou H-1B evite l. Y ap konteste frè a nan tribinal epi rezilta a poko fikse; y ap kolekte l kounye a, kidonk mete l nan bidjè ou."  },
     "wageDialog": {
       "title": "💼 Verifikasyon Kondisyon Salè",
       "meets": "✅ Salè SATISFÈ kondisyon\n\nOfri: ${{offered}}\nNesesè: ${{required}}\nDiferans: +${{difference}}\nNivo: {{level}}",
-      "below": "❌ Salè PI BA kondisyon\n\nOfri: ${{offered}}\nNesesè: ${{required}}\nManke: ${{shortfall}}\nNivo: {{level}}"
+      "below": "❌ Salè PI BA kondisyon\n\nOfri: ${{offered}}\nNesesè: ${{required}}\nManke: ${{shortfall}}\nNivo: {{level}}",
+      "staleWarning": "⚠️ Chif sa yo soti nan ane salè {{dataWageYear}}. Depatman Travay la kounye a itilize done {{currentWageYear}} yo. Gade rechèch salè ofisyèl DOL la pou chif aktyèl la anvan ou konte sou sa a.",
+      "checkOfficial": "Gade salè ofisyèl DOL"
     },
     "timelineDialog": {
       "title": "⏱️ Kalkitatè Kalandriye",

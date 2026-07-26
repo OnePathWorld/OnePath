@@ -20,7 +20,10 @@ import {
 } from "../data/resources";
 import DataUpdateBadge from "../components/DataUpdateBadge";
 import { calculateH1BCost } from "../data/h1bCapData";
-import { meetsWageRequirement } from "../data/prevailingWages";
+import {
+  meetsWageRequirement,
+  WAGE_DATA_STATUS,
+} from "../data/prevailingWages";
 
 const ResourcesScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -63,10 +66,24 @@ const ResourcesScreen = ({ navigation }) => {
   // =========================================================
 
   const showH1BCostCalculator = () => {
+    // BUG FIX: this previously passed `filedAfterSept21_2025: true`, which is
+    // NOT a parameter of calculateH1BCost. It was silently ignored, so
+    // `requiresConsularProcessing` defaulted to false, the $100,000
+    // proclamation fee was never added, and the dialog rendered
+    // "Presidential Fee: $0" while its own footnote claimed the fee applied.
+    // Total shown was $6,195 instead of $106,195 — the app's flagship cost
+    // warning was displaying zero.
+    //
+    // The param name encoded the same misconception as the copy: the fee is
+    // NOT triggered by a filing date. It is triggered by CONSULAR PROCESSING
+    // (beneficiary abroad / petition approved for consular notification), and
+    // generally does NOT reach an F-1 → H-1B change of status inside the U.S.
+    // This example models the consular case, which is the one that carries the
+    // fee; the copy now says so explicitly.
     const cost = calculateH1BCost({
       companySize: 50,
       percentageOnH1BOrL: 30,
-      filedAfterSept21_2025: true,
+      requiresConsularProcessing: true,
       premiumProcessing: true,
     });
 
@@ -93,25 +110,49 @@ const ResourcesScreen = ({ navigation }) => {
       1 // Level 1
     );
 
-    if (result) {
-      Alert.alert(
-        t("resourcesScreen.wageDialog.title"),
-        result.meets
-          ? t("resourcesScreen.wageDialog.meets", {
-              offered: fmtMoney(85000),
-              required: fmtMoney(result.required),
-              difference: fmtMoney(result.difference),
-              level: result.level,
-            })
-          : t("resourcesScreen.wageDialog.below", {
-              offered: fmtMoney(85000),
-              required: fmtMoney(result.required),
-              shortfall: fmtMoney(Math.abs(result.difference)),
-              level: result.level,
-            }),
-        [{ text: t("resourcesScreen.ok") }]
-      );
-    }
+    if (!result) return;
+
+    // The prevailing-wage table is from an EXPIRED wage year — OFLC's WY2026-27
+    // OEWS data took effect July 1, 2026, and DOL now issues determinations off
+    // it. The figures below are therefore NOT the operative prevailing wage.
+    // meetsWageRequirement() returns `stale: true` while that's the case; the
+    // screen must not present the number as authoritative. Under the FY2027
+    // wage-weighted lottery a wrong LEVEL assessment also changes selection
+    // odds, so an unqualified figure here can mislead twice over.
+    const body =
+      (result.meets
+        ? t("resourcesScreen.wageDialog.meets", {
+            offered: fmtMoney(85000),
+            required: fmtMoney(result.required),
+            difference: fmtMoney(result.difference),
+            level: result.level,
+          })
+        : t("resourcesScreen.wageDialog.below", {
+            offered: fmtMoney(85000),
+            required: fmtMoney(result.required),
+            shortfall: fmtMoney(Math.abs(result.difference)),
+            level: result.level,
+          })) +
+      (result.stale
+        ? "\n\n" +
+          t("resourcesScreen.wageDialog.staleWarning", {
+            dataWageYear: WAGE_DATA_STATUS.dataWageYear,
+            currentWageYear: WAGE_DATA_STATUS.currentWageYear,
+          })
+        : "");
+
+    const buttons = result.stale
+      ? [
+          {
+            text: t("resourcesScreen.wageDialog.checkOfficial"),
+            onPress: () =>
+              Linking.openURL(WAGE_DATA_STATUS.officialCalculator),
+          },
+          { text: t("resourcesScreen.ok"), style: "cancel" },
+        ]
+      : [{ text: t("resourcesScreen.ok") }];
+
+    Alert.alert(t("resourcesScreen.wageDialog.title"), body, buttons);
   };
 
   const showTimelineCalculator = () => {

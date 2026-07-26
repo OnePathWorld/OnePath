@@ -348,11 +348,20 @@ app.get(
 // =========================================================
 // Start Server
 // =========================================================
-
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   const { environment, host } = resolveUscisEnvironment();
   console.log(`\n  OnePath Backend running on port ${PORT}`);
   console.log(`  Health: http://localhost:${PORT}/health`);
   console.log(`  USCIS env: ${environment} (${host})`);
+});
+
+// Graceful shutdown — when Railway redeploys or sleeps the container,
+// it sends SIGTERM. Finish in-flight USCIS requests, then exit cleanly.
+process.on("SIGTERM", () => {
+  console.log("[Shutdown] SIGTERM received, closing server gracefully");
+  server.close(() => {
+    console.log("[Shutdown] Server closed, exiting");
+    process.exit(0);
+  });
 });

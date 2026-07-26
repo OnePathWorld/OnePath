@@ -1393,12 +1393,13 @@
     },
     "h1bCostDialog": {
       "title": "💰 Calculadora de Custo H-1B",
-      "body": "Custo Total Estimado: ${{total}}\n\nDetalhamento:\n• Registro: ${{registration}}\n• Petição: ${{filing}}\n• Prevenção de Fraude: ${{fraudPrevention}}\n• Competitividade: ${{competitiveness}}\n• Taxa Presidencial: ${{presidentialFee}}\n• Processamento Premium: ${{premium}}\n\n⚠️ A taxa presidencial se aplica após 21 de setembro de 2025"
-    },
+      "body": "Custo total estimado: ${{total}}\n\nDetalhamento:\n• Registro: ${{registration}}\n• Petição: ${{filing}}\n• Prevenção de fraude: ${{fraudPrevention}}\n• Competitividade: ${{competitiveness}}\n• Taxa presidencial: ${{presidentialFee}}\n• Processamento premium: ${{premium}}\n\n⚠️ Este exemplo pressupõe PROCESSAMENTO CONSULAR, que é o que aciona a taxa de $100,000. Uma mudança de status dentro dos EUA geralmente não a aciona — a maioria dos casos de F-1 para H-1B a evita. A taxa está sendo contestada na justiça e o resultado não está definido; ela está sendo cobrada atualmente, portanto inclua-a no orçamento." },
     "wageDialog": {
       "title": "💼 Verificação de Salário Requerido",
       "meets": "✅ Salário ATENDE o requisito\n\nOferecido: ${{offered}}\nRequerido: ${{required}}\nDiferença: +${{difference}}\nNível: {{level}}",
-      "below": "❌ Salário ABAIXO do requisito\n\nOferecido: ${{offered}}\nRequerido: ${{required}}\nDéficit: ${{shortfall}}\nNível: {{level}}"
+      "below": "❌ Salário ABAIXO do requisito\n\nOferecido: ${{offered}}\nRequerido: ${{required}}\nDéficit: ${{shortfall}}\nNível: {{level}}",
+      "staleWarning": "⚠️ Estes valores são do ano salarial {{dataWageYear}}. O Departamento do Trabalho agora usa os dados de {{currentWageYear}}. Consulte a busca oficial de salários do DOL para ver o valor atual antes de se basear neste.",
+      "checkOfficial": "Ver salário oficial do DOL"
     },
     "timelineDialog": {
       "title": "⏱️ Calculadora de Cronograma",

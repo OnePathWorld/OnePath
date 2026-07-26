@@ -1,11 +1,23 @@
 // src/data/processingTimes.js
 // PURPOSE: Centralized, verified USCIS + DOS + DOL processing times
-// Updated: May 8, 2026
+// Updated: July 13, 2026
 // Used by TimelineScreen, PathwaysScreen, ChecklistScreen, calculators
+//
+// PROCESSING_TIMES_META.lastUpdated is rendered to users in the Home footer
+// (HomeScreen: t("common.dataUpdated", { date: PROCESSING_TIMES_META.lastUpdated })),
+// so it is the app's public freshness stamp. Do NOT advance it without actually
+// re-verifying the data underneath — the label is only worth anything if it's true.
+//
+// SOURCE DISCIPLINE for the DOL block:
+//   QUEUE DATES ("adjudicating applications filed X") come straight from
+//   flag.dol.gov/processingtimes and are unambiguous — trust them.
+//   AVERAGES are softer: secondary sources currently disagree on the ETA-9089
+//   average (~403 days vs 16-17 months). Where sources conflict, give a RANGE
+//   and say so, rather than picking a number and implying precision we lack.
 
 export const PROCESSING_TIMES_META = {
-    lastUpdated: "May 8, 2026",
-    dataVersion: "2026-05-08",
+    lastUpdated: "July 13, 2026",
+    dataVersion: "2026-07-13",
     disclaimer:
       "Processing times are estimates and may vary by workload, location, and individual case factors. USCIS posted times may differ from actual adjudication times.",
   };
@@ -23,7 +35,7 @@ export const PROCESSING_TIMES_META = {
         "Premium processing does not bypass lottery",
         "Actual regular processing now 8-10+ months for change of status",
         "Premium processing fee: $2,965 (effective March 1, 2026)",
-        "FY2027 filing window open through June 30, 2026",
+        "FY2027 cap season is closed — the filing window ran April 1 – June 30, 2026. FY2028 registration expected ~March 2027.",
       ],
       countryAdjustments: {
         default: 0,
@@ -71,18 +83,28 @@ export const PROCESSING_TIMES_META = {
           "Family-based I-485: 12-22 months",
           "EAD validity now 18 months max (effective Dec 5, 2025)",
           "540-day auto-extensions eliminated (effective Oct 30, 2025)",
-          "USCIS using Final Action Dates chart for EB adjustment of status in May 2026",
+          "USCIS using Final Action Dates chart for EB adjustment of status in July 2026 — reverify monthly at uscis.gov/visabulletininfo",
         ],
       },
       perm: {
         pwd: { min: 3, max: 5 },
         recruitment: { min: 2, max: 3 },
-        filing: { min: 16, max: 18 },
+        // Was {min:16, max:18}. DOL has moved: as of June 30, 2026 it is
+        // adjudicating PERM applications filed June 2025 and earlier (the app
+        // previously said Oct 2024 — 8 months of queue movement missed), which
+        // implies ~12 months elapsed for cases now being decided.
+        // Sources conflict on the reported ETA-9089 average: ~403 days (~13 mo)
+        // in current reporting vs 16-17 months in others. Range widened to span
+        // both rather than assert a precision we don't have. Net effect: the app
+        // was OVERSTATING the wait, which inflated getGreenCardTimeline().
+        filing: { min: 13, max: 17 },
         notes: [
-          "DOL processing PERM applications filed Oct 2024 (as of May 2026)",
-          "Average PERM processing: ~503 days (~17 months)",
-          "PWD processing: ~3-5 months (processing Dec 2025–Jan 2026 filings)",
-          "Oct 2025 government shutdown added to backlog — still working through",
+          "As of June 30, 2026: DOL adjudicating PERM applications filed June 2025 and earlier",
+          "Average ETA-9089 processing: reported between ~403 days (~13 months) and ~17 months — sources vary; treat as a range",
+          "PWD (OEWS): DOL issuing determinations for H-1B and PERM requests filed April 2026",
+          "PWD (non-OEWS): determinations for requests filed March 2026",
+          "End-to-end standard PERM (PWD + recruitment + ETA-9089): ~18-22 months, improved from 22-26 months earlier in 2026",
+          "Audited cases move to a separate, slower queue",
         ],
       },
       priorityDateRequired: true,
@@ -98,7 +120,7 @@ export const PROCESSING_TIMES_META = {
         "Immediate relatives not subject to annual visa limits",
         "Processing at National Benefits Center: 12-18 months typical",
         "Concurrent I-485 filing: 8-14 months at better-performing field offices",
-        "USCIS using Dates for Filing chart for family AOS in May 2026",
+        "USCIS using Dates for Filing chart for family AOS in July 2026 — reverify monthly at uscis.gov/visabulletininfo",
       ],
     },
   
@@ -121,7 +143,7 @@ export const PROCESSING_TIMES_META = {
       },
       notes: [
         "Presidential Proclamations 10949/10998 have reduced issuance rates for certain nationalities",
-        "Family categories showed significant forward movement in May 2026 bulletin",
+        "Family categories advanced broadly again in the July 2026 bulletin (F1, F2B, F3, F4 worldwide); F2A held",
         "Retrogression possible later in FY2026 as demand materializes",
         "F4 siblings: 80% of cases taking 106+ months per USCIS data",
       ],
@@ -141,7 +163,7 @@ export const PROCESSING_TIMES_META = {
       notes: [
         "Employment-based: USCIS waiving interviews for ~72% of EB cases",
         "Family-based: varies significantly by field office",
-        "USCIS using Final Action Dates for EB, Dates for Filing for family in May 2026",
+        "USCIS using Final Action Dates for EB, Dates for Filing for family in July 2026 — USCIS sets chart use each month",
       ],
     },
 
@@ -234,20 +256,21 @@ export const PROCESSING_TIMES_META = {
     DOL_PWD: {
       regular: { min: 3, max: 5 },
       notes: [
-        "As of May 2026: Processing OEWS and non-OEWS requests filed Dec 2025–Jan 2026",
-        "Improved from ~6 months — currently ~3-5 months",
-        "Redeterminations: processing Oct–Nov 2025 filings (~5 months)",
-        "New OEWS wage data expected July 2026 for FY2026-2027",
+        "As of June 30, 2026: NPWC issuing OEWS-based PWDs for H-1B and PERM requests filed April 2026",
+        "Non-OEWS requests: determinations for filings from March 2026",
+        "Reconsideration appeals: reviewing requests filed February 2026 and earlier",
+        "⚠️ VERIFY: new OEWS wage data for FY2026-2027 was expected around July 2026 — confirm at flag.dol.gov whether it has published",
       ],
     },
   
     DOL_PERM: {
-      regular: { min: 16, max: 18 },
+      regular: { min: 13, max: 17 },
       notes: [
-        "As of May 2026: Adjudicating applications filed Oct 2024",
-        "Average processing: 503 days (~17 months) — unchanged",
-        "Audit review: processing Jun–Jul 2025 filings (~9-10 months)",
-        "Oct 2025 government shutdown backlog still being worked through",
+        "As of June 30, 2026: DOL adjudicating PERM applications filed June 2025 and earlier",
+        "Queue moved ~8 months since the app's prior figure (Oct 2024) — PERM has improved",
+        "Average ETA-9089 processing reported between ~403 days (~13 months) and ~17 months; sources vary",
+        "Audited cases sit in a separate, slower queue",
+        "Source: flag.dol.gov/processingtimes — recheck monthly",
       ],
     },
   };
@@ -296,6 +319,18 @@ export const PROCESSING_TIMES_META = {
   
   /**
    * Get full green card timeline estimate
+   *
+   * ⚠️ "Unavailable" is not a long wait — it is a different thing entirely.
+   * As of the July 2026 Visa Bulletin, India EB-2 and India EB-5 Unreserved are
+   * "U" (Unavailable) for the remainder of FY2026: the pro-rated annual limit
+   * was reached, so NO visas are being issued in those categories this fiscal
+   * year, regardless of priority date. A "12+ years" estimate implies a queue
+   * that is moving. For India EB-2 right now, it isn't.
+   *
+   * Callers get `unavailable: true` plus a `priorityWait` string that says so.
+   * Do NOT render a numeric year-estimate for an unavailable category — DOS
+   * expects movement in October (start of FY2027), but that is an expectation,
+   * not a date. Reverify against visaBulletin.js each month.
    */
   export function getGreenCardTimeline(country = "default") {
     const pwd = PROCESSING_TIMES.DOL_PWD.regular;
@@ -307,8 +342,12 @@ export const PROCESSING_TIMES_META = {
     const maxMonths = pwd.max + 3 + perm.max + i140.max + i485.max;
   
     let priorityWait = null;
+    let unavailable = false;
+
     if (country === "India") {
-      priorityWait = "12+ years (EB-2/EB-3)";
+      unavailable = true;
+      priorityWait =
+        "EB-2 is currently Unavailable (no visas issued for the rest of FY2026); EB-3 12+ years";
     } else if (country === "China") {
       priorityWait = "4-5 years (EB-2) / 5+ years (EB-3)";
     }
@@ -317,8 +356,9 @@ export const PROCESSING_TIMES_META = {
       minMonths,
       maxMonths,
       priorityWait,
+      unavailable,
       formatted: priorityWait
-        ? `${Math.round(minMonths / 12)}-${Math.round(maxMonths / 12)} years processing + ${priorityWait} priority date wait`
+        ? `${Math.round(minMonths / 12)}-${Math.round(maxMonths / 12)} years processing + ${priorityWait}`
         : `${Math.round(minMonths / 12)}-${Math.round(maxMonths / 12)} years total`,
     };
   }

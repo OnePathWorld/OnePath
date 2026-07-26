@@ -1447,13 +1447,16 @@
     },
     "h1bCostDialog": {
       "title": "💰 H-1B Cost Calculator",
-      "body": "Total Estimated Cost: ${{total}}\n\nBreakdown:\n• Registration: ${{registration}}\n• Filing: ${{filing}}\n• Fraud Prevention: ${{fraudPrevention}}\n• Competitiveness: ${{competitiveness}}\n• Presidential Fee: ${{presidentialFee}}\n• Premium Processing: ${{premium}}\n\n⚠️ Presidential fee applies after Sept 21, 2025"
-    },
+    "body": "Total Estimated Cost: ${{total}}\n\nBreakdown:\n• Registration: ${{registration}}\n• Filing: ${{filing}}\n• Fraud Prevention: ${{fraudPrevention}}\n• Competitiveness: ${{competitiveness}}\n• Presidential Fee: ${{presidentialFee}}\n• Premium Processing: ${{premium}}\n\n⚠️ This example assumes CONSULAR PROCESSING, which is what triggers the $100,000 fee. A change of status inside the U.S. generally does not — most F-1 to H-1B cases avoid it. The fee is being challenged in court and the outcome is unresolved; it is currently being collected, so budget for it." },
     "wageDialog": {
       "title": "💼 Wage Requirement Check",
       "meets": "✅ Salary MEETS requirement\n\nOffered: ${{offered}}\nRequired: ${{required}}\nDifference: +${{difference}}\nLevel: {{level}}",
-      "below": "❌ Salary BELOW requirement\n\nOffered: ${{offered}}\nRequired: ${{required}}\nShortfall: ${{shortfall}}\nLevel: {{level}}"
+      "below": "❌ Salary BELOW requirement\n\nOffered: ${{offered}}\nRequired: ${{required}}\nShortfall: ${{shortfall}}\nLevel: {{level}}",
+      "staleWarning": "⚠️ These figures are from the {{dataWageYear}} wage year. The Department of Labor now uses {{currentWageYear}} data. Check the official DOL wage search for the current figure before relying on this.",
+      "checkOfficial": "Check official DOL wage"
+        
     },
+
     "timelineDialog": {
       "title": "⏱️ Timeline Calculator",
       "body": "Example: Family-Based (Immediate Relative)\n\n• I-130 Processing: 50 months\n• NVC Processing: 2-3 months\n• Embassy Interview: 2-12 months\n• Total: ~58 months (5 years)\n\nFor personalized timeline, use Timeline Visualizer",

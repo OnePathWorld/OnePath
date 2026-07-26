@@ -1392,12 +1392,13 @@
     },
     "h1bCostDialog": {
       "title": "💰 H-1B 费用计算器",
-      "body": "估计总费用:${{total}}\n\n明细:\n• 注册:${{registration}}\n• 申请:${{filing}}\n• 反欺诈:${{fraudPrevention}}\n• 竞争力:${{competitiveness}}\n• 总统费用:${{presidentialFee}}\n• 加急处理:${{premium}}\n\n⚠️ 总统费用适用于 2025 年 9 月 21 日之后"
-    },
+      "body": "预计总费用：${{total}}\n\n明细：\n• 注册费：${{registration}}\n• 申请费：${{filing}}\n• 反欺诈费：${{fraudPrevention}}\n• 竞争力费：${{competitiveness}}\n• 总统令费用：${{presidentialFee}}\n• 加急处理费：${{premium}}\n\n⚠️ 本示例假设采用领事处理，这正是触发 10 万美元费用的情形。在美国境内转换身份通常不会触发该费用——大多数 F-1 转 H-1B 的情况都可避免。该费用正在法院受到质疑，结果尚未确定；目前仍在征收，请纳入预算。"  },
     "wageDialog": {
       "title": "💼 薪资要求检查",
       "meets": "✅ 薪资符合要求\n\n提供:${{offered}}\n要求:${{required}}\n差额:+${{difference}}\n级别:{{level}}",
-      "below": "❌ 薪资低于要求\n\n提供:${{offered}}\n要求:${{required}}\n缺口:${{shortfall}}\n级别:{{level}}"
+      "below": "❌ 薪资低于要求\n\n提供:${{offered}}\n要求:${{required}}\n缺口:${{shortfall}}\n级别:{{level}}",
+      "staleWarning": "⚠️ 这些数字来自 {{dataWageYear}} 工资年度。劳工部现使用 {{currentWageYear}} 的数据。在依据此数字之前，请先查询劳工部官方工资查询系统以获取当前数字。",
+      "checkOfficial": "查询劳工部官方工资"
     },
     "timelineDialog": {
       "title": "⏱️ 时间表计算器",

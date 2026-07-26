@@ -1364,12 +1364,13 @@
     },
     "h1bCostDialog": {
       "title": "💰 Calculadora de Costo H-1B",
-      "body": "Costo Total Estimado: ${{total}}\n\nDesglose:\n• Registro: ${{registration}}\n• Presentación: ${{filing}}\n• Prevención de Fraude: ${{fraudPrevention}}\n• Competitividad: ${{competitiveness}}\n• Tarifa Presidencial: ${{presidentialFee}}\n• Procesamiento Premium: ${{premium}}\n\n⚠️ La tarifa presidencial aplica después del 21 de septiembre de 2025"
-    },
+      "body": "Costo total estimado: ${{total}}\n\nDesglose:\n• Registro: ${{registration}}\n• Presentación: ${{filing}}\n• Prevención de fraude: ${{fraudPrevention}}\n• Competitividad: ${{competitiveness}}\n• Tarifa presidencial: ${{presidentialFee}}\n• Procesamiento premium: ${{premium}}\n\n⚠️ Este ejemplo supone PROCESAMIENTO CONSULAR, que es lo que activa la tarifa de $100,000. Un cambio de estatus dentro de EE. UU. por lo general no la activa: la mayoría de los casos de F-1 a H-1B la evitan. La tarifa está siendo impugnada en los tribunales y el resultado no está resuelto; actualmente se está cobrando, así que inclúyala en su presupuesto."   },
     "wageDialog": {
       "title": "💼 Verificación de Salario Requerido",
       "meets": "✅ Salario CUMPLE el requisito\n\nOfrecido: ${{offered}}\nRequerido: ${{required}}\nDiferencia: +${{difference}}\nNivel: {{level}}",
-      "below": "❌ Salario POR DEBAJO del requisito\n\nOfrecido: ${{offered}}\nRequerido: ${{required}}\nDéficit: ${{shortfall}}\nNivel: {{level}}"
+      "below": "❌ Salario POR DEBAJO del requisito\n\nOfrecido: ${{offered}}\nRequerido: ${{required}}\nDéficit: ${{shortfall}}\nNivel: {{level}}",
+      "staleWarning": "⚠️ Estas cifras corresponden al año salarial {{dataWageYear}}. El Departamento de Trabajo ahora usa los datos de {{currentWageYear}}. Consulte la búsqueda oficial de salarios del DOL para ver la cifra actual antes de guiarse por esta.",
+      "checkOfficial": "Ver salario oficial del DOL"
     },
     "timelineDialog": {
       "title": "⏱️ Calculadora de Cronograma",
